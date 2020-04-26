@@ -35,7 +35,7 @@ namespace BiDaFlow.Tests.Blocks
             transformBlock.Receive().Is(30);
             inputBlock.Count.Is(0);
 
-            transformBlock.Completion.Wait(100).IsTrue("Complete soon");
+            transformBlock.Completion.Wait(TestUtils.CancelSometimeSoon());
         }
 
         [Fact]
@@ -48,7 +48,7 @@ namespace BiDaFlow.Tests.Blocks
 
             cts.Cancel();
 
-            transformBlock.Completion.Wait(100).IsTrue();
+            transformBlock.Completion.Wait(TestUtils.CancelSometimeSoon());
         }
     }
 }

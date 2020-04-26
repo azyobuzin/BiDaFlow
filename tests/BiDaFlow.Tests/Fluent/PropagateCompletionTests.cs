@@ -19,7 +19,7 @@ namespace BiDaFlow.Tests.Fluent
 
             sourceBlock.Complete();
 
-            targetBlock.Completion.Wait(100).IsTrue();
+            targetBlock.Completion.Wait(TestUtils.CancelSometimeSoon());
         }
 
         [Fact]
@@ -33,7 +33,9 @@ namespace BiDaFlow.Tests.Fluent
 
             ((IDataflowBlock)sourceBlock).Fault(new Exception("test"));
 
-            var ex = Assert.Throws<AggregateException>(() => targetBlock.Completion.Wait(100)).Flatten();
+            var ex = Assert
+                .Throws<AggregateException>(() => targetBlock.Completion.Wait(TestUtils.CancelSometimeSoon()))
+                .Flatten();
             ex.InnerExceptions.Count.Is(1);
             ex.InnerException.Message.Is("test");
         }
@@ -50,7 +52,7 @@ namespace BiDaFlow.Tests.Fluent
             unlinker.Dispose();
             sourceBlock.Complete();
 
-            targetBlock.Completion.Wait(100).IsFalse();
+            Assert.ThrowsAny<OperationCanceledException>(() => targetBlock.Completion.Wait(TestUtils.CancelSometimeSoon()));
             sourceBlock.Completion.IsCompleted.IsTrue();
         }
     }
