@@ -18,7 +18,7 @@ namespace BiDaFlow.Blocks
         private bool _isCompleted;
 
         private long _nextId;
-        private readonly LinkedList<OfferingMessage> _offeringMessages = new LinkedList<OfferingMessage>();
+        private readonly LinkedList<OfferingMessage> _offeringMessages = new LinkedList<OfferingMessage>(); // TODO: more efficient structure
 
         public TransformWithoutBufferBlock(Func<TInput, TOutput> transform, TaskScheduler taskScheduler, CancellationToken cancellationToken)
         {

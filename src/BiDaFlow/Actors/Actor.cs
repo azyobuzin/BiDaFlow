@@ -29,9 +29,9 @@ namespace BiDaFlow.Actors
             this._engine.Target.Fault(exception);
         }
 
-        protected internal virtual ValueTask OnCompleted(AggregateException? exception)
+        protected internal virtual Task OnCompleted(AggregateException? exception)
         {
-            return new ValueTask();
+            return Task.CompletedTask;
         }
 
         protected Envelope CreateMessage(Func<Task> handler)
@@ -72,16 +72,19 @@ namespace BiDaFlow.Actors
 
     public abstract class Actor<TOutput> : Actor, ISourceBlock<TOutput>
     {
-        private readonly IPropagatorBlock<TOutput, TOutput> _helperBlock = new TransformWithoutBufferBlock<TOutput, TOutput>(x => x);
+        private readonly IPropagatorBlock<TOutput, TOutput> _helperBlock;
 
         public Actor(ActorOptions? options) : base(options)
         {
+            var taskScheduler = options?.TaskScheduler ?? TaskScheduler.Default;
+            this._helperBlock = new TransformWithoutBufferBlock<TOutput, TOutput>(x => x, taskScheduler, CancellationToken.None);
+
             this.Completion.ContinueWith(
                 (_, state) => ((IDataflowBlock)state).Complete(),
                 this._helperBlock,
                 CancellationToken.None,
                 TaskContinuationOptions.ExecuteSynchronously,
-                TaskScheduler.Default
+                taskScheduler
             );
         }
 

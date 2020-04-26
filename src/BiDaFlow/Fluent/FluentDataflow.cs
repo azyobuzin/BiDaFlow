@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
+using BiDaFlow.Blocks;
 using BiDaFlow.Internal;
 
 namespace BiDaFlow.Fluent
@@ -107,13 +109,86 @@ namespace BiDaFlow.Fluent
             return new DroppingObserver<T>(target);
         }
 
-        public static IPropagatorBlock<TInput, TOutput> Chain<TInput, TSourceOutput, TOutput>(this IPropagatorBlock<TInput, TSourceOutput> sourceBlock, IPropagatorBlock<TSourceOutput, TOutput> followerBlock)
+        public static IPropagatorBlock<TInput, TOutput> Chain<TInput, TSourceOutput, TOutput>(
+            this IPropagatorBlock<TInput, TSourceOutput> sourceBlock,
+            IPropagatorBlock<TSourceOutput, TOutput> followerBlock)
         {
             if (sourceBlock == null) throw new ArgumentNullException(nameof(sourceBlock));
             if (followerBlock == null) throw new ArgumentNullException(nameof(followerBlock));
 
             sourceBlock.LinkWithCompletion(followerBlock);
             return DataflowBlock.Encapsulate(sourceBlock, followerBlock);
+        }
+
+        public static ISourceBlock<T> CompletedSourceBlock<T>()
+        {
+            return CompletedSourceBlockHolder<T>.Instance;
+        }
+
+        public static ISourceBlock<T> Merge<T>(IEnumerable<ISourceBlock<T>> sources)
+        {
+            if (sources == null) throw new ArgumentNullException(nameof(sources));
+
+            var sourceList = sources.ToList();
+            sourceList.RemoveAll(x =>
+                x?.Completion.Status switch
+                {
+                    null => true,
+                    TaskStatus.RanToCompletion => true,
+                    TaskStatus.Canceled => true,
+                    _ => false,
+                }
+            );
+
+            var workingCount = sourceList.Count;
+            if (workingCount == 0) return CompletedSourceBlock<T>();
+
+            var resultBlock = new TransformWithoutBufferBlock<T, T>(x => x);
+
+            foreach (var source in sourceList)
+            {
+                source.LinkTo(resultBlock);
+
+                source.Completion.ContinueWith(
+                    t =>
+                    {
+                        var newWorkingCount = Interlocked.Decrement(ref workingCount);
+
+                        var exception = t.Exception;
+                        if (exception != null)
+                        {
+                            ((IDataflowBlock)resultBlock).Fault(exception);
+                        }
+                        else if (newWorkingCount == 0)
+                        {
+                            resultBlock.Complete();
+                        }
+                    },
+                    CancellationToken.None,
+                    TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach,
+                    TaskScheduler.Default);
+            }
+
+            return resultBlock;
+        }
+
+        public static ISourceBlock<T> Merge<T>(params ISourceBlock<T>[] sources)
+        {
+            return Merge((IEnumerable<ISourceBlock<T>>)sources);
+        }
+
+        public static IPropagatorBlock<TInput, TOutput> Merge<TInput, TOutput>(this IPropagatorBlock<TInput, TOutput> propagator, IEnumerable<ISourceBlock<TOutput>> sources)
+        {
+            if (propagator == null) throw new ArgumentNullException(nameof(propagator));
+            if (sources == null) throw new ArgumentNullException(nameof(sources));
+
+            var mergedSource = Merge(sources.Prepend(propagator));
+            return DataflowBlock.Encapsulate(propagator, mergedSource);
+        }
+
+        public static IPropagatorBlock<TInput, TOutput> Merge<TInput, TOutput>(this IPropagatorBlock<TInput, TOutput> propagator, params ISourceBlock<TOutput>[] sources)
+        {
+            return propagator.Merge((IEnumerable<ISourceBlock<TOutput>>)sources);
         }
     }
 }

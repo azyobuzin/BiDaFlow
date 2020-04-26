@@ -51,7 +51,10 @@ namespace BiDaFlow.Actors
                     .ContinueWith(
                         async t =>
                         {
-                            await this._actor.OnCompleted(t.Exception).ConfigureAwait(false);
+                            var onCompletedTask = this._actor.OnCompleted(t.Exception);
+                            if (onCompletedTask != null)
+                                await onCompletedTask.ConfigureAwait(false);
+
                             return t;
                         },
                         options.TaskScheduler
