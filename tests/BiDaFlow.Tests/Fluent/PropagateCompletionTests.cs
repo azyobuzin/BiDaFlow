@@ -37,7 +37,7 @@ namespace BiDaFlow.Tests.Fluent
                 .Throws<AggregateException>(() => targetBlock.Completion.Wait(TestUtils.CancelSometimeSoon()))
                 .Flatten();
             ex.InnerExceptions.Count.Is(1);
-            ex.InnerException.Message.Is("test");
+            ex.InnerException!.Message.Is("test");
         }
 
         [Fact]

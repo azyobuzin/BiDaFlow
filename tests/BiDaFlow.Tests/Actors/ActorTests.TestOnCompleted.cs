@@ -39,7 +39,7 @@ namespace BiDaFlow.Tests.Actors
 
             // Only exception thrown by OnCompleted can be catched here.
             aex.InnerExceptions.Count.Is(1);
-            aex.InnerException.Message.Is("thrown by OnCompleted");
+            aex.InnerException!.Message.Is("thrown by OnCompleted");
         }
 
         private class OutputOnCompletedActor : Actor<int>
@@ -49,7 +49,7 @@ namespace BiDaFlow.Tests.Actors
                 this.Complete();
             }
 
-            protected override async ValueTask OnCompleted(AggregateException exception)
+            protected override async ValueTask OnCompleted(AggregateException? exception)
             {
                 await this.SendOutputAsync(42);
             }
@@ -57,7 +57,7 @@ namespace BiDaFlow.Tests.Actors
 
         private class TestThrowOnCompletedActor : Actor
         {
-            protected override ValueTask OnCompleted(AggregateException exception)
+            protected override ValueTask OnCompleted(AggregateException? exception)
             {
                 throw new Exception("thrown by OnCompleted");
             }

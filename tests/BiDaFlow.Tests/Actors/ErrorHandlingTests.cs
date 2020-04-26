@@ -19,7 +19,7 @@ namespace BiDaFlow.Tests.Actors
                 .Flatten();
 
             aex.InnerExceptions.Count.Is(1);
-            aex.InnerException.Message.Is("test1");
+            aex.InnerException!.Message.Is("test1");
             actor.Completion.IsCompleted.IsFalse();
         }
 
@@ -32,13 +32,13 @@ namespace BiDaFlow.Tests.Actors
             var aex = Assert.ThrowsAny<AggregateException>(() =>
                 actor.ThrowToReceiver().PostAndReceiveReplyAsync().Wait(TestUtils.CancelSometimeSoon()));
             aex.InnerExceptions.Count.Is(1);
-            aex.InnerException.IsInstanceOf<TaskCanceledException>();
+            aex.InnerException!.IsInstanceOf<TaskCanceledException>();
 
             aex = Assert
                 .Throws<AggregateException>(() => actor.Completion.Wait(TestUtils.CancelSometimeSoon()))
                 .Flatten();
             aex.InnerExceptions.Count.Is(1);
-            aex.InnerException.Message.Is("test2");
+            aex.InnerException!.Message.Is("test2");
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace BiDaFlow.Tests.Actors
                 .Flatten();
 
             aex.InnerExceptions.Count.Is(1);
-            aex.InnerException.Message.Is("test1");
+            aex.InnerException!.Message.Is("test1");
         }
 
         private class TestErrorHandlingActor : Actor
