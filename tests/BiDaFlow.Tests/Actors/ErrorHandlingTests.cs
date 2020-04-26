@@ -9,23 +9,32 @@ namespace BiDaFlow.Tests.Actors
     public partial class ErrorHandlingTests
     {
         [Fact]
-        public async Task TestThrowToSender()
+        public void TestThrowToSender()
         {
             var actor = new TestErrorHandlingActor();
-            var ex = await Assert.ThrowsAsync<Exception>(() => actor.ThrowToSender().PostAndReceiveReplyAsync());
-            ex.Message.Is("test1");
+
+            var aex = Assert
+                .Throws<AggregateException>(() => actor.ThrowToSender()
+                    .PostAndReceiveReplyAsync().Wait(TestUtils.CancelSometimeSoon()))
+                .Flatten();
+
+            aex.InnerExceptions.Count.Is(1);
+            aex.InnerException.Message.Is("test1");
             actor.Completion.IsCompleted.IsFalse();
         }
 
         [Fact]
-        public async Task TestThrowToReceiver()
+        public void TestThrowToReceiver()
         {
             var actor = new TestErrorHandlingActor();
 
             // If an exception is thrown to the receiver, the task should be canceled.
-            await Assert.ThrowsAnyAsync<OperationCanceledException>(() => actor.ThrowToReceiver().PostAndReceiveReplyAsync());
+            var aex = Assert.ThrowsAny<AggregateException>(() =>
+                actor.ThrowToReceiver().PostAndReceiveReplyAsync().Wait(TestUtils.CancelSometimeSoon()));
+            aex.InnerExceptions.Count.Is(1);
+            aex.InnerException.IsInstanceOf<TaskCanceledException>();
 
-            var aex = Assert
+            aex = Assert
                 .Throws<AggregateException>(() => actor.Completion.Wait(TestUtils.CancelSometimeSoon()))
                 .Flatten();
             aex.InnerExceptions.Count.Is(1);
@@ -42,6 +51,7 @@ namespace BiDaFlow.Tests.Actors
             var aex = Assert
                 .Throws<AggregateException>(() => actor.Completion.Wait(TestUtils.CancelSometimeSoon()))
                 .Flatten();
+
             aex.InnerExceptions.Count.Is(1);
             aex.InnerException.Message.Is("test1");
         }
