@@ -5,89 +5,72 @@ using System.Threading.Tasks.Dataflow;
 
 namespace BiDaFlow.Actors
 {
-    public sealed class ActorEngine
+    internal sealed class ActorEngine : ITargetBlock<Envelope?>
     {
-        private readonly EnvelopeTarget _target;
+        private readonly Actor _actor;
+        private readonly ActionBlock<Envelope?> _block;
 
-        internal ActorEngine(Actor parent, ActorOptions? options)
+        public Task Completion { get; }
+        public TaskScheduler TaskScheduler { get; }
+        public CancellationToken CancellationToken { get; }
+
+        public ActorEngine(Actor actor, ActorOptions? options)
         {
-            this._target = new EnvelopeTarget(parent, options);
+            this._actor = actor;
+
+            options ??= ActorOptions.Default;
+            this._block = new ActionBlock<Envelope?>(
+                this.HandleEnvelope,
+                new ExecutionDataflowBlockOptions()
+                {
+                    TaskScheduler = options.TaskScheduler,
+                    CancellationToken = options.CancellationToken,
+                    MaxMessagesPerTask = options.MaxMessagesPerTask,
+                    BoundedCapacity = options.BoundedCapacity,
+                    NameFormat = options.NameFormat,
+                    EnsureOrdered = options.EnsureOrdered,
+                    MaxDegreeOfParallelism = options.MaxDegreeOfParallelism,
+                    SingleProducerConstrained = false,
+                });
+
+            this.Completion = this._block.Completion
+                .ContinueWith(
+                    async t =>
+                    {
+                        var onCompletedTask = this._actor.OnCompleted(t.Exception);
+                        if (onCompletedTask != null)
+                            await onCompletedTask.ConfigureAwait(false);
+
+                        return t;
+                    },
+                    options.TaskScheduler
+                )
+                .Unwrap().Unwrap();
+
+            this.TaskScheduler = options.TaskScheduler;
+            this.CancellationToken = options.CancellationToken;
         }
 
-        internal ITargetBlock<Envelope?> Target => this._target;
-
-        internal TaskScheduler TaskScheduler => this._target.TaskScheduler;
-
-        internal CancellationToken CancellationToken => this._target.CancellationToken;
-
-        private sealed class EnvelopeTarget : ITargetBlock<Envelope?>
+        private Task HandleEnvelope(Envelope? envelope)
         {
-            private readonly Actor _actor;
-            private readonly ActionBlock<Envelope?> _block;
-            private readonly Task _completion;
-            internal TaskScheduler TaskScheduler { get; }
-            internal CancellationToken CancellationToken { get; }
+            if (envelope == null) return Task.CompletedTask;
 
-            internal EnvelopeTarget(Actor actor, ActorOptions? options)
-            {
-                this._actor = actor;
+            if (!ReferenceEquals(envelope.Address, this._actor))
+                throw new ArgumentException("The destination of envelope is not this actor.");
 
-                options ??= ActorOptions.Default;
-                this._block = new ActionBlock<Envelope?>(
-                    this.HandleEnvelope,
-                    new ExecutionDataflowBlockOptions()
-                    {
-                        TaskScheduler = options.TaskScheduler,
-                        CancellationToken = options.CancellationToken,
-                        MaxMessagesPerTask = options.MaxMessagesPerTask,
-                        BoundedCapacity = options.BoundedCapacity,
-                        NameFormat = options.NameFormat,
-                        EnsureOrdered = options.EnsureOrdered,
-                        MaxDegreeOfParallelism = options.MaxDegreeOfParallelism,
-                        SingleProducerConstrained = false,
-                    });
+            return envelope.Action?.Invoke() ?? Task.CompletedTask;
+        }
 
-                this._completion = this._block.Completion
-                    .ContinueWith(
-                        async t =>
-                        {
-                            var onCompletedTask = this._actor.OnCompleted(t.Exception);
-                            if (onCompletedTask != null)
-                                await onCompletedTask.ConfigureAwait(false);
+        public void Complete() => this._block.Complete();
 
-                            return t;
-                        },
-                        options.TaskScheduler
-                    )
-                    .Unwrap().Unwrap();
+        public void Fault(Exception exception) => ((IDataflowBlock)this._block).Fault(exception);
 
-                this.TaskScheduler = options.TaskScheduler;
-                this.CancellationToken = options.CancellationToken;
-            }
+        DataflowMessageStatus ITargetBlock<Envelope?>.OfferMessage(DataflowMessageHeader messageHeader, Envelope? messageValue, ISourceBlock<Envelope?> source, bool consumeToAccept)
+        {
+            if (messageValue != null && !ReferenceEquals(messageValue.Address, this._actor))
+                return DataflowMessageStatus.Declined;
 
-            private Task HandleEnvelope(Envelope? envelope)
-            {
-                if (envelope == null) return Task.CompletedTask;
-
-                if (!ReferenceEquals(envelope.Address, this._actor))
-                    throw new ArgumentException("The destination of envelope is not this actor.");
-
-                return envelope.Action?.Invoke() ?? Task.CompletedTask;
-            }
-
-            Task IDataflowBlock.Completion => this._completion;
-
-            void IDataflowBlock.Complete() => this._block.Complete();
-
-            void IDataflowBlock.Fault(Exception exception) => ((IDataflowBlock)this._block).Fault(exception);
-
-            DataflowMessageStatus ITargetBlock<Envelope?>.OfferMessage(DataflowMessageHeader messageHeader, Envelope? messageValue, ISourceBlock<Envelope?> source, bool consumeToAccept)
-            {
-                if (messageValue != null && !ReferenceEquals(messageValue.Address, this._actor))
-                    return DataflowMessageStatus.Declined;
-
-                return ((ITargetBlock<Envelope?>)this._block).OfferMessage(messageHeader, messageValue, source, consumeToAccept);
-            }
+            return ((ITargetBlock<Envelope?>)this._block).OfferMessage(messageHeader, messageValue, source, consumeToAccept);
         }
     }
 }

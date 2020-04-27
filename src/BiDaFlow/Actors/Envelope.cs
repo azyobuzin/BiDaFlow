@@ -18,12 +18,12 @@ namespace BiDaFlow.Actors
 
         public bool Post()
         {
-            return ((IActor)this.Address).Engine.Target.Post(this);
+            return this.Address.Engine.Post(this);
         }
 
         public Task<bool> SendAsync(CancellationToken cancellationToken)
         {
-            return ((IActor)this.Address).Engine.Target.SendAsync(this, cancellationToken);
+            return this.Address.Engine.SendAsync(this, cancellationToken);
         }
 
         public Task<bool> SendAsync()

@@ -6,27 +6,27 @@ using BiDaFlow.Blocks;
 
 namespace BiDaFlow.Actors
 {
-    public abstract class Actor : IActor
+    public abstract class Actor : IDataflowBlock
     {
-        private readonly ActorEngine _engine;
-
         public Actor(ActorOptions? options)
         {
-            this._engine = new ActorEngine(this, options);
+            this.Engine = new ActorEngine(this, options);
         }
 
         public Actor() : this(null) { }
 
-        public Task Completion => this._engine.Target.Completion;
+        public Task Completion => this.Engine.Completion;
+
+        internal ActorEngine Engine { get; }
 
         protected virtual void Complete()
         {
-            this._engine.Target.Complete();
+            this.Engine.Complete();
         }
 
         protected virtual void Fault(Exception exception)
         {
-            this._engine.Target.Fault(exception);
+            this.Engine.Fault(exception);
         }
 
         protected internal virtual Task OnCompleted(AggregateException? exception)
@@ -62,8 +62,6 @@ namespace BiDaFlow.Actors
             if (handler == null) throw new ArgumentNullException(nameof(handler));
             return new EnvelopeWithReply<TReply>(this, () => Task.FromResult(handler()), handleErrorByReceiver);
         }
-
-        ActorEngine IActor.Engine => this._engine;
 
         void IDataflowBlock.Complete() => this.Complete();
 

@@ -13,13 +13,11 @@ namespace BiDaFlow.Actors
             if (actor == null) throw new ArgumentNullException(nameof(actor));
             if (createMessage == null) throw new ArgumentNullException(nameof(createMessage));
 
-            var iactor = (IActor)actor;
-
             var transformBlock = new TransformWithoutBufferBlock<TInput, Envelope?>(
                 x => createMessage(actor, x),
-                iactor.Engine.TaskScheduler,
-                iactor.Engine.CancellationToken);
-            transformBlock.LinkWithCompletion(iactor.Engine.Target);
+                actor.Engine.TaskScheduler,
+                actor.Engine.CancellationToken);
+            transformBlock.LinkWithCompletion(actor.Engine);
 
             return transformBlock;
         }
