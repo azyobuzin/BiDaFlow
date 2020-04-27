@@ -1,5 +1,5 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using BiDaFlow.Blocks;
 using BiDaFlow.Fluent;
@@ -11,7 +11,7 @@ namespace BiDaFlow.Tests.Blocks
     public class TransformWithoutBufferBlockTests
     {
         [Fact]
-        public void TestTransform()
+        public async Task TestTransform()
         {
             var inputBlock = new BufferBlock<int>();
             var transformBlock = new TransformWithoutBufferBlock<int, int>(x => x * 10);
@@ -36,11 +36,11 @@ namespace BiDaFlow.Tests.Blocks
             transformBlock.Receive().Is(30);
             inputBlock.Count.Is(0);
 
-            transformBlock.Completion.Wait(TestUtils.CancelSometimeSoon());
+            await transformBlock.Completion.CompleteSoon();
         }
 
         [Fact]
-        public void TestCancel()
+        public async Task TestCancel()
         {
             var cts = new CancellationTokenSource();
             var transformBlock = new TransformWithoutBufferBlock<int, int>(x => x, cts.Token);
@@ -49,7 +49,7 @@ namespace BiDaFlow.Tests.Blocks
 
             cts.Cancel();
 
-            transformBlock.Completion.Wait(TestUtils.CancelSometimeSoon());
+            await transformBlock.Completion.CanceledSoon();
         }
 
         [Fact]
@@ -75,7 +75,7 @@ namespace BiDaFlow.Tests.Blocks
         }
 
         [Fact]
-        public void TestMaxMessages()
+        public async Task TestMaxMessages()
         {
             var transformBlock = new TransformWithoutBufferBlock<int, int>(x => x);
             var targetBlock = new BufferBlock<int>();
@@ -84,7 +84,7 @@ namespace BiDaFlow.Tests.Blocks
             transformBlock.Post(1).IsTrue();
 
             targetBlock.Receive(TestUtils.CancelSometimeSoon()).Is(1);
-            Assert.ThrowsAny<OperationCanceledException>(() => targetBlock.Completion.Wait(TestUtils.CancelSometimeSoon()));
+            await targetBlock.Completion.NeverComplete();
 
             transformBlock.Post(2).IsFalse();
         }

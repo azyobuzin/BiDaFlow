@@ -4,16 +4,16 @@ using System.Threading.Tasks.Dataflow;
 
 namespace BiDaFlow.Internal
 {
-    internal sealed class LinkedTarget2<T>
+    internal sealed class LinkRegistration<T>
     {
         public ITargetBlock<T> Target { get; }
 
         private readonly bool _propagateCompletion;
-        private readonly Action<LinkedTarget2<T>>? _unlinkCallback;
+        private readonly Action<LinkRegistration<T>>? _unlinkCallback;
         private int _remainingMessages;
         private int _unlinked;
 
-        public LinkedTarget2(ITargetBlock<T> target, int maxMessages, bool propagateCompletion, Action<LinkedTarget2<T>>? unlinkCallback)
+        public LinkRegistration(ITargetBlock<T> target, int maxMessages, bool propagateCompletion, Action<LinkRegistration<T>>? unlinkCallback)
         {
             if (maxMessages <= 0 && maxMessages != DataflowBlockOptions.Unbounded)
                 throw new ArgumentOutOfRangeException(nameof(maxMessages));

@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
-using BiDaFlow.Fluent;
 using BiDaFlow.Internal;
 
 namespace BiDaFlow.Blocks
@@ -13,9 +12,11 @@ namespace BiDaFlow.Blocks
     {
         private readonly Func<TInput, TOutput> _transform;
         private readonly TaskFactory _taskFactory;
+        private readonly CancellationToken _cancellationToken;
         private readonly TaskCompletionSource<ValueTuple> _tcs;
-        private readonly LinkedList<LinkedTarget<TOutput>> _targets = new LinkedList<LinkedTarget<TOutput>>();
-        private bool _isCompleted;
+        private readonly LinkManager<TOutput> _linkManager = new LinkManager<TOutput>();
+        private bool _completeRequested;
+        private bool _propagatedCompletion;
 
         private long _nextId;
         private readonly LinkedList<OfferingMessage> _offeringMessages = new LinkedList<OfferingMessage>(); // TODO: more efficient structure
@@ -24,6 +25,7 @@ namespace BiDaFlow.Blocks
         {
             this._transform = transform ?? throw new ArgumentNullException(nameof(transform));
             this._taskFactory = new TaskFactory(taskScheduler ?? throw new ArgumentNullException(nameof(taskScheduler)));
+            this._cancellationToken = cancellationToken;
             this._tcs = new TaskCompletionSource<ValueTuple>();
 
             if (cancellationToken.CanBeCanceled)
@@ -36,6 +38,8 @@ namespace BiDaFlow.Blocks
                     TaskContinuationOptions.ExecuteSynchronously,
                     TaskScheduler.Default);
             }
+
+            this.Completion.ContinueWith(this.HandleCompletion, taskScheduler);
         }
 
         public TransformWithoutBufferBlock(Func<TInput, TOutput> transform)
@@ -50,36 +54,14 @@ namespace BiDaFlow.Blocks
 
         public void Complete()
         {
-            if (this._isCompleted) return;
-
-            lock (this.Lock)
-            {
-                this._isCompleted = true;
-            }
-
-            this._tcs.TrySetResult(default);
-
-            // TODO: Release reservations
+            this.CompleteCore(null);
         }
 
         void IDataflowBlock.Fault(Exception exception)
         {
             if (exception == null) throw new ArgumentNullException(nameof(exception));
-            if (this._isCompleted) return;
 
-            lock (this.Lock)
-            {
-                this._isCompleted = true;
-            }
-
-            if (exception is AggregateException aex)
-            {
-                this._tcs.TrySetException(aex.InnerExceptions);
-            }
-            else
-            {
-                this._tcs.TrySetException(exception);
-            }
+            this.CompleteCore(exception);
         }
 
         public IDisposable LinkTo(ITargetBlock<TOutput> target, DataflowLinkOptions linkOptions)
@@ -87,37 +69,28 @@ namespace BiDaFlow.Blocks
             if (target == null) throw new ArgumentNullException(nameof(target));
             linkOptions ??= new DataflowLinkOptions();
 
-            if (linkOptions.MaxMessages == 0) return ActionDisposable.Nop;
-
-            var unlinkerForCompletion = linkOptions.PropagateCompletion
-                ? this.PropagateCompletion(target)
-                : null;
-
-            var linkedTarget = new LinkedTarget<TOutput>(target, unlinkerForCompletion, linkOptions.MaxMessages);
+            LinkRegistration<TOutput> registration;
 
             lock (this.Lock)
             {
-                if (linkOptions.Append)
+                if (this._propagatedCompletion)
                 {
-                    this._targets.AddLast(linkedTarget);
+                    var exception = this.Completion.Exception;
+                    if (exception == null)
+                        target.Complete();
+                    else
+                        target.Fault(exception);
+
+                    return ActionDisposable.Nop;
                 }
-                else
-                {
-                    this._targets.AddFirst(linkedTarget);
-                }
+
+                registration = new LinkRegistration<TOutput>(target, linkOptions.MaxMessages, linkOptions.PropagateCompletion, this.HandleUnlink);
+                this._linkManager.AddLink(registration, linkOptions.Append);
             }
 
             this.OfferToTargets();
 
-            return new ActionDisposable(() =>
-            {
-                lock (this.Lock)
-                {
-                    linkedTarget.Unlink();
-                }
-
-                this.OfferToTargets();
-            });
+            return new ActionDisposable(registration.Unlink);
         }
 
         TOutput ISourceBlock<TOutput>.ConsumeMessage(DataflowMessageHeader messageHeader, ITargetBlock<TOutput> target, out bool messageConsumed)
@@ -129,11 +102,17 @@ namespace BiDaFlow.Blocks
 
             lock (this.Lock)
             {
+                if (this._completeRequested)
+                {
+                    messageConsumed = false;
+                    return default!;
+                }
+
                 for (var node = this._offeringMessages.First; node != null; node = node.Next)
                 {
                     if (node.Value.MessageHeader == messageHeader)
                     {
-                        if (node.Value.ReservedBy != null && node.Value.ReservedBy != target)
+                        if (node.Value.ReservedBy != null && !Equals(node.Value.ReservedBy, target))
                         {
                             messageConsumed = false;
                             return default!;
@@ -154,7 +133,11 @@ namespace BiDaFlow.Blocks
                 {
                     try
                     {
-                        return this._transform(consumedValue);
+                        var transformedValue = this._transform(consumedValue);
+
+                        this._linkManager.GetRegistration(target)?.DecrementRemainingMessages();
+
+                        return transformedValue;
                     }
                     catch (Exception ex)
                     {
@@ -174,6 +157,8 @@ namespace BiDaFlow.Blocks
 
             lock (this.Lock)
             {
+                if (this._completeRequested) return false;
+
                 foreach (var offeringMessage in this._offeringMessages)
                 {
                     if (offeringMessage.MessageHeader == messageHeader)
@@ -207,7 +192,7 @@ namespace BiDaFlow.Blocks
                     offeringMessage = node.Value;
                     if (offeringMessage.MessageHeader == messageHeader)
                     {
-                        if (offeringMessage.ReservedBy == target)
+                        if (Equals(offeringMessage.ReservedBy, target))
                         {
                             offeringMessage.ReservedBy = null;
                             break;
@@ -220,9 +205,12 @@ namespace BiDaFlow.Blocks
 
             if (offeringMessage == null) return;
 
-            offeringMessage!.Source.ReleaseReservation(offeringMessage.SourceHeader, this);
+            if (!this._completeRequested)
+            {
+                offeringMessage!.Source.ReleaseReservation(offeringMessage.SourceHeader, this);
 
-            this.OfferToTargets();
+                this.OfferToTargets();
+            }
         }
 
         DataflowMessageStatus ITargetBlock<TInput>.OfferMessage(DataflowMessageHeader messageHeader, TInput messageValue, ISourceBlock<TInput>? source, bool consumeToAccept)
@@ -230,7 +218,7 @@ namespace BiDaFlow.Blocks
             if (!messageHeader.IsValid) throw new ArgumentException("messageHeader is not valid.");
             if (consumeToAccept && source == null) throw new ArgumentException("source is null though consumeToAccept is true.");
 
-            if (this._isCompleted) return DataflowMessageStatus.DecliningPermanently;
+            if (this._completeRequested) return DataflowMessageStatus.DecliningPermanently;
 
             TOutput transformedValue;
 
@@ -246,7 +234,7 @@ namespace BiDaFlow.Blocks
 
             lock (this.Lock)
             {
-                if (this._isCompleted) return DataflowMessageStatus.DecliningPermanently;
+                if (this._completeRequested) return DataflowMessageStatus.DecliningPermanently;
 
                 var canOfferNow = this._offeringMessages.Count == 0;
                 DataflowMessageHeader myHeader = default;
@@ -285,51 +273,26 @@ namespace BiDaFlow.Blocks
 
                 if (canOfferNow)
                 {
-                    for (var targetNode = this._targets.First; targetNode != null;)
+                    foreach (var registration in this._linkManager)
                     {
-                        var linkedTarget = targetNode.Value;
-                        var remove = false;
+                        var status = registration.Target.OfferMessage(myHeader, transformedValue, this, consumeToAccept);
 
-                        if (linkedTarget.IsLinked)
+                        switch (status)
                         {
-                            // FIXME: If target is LinkTarget, source cannot be null
-                            var status = linkedTarget.Target.OfferMessage(myHeader, transformedValue, source == null ? null : this, consumeToAccept);
+                            case DataflowMessageStatus.Accepted:
+                                if (!consumeToAccept)
+                                    registration.DecrementRemainingMessages();
+                                goto case DataflowMessageStatus.NotAvailable;
 
-                            switch (status)
-                            {
-                                case DataflowMessageStatus.Accepted:
-                                    linkedTarget.DecrementRemainingMessages();
-                                    goto case DataflowMessageStatus.NotAvailable;
+                            case DataflowMessageStatus.NotAvailable:
+                                if (!consumeToAccept && enqueuedNode != null)
+                                    this._offeringMessages.Remove(enqueuedNode);
 
-                                case DataflowMessageStatus.NotAvailable:
-                                    if (enqueuedNode?.List != null)
-                                        this._offeringMessages.Remove(enqueuedNode);
+                                return status;
 
-                                    return status;
-
-                                case DataflowMessageStatus.Postponed:
-                                    return DataflowMessageStatus.Postponed;
-
-                                case DataflowMessageStatus.DecliningPermanently:
-                                    linkedTarget.Unlink();
-                                    remove = true;
-                                    break;
-                            }
-                        }
-                        else
-                        {
-                            remove = true;
-                        }
-
-                        if (remove)
-                        {
-                            var nodeToRemove = targetNode;
-                            targetNode = targetNode.Next;
-                            this._targets.Remove(nodeToRemove);
-                        }
-                        else
-                        {
-                            targetNode = targetNode.Next;
+                            case DataflowMessageStatus.DecliningPermanently:
+                                registration.Unlink();
+                                break;
                         }
                     }
                 }
@@ -340,78 +303,155 @@ namespace BiDaFlow.Blocks
 
         private void OfferToTargets()
         {
-            if (this._isCompleted) return;
+            if (this._completeRequested) return;
 
             this._taskFactory.StartNew(() =>
             {
-                lock (this.Lock)
+                try
                 {
-                    try
+                StartConsume:
+                    OfferingMessage message;
+
+                    lock (this.Lock)
                     {
-                    StartConsume:
-                        if (this._isCompleted) return;
+                        if (this._completeRequested) return;
 
                         var messageNode = this._offeringMessages.First;
                         if (messageNode == null || messageNode.Value.ReservedBy != null) return;
 
-                        var message = messageNode.Value;
+                        message = messageNode.Value;
+                    }
 
-                        for (var targetNode = this._targets.First; targetNode != null;)
+                    foreach (var registration in this._linkManager)
+                    {
+                        var status = registration.Target.OfferMessage(message.MessageHeader, message.TransformedValue, this, true);
+
+                        switch (status)
                         {
-                            var linkedTarget = targetNode.Value;
-                            var remove = false;
+                            case DataflowMessageStatus.Accepted:
+                            case DataflowMessageStatus.NotAvailable:
+                                goto StartConsume;
 
-                            if (linkedTarget.IsLinked)
+                            case DataflowMessageStatus.DecliningPermanently:
+                                registration.Unlink();
+                                break;
+                        }
+                    }
+
+                    goto StartConsume;
+                }
+                catch (Exception ex)
+                {
+                    ((IDataflowBlock)this).Fault(ex);
+                }
+            });
+        }
+
+        private void HandleUnlink(LinkRegistration<TOutput> registration)
+        {
+            if (registration == null) throw new ArgumentNullException(nameof(registration));
+
+            this._taskFactory.StartNew(() =>
+            {
+                try
+                {
+                    lock (this.Lock)
+                    {
+                        if (this._completeRequested) return;
+
+                        // Remove from the list of linked targets
+                        this._linkManager.RemoveLink(registration);
+
+                        if (this._linkManager.GetRegistration(registration.Target) == null)
+                        {
+                            // Release reservation
+                            var releasedMessages = new List<OfferingMessage>();
+
+                            foreach (var message in this._offeringMessages)
                             {
-                                var status = linkedTarget.Target.OfferMessage(message.MessageHeader, message.TransformedValue, this, true);
-
-                                switch (status)
+                                if (Equals(message.ReservedBy, registration.Target))
                                 {
-                                    case DataflowMessageStatus.Accepted:
-                                        linkedTarget.DecrementRemainingMessages();
-                                        goto case DataflowMessageStatus.NotAvailable;
-
-                                    case DataflowMessageStatus.NotAvailable:
-                                        if (messageNode.List != null)
-                                            throw new InvalidOperationException("The message has not been consumed.");
-
-                                        goto StartConsume;
-
-                                    case DataflowMessageStatus.Postponed:
-                                        // If the message has been reserved, offer no more
-                                        if (messageNode.Value.ReservedBy != null)
-                                            return;
-                                        break;
-
-                                    case DataflowMessageStatus.DecliningPermanently:
-                                        linkedTarget.Unlink();
-                                        remove = true;
-                                        break;
+                                    message.ReservedBy = null;
+                                    releasedMessages.Add(message);
                                 }
                             }
-                            else
-                            {
-                                remove = true;
-                            }
 
-                            if (remove)
+                            if (releasedMessages.Count > 0)
                             {
-                                var nodeToRemove = targetNode;
-                                targetNode = targetNode.Next;
-                                this._targets.Remove(nodeToRemove);
-                            }
-                            else
-                            {
-                                targetNode = targetNode.Next;
+                                foreach (var message in releasedMessages)
+                                    message.Source.ReleaseReservation(message.SourceHeader, this);
+
+                                this.OfferToTargets();
                             }
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        ((IDataflowBlock)this).Fault(ex);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    ((IDataflowBlock)this).Fault(ex);
                 }
             });
+        }
+
+        private void CompleteCore(Exception? exception)
+        {
+            lock (this.Lock)
+            {
+                if (this._completeRequested) return;
+                this._completeRequested = true;
+            }
+
+            var exceptions = new List<Exception>();
+
+            try
+            {
+                if (exception is AggregateException aex)
+                    exceptions.AddRange(aex.InnerExceptions);
+                else if (exception != null)
+                    exceptions.Add(exception);
+
+                this.ReleaseAllReservations();
+            }
+            catch (Exception ex)
+            {
+                exceptions.Add(ex);
+            }
+
+            if (exceptions.Count > 0)
+            {
+                this._tcs.TrySetException(exceptions);
+            }
+            else if (this._cancellationToken.IsCancellationRequested)
+            {
+                this._tcs.TrySetCanceled(this._cancellationToken);
+            }
+            else
+            {
+                this._tcs.TrySetResult(default);
+            }
+        }
+
+        private void ReleaseAllReservations()
+        {
+            foreach (var message in this._offeringMessages)
+            {
+                if (message.ReservedBy != null)
+                {
+                    message.Source.ReleaseReservation(message.SourceHeader, this);
+                }
+            }
+        }
+
+        private void HandleCompletion(Task completionTask)
+        {
+            lock (this.Lock)
+            {
+                if (this._propagatedCompletion) return;
+                this._propagatedCompletion = true;
+            }
+
+            foreach (var registration in this._linkManager)
+                registration.Complete(completionTask.Exception);
         }
 
         private class OfferingMessage
