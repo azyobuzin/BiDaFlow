@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks.Dataflow;
 using BiDaFlow.Blocks;
 using BiDaFlow.Fluent;
@@ -49,6 +50,43 @@ namespace BiDaFlow.Tests.Blocks
             cts.Cancel();
 
             transformBlock.Completion.Wait(TestUtils.CancelSometimeSoon());
+        }
+
+        [Fact]
+        public void TestLink()
+        {
+            var transformBlock = new TransformWithoutBufferBlock<int, int>(x => x);
+
+            var target1 = new BufferBlock<int>(new DataflowBlockOptions() { BoundedCapacity = 1 });
+            var target2 = new BufferBlock<int>(new DataflowBlockOptions() { BoundedCapacity = 1 });
+            var target3 = new BufferBlock<int>(new DataflowBlockOptions() { BoundedCapacity = 1 });
+
+            transformBlock.LinkTo(target1);
+            transformBlock.LinkTo(target2, x => x != 2);
+            transformBlock.LinkTo(target3);
+
+            transformBlock.Post(1).IsTrue();
+            transformBlock.Post(2).IsTrue();
+            transformBlock.Post(3).IsTrue();
+
+            target1.Receive(TestUtils.CancelSometimeSoon()).Is(1);
+            target2.Receive(TestUtils.CancelSometimeSoon()).Is(3);
+            target3.Receive(TestUtils.CancelSometimeSoon()).Is(2);
+        }
+
+        [Fact]
+        public void TestMaxMessages()
+        {
+            var transformBlock = new TransformWithoutBufferBlock<int, int>(x => x);
+            var targetBlock = new BufferBlock<int>();
+            transformBlock.LinkTo(targetBlock, new DataflowLinkOptions() { MaxMessages = 1, PropagateCompletion = true });
+
+            transformBlock.Post(1).IsTrue();
+
+            targetBlock.Receive(TestUtils.CancelSometimeSoon()).Is(1);
+            Assert.ThrowsAny<OperationCanceledException>(() => targetBlock.Completion.Wait(TestUtils.CancelSometimeSoon()));
+
+            transformBlock.Post(2).IsFalse();
         }
     }
 }

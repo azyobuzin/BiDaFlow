@@ -82,6 +82,7 @@ namespace BiDaFlow.Fluent
                         {
                             while (!cancellationToken.IsCancellationRequested && enumerator.MoveNext())
                             {
+                                // TODO: more efficient implementation
                                 var accepted = await block.SendAsync(enumerator.Current, cancellationToken);
                                 if (!accepted) return;
                             }
@@ -182,7 +183,7 @@ namespace BiDaFlow.Fluent
             if (propagator == null) throw new ArgumentNullException(nameof(propagator));
             if (sources == null) throw new ArgumentNullException(nameof(sources));
 
-            var mergedSource = Merge(sources.Prepend(propagator));
+            var mergedSource = Merge(new[] { propagator }.Concat(sources));
             return DataflowBlock.Encapsulate(propagator, mergedSource);
         }
 

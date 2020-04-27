@@ -49,7 +49,7 @@ namespace BiDaFlow.Tests.Actors
                 this.Complete();
             }
 
-            protected override async ValueTask OnCompleted(AggregateException? exception)
+            protected override async Task OnCompleted(AggregateException? exception)
             {
                 await this.SendOutputAsync(42);
             }
@@ -57,7 +57,7 @@ namespace BiDaFlow.Tests.Actors
 
         private class TestThrowOnCompletedActor : Actor
         {
-            protected override ValueTask OnCompleted(AggregateException? exception)
+            protected override Task OnCompleted(AggregateException? exception)
             {
                 throw new Exception("thrown by OnCompleted");
             }

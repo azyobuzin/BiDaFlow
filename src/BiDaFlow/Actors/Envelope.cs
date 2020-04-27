@@ -7,10 +7,10 @@ namespace BiDaFlow.Actors
 {
     public class Envelope
     {
-        public IActor Address { get; }
+        public Actor Address { get; }
         internal Func<Task> Action { get; }
 
-        internal Envelope(IActor address, Func<Task> action)
+        internal Envelope(Actor address, Func<Task> action)
         {
             this.Address = address;
             this.Action = action;
@@ -18,12 +18,12 @@ namespace BiDaFlow.Actors
 
         public bool Post()
         {
-            return this.Address.Engine.Target.Post(this);
+            return ((IActor)this.Address).Engine.Target.Post(this);
         }
 
         public Task<bool> SendAsync(CancellationToken cancellationToken)
         {
-            return this.Address.Engine.Target.SendAsync(this, cancellationToken);
+            return ((IActor)this.Address).Engine.Target.SendAsync(this, cancellationToken);
         }
 
         public Task<bool> SendAsync()
@@ -34,11 +34,11 @@ namespace BiDaFlow.Actors
 
     public class EnvelopeWithReply<TReply>
     {
-        public IActor Address { get; }
+        public Actor Address { get; }
         internal Func<Task<TReply>> Action { get; }
         internal bool HandleErrorByReceiver { get; }
 
-        internal EnvelopeWithReply(IActor address, Func<Task<TReply>> action, bool handleErrorByReceiver)
+        internal EnvelopeWithReply(Actor address, Func<Task<TReply>> action, bool handleErrorByReceiver)
         {
             this.Address = address;
             this.Action = action;

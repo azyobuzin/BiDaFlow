@@ -58,6 +58,8 @@ namespace BiDaFlow.Blocks
             }
 
             this._tcs.TrySetResult(default);
+
+            // TODO: Release reservations
         }
 
         void IDataflowBlock.Fault(Exception exception)
@@ -290,6 +292,7 @@ namespace BiDaFlow.Blocks
 
                         if (linkedTarget.IsLinked)
                         {
+                            // FIXME: If target is LinkTarget, source cannot be null
                             var status = linkedTarget.Target.OfferMessage(myHeader, transformedValue, source == null ? null : this, consumeToAccept);
 
                             switch (status)
@@ -375,7 +378,10 @@ namespace BiDaFlow.Blocks
                                         goto StartConsume;
 
                                     case DataflowMessageStatus.Postponed:
-                                        return;
+                                        // If the message has been reserved, offer no more
+                                        if (messageNode.Value.ReservedBy != null)
+                                            return;
+                                        break;
 
                                     case DataflowMessageStatus.DecliningPermanently:
                                         linkedTarget.Unlink();

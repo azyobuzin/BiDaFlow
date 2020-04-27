@@ -8,16 +8,18 @@ namespace BiDaFlow.Actors
     public static class ActorExtensions
     {
         public static ITargetBlock<TInput> AsTargetBlock<TActor, TInput>(this TActor actor, Func<TActor, TInput, Envelope?> createMessage)
-            where TActor : IActor
+            where TActor : Actor
         {
             if (actor == null) throw new ArgumentNullException(nameof(actor));
             if (createMessage == null) throw new ArgumentNullException(nameof(createMessage));
 
+            var iactor = (IActor)actor;
+
             var transformBlock = new TransformWithoutBufferBlock<TInput, Envelope?>(
                 x => createMessage(actor, x),
-                actor.Engine.TaskScheduler,
-                actor.Engine.CancellationToken);
-            transformBlock.LinkWithCompletion(actor.Engine.Target);
+                iactor.Engine.TaskScheduler,
+                iactor.Engine.CancellationToken);
+            transformBlock.LinkWithCompletion(iactor.Engine.Target);
 
             return transformBlock;
         }

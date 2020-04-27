@@ -10,8 +10,8 @@ namespace BiDaFlow.Actors
     {
         private readonly Func<Task<T>> _startFunc;
         private readonly Func<AggregateException?, Task<RescueAction>> _rescueFunc;
-        private readonly TaskScheduler _taskScheduler;
-        private readonly TaskCompletionSource<ValueTask> _tcs;
+        internal readonly TaskScheduler _taskScheduler;
+        private readonly TaskCompletionSource<ValueTuple> _tcs;
         private bool _started;
         private T? _currentBlock;
         private readonly Queue<Action<T>> _actionQueue = new Queue<Action<T>>();
@@ -21,7 +21,7 @@ namespace BiDaFlow.Actors
             this._startFunc = startFunc ?? throw new ArgumentNullException(nameof(startFunc));
             this._rescueFunc = rescueFunc ?? throw new ArgumentNullException(nameof(rescueFunc));
             this._taskScheduler = taskScheduler ?? throw new ArgumentNullException(nameof(taskScheduler));
-            this._tcs = new TaskCompletionSource<ValueTask>();
+            this._tcs = new TaskCompletionSource<ValueTuple>();
 
             new TaskFactory(taskScheduler).StartNew(this.Restart);
         }
