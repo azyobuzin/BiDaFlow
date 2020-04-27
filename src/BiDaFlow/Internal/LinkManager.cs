@@ -7,76 +7,85 @@ namespace BiDaFlow.Internal
 {
     internal sealed class LinkManager<T> : IEnumerable<LinkRegistration<T>>
     {
-        private readonly LinkedList<LinkRegistration<T>> _links = new LinkedList<LinkRegistration<T>>();
-        private readonly Dictionary<ITargetBlock<T>, SingleLinkedList<LinkedListNode<LinkRegistration<T>>>> _targetToNodeTable = new Dictionary<ITargetBlock<T>, SingleLinkedList<LinkedListNode<LinkRegistration<T>>>>();
+        private readonly DoubleLinkedList<LinkRegistration<T>> _links = new DoubleLinkedList<LinkRegistration<T>>();
+        private readonly Dictionary<ITargetBlock<T>, SingleLinkedList<DoubleLinkedList<LinkRegistration<T>>.Node>> _targetToNodeTable = new Dictionary<ITargetBlock<T>, SingleLinkedList<DoubleLinkedList<LinkRegistration<T>>.Node>>();
 
         public int Count => this._links.Count;
 
         public void AddLink(LinkRegistration<T> registration, bool append)
         {
-            if (append)
+            lock (this._links)
             {
-                var node = this._links.AddLast(registration);
-                var listNode = new SingleLinkedList<LinkedListNode<LinkRegistration<T>>>(node);
-
-                if (this._targetToNodeTable.TryGetValue(registration.Target, out var list))
+                if (append)
                 {
-                    while (list.Next != null) list = list.Next;
-                    list.Next = listNode;
+                    var node = this._links.AddLast(registration);
+                    var listNode = new SingleLinkedList<DoubleLinkedList<LinkRegistration<T>>.Node>(node);
+
+                    if (this._targetToNodeTable.TryGetValue(registration.Target, out var list))
+                    {
+                        while (list.Next != null) list = list.Next;
+                        list.Next = listNode;
+                    }
+                    else
+                    {
+                        this._targetToNodeTable.Add(registration.Target, listNode);
+                    }
                 }
                 else
                 {
-                    this._targetToNodeTable.Add(registration.Target, listNode);
-                }
-            }
-            else
-            {
-                var node = this._links.AddFirst(registration);
+                    var node = this._links.AddFirst(registration);
 
-                this._targetToNodeTable.TryGetValue(registration.Target, out var listNode);
-                this._targetToNodeTable[registration.Target] = new SingleLinkedList<LinkedListNode<LinkRegistration<T>>>(node, listNode);
+                    this._targetToNodeTable.TryGetValue(registration.Target, out var listNode);
+                    this._targetToNodeTable[registration.Target] = new SingleLinkedList<DoubleLinkedList<LinkRegistration<T>>.Node>(node, listNode);
+                }
             }
         }
 
         public void RemoveLink(LinkRegistration<T> registration)
         {
-            var newList = CreateRemovedList(this._targetToNodeTable[registration.Target]);
+            lock (this._links)
+            {
+                var newList = CreateRemovedList(this._targetToNodeTable[registration.Target]);
 
-            if (newList == null)
-            {
-                this._targetToNodeTable.Remove(registration.Target);
-            }
-            else
-            {
-                this._targetToNodeTable[registration.Target] = newList;
-            }
-
-            SingleLinkedList<LinkedListNode<LinkRegistration<T>>>? CreateRemovedList(SingleLinkedList<LinkedListNode<LinkRegistration<T>>> listNode)
-            {
-                if (listNode.Value.Value == registration)
+                if (newList == null)
                 {
-                    this._links.Remove(listNode.Value);
-                    return listNode.Next;
+                    this._targetToNodeTable.Remove(registration.Target);
+                }
+                else
+                {
+                    this._targetToNodeTable[registration.Target] = newList;
                 }
 
-                if (listNode.Next == null)
-                    throw new ArgumentException("The specified registration is not found.");
+                SingleLinkedList<DoubleLinkedList<LinkRegistration<T>>.Node>? CreateRemovedList(
+                    SingleLinkedList<DoubleLinkedList<LinkRegistration<T>>.Node> listNode)
+                {
+                    if (listNode.Value.Value == registration)
+                    {
+                        this._links.Remove(listNode.Value);
+                        return listNode.Next;
+                    }
 
-                listNode.Next = CreateRemovedList(listNode.Next);
-                return listNode;
+                    if (listNode.Next == null)
+                        throw new ArgumentException("The specified registration is not found.");
+
+                    listNode.Next = CreateRemovedList(listNode.Next);
+                    return listNode;
+                }
             }
         }
 
         public LinkRegistration<T>? GetRegistration(ITargetBlock<T> target)
         {
-            return this._targetToNodeTable.TryGetValue(target, out var node)
+            lock (this._links)
+            {
+                return this._targetToNodeTable.TryGetValue(target, out var node)
                 ? node.Value.Value
                 : null;
+            }
         }
 
         public LinkEnumerator GetEnumerator()
         {
-            // Unlike LinkedList.Enumerator, this enumerator allows to remove item in enumerating.
             return new LinkEnumerator(this._links.First);
         }
 
@@ -88,9 +97,9 @@ namespace BiDaFlow.Internal
 
         internal struct LinkEnumerator : IEnumerator<LinkRegistration<T>>
         {
-            private LinkedListNode<LinkRegistration<T>>? _nextNode;
+            private DoubleLinkedList<LinkRegistration<T>>.Node? _nextNode;
 
-            public LinkEnumerator(LinkedListNode<LinkRegistration<T>> firstNode)
+            public LinkEnumerator(DoubleLinkedList<LinkRegistration<T>>.Node? firstNode)
             {
                 this._nextNode = firstNode;
                 this.Current = default!;

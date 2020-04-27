@@ -28,7 +28,15 @@ namespace BiDaFlow.Internal
             parent.Completion.ContinueWith(this.HandleCompletion, taskScheduler);
         }
 
+        /// <summary>
+        /// Global lock object
+        /// </summary>
         private object Lock => this._linkManager; // any readonly object
+
+        /// <summary>
+        /// A lock object to avoid running offer concurrently
+        /// </summary>
+        private object OfferLock { get; } = new object();
 
         public bool ConsumeToAccept { get; set; }
 
@@ -188,15 +196,15 @@ namespace BiDaFlow.Internal
 
                 // Remove from the list of linked targets
                 this._linkManager.RemoveLink(registration);
+            }
 
-                if (this._linkManager.GetRegistration(registration.Target) == null)
+            if (this._linkManager.GetRegistration(registration.Target) == null)
+            {
+                // Release reservation
+                if (Equals(this._resevedBy, registration.Target))
                 {
-                    // Release reservation
-                    if (Equals(this._resevedBy, registration.Target))
-                    {
-                        this._resevedBy = null;
-                        this.OfferToTargets(this.ConsumeToAccept);
-                    }
+                    this._resevedBy = null;
+                    this.OfferToTargets(this.ConsumeToAccept);
                 }
             }
         }
@@ -209,120 +217,79 @@ namespace BiDaFlow.Internal
                 this._isCompleted = true;
             }
 
-            // There is no writer after setting true to _completed.
-
             foreach (var registration in this._linkManager)
                 registration.Complete(completionTask.Exception);
         }
 
         private void OfferToTargets(bool consumeToAccept)
         {
-            lock (this.Lock)
-            {
-                if (!this.CanOffer()) return;
-            }
+            if (!this.CanOffer()) return;
 
-            this._taskFactory.StartNew(
-                consumeToAccept
-                    ? (Action<object>)(state => ((SourceCore<T>)state).OfferCoreConsumeToAccept())
-                    : state => ((SourceCore<T>)state).OfferCore(),
-                this
-            );
-        }
-
-        private void OfferCore()
-        {
-            try
+            this._taskFactory.StartNew(() =>
             {
-            StartOffer:
-                lock (this.Lock)
+                try
                 {
-                    if (!CanOffer()) return;
+                StartOffer:
+                    DataflowMessageHeader messageHeader;
+                    T messageValue;
 
-                    var header = new DataflowMessageHeader(this._messageId);
-
-                    foreach (var registration in this._linkManager)
+                    lock (this.Lock)
                     {
-                        var status = registration.Target.OfferMessage(header, this._offeringItem, this._parent, false);
+                        if (!this.CanOffer()) return;
 
-                        switch (status)
+                        messageHeader = new DataflowMessageHeader(this._messageId);
+                        messageValue = this._offeringItem;
+                    }
+
+                    lock (this.OfferLock)
+                    {
+                        foreach (var registration in this._linkManager)
                         {
-                            case DataflowMessageStatus.Accepted:
-                                this._itemAvailable = false;
-                                this._messageId++;
-                                registration.DecrementRemainingMessages();
+                            var status = registration.Target.OfferMessage(messageHeader, messageValue, this._parent, true);
 
-                                // If the link has reached to MaxMessages, HandleUnlink has been called in DecrementRemainingMessages.
-                                // Here we can check whether a link is left.
-                                this._calledReadyCallback = !this._itemAvailable && this._linkManager.Count > 0;
+                            switch (status)
+                            {
+                                case DataflowMessageStatus.Accepted:
+                                    lock (this.Lock)
+                                    {
+                                        if (!consumeToAccept)
+                                        {
+                                            this._itemAvailable = false;
+                                            this._messageId++;
+                                            registration.DecrementRemainingMessages();
+                                        }
 
-                                if (this._calledReadyCallback)
-                                    goto CallReadyCallback;
-                                else
+                                        // If the link has reached to MaxMessages, HandleUnlink has been called in DecrementRemainingMessages.
+                                        // Here we can check whether a link is left.
+                                        this._calledReadyCallback = !this._itemAvailable && this._linkManager.Count > 0;
+
+                                        if (this._calledReadyCallback)
+                                            goto CallReadyCallback;
+                                        else
+                                            goto StartOffer;
+                                    }
+
+                                case DataflowMessageStatus.NotAvailable:
                                     goto StartOffer;
 
-                            case DataflowMessageStatus.NotAvailable:
-                                throw new InvalidOperationException("the target returns NotAvailable even though consumeToAccept is false.");
-
-                            case DataflowMessageStatus.DecliningPermanently:
-                                registration.Unlink();
-                                break;
+                                case DataflowMessageStatus.DecliningPermanently:
+                                    registration.Unlink();
+                                    break;
+                            }
                         }
                     }
+
+                    goto StartOffer;
+
+                CallReadyCallback:
+                    this._readyToNextItemCallback?.Invoke();
+                    goto StartOffer;
                 }
-
-                goto StartOffer;
-
-            CallReadyCallback:
-                this._readyToNextItemCallback?.Invoke();
-                goto StartOffer;
-            }
-            catch (Exception ex)
-            {
-                this._parent.Fault(ex);
-            }
-        }
-
-        private void OfferCoreConsumeToAccept()
-        {
-            try
-            {
-            StartOffer:
-                DataflowMessageHeader messageHeader;
-                T messageValue;
-
-                lock (this.Lock)
+                catch (Exception ex)
                 {
-                    if (!this.CanOffer()) return;
-
-                    messageHeader = new DataflowMessageHeader(this._messageId);
-                    messageValue = this._offeringItem;
+                    this._parent.Fault(ex);
                 }
-
-                // We can offer without lock because ConsumeMessage will lock and checke the state.
-
-                foreach (var registration in this._linkManager)
-                {
-                    var status = registration.Target.OfferMessage(messageHeader, messageValue, this._parent, true);
-
-                    switch (status)
-                    {
-                        case DataflowMessageStatus.Accepted:
-                        case DataflowMessageStatus.NotAvailable:
-                            goto StartOffer;
-
-                        case DataflowMessageStatus.DecliningPermanently:
-                            registration.Unlink();
-                            break;
-                    }
-                }
-
-                goto StartOffer;
-            }
-            catch (Exception ex)
-            {
-                this._parent.Fault(ex);
-            }
+            });
         }
 
         private bool CanOffer() => this._itemAvailable && this._resevedBy == null;

@@ -48,7 +48,15 @@ namespace BiDaFlow.Blocks
         public TransformWithoutBufferBlock(Func<TInput, TOutput> transform, CancellationToken cancellationToken)
             : this(transform, TaskScheduler.Default, cancellationToken) { }
 
+        /// <summary>
+        /// Global lock object
+        /// </summary>
         private object Lock => this._tcs; // any readonly object
+
+        /// <summary>
+        /// A lock object to avoid running offer concurrently
+        /// </summary>
+        private object OfferLock => this._offeringMessages;
 
         public Task Completion => this._tcs.Task;
 
@@ -123,25 +131,25 @@ namespace BiDaFlow.Blocks
                         break;
                     }
                 }
-            }
 
-            if (offeringMessage != null)
-            {
-                var consumedValue = offeringMessage.Source.ConsumeMessage(offeringMessage.SourceHeader, this, out messageConsumed);
-
-                if (messageConsumed)
+                if (offeringMessage != null)
                 {
-                    try
-                    {
-                        var transformedValue = this._transform(consumedValue);
+                    var consumedValue = offeringMessage.Source.ConsumeMessage(offeringMessage.SourceHeader, this, out messageConsumed);
 
-                        this._linkManager.GetRegistration(target)?.DecrementRemainingMessages();
-
-                        return transformedValue;
-                    }
-                    catch (Exception ex)
+                    if (messageConsumed)
                     {
-                        ((IDataflowBlock)this).Fault(ex);
+                        try
+                        {
+                            var transformedValue = this._transform(consumedValue);
+
+                            this._linkManager.GetRegistration(target)?.DecrementRemainingMessages();
+
+                            return transformedValue;
+                        }
+                        catch (Exception ex)
+                        {
+                            ((IDataflowBlock)this).Fault(ex);
+                        }
                     }
                 }
             }
@@ -232,13 +240,15 @@ namespace BiDaFlow.Blocks
                 return DataflowMessageStatus.DecliningPermanently;
             }
 
+            bool canOfferNow;
+            DataflowMessageHeader myHeader = default;
+            LinkedListNode<OfferingMessage>? enqueuedNode = null;
+
             lock (this.Lock)
             {
                 if (this._completeRequested) return DataflowMessageStatus.DecliningPermanently;
 
-                var canOfferNow = this._offeringMessages.Count == 0;
-                DataflowMessageHeader myHeader = default;
-                LinkedListNode<OfferingMessage>? enqueuedNode = null;
+                canOfferNow = this._offeringMessages.Count == 0;
 
                 if (source != null)
                 {
@@ -268,31 +278,45 @@ namespace BiDaFlow.Blocks
                 {
                     myHeader = new DataflowMessageHeader(++this._nextId);
                 }
+            }
 
-                Debug.Assert(myHeader.IsValid);
+            Debug.Assert(myHeader.IsValid);
 
-                if (canOfferNow)
+            if (canOfferNow)
+            {
+                lock (this.OfferLock)
                 {
-                    foreach (var registration in this._linkManager)
+                    // Re-check whether the message is available
+                    if (source == null || enqueuedNode!.List != null)
                     {
-                        var status = registration.Target.OfferMessage(myHeader, transformedValue, this, consumeToAccept);
-
-                        switch (status)
+                        foreach (var registration in this._linkManager)
                         {
-                            case DataflowMessageStatus.Accepted:
-                                if (!consumeToAccept)
-                                    registration.DecrementRemainingMessages();
-                                goto case DataflowMessageStatus.NotAvailable;
+                            var status = registration.Target.OfferMessage(myHeader, transformedValue, this, consumeToAccept);
 
-                            case DataflowMessageStatus.NotAvailable:
-                                if (!consumeToAccept && enqueuedNode != null)
-                                    this._offeringMessages.Remove(enqueuedNode);
+                            switch (status)
+                            {
+                                case DataflowMessageStatus.Accepted:
+                                    if (!consumeToAccept)
+                                    {
+                                        lock (this.Lock)
+                                            registration.DecrementRemainingMessages();
+                                    }
 
-                                return status;
+                                    goto case DataflowMessageStatus.NotAvailable;
 
-                            case DataflowMessageStatus.DecliningPermanently:
-                                registration.Unlink();
-                                break;
+                                case DataflowMessageStatus.NotAvailable:
+                                    if (!consumeToAccept && enqueuedNode != null)
+                                    {
+                                        lock (this.Lock)
+                                            this._offeringMessages.Remove(enqueuedNode);
+                                    }
+
+                                    return status;
+
+                                case DataflowMessageStatus.DecliningPermanently:
+                                    registration.Unlink();
+                                    break;
+                            }
                         }
                     }
                 }
@@ -322,19 +346,22 @@ namespace BiDaFlow.Blocks
                         message = messageNode.Value;
                     }
 
-                    foreach (var registration in this._linkManager)
+                    lock (this.OfferLock)
                     {
-                        var status = registration.Target.OfferMessage(message.MessageHeader, message.TransformedValue, this, true);
-
-                        switch (status)
+                        foreach (var registration in this._linkManager)
                         {
-                            case DataflowMessageStatus.Accepted:
-                            case DataflowMessageStatus.NotAvailable:
-                                goto StartConsume;
+                            var status = registration.Target.OfferMessage(message.MessageHeader, message.TransformedValue, this, true);
 
-                            case DataflowMessageStatus.DecliningPermanently:
-                                registration.Unlink();
-                                break;
+                            switch (status)
+                            {
+                                case DataflowMessageStatus.Accepted:
+                                case DataflowMessageStatus.NotAvailable:
+                                    goto StartConsume;
+
+                                case DataflowMessageStatus.DecliningPermanently:
+                                    registration.Unlink();
+                                    break;
+                            }
                         }
                     }
 
@@ -351,46 +378,36 @@ namespace BiDaFlow.Blocks
         {
             if (registration == null) throw new ArgumentNullException(nameof(registration));
 
-            this._taskFactory.StartNew(() =>
+            if (this._completeRequested) return;
+
+            // Remove from the list of linked targets
+            this._linkManager.RemoveLink(registration);
+
+            if (this._linkManager.GetRegistration(registration.Target) == null)
             {
-                try
+                // Release reservation
+                var releasedMessages = new List<OfferingMessage>();
+
+                lock (this.Lock)
                 {
-                    lock (this.Lock)
+                    foreach (var message in this._offeringMessages)
                     {
-                        if (this._completeRequested) return;
-
-                        // Remove from the list of linked targets
-                        this._linkManager.RemoveLink(registration);
-
-                        if (this._linkManager.GetRegistration(registration.Target) == null)
+                        if (Equals(message.ReservedBy, registration.Target))
                         {
-                            // Release reservation
-                            var releasedMessages = new List<OfferingMessage>();
-
-                            foreach (var message in this._offeringMessages)
-                            {
-                                if (Equals(message.ReservedBy, registration.Target))
-                                {
-                                    message.ReservedBy = null;
-                                    releasedMessages.Add(message);
-                                }
-                            }
-
-                            if (releasedMessages.Count > 0)
-                            {
-                                foreach (var message in releasedMessages)
-                                    message.Source.ReleaseReservation(message.SourceHeader, this);
-
-                                this.OfferToTargets();
-                            }
+                            message.ReservedBy = null;
+                            releasedMessages.Add(message);
                         }
                     }
                 }
-                catch (Exception ex)
+
+                if (releasedMessages.Count > 0)
                 {
-                    ((IDataflowBlock)this).Fault(ex);
+                    foreach (var message in releasedMessages)
+                        message.Source.ReleaseReservation(message.SourceHeader, this);
+
+                    this.OfferToTargets();
                 }
-            });
+            }
         }
 
         private void CompleteCore(Exception? exception)
