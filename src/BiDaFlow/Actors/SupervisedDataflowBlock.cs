@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
+using BiDaFlow.Internal;
 
 namespace BiDaFlow.Actors
 {
@@ -12,9 +11,7 @@ namespace BiDaFlow.Actors
         private readonly Func<AggregateException?, Task<RescueAction>> _rescueFunc;
         internal readonly TaskScheduler _taskScheduler;
         private readonly TaskCompletionSource<ValueTuple> _tcs;
-        private bool _started;
-        private T? _currentBlock;
-        private readonly Queue<Action<T>> _actionQueue = new Queue<Action<T>>();
+        private readonly BehaviorSubject<Optional<T>> _currentBlockSubject = new BehaviorSubject<Optional<T>>(Optional<T>.None);
 
         internal SupervisedDataflowBlock(Func<Task<T>> startFunc, Func<AggregateException?, Task<RescueAction>> rescueFunc, TaskScheduler taskScheduler)
         {
@@ -23,28 +20,37 @@ namespace BiDaFlow.Actors
             this._taskScheduler = taskScheduler ?? throw new ArgumentNullException(nameof(taskScheduler));
             this._tcs = new TaskCompletionSource<ValueTuple>();
 
+            this._currentBlockSubject.Subscribe(this.SetContinuationToBlock);
+
             new TaskFactory(taskScheduler).StartNew(this.Restart);
         }
 
-        private object Lock => this._tcs; // any readonly object
+        public Task Completion => this._tcs.Task;
+
+        internal IObservable<Optional<T>> CurrentBlockObservable => this._currentBlockSubject;
 
         internal void EnqueueAction(Action<T> action)
         {
-            T currentBlock;
+            IDisposable? unsubscriber = null;
+            var done = false;
 
-            lock (this.Lock)
-            {
-                if (!this._started)
+            unsubscriber = this._currentBlockSubject
+                .Subscribe(opt =>
                 {
-                    this._actionQueue.Enqueue(action);
-                    return;
-                }
+                    if (done)
+                    {
+                        unsubscriber?.Dispose();
+                        return;
+                    }
 
-                Debug.Assert(this._currentBlock != null);
-                currentBlock = this._currentBlock!;
-            }
+                    if (opt.HasValue)
+                    {
+                        done = true;
+                        unsubscriber?.Dispose();
 
-            action(currentBlock);
+                        action(opt.Value);
+                    }
+                });
         }
 
         private void Restart()
@@ -98,45 +104,20 @@ namespace BiDaFlow.Actors
             if (newBlock == null)
                 throw new InvalidOperationException("startFunc returned null.");
 
-            lock (this.Lock)
-            {
-                Debug.Assert(!this._started);
+            this._currentBlockSubject.OnNext(new Optional<T>(newBlock));
+        }
 
-                this._currentBlock = newBlock;
-                this._started = true;
+        private void SetContinuationToBlock(Optional<T> blockOpt)
+        {
+            if (!blockOpt.HasValue) return;
 
-                newBlock.Completion.ContinueWith(
-                    (completionTask, state) =>
-                    {
-                        var self = (SupervisedDataflowBlock<T>)state;
+            var newBlock = blockOpt.Value;
 
-                        lock (self.Lock)
-                        {
-                            Debug.Assert(self._started);
-                            Debug.Assert(self._currentBlock == newBlock);
-
-                            self._started = false;
-                            self._currentBlock = null;
-                        }
-
-                        self.Rescue(completionTask);
-                    },
-                    this,
-                    this._taskScheduler
-                );
-
-                while (this._actionQueue.Count > 0 && !newBlock.Completion.IsCompleted)
-                {
-                    try
-                    {
-                        this._actionQueue.Dequeue()?.Invoke(newBlock);
-                    }
-                    catch (Exception ex)
-                    {
-                        newBlock.Fault(ex);
-                    }
-                }
-            }
+            newBlock.Completion.ContinueWith(
+                (completionTask, state) => ((SupervisedDataflowBlock<T>)state).Rescue(completionTask),
+                this,
+                this._taskScheduler
+            );
         }
 
         private void Rescue(Task completionTask)
@@ -146,6 +127,8 @@ namespace BiDaFlow.Actors
 
             try
             {
+                this._currentBlockSubject.OnNext(Optional<T>.None);
+
                 rescueTask = this._rescueFunc(blockException)
                     ?? Task.FromResult(RescueAction.Rethrow);
             }
@@ -194,8 +177,6 @@ namespace BiDaFlow.Actors
                 this._taskScheduler
             );
         }
-
-        Task IDataflowBlock.Completion => this._tcs.Task;
 
         void IDataflowBlock.Complete()
         {

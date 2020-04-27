@@ -50,6 +50,9 @@ namespace BiDaFlow.Internal
 
         public void Remove(Node node)
         {
+            // Unlike System.Collections.Generic.LinkedList,
+            // Next and Previous of the removed node will not be cleared.
+
             if (node.Previous == null)
             {
                 this.First = node.Next;
@@ -69,6 +72,13 @@ namespace BiDaFlow.Internal
             }
 
             this.Count--;
+        }
+
+        public void Clear()
+        {
+            this.First = null;
+            this.Last = null;
+            this.Count = 0;
         }
 
         public class Node
