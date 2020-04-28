@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace BiDaFlow.Internal
 {
@@ -24,7 +25,7 @@ namespace BiDaFlow.Internal
             var received = false;
             IDisposable? unsubscriber = null;
 
-            var d = observable.Subscribe(
+            unsubscriber = observable.Subscribe(
                 x =>
                 {
                     if (!CheckReceived()) return;
@@ -41,12 +42,7 @@ namespace BiDaFlow.Internal
                     action(default!, null, true);
                 });
 
-            lock (lockObj)
-            {
-                unsubscriber = d;
-            }
-
-            if (received)
+            if (Volatile.Read(ref received))
             {
                 unsubscriber.Dispose();
                 return ActionDisposable.Nop;

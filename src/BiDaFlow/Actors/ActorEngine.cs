@@ -35,13 +35,19 @@ namespace BiDaFlow.Actors
 
             this.Completion = this._block.Completion
                 .ContinueWith(
-                    async t =>
+                    completionTask =>
                     {
-                        var onCompletedTask = this._actor.OnCompleted(t.Exception);
-                        if (onCompletedTask != null)
-                            await onCompletedTask.ConfigureAwait(false);
+                        var onCompletedTask = this._actor.OnCompleted(completionTask.Exception);
 
-                        return t;
+                        if (onCompletedTask == null)
+                            return Task.FromResult(completionTask);
+
+                        return onCompletedTask.ContinueWith(
+                            t =>
+                            {
+                                if (t.IsFaulted) return t;
+                                return completionTask;
+                            });
                     },
                     options.TaskScheduler
                 )
@@ -51,14 +57,14 @@ namespace BiDaFlow.Actors
             this.CancellationToken = options.CancellationToken;
         }
 
-        private Task HandleEnvelope(Envelope? envelope)
+        private Task? HandleEnvelope(Envelope? envelope)
         {
             if (envelope == null) return Task.CompletedTask;
 
             if (!ReferenceEquals(envelope.Address, this._actor))
                 throw new ArgumentException("The destination of envelope is not this actor.");
 
-            return envelope.Action?.Invoke() ?? Task.CompletedTask;
+            return envelope.Action?.Invoke();
         }
 
         public void Complete() => this._block.Complete();

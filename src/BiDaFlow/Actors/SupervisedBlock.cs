@@ -6,14 +6,14 @@ using BiDaFlow.Internal;
 
 namespace BiDaFlow.Actors
 {
-    public class SupervisedDataflowBlock<T> : IDataflowBlock where T : IDataflowBlock
+    public class SupervisedBlock<T> : IDataflowBlock where T : IDataflowBlock
     {
         private readonly Func<Task<T>> _startFunc;
         private readonly Func<AggregateException?, Task<RescueAction>> _rescueFunc;
         private readonly TaskCompletionSource<ValueTuple> _tcs = new TaskCompletionSource<ValueTuple>();
         private readonly BehaviorSubject<Optional<T>> _currentBlockSubject = new BehaviorSubject<Optional<T>>(Optional<T>.None);
 
-        internal SupervisedDataflowBlock(Func<Task<T>> startFunc, Func<AggregateException?, Task<RescueAction>> rescueFunc, TaskScheduler taskScheduler)
+        internal SupervisedBlock(Func<Task<T>> startFunc, Func<AggregateException?, Task<RescueAction>> rescueFunc, TaskScheduler taskScheduler)
         {
             this._startFunc = startFunc ?? throw new ArgumentNullException(nameof(startFunc));
             this._rescueFunc = rescueFunc ?? throw new ArgumentNullException(nameof(rescueFunc));
@@ -22,7 +22,7 @@ namespace BiDaFlow.Actors
             this._currentBlockSubject.Subscribe(this.SetContinuationToBlock);
 
             this.Completion.ContinueWith(
-                (_, state) => ((SupervisedDataflowBlock<T>)state)._currentBlockSubject.OnCompleted(),
+                (_, state) => ((SupervisedBlock<T>)state)._currentBlockSubject.OnCompleted(),
                 this,
                 CancellationToken.None,
                 TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach,
@@ -69,31 +69,23 @@ namespace BiDaFlow.Actors
             startTask.ContinueWith(
                 (t, state) =>
                 {
-                    var self = (SupervisedDataflowBlock<T>)state;
+                    var self = (SupervisedBlock<T>)state;
 
                     if (t.Exception != null)
                     {
                         self._tcs.TrySetException(t.Exception.InnerExceptions);
                         return;
                     }
-                    if (t.IsCanceled)
+                    if (t.IsCanceled || (t.Result is var newBlock && newBlock is null))
                     {
                         self._tcs.TrySetCanceled();
-                        return;
-                    }
-
-                    var newBlock = t.Result;
-
-                    if (newBlock == null)
-                    {
-                        self._tcs.TrySetException(new InvalidOperationException("startFunc returned null."));
                         return;
                     }
 
                     try
                     {
                         // Notify new block
-                        this._currentBlockSubject.OnNext(new Optional<T>(newBlock));
+                        this._currentBlockSubject.OnNext(new Optional<T>(t.Result));
                     }
                     catch (Exception ex)
                     {
@@ -112,7 +104,7 @@ namespace BiDaFlow.Actors
             var newBlock = blockOpt.Value;
 
             newBlock.Completion.ContinueWith(
-                (completionTask, state) => ((SupervisedDataflowBlock<T>)state).Rescue(completionTask),
+                (completionTask, state) => ((SupervisedBlock<T>)state).Rescue(completionTask),
                 this,
                 this.TaskScheduler
             );

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
@@ -66,20 +65,20 @@ namespace BiDaFlow.Actors
                 .ContinueWith(
                     t =>
                     {
-                        if (t.Exception != null)
+                        if (t.IsCanceled && cancellationToken.IsCancellationRequested)
                         {
-                            tcs.TrySetException(t.Exception.InnerExceptions);
+                            tcs.TrySetCanceled(cancellationToken);
+                            return;
                         }
-                        else if (t.IsCanceled)
+
+                        try
                         {
-                            if (cancellationToken.IsCancellationRequested)
-                                tcs.TrySetCanceled(cancellationToken);
-                            else
-                                tcs.TrySetCanceled();
+                            if (t.Result == false)
+                                tcs.TrySetException(new MessageDeclinedException());
                         }
-                        else if (t.Result == false)
+                        catch (AggregateException ex)
                         {
-                            tcs.TrySetException(new MessageDeclinedException());
+                            tcs.TrySetException(ex.InnerExceptions);
                         }
                     },
                     CancellationToken.None,
@@ -101,7 +100,8 @@ namespace BiDaFlow.Actors
 
         internal Envelope HandleReply(Action<TReply, Exception?, bool>? replyHandler)
         {
-            var handleErrorByReceiver = replyHandler == null || this.HandleErrorByReceiver;
+            if (replyHandler == null)
+                return new Envelope(this.Address, this.Action);
 
             return new Envelope(this.Address, () =>
             {
@@ -112,12 +112,6 @@ namespace BiDaFlow.Actors
                 }
                 catch (Exception ex)
                 {
-                    if (handleErrorByReceiver)
-                    {
-                        ReplyCanceled();
-                        throw;
-                    }
-
                     ReplyFault(ex);
                     return Task.CompletedTask;
                 }
@@ -131,39 +125,28 @@ namespace BiDaFlow.Actors
                 return task.ContinueWith(
                     t =>
                     {
-                        if (t.Exception != null)
-                        {
-                            if (handleErrorByReceiver)
-                            {
-                                ReplyCanceled();
-                                return t;
-                            }
+                        TReply reply;
 
-                            ReplyFault(t.Exception);
-                        }
-                        else if (t.IsCanceled)
+                        try
                         {
-                            ReplyCanceled();
+                            reply = t.Result;
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            replyHandler?.Invoke(t.Result, null, false);
+                            ReplyFault(ex);
+                            return;
                         }
 
-                        return Task.CompletedTask;
+                        replyHandler.Invoke(reply, null, false);
                     },
                     CancellationToken.None,
                     TaskContinuationOptions.DenyChildAttach,
                     TaskScheduler.Default
-                ).Unwrap();
+                );
 
-                void ReplyCanceled() => replyHandler?.Invoke(default!, null, true);
+                void ReplyCanceled() => replyHandler(default!, null, true);
 
-                void ReplyFault(Exception exception)
-                {
-                    Debug.Assert(replyHandler != null);
-                    replyHandler!(default!, exception, false);
-                }
+                void ReplyFault(Exception exception) => replyHandler(default!, exception, false);
             });
         }
 
