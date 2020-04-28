@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using BiDaFlow.Blocks;
+using BiDaFlow.Internal;
 
 namespace BiDaFlow.Actors
 {
@@ -75,7 +76,7 @@ namespace BiDaFlow.Actors
         public Actor(ActorOptions? options) : base(options)
         {
             var taskScheduler = options?.TaskScheduler ?? TaskScheduler.Default;
-            this._helperBlock = new TransformWithoutBufferBlock<TOutput, TOutput>(x => x, taskScheduler, CancellationToken.None);
+            this._helperBlock = new TransformWithoutBufferBlock<TOutput, TOutput>(IdentityFunc<TOutput>.Instance, taskScheduler, CancellationToken.None);
 
             this.Completion.ContinueWith(
                 (_, state) => ((IDataflowBlock)state).Complete(),

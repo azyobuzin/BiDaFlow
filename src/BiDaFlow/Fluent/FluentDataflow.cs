@@ -144,7 +144,7 @@ namespace BiDaFlow.Fluent
             var workingCount = sourceList.Count;
             if (workingCount == 0) return CompletedSourceBlock<T>();
 
-            var resultBlock = new TransformWithoutBufferBlock<T, T>(x => x);
+            var resultBlock = new TransformWithoutBufferBlock<T, T>(IdentityFunc<T>.Instance);
 
             foreach (var source in sourceList)
             {
