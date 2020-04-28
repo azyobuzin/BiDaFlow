@@ -9,11 +9,11 @@ namespace BiDaFlow.Actors
     public class SupervisedBlock<T> : IDataflowBlock where T : IDataflowBlock
     {
         private readonly Func<Task<T>> _startFunc;
-        private readonly Func<AggregateException?, Task<RescueAction>> _rescueFunc;
+        private readonly Func<T, AggregateException?, Task<RescueAction>> _rescueFunc;
         private readonly TaskCompletionSource<ValueTuple> _tcs = new TaskCompletionSource<ValueTuple>();
         private readonly BehaviorSubject<Optional<T>> _currentBlockSubject = new BehaviorSubject<Optional<T>>(Optional<T>.None);
 
-        internal SupervisedBlock(Func<Task<T>> startFunc, Func<AggregateException?, Task<RescueAction>> rescueFunc, TaskScheduler taskScheduler)
+        internal SupervisedBlock(Func<Task<T>> startFunc, Func<T, AggregateException?, Task<RescueAction>> rescueFunc, TaskScheduler taskScheduler)
         {
             this._startFunc = startFunc ?? throw new ArgumentNullException(nameof(startFunc));
             this._rescueFunc = rescueFunc ?? throw new ArgumentNullException(nameof(rescueFunc));
@@ -38,6 +38,13 @@ namespace BiDaFlow.Actors
         internal IObservable<Optional<T>> CurrentBlockObservable => this._currentBlockSubject;
 
         internal Optional<T> CurrentBlock => this._currentBlockSubject.Value;
+
+        public bool TryGetWrappedBlock(out T block)
+        {
+            var opt = this.CurrentBlock;
+            block = opt.Value;
+            return opt.HasValue;
+        }
 
         internal void EnqueueAction(Action<T> action)
         {
@@ -117,9 +124,14 @@ namespace BiDaFlow.Actors
 
             try
             {
+                var blockOpt = this.CurrentBlock;
+
+                if (!blockOpt.HasValue)
+                    throw new InvalidOperationException("CurrentBlock is None.");
+
                 this._currentBlockSubject.OnNext(Optional<T>.None);
 
-                rescueTask = this._rescueFunc(blockException)
+                rescueTask = this._rescueFunc(blockOpt.Value, blockException)
                     ?? Task.FromResult(RescueAction.Rethrow);
             }
             catch (Exception ex)

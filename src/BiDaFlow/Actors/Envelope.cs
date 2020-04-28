@@ -45,13 +45,31 @@ namespace BiDaFlow.Actors
             this.HandleErrorByReceiver = handleErrorByReceiver;
         }
 
+        private const string DeclinedMessage = "The message was declined by the target block.";
+        private const string ActorCompletedMessage = "The message was enqueued to the actor but the actor has been completed.";
+
         public Task<TReply> PostAndReceiveReplyAsync()
         {
             var tcs = new TaskCompletionSource<TReply>();
-            var envelope = this.HandleReply(tcs);
+            var cts = new CancellationTokenSource();
+            var envelope = this.HandleReply(tcs, cts);
 
-            if (!envelope.Post())
-                tcs.TrySetException(new MessageDeclinedException());
+            if (envelope.Post())
+            {
+                // Throw MessageNeverProcessedException when Address is completed
+                this.Address.Completion.ContinueWith(
+                    (_, state) => ((TaskCompletionSource<TReply>)state).TrySetException(
+                        new MessageNeverProcessedException(ActorCompletedMessage)),
+                    tcs,
+                    cts.Token,
+                    TaskContinuationOptions.ExecuteSynchronously,
+                    TaskScheduler.Default
+                );
+            }
+            else
+            {
+                tcs.TrySetException(new MessageNeverProcessedException(DeclinedMessage));
+            }
 
             return tcs.Task;
         }
@@ -59,7 +77,8 @@ namespace BiDaFlow.Actors
         public Task<TReply> SendAndReceiveReplyAsync(CancellationToken cancellationToken)
         {
             var tcs = new TaskCompletionSource<TReply>();
-            var envelope = this.HandleReply(tcs);
+            var cts = new CancellationTokenSource();
+            var envelope = this.HandleReply(tcs, cts);
 
             envelope.SendAsync(cancellationToken)
                 .ContinueWith(
@@ -74,12 +93,26 @@ namespace BiDaFlow.Actors
                         try
                         {
                             if (t.Result == false)
-                                tcs.TrySetException(new MessageDeclinedException());
+                            {
+                                tcs.TrySetException(new MessageNeverProcessedException(DeclinedMessage));
+                                return;
+                            }
                         }
                         catch (AggregateException ex)
                         {
                             tcs.TrySetException(ex.InnerExceptions);
+                            return;
                         }
+
+                        // Throw MessageNeverProcessedException when Address is completed
+                        this.Address.Completion.ContinueWith(
+                            (_, state) => ((TaskCompletionSource<TReply>)state).TrySetException(
+                                new MessageNeverProcessedException(ActorCompletedMessage)),
+                            tcs,
+                            cts.Token,
+                            TaskContinuationOptions.ExecuteSynchronously,
+                            TaskScheduler.Default
+                        );
                     },
                     CancellationToken.None,
                     TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach,
@@ -95,7 +128,7 @@ namespace BiDaFlow.Actors
 
         public Envelope DiscardReply()
         {
-            return this.HandleReply((Action<TReply, Exception?, bool>?)null);
+            return this.HandleReply(null);
         }
 
         internal Envelope HandleReply(Action<TReply, Exception?, bool>? replyHandler)
@@ -150,10 +183,12 @@ namespace BiDaFlow.Actors
             });
         }
 
-        internal Envelope HandleReply(TaskCompletionSource<TReply> tcs)
+        internal Envelope HandleReply(TaskCompletionSource<TReply> tcs, CancellationTokenSource cts)
         {
             return this.HandleReply((reply, ex, canceled) =>
             {
+                cts.Cancel();
+
                 if (ex != null)
                 {
                     if (ex is AggregateException aex)
