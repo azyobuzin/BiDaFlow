@@ -20,14 +20,14 @@ namespace BiDaFlow.Actors
 
         internal ActorEngine Engine { get; }
 
-        protected virtual void Complete()
+        protected internal virtual void Complete()
         {
-            this.Engine.Complete();
+            this.Engine.CompleteBlock();
         }
 
-        protected virtual void Fault(Exception exception)
+        protected internal virtual void Fault(Exception exception)
         {
-            this.Engine.Fault(exception);
+            this.Engine.FaultBlock(exception);
         }
 
         protected internal virtual Task OnCompleted(AggregateException? exception)

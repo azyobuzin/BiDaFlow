@@ -59,17 +59,48 @@ namespace BiDaFlow.Actors
 
         private Task? HandleEnvelope(Envelope? envelope)
         {
-            if (envelope == null) return Task.CompletedTask;
+            if (envelope == null) return null;
 
             if (!ReferenceEquals(envelope.Address, this._actor))
-                throw new ArgumentException("The destination of envelope is not this actor.");
+            {
+                this._actor.Fault(new InvalidOperationException("The destination of envelope is not this actor."));
+                return null;
+            }
 
-            return envelope.Action?.Invoke();
+            Task? task;
+
+            try
+            {
+                task = envelope.Action?.Invoke();
+            }
+            catch (Exception ex)
+            {
+                this._actor.Fault(ex);
+                return null;
+            }
+
+            return task?.ContinueWith(
+                (t, state) =>
+                {
+                    var exception = t.Exception;
+                    if (exception != null)
+                    {
+                        ((Actor)state).Fault(exception);
+                    }
+                },
+                this._actor,
+                CancellationToken.None,
+                TaskContinuationOptions.OnlyOnFaulted,
+                this.TaskScheduler);
         }
 
-        public void Complete() => this._block.Complete();
+        public void CompleteBlock() => this._block.Complete();
 
-        public void Fault(Exception exception) => ((IDataflowBlock)this._block).Fault(exception);
+        public void FaultBlock(Exception exception) => ((IDataflowBlock)this._block).Fault(exception);
+
+        void IDataflowBlock.Complete() => this._actor.Complete();
+
+        void IDataflowBlock.Fault(Exception exception) => this._actor.Fault(exception);
 
         DataflowMessageStatus ITargetBlock<Envelope?>.OfferMessage(DataflowMessageHeader messageHeader, Envelope? messageValue, ISourceBlock<Envelope?> source, bool consumeToAccept)
         {

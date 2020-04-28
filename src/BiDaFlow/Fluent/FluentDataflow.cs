@@ -13,8 +13,15 @@ namespace BiDaFlow.Fluent
     {
         public static IDisposable PropagateCompletion(this IDataflowBlock source, IDataflowBlock target)
         {
+            return source.PropagateCompletion(target, WhenPropagate.Both);
+        }
+
+        public static IDisposable PropagateCompletion(this IDataflowBlock source, IDataflowBlock target, WhenPropagate when)
+        {
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (target == null) throw new ArgumentNullException(nameof(target));
+
+            if ((when & (WhenPropagate.Both)) == 0) return ActionDisposable.Nop;
 
             var task = source.Completion;
 
@@ -44,11 +51,13 @@ namespace BiDaFlow.Fluent
                 var exception = task.Exception;
                 if (exception == null)
                 {
-                    target.Complete();
+                    if ((when & WhenPropagate.Complete) != 0)
+                        target.Complete();
                 }
                 else
                 {
-                    target.Fault(exception);
+                    if ((when & WhenPropagate.Fault) != 0)
+                        target.Fault(exception);
                 }
             }
         }
