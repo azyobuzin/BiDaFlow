@@ -119,6 +119,7 @@ namespace BiDaFlow.Fluent
             return new DroppingObserver<T>(target);
         }
 
+        // TODO: Rename to Pipe and add overloads to minify overhead of Encapsulate
         public static IPropagatorBlock<TInput, TOutput> Chain<TInput, TSourceOutput, TOutput>(
             this IPropagatorBlock<TInput, TSourceOutput> sourceBlock,
             IPropagatorBlock<TSourceOutput, TOutput> followerBlock)
@@ -129,6 +130,11 @@ namespace BiDaFlow.Fluent
             sourceBlock.LinkWithCompletion(followerBlock);
             return DataflowBlock.Encapsulate(sourceBlock, followerBlock);
         }
+
+        // TODO: IDataflowBlock RunWith(this ISourceBlock, ITargetBlock)
+        // TODO: ITargetBlock<TInput> ToTargetBlock<TInput, TOutput>(this IPropagatorBlock<TInput, TOutput>, ITargetBlock<TOutput>)
+        // TODO: ISourceBlock<T> AsSourceBlock(this Task<T>)
+        // TODO: ISourceBlock<ValueTuple> AsSourceBlock(this Task)
 
         public static ISourceBlock<T> CompletedSourceBlock<T>()
         {
