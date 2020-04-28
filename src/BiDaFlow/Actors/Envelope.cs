@@ -36,17 +36,12 @@ namespace BiDaFlow.Actors
     {
         internal Actor Address { get; }
         internal Func<Task<TReply>> Action { get; }
-        internal bool HandleErrorByReceiver { get; }
 
-        internal EnvelopeWithReply(Actor address, Func<Task<TReply>> action, bool handleErrorByReceiver)
+        internal EnvelopeWithReply(Actor address, Func<Task<TReply>> action)
         {
             this.Address = address;
             this.Action = action;
-            this.HandleErrorByReceiver = handleErrorByReceiver;
         }
-
-        private const string DeclinedMessage = "The message was declined by the target block.";
-        private const string ActorCompletedMessage = "The message was enqueued to the actor but the actor has been completed.";
 
         public Task<TReply> PostAndReceiveReplyAsync()
         {
@@ -59,7 +54,7 @@ namespace BiDaFlow.Actors
                 // Throw MessageNeverProcessedException when Address is completed
                 this.Address.Completion.ContinueWith(
                     (_, state) => ((TaskCompletionSource<TReply>)state).TrySetException(
-                        new MessageNeverProcessedException(ActorCompletedMessage)),
+                        MessageNeverProcessedException.CreateCompleted()),
                     tcs,
                     cts.Token,
                     TaskContinuationOptions.ExecuteSynchronously,
@@ -68,7 +63,7 @@ namespace BiDaFlow.Actors
             }
             else
             {
-                tcs.TrySetException(new MessageNeverProcessedException(DeclinedMessage));
+                tcs.TrySetException(MessageNeverProcessedException.CreateDeclined());
             }
 
             return tcs.Task;
@@ -94,7 +89,7 @@ namespace BiDaFlow.Actors
                         {
                             if (t.Result == false)
                             {
-                                tcs.TrySetException(new MessageNeverProcessedException(DeclinedMessage));
+                                tcs.TrySetException(MessageNeverProcessedException.CreateDeclined());
                                 return;
                             }
                         }
@@ -107,7 +102,7 @@ namespace BiDaFlow.Actors
                         // Throw MessageNeverProcessedException when Address is completed
                         this.Address.Completion.ContinueWith(
                             (_, state) => ((TaskCompletionSource<TReply>)state).TrySetException(
-                                new MessageNeverProcessedException(ActorCompletedMessage)),
+                                MessageNeverProcessedException.CreateCompleted()),
                             tcs,
                             cts.Token,
                             TaskContinuationOptions.ExecuteSynchronously,

@@ -61,5 +61,19 @@ namespace BiDaFlow.Tests.Blocks
             testBlock.Post(2).IsTrue();
             testBlock.Post(3).IsFalse("Reach BoundedCapacity");
         }
+
+        [Fact]
+        public async Task TestCompleteAndCancelSending()
+        {
+            var testBlock = new BufferBlock<int>(new DataflowBlockOptions() { BoundedCapacity = 1 });
+            testBlock.Post(1).IsTrue();
+
+            var sendTask = testBlock.SendAsync(2);
+            await sendTask.NeverComplete();
+
+            testBlock.Complete();
+
+            (await sendTask.CompleteSoon()).IsFalse();
+        }
     }
 }

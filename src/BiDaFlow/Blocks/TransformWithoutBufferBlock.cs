@@ -427,7 +427,7 @@ namespace BiDaFlow.Blocks
                 else if (exception != null)
                     exceptions.Add(exception);
 
-                this.ReleaseAllReservations();
+                this.ReleasePostponedMessages();
             }
             catch (Exception ex)
             {
@@ -448,11 +448,12 @@ namespace BiDaFlow.Blocks
             }
         }
 
-        private void ReleaseAllReservations()
+        private void ReleasePostponedMessages()
         {
             foreach (var message in this._offeringMessages)
             {
-                if (message.ReservedBy != null)
+                // https://github.com/dotnet/runtime/blob/89b8591928bcb9f90956c938fcd9fcfb2fdfb476/src/libraries/System.Threading.Tasks.Dataflow/src/Internal/Common.cs#L508-L511
+                if (message.ReservedBy != null || message.Source.ReserveMessage(message.SourceHeader, this))
                 {
                     message.Source.ReleaseReservation(message.SourceHeader, this);
                 }

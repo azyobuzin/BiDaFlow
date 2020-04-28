@@ -22,7 +22,15 @@ namespace BiDaFlow.Tests
         public static async Task CompleteSoon(this Task task)
         {
             await Task.WhenAny(task, Task.Delay(SometimeSoon)).ConfigureAwait(false);
-            task.Status.Is(TaskStatus.RanToCompletion);
+            task.IsCompleted.IsTrue();
+            await task;
+        }
+
+        public static async Task<T> CompleteSoon<T>(this Task<T> task)
+        {
+            await Task.WhenAny(task, Task.Delay(SometimeSoon)).ConfigureAwait(false);
+            task.IsCompleted.IsTrue();
+            return await task;
         }
 
         public static async Task CanceledSoon(this Task task)

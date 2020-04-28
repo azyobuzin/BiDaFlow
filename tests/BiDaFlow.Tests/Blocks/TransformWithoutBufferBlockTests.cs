@@ -88,5 +88,18 @@ namespace BiDaFlow.Tests.Blocks
 
             transformBlock.Post(2).IsFalse();
         }
+
+        [Fact]
+        public async Task TestCompleteAndCancelSending()
+        {
+            var testBlock = new TransformWithoutBufferBlock<int, int>(x => x);
+
+            var sendTask = testBlock.SendAsync(1);
+            await sendTask.NeverComplete();
+
+            testBlock.Complete();
+
+            (await sendTask.CompleteSoon()).IsFalse();
+        }
     }
 }

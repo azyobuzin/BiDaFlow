@@ -52,16 +52,16 @@ namespace BiDaFlow.Actors
             });
         }
 
-        protected EnvelopeWithReply<TReply> CreateMessageWithReply<TReply>(Func<Task<TReply>> handler, bool handleErrorByReceiver = false)
+        protected EnvelopeWithReply<TReply> CreateMessageWithReply<TReply>(Func<Task<TReply>> handler)
         {
             if (handler == null) throw new ArgumentNullException(nameof(handler));
-            return new EnvelopeWithReply<TReply>(this, handler, handleErrorByReceiver);
+            return new EnvelopeWithReply<TReply>(this, handler);
         }
 
-        protected EnvelopeWithReply<TReply> CreateMessageWithReply<TReply>(Func<TReply> handler, bool handleErrorByReceiver = false)
+        protected EnvelopeWithReply<TReply> CreateMessageWithReply<TReply>(Func<TReply> handler)
         {
             if (handler == null) throw new ArgumentNullException(nameof(handler));
-            return new EnvelopeWithReply<TReply>(this, () => Task.FromResult(handler()), handleErrorByReceiver);
+            return new EnvelopeWithReply<TReply>(this, () => Task.FromResult(handler()));
         }
 
         void IDataflowBlock.Complete() => this.Complete();

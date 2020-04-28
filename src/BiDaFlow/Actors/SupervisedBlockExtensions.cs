@@ -135,7 +135,10 @@ namespace BiDaFlow.Actors
             var actor = actorOpt.Value;
             var envelope = createMessage(actor);
 
-            if (!ReferenceEquals(envelope?.Address, actor))
+            if (envelope == null)
+                throw new InvalidOperationException("createMessage returned null.");
+
+            if (!ReferenceEquals(envelope.Address, actor))
                 throw new InvalidOperationException("The destination of envelope returned by createMessage is not the specified actor.");
 
             return createMessage(actor).Post();
@@ -186,6 +189,9 @@ namespace BiDaFlow.Actors
                     var actor = actorOpt.Value;
                     var envelope = createMessage(actor);
 
+                    if (envelope == null)
+                        throw new InvalidOperationException("createMessage returned null.");
+
                     if (!ReferenceEquals(envelope.Address, actor))
                     {
                         tcs.TrySetException(new InvalidOperationException("The destination of envelope returned by createMessage is not the specified actor."));
@@ -205,12 +211,15 @@ namespace BiDaFlow.Actors
             if (createMessage == null) throw new ArgumentNullException(nameof(createMessage));
 
             var actorOpt = supervisedActor.CurrentBlock;
-            if (!actorOpt.HasValue) return Task.FromException<TReply>(new MessageDeclinedException());
+            if (!actorOpt.HasValue) return Task.FromException<TReply>(MessageNeverProcessedException.CreateDeclined());
 
             var actor = actorOpt.Value;
             var envelope = createMessage(actor);
 
-            if (!ReferenceEquals(envelope?.Address, actor))
+            if (envelope == null)
+                throw new InvalidOperationException("createMessage returned null.");
+
+            if (!ReferenceEquals(envelope.Address, actor))
                 throw new InvalidOperationException("The destination of envelope returned by createMessage is not the specified actor.");
 
             return createMessage(actor).PostAndReceiveReplyAsync();
@@ -226,7 +235,7 @@ namespace BiDaFlow.Actors
             if (createMessage == null) throw new ArgumentNullException(nameof(createMessage));
 
             if (supervisedActor.Completion.IsCompleted)
-                return Task.FromException<TReply>(new MessageDeclinedException());
+                return Task.FromException<TReply>(MessageNeverProcessedException.CreateDeclined());
 
             if (cancellationToken.IsCancellationRequested)
                 return Task.FromCanceled<TReply>(cancellationToken);
@@ -248,7 +257,7 @@ namespace BiDaFlow.Actors
 
                     if (ex != null || completed)
                     {
-                        tcs.TrySetException(new MessageDeclinedException());
+                        tcs.TrySetException(MessageNeverProcessedException.CreateDeclined());
                         return;
                     }
 
@@ -260,6 +269,9 @@ namespace BiDaFlow.Actors
 
                     var actor = actorOpt.Value;
                     var envelope = createMessage(actor);
+
+                    if (envelope == null)
+                        throw new InvalidOperationException("createMessage returned null.");
 
                     if (!ReferenceEquals(envelope.Address, actor))
                     {
