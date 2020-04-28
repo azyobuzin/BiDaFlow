@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using BiDaFlow.Internal;
@@ -20,6 +21,13 @@ namespace BiDaFlow.Actors
 
             this._currentBlockSubject.Subscribe(this.SetContinuationToBlock);
 
+            this.Completion.ContinueWith(
+                (_, state) => ((SupervisedDataflowBlock<T>)state)._currentBlockSubject.OnCompleted(),
+                this,
+                CancellationToken.None,
+                TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach,
+                taskScheduler);
+
             new TaskFactory(taskScheduler).StartNew(this.Restart);
         }
 
@@ -29,27 +37,16 @@ namespace BiDaFlow.Actors
 
         internal IObservable<Optional<T>> CurrentBlockObservable => this._currentBlockSubject;
 
+        internal Optional<T> CurrentBlock => this._currentBlockSubject.Value;
+
         internal void EnqueueAction(Action<T> action)
         {
-            IDisposable? unsubscriber = null;
-            var done = false;
-
-            unsubscriber = this._currentBlockSubject
-                .Subscribe(opt =>
+            this.CurrentBlockObservable
+                .Where(x => x.HasValue)
+                .ReceiveOnce((block, ex, completed) =>
                 {
-                    if (done)
-                    {
-                        unsubscriber?.Dispose();
-                        return;
-                    }
-
-                    if (opt.HasValue)
-                    {
-                        done = true;
-                        unsubscriber?.Dispose();
-
-                        action(opt.Value);
-                    }
+                    if (ex == null && !completed)
+                        action(block.Value);
                 });
         }
 

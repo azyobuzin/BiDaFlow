@@ -6,14 +6,21 @@ namespace BiDaFlow.Internal
     {
         private readonly DoubleLinkedList<IObserver<T>> _subscribers = new DoubleLinkedList<IObserver<T>>();
 
+        private T _value;
         private bool _isCompleted;
         private Exception? _error;
 
-        public T Value { get; private set; }
-
         public BehaviorSubject(T initialValue)
         {
-            this.Value = initialValue;
+            this._value = initialValue;
+        }
+
+        public T Value
+        {
+            get
+            {
+                lock (this.Lock) return this._value;
+            }
         }
 
         private object Lock => this._subscribers;
@@ -26,7 +33,7 @@ namespace BiDaFlow.Internal
             {
                 if (this._isCompleted) return;
 
-                this.Value = value;
+                this._value = value;
                 subscriberNode = this._subscribers.First;
             }
 

@@ -46,12 +46,15 @@ namespace BiDaFlow.Actors
                 supervisedBlock.TaskScheduler
             );
 
-            supervisedBlock.CurrentBlockObservable
-                .Subscribe(opt =>
-                {
-                    if (!opt.HasValue) return;
-                    opt.Value.LinkTo(helperBlock);
-                });
+            if (!supervisedBlock.Completion.IsCompleted)
+            {
+                supervisedBlock.CurrentBlockObservable
+                    .Subscribe(opt =>
+                    {
+                        if (!opt.HasValue) return;
+                        opt.Value.LinkTo(helperBlock);
+                    });
+            }
 
             return sourceBlock;
         }
@@ -94,21 +97,17 @@ namespace BiDaFlow.Actors
             }
             else
             {
-                // Complete helperBlock to get OfferMessage to return DecliningPermanently
-                supervisedBlock.Completion.ContinueWith(
-                    (_, state) => ((IDataflowBlock)state).Complete(),
-                    helperBlock,
-                    CancellationToken.None,
-                    TaskContinuationOptions.ExecuteSynchronously,
-                    supervisedBlock.TaskScheduler
-                );
-
                 supervisedBlock.CurrentBlockObservable
-                    .Subscribe(opt =>
-                    {
-                        if (!opt.HasValue) return;
-                        helperBlock.LinkTo(opt.Value);
-                    });
+                    .Subscribe(
+                        opt =>
+                        {
+                            if (!opt.HasValue) return;
+                            helperBlock.LinkTo(opt.Value);
+                        },
+                        null,
+                        // Complete helperBlock to get OfferMessage to return DecliningPermanently
+                        helperBlock.Complete
+                    );
             }
 
             return targetBlock;
@@ -118,6 +117,60 @@ namespace BiDaFlow.Actors
             where T : ITargetBlock<TInput>, ISourceBlock<TOutput>
         {
             return DataflowBlock.Encapsulate(supervisedBlock.AsTargetBlock<T, TInput>(), supervisedBlock.AsSourceBlock<T, TOutput>());
+        }
+
+        public static bool Post<TActor>(this SupervisedDataflowBlock<TActor> supervisedActor, Func<TActor, Envelope> createMessage)
+            where TActor : Actor
+        {
+            var actorOpt = supervisedActor.CurrentBlock;
+            if (!actorOpt.HasValue) return false;
+
+            var actor = actorOpt.Value;
+            var envelope = createMessage(actor);
+
+            if (!ReferenceEquals(envelope.Address, actor))
+                throw new InvalidOperationException("The destination of envelope returned by createMessage is not the specified actor.");
+
+            return createMessage(actor).Post();
+        }
+
+        public static Task<bool> SendAsync<TActor>(this SupervisedDataflowBlock<TActor> supervisedActor, Func<TActor, Envelope> createMessage, CancellationToken cancellationToken)
+            where TActor : Actor
+        {
+            if (supervisedActor.Completion.IsCompleted)
+                return Task.FromResult(false);
+
+            var tcs = new TaskCompletionSource<Task<bool>>();
+
+            var subscription = supervisedActor.CurrentBlockObservable
+                .Where(x => x.HasValue)
+                .ReceiveOnce((actorOpt, ex, completed) =>
+                {
+                    if (ex != null || completed)
+                    {
+                        tcs.TrySetResult(Task.FromResult(false));
+                        return;
+                    }
+
+                    var actor = actorOpt.Value;
+                    var envelope = createMessage(actor);
+
+                    if (!ReferenceEquals(envelope.Address, actor))
+                    {
+                        tcs.TrySetException(new InvalidOperationException("The destination of envelope returned by createMessage is not the specified actor."));
+                        return;
+                    }
+
+                    tcs.TrySetResult(envelope.SendAsync(cancellationToken));
+                });
+
+            cancellationToken.Register(() =>
+            {
+                subscription.Dispose();
+                tcs.TrySetCanceled(cancellationToken);
+            });
+
+            return tcs.Task.Unwrap();
         }
 
         // TODO: Actor support

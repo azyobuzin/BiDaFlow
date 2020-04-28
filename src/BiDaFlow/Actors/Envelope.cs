@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
@@ -7,7 +8,7 @@ namespace BiDaFlow.Actors
 {
     public class Envelope
     {
-        public Actor Address { get; }
+        internal Actor Address { get; }
         internal Func<Task> Action { get; }
 
         internal Envelope(Actor address, Func<Task> action)
@@ -34,7 +35,7 @@ namespace BiDaFlow.Actors
 
     public class EnvelopeWithReply<TReply>
     {
-        public Actor Address { get; }
+        internal Actor Address { get; }
         internal Func<Task<TReply>> Action { get; }
         internal bool HandleErrorByReceiver { get; }
 
@@ -48,10 +49,10 @@ namespace BiDaFlow.Actors
         public Task<TReply> PostAndReceiveReplyAsync()
         {
             var tcs = new TaskCompletionSource<TReply>();
-            var envelope = this.ToEnvelope(tcs, this.HandleErrorByReceiver);
+            var envelope = this.HandleReply(tcs);
 
             if (!envelope.Post())
-                tcs.TrySetCanceled();
+                tcs.TrySetException(new MessageDeclinedException());
 
             return tcs.Task;
         }
@@ -59,7 +60,7 @@ namespace BiDaFlow.Actors
         public Task<TReply> SendAndReceiveReplyAsync(CancellationToken cancellationToken)
         {
             var tcs = new TaskCompletionSource<TReply>();
-            var envelope = this.ToEnvelope(tcs, this.HandleErrorByReceiver);
+            var envelope = this.HandleReply(tcs);
 
             envelope.SendAsync(cancellationToken)
                 .ContinueWith(
@@ -69,12 +70,16 @@ namespace BiDaFlow.Actors
                         {
                             tcs.TrySetException(t.Exception.InnerExceptions);
                         }
-                        else if (t.IsCanceled || t.Result == false)
+                        else if (t.IsCanceled)
                         {
                             if (cancellationToken.IsCancellationRequested)
                                 tcs.TrySetCanceled(cancellationToken);
                             else
                                 tcs.TrySetCanceled();
+                        }
+                        else if (t.Result == false)
+                        {
+                            tcs.TrySetException(new MessageDeclinedException());
                         }
                     },
                     CancellationToken.None,
@@ -91,12 +96,13 @@ namespace BiDaFlow.Actors
 
         public Envelope DiscardReply()
         {
-            var tcs = new TaskCompletionSource<TReply>();
-            return this.ToEnvelope(tcs, true);
+            return this.HandleReply((Action<TReply, Exception?, bool>?)null);
         }
 
-        private Envelope ToEnvelope(TaskCompletionSource<TReply> tcs, bool handleErrorByReceiver)
+        internal Envelope HandleReply(Action<TReply, Exception?, bool>? replyHandler)
         {
+            var handleErrorByReceiver = replyHandler == null || this.HandleErrorByReceiver;
+
             return new Envelope(this.Address, () =>
             {
                 Task<TReply> task;
@@ -108,17 +114,17 @@ namespace BiDaFlow.Actors
                 {
                     if (handleErrorByReceiver)
                     {
-                        tcs.TrySetCanceled();
+                        ReplyCanceled();
                         throw;
                     }
 
-                    tcs.TrySetException(ex);
+                    ReplyFault(ex);
                     return Task.CompletedTask;
                 }
 
                 if (task == null)
                 {
-                    tcs.TrySetCanceled();
+                    ReplyCanceled();
                     return Task.CompletedTask;
                 }
 
@@ -129,27 +135,57 @@ namespace BiDaFlow.Actors
                         {
                             if (handleErrorByReceiver)
                             {
-                                tcs.TrySetCanceled();
+                                ReplyCanceled();
                                 return t;
                             }
 
-                            tcs.TrySetException(t.Exception.InnerExceptions);
+                            ReplyFault(t.Exception);
                         }
                         else if (t.IsCanceled)
                         {
-                            tcs.TrySetCanceled();
+                            ReplyCanceled();
                         }
                         else
                         {
-                            tcs.TrySetResult(t.Result);
+                            replyHandler?.Invoke(t.Result, null, false);
                         }
 
                         return Task.CompletedTask;
                     },
                     CancellationToken.None,
-                    TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach,
+                    TaskContinuationOptions.DenyChildAttach,
                     TaskScheduler.Default
                 ).Unwrap();
+
+                void ReplyCanceled() => replyHandler?.Invoke(default!, null, true);
+
+                void ReplyFault(Exception exception)
+                {
+                    Debug.Assert(replyHandler != null);
+                    replyHandler!(default!, exception, false);
+                }
+            });
+        }
+
+        internal Envelope HandleReply(TaskCompletionSource<TReply> tcs)
+        {
+            return this.HandleReply((reply, ex, canceled) =>
+            {
+                if (ex != null)
+                {
+                    if (ex is AggregateException aex)
+                        tcs.TrySetException(aex.InnerExceptions);
+                    else
+                        tcs.TrySetException(ex);
+                }
+                else if (canceled)
+                {
+                    tcs.TrySetCanceled();
+                }
+                else
+                {
+                    tcs.TrySetResult(reply);
+                }
             });
         }
     }
