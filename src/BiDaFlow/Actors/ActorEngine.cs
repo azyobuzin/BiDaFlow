@@ -38,20 +38,11 @@ namespace BiDaFlow.Actors
                     completionTask =>
                     {
                         var onCompletedTask = this._actor.OnCompleted(completionTask.Exception);
-
-                        if (onCompletedTask == null)
-                            return Task.FromResult(completionTask);
-
-                        return onCompletedTask.ContinueWith(
-                            t =>
-                            {
-                                if (t.IsFaulted) return t;
-                                return completionTask;
-                            });
+                        return onCompletedTask ?? completionTask;
                     },
                     options.TaskScheduler
                 )
-                .Unwrap().Unwrap();
+                .Unwrap();
 
             this.TaskScheduler = options.TaskScheduler;
             this.CancellationToken = options.CancellationToken;

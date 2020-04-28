@@ -17,7 +17,7 @@ namespace BiDaFlow.Internal
         private ITargetBlock<T>? _resevedBy;
         private bool _calledReadyCallback;
 
-        private bool _isCompleted;
+        private bool _isCompleted; // TODO: Complete after _offeringItem is consumed
 
         public SourceCore(ISourceBlock<T> parent, TaskScheduler taskScheduler, Action? readyToNextItemCallback)
         {

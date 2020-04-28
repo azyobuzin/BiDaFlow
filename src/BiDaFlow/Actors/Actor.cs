@@ -9,9 +9,12 @@ namespace BiDaFlow.Actors
 {
     public abstract class Actor : IDataflowBlock
     {
+        private readonly ChildrenManager _childrenManager;
+
         public Actor(ActorOptions? options)
         {
             this.Engine = new ActorEngine(this, options);
+            this._childrenManager = new ChildrenManager(this);
         }
 
         public Actor() : this(null) { }
@@ -32,7 +35,7 @@ namespace BiDaFlow.Actors
 
         protected internal virtual Task OnCompleted(AggregateException? exception)
         {
-            return Task.CompletedTask;
+            return this._childrenManager.SupervisorOnCompleted(exception);
         }
 
         protected Envelope CreateMessage(Func<Task> handler)
@@ -62,6 +65,16 @@ namespace BiDaFlow.Actors
         {
             if (handler == null) throw new ArgumentNullException(nameof(handler));
             return new EnvelopeWithReply<TReply>(this, () => Task.FromResult(handler()));
+        }
+
+        protected IDisposable SuperviseChild(IDataflowBlock block, SupervisionOptions? options)
+        {
+            return this._childrenManager.SuperviseChild(block, options);
+        }
+
+        protected IDisposable SuperviseChild(IDataflowBlock block)
+        {
+            return this._childrenManager.SuperviseChild(block, null);
         }
 
         void IDataflowBlock.Complete() => this.Complete();
