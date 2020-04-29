@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using BiDaFlow.Blocks;
+using BiDaFlow.Fluent;
 using BiDaFlow.Internal;
 
 namespace BiDaFlow.Actors
@@ -35,18 +36,7 @@ namespace BiDaFlow.Actors
             }
 
             // Report excepton to supervisedBlock if helperBlock completes with exception (it is a bug).
-            helperBlock.Completion.ContinueWith(
-                (t, state) =>
-                {
-                    var exception = t.Exception;
-                    if (exception != null)
-                        ((IDataflowBlock)state).Fault(exception);
-                },
-                supervisedBlock,
-                CancellationToken.None,
-                TaskContinuationOptions.OnlyOnFaulted,
-                supervisedBlock.TaskScheduler
-            );
+            helperBlock.PropagateCompletion(supervisedBlock, WhenPropagate.Fault);
 
             if (!supervisedBlock.Completion.IsCompleted)
             {
@@ -82,18 +72,7 @@ namespace BiDaFlow.Actors
             }
 
             // Report excepton to supervisedBlock if helperBlock completes with exception (it is a bug).
-            helperBlock.Completion.ContinueWith(
-                (t, state) =>
-                {
-                    var exception = t.Exception;
-                    if (exception != null)
-                        ((IDataflowBlock)state).Fault(exception);
-                },
-                supervisedBlock,
-                CancellationToken.None,
-                TaskContinuationOptions.OnlyOnFaulted,
-                supervisedBlock.TaskScheduler
-            );
+            helperBlock.PropagateCompletion(supervisedBlock, WhenPropagate.Fault);
 
             if (supervisedBlock.Completion.IsCompleted)
             {
@@ -283,6 +262,56 @@ namespace BiDaFlow.Actors
                 });
 
             return tcs.Task.Unwrap();
+        }
+
+        public static ITargetBlock<TInput> AsTargetBlock<TActor, TInput>(this SupervisedBlock<TActor> supervisedActor, Func<TActor, TInput, Envelope?> createMessage)
+            where TActor : Actor
+        {
+            var helperBlock = new TransformWithoutBufferBlock<TInput, TInput>(IdentityFunc<TInput>.Instance, supervisedActor.TaskScheduler, CancellationToken.None);
+            var targetBlock = new SupervisedTargetBlock<TInput>(supervisedActor, helperBlock);
+
+            // Report excepton to supervisedBlock if helperBlock completes with exception (it is a bug).
+            helperBlock.PropagateCompletion(supervisedActor, WhenPropagate.Fault);
+
+            if (supervisedActor.Completion.IsCompleted)
+            {
+                helperBlock.Complete();
+            }
+            else
+            {
+                supervisedActor.CurrentBlockObservable
+                    .Subscribe(
+                        opt =>
+                        {
+                            if (!opt.HasValue) return;
+
+                            var actor = opt.Value;
+                            var transformBlock = new TransformWithoutBufferBlock<TInput, Envelope?>(
+                                x =>
+                                {
+                                    try
+                                    {
+                                        return createMessage(actor, x);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        ((IDataflowBlock)supervisedActor).Fault(ex);
+                                        return null;
+                                    }
+                                },
+                                actor.Engine.TaskScheduler,
+                                CancellationToken.None);
+
+                            helperBlock.LinkTo(transformBlock);
+                            transformBlock.LinkTo(actor.Engine);
+                        },
+                        null,
+                        // Complete helperBlock to get OfferMessage to return DecliningPermanently
+                        helperBlock.Complete
+                    );
+            }
+
+            return targetBlock;
         }
     }
 }
