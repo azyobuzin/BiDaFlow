@@ -72,6 +72,11 @@ namespace BiDaFlow.Fluent
             return source.LinkTo(target, s_propagateCompletionOptions);
         }
 
+        public static ISourceBlock<T> CompletedSourceBlock<T>()
+        {
+            return CompletedSourceBlockHolder<T>.Instance;
+        }
+
         public static ISourceBlock<T> AsSourceBlock<T>(this IEnumerable<T> enumerable, CancellationToken cancellationToken = default)
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
@@ -119,26 +124,33 @@ namespace BiDaFlow.Fluent
             return new DroppingObserver<T>(target);
         }
 
-        // TODO: Rename to Pipe and add overloads to minify overhead of Encapsulate
         public static IPropagatorBlock<TInput, TOutput> Chain<TInput, TSourceOutput, TOutput>(
-            this IPropagatorBlock<TInput, TSourceOutput> sourceBlock,
-            IPropagatorBlock<TSourceOutput, TOutput> followerBlock)
+            this IPropagatorBlock<TInput, TSourceOutput> source,
+            IPropagatorBlock<TSourceOutput, TOutput> follower)
         {
-            if (sourceBlock == null) throw new ArgumentNullException(nameof(sourceBlock));
-            if (followerBlock == null) throw new ArgumentNullException(nameof(followerBlock));
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (follower == null) throw new ArgumentNullException(nameof(follower));
 
-            sourceBlock.LinkWithCompletion(followerBlock);
-            return DataflowBlock.Encapsulate(sourceBlock, followerBlock);
+            source.LinkWithCompletion(follower);
+            return DataflowBlock.Encapsulate(source, follower);
         }
 
-        // TODO: IDataflowBlock RunWith(this ISourceBlock, ITargetBlock)
-        // TODO: ITargetBlock<TInput> ToTargetBlock<TInput, TOutput>(this IPropagatorBlock<TInput, TOutput>, ITargetBlock<TOutput>)
-        // TODO: ISourceBlock<T> AsSourceBlock(this Task<T>)
-        // TODO: ISourceBlock<ValueTuple> AsSourceBlock(this Task)
-
-        public static ISourceBlock<T> CompletedSourceBlock<T>()
+        public static ITargetBlock<TInput> ToTargetBlock<TInput, TOutput>(this IPropagatorBlock<TInput, TOutput> source, ITargetBlock<TOutput> target)
         {
-            return CompletedSourceBlockHolder<T>.Instance;
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (target == null) throw new ArgumentNullException(nameof(target));
+
+            source.LinkWithCompletion(target);
+            return source;
+        }
+
+        public static IDataflowBlock RunWith<T>(this ISourceBlock<T> source, ITargetBlock<T> target)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (target == null) throw new ArgumentNullException(nameof(target));
+
+            source.LinkWithCompletion(target);
+            return new RunWithBlock(source, target);
         }
 
         public static ISourceBlock<T> Merge<T>(IEnumerable<ISourceBlock<T>> sources)
@@ -180,8 +192,6 @@ namespace BiDaFlow.Fluent
                             resultBlock.Complete();
                         }
                     },
-                    CancellationToken.None,
-                    TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach,
                     TaskScheduler.Default);
             }
 
