@@ -13,7 +13,7 @@ namespace BiDaFlow.Tests.Fluent
         {
             var values = await Enumerable.Range(1, 3)
                 .AsSourceBlock()
-                .ToAsyncEnumerable()
+                .AsAsyncEnumerable()
                 .ToArrayAsync(TestUtils.CancelSometimeSoon());
             values.Is(1, 2, 3);
         }
@@ -23,7 +23,7 @@ namespace BiDaFlow.Tests.Fluent
         {
             var values = await AsyncEnumerable.Range(1, 3)
                 .AsSourceBlock()
-                .ToAsyncEnumerable()
+                .AsAsyncEnumerable()
                 .ToArrayAsync(TestUtils.CancelSometimeSoon());
             values.Is(1, 2, 3);
         }

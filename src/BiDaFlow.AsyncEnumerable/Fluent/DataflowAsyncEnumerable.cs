@@ -13,43 +13,18 @@ namespace BiDaFlow.Fluent
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
 
-            var block = new BufferBlock<T>(new DataflowBlockOptions()
-            {
-                BoundedCapacity = 1,
-            });
-
-            Task.Run(async () =>
-            {
-                try
-                {
-                    await using (var enumerator = enumerable.GetAsyncEnumerator(cancellationToken))
-                    {
-                        if (enumerator != null)
-                        {
-                            while (!cancellationToken.IsCancellationRequested && await enumerator.MoveNextAsync())
-                            {
-                                var accepted = await block.SendAsync(enumerator.Current, cancellationToken);
-                                if (!accepted) return;
-                            }
-                        }
-                    }
-
-                    block.Complete();
-                }
-                catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
-                {
-                    block.Complete();
-                }
-                catch (Exception ex)
-                {
-                    ((IDataflowBlock)block).Fault(ex);
-                }
-            }, cancellationToken);
-
-            return block;
+            return new AsyncEnumerableSourceBlock<T>(enumerable, null, cancellationToken);
         }
 
-        public static IAsyncEnumerable<T> ToAsyncEnumerable<T>(this ISourceBlock<T> source)
+        public static ISourceBlock<T> AsSourceBlock<T>(this IAsyncEnumerable<T> enumerable, TaskScheduler taskScheduler, CancellationToken cancellationToken)
+        {
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+            if (taskScheduler == null) throw new ArgumentNullException(nameof(taskScheduler));
+
+            return new AsyncEnumerableSourceBlock<T>(enumerable, taskScheduler, cancellationToken);
+        }
+
+        public static IAsyncEnumerable<T> AsAsyncEnumerable<T>(this ISourceBlock<T> source)
         {
             return new SourceBlockAsyncEnumerable<T>(source ?? throw new ArgumentNullException(nameof(source)));
         }

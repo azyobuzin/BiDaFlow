@@ -23,7 +23,7 @@ namespace BiDaFlow.Tests.Actors
 
             actor.Stop();
 
-            var outputs = await targetBlock.ToAsyncEnumerable().ToArrayAsync(TestUtils.CancelSometimeSoon());
+            var outputs = await targetBlock.AsAsyncEnumerable().ToArrayAsync(TestUtils.CancelSometimeSoon());
             outputs.Is(42);
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
@@ -40,6 +41,8 @@ namespace BiDaFlow.Internal
             this._source = source;
             this._unlinker = source.LinkWithCompletion(this);
             this._cancellationToken = cancellationToken;
+
+            this._taskHelper.RunContinuationsAsynchronously = true;
 
             if (cancellationToken.CanBeCanceled)
             {
@@ -152,6 +155,8 @@ namespace BiDaFlow.Internal
                     this._isAwaiting = false;
                     this._taskHelper.SetResult(this._cancellationToken.IsCancellationRequested ? (bool?)null : false);
                 }
+
+                this.ReleasePostponedMessages();
             }
         }
 
@@ -171,6 +176,21 @@ namespace BiDaFlow.Internal
                     this._isAwaiting = false;
                     this._taskHelper.SetException(exception);
                 }
+
+                this.ReleasePostponedMessages();
+            }
+        }
+
+        private void ReleasePostponedMessages()
+        {
+            Debug.Assert(Monitor.IsEntered(this.Lock));
+
+            // https://github.com/dotnet/runtime/blob/89b8591928bcb9f90956c938fcd9fcfb2fdfb476/src/libraries/System.Threading.Tasks.Dataflow/src/Internal/Common.cs#L508-L511
+            while (this._queue.Count > 0)
+            {
+                var msg = this._queue.Dequeue();
+                if (this._source.ReserveMessage(msg, this))
+                    this._source.ReleaseReservation(msg, this);
             }
         }
 

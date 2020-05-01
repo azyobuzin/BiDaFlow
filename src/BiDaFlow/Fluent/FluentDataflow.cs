@@ -81,41 +81,30 @@ namespace BiDaFlow.Fluent
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
 
-            var block = new BufferBlock<T>(new DataflowBlockOptions()
-            {
-                BoundedCapacity = 1,
-            });
+            return new EnumerableSourceBlock<T>(enumerable, null, cancellationToken);
+        }
 
-            Task.Run(async () =>
-            {
-                try
-                {
-                    using (var enumerator = enumerable.GetEnumerator())
-                    {
-                        if (enumerator != null)
-                        {
-                            while (!cancellationToken.IsCancellationRequested && enumerator.MoveNext())
-                            {
-                                // TODO: more efficient implementation
-                                var accepted = await block.SendAsync(enumerator.Current, cancellationToken);
-                                if (!accepted) return;
-                            }
-                        }
-                    }
+        public static ISourceBlock<T> AsSourceBlock<T>(this IEnumerable<T> enumerable, TaskScheduler taskScheduler, CancellationToken cancellationToken)
+        {
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+            if (taskScheduler == null) throw new ArgumentNullException(nameof(taskScheduler));
 
-                    block.Complete();
-                }
-                catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
-                {
-                    block.Complete();
-                }
-                catch (Exception ex)
-                {
-                    ((IDataflowBlock)block).Fault(ex);
-                }
-            }, cancellationToken);
+            return new EnumerableSourceBlock<T>(enumerable, taskScheduler, cancellationToken);
+        }
 
-            return block;
+        public static ISourceBlock<T> ToSourceBlock<T>(this IEnumerator<T> enumerator, CancellationToken cancellationToken = default)
+        {
+            if (enumerator == null) throw new ArgumentNullException(nameof(enumerator));
+
+            return new EnumerableSourceBlock<T>(enumerator, null, cancellationToken);
+        }
+
+        public static ISourceBlock<T> ToSourceBlock<T>(this IEnumerator<T> enumerator, TaskScheduler taskScheduler, CancellationToken cancellationToken)
+        {
+            if (enumerator == null) throw new ArgumentNullException(nameof(enumerator));
+            if (taskScheduler == null) throw new ArgumentNullException(nameof(taskScheduler));
+
+            return new EnumerableSourceBlock<T>(enumerator, taskScheduler, cancellationToken);
         }
 
         public static IObserver<T> AsObserverDroppingOverflowItems<T>(this ITargetBlock<T> target)

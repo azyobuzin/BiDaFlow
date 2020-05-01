@@ -21,7 +21,7 @@ namespace BiDaFlow.Tests.Actors
             actor.TenTimes(2).Post().IsTrue();
             actor.Stop();
 
-            var outputs = await targetBlock.ToAsyncEnumerable()
+            var outputs = await targetBlock.AsAsyncEnumerable()
                 .ToArrayAsync(TestUtils.CancelSometimeSoon());
 
             outputs.Is(10, 20);
@@ -38,7 +38,7 @@ namespace BiDaFlow.Tests.Actors
 
             new[] { 1, 2 }.AsSourceBlock().LinkWithCompletion(actorTargetBlock);
 
-            var outputs = await outputBlock.ToAsyncEnumerable()
+            var outputs = await outputBlock.AsAsyncEnumerable()
                 .ToArrayAsync(TestUtils.CancelSometimeSoon());
 
             outputs.Is(10, 20);
