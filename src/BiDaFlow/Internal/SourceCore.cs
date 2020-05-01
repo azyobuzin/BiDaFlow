@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 
@@ -7,59 +8,49 @@ namespace BiDaFlow.Internal
     internal sealed class SourceCore<T>
     {
         private readonly ISourceBlock<T> _parent;
+        private readonly CancellationToken _cancellationToken;
+        private CancellationTokenRegistration _cancelReg;
         private readonly TaskFactory _taskFactory;
         private readonly Action? _readyToNextItemCallback;
         private readonly LinkManager<T> _linkManager = new LinkManager<T>();
+        private readonly Action _offerToTargetsDelegate;
 
         private long _messageId = 1;
         private bool _itemAvailable;
         private T _offeringItem = default!;
-        private ITargetBlock<T>? _resevedBy;
+        private ITargetBlock<T>? _reservedBy;
         private bool _calledReadyCallback;
 
-        private bool _isCompleted; // TODO: Complete after _offeringItem is consumed
+        private volatile bool _isCompleted; // TODO: Complete after _offeringItem is consumed
 
-        public SourceCore(ISourceBlock<T> parent, TaskScheduler taskScheduler, Action? readyToNextItemCallback)
+        public SourceCore(ISourceBlock<T> parent, TaskScheduler taskScheduler, CancellationToken cancellationToken, Action? readyToNextItemCallback)
         {
             this._parent = parent ?? throw new ArgumentNullException(nameof(parent));
+            this._cancellationToken = cancellationToken;
             this._taskFactory = new TaskFactory(taskScheduler ?? throw new ArgumentNullException(nameof(taskScheduler)));
             this._readyToNextItemCallback = readyToNextItemCallback;
+            this._offerToTargetsDelegate = this.OfferToTargets;
 
-            parent.Completion.ContinueWith(this.HandleCompletion, taskScheduler);
+            this._cancelReg = cancellationToken.Register(this.Complete);
         }
 
-        /// <summary>
-        /// Global lock object
-        /// </summary>
-        private object Lock => this._linkManager; // any readonly object
+        private object CompletionLock => this._linkManager; // any readonly object
 
         /// <summary>
-        /// A lock object to avoid running offer concurrently
+        /// A lock object to prevent the item being consumed concurrently
         /// </summary>
-        private object OfferLock { get; } = new object();
+        private object ItemLock { get; } = new object();
 
-        public bool ConsumeToAccept { get; set; }
-
-        public void OfferItem(T item, bool? consumeToAccept = null)
+        public void OfferItem(T item)
         {
-            lock (this.Lock)
+            lock (this.ItemLock)
             {
                 this._offeringItem = item;
                 this._itemAvailable = true;
-                this._resevedBy = null;
+                this._reservedBy = null;
             }
 
-            this.OfferToTargets(consumeToAccept ?? this.ConsumeToAccept);
-        }
-
-        public void DismissItem()
-        {
-            lock (this.Lock)
-            {
-                this._offeringItem = default!;
-                this._itemAvailable = false;
-                this._calledReadyCallback = true;
-            }
+            this.OfferToTargets();
         }
 
         public IDisposable LinkTo(ITargetBlock<T> target, DataflowLinkOptions? linkOptions)
@@ -70,7 +61,7 @@ namespace BiDaFlow.Internal
             LinkRegistration<T> registration;
             var callCallback = false;
 
-            lock (this.Lock)
+            lock (this.CompletionLock)
             {
                 if (this._isCompleted)
                 {
@@ -85,17 +76,17 @@ namespace BiDaFlow.Internal
 
                 registration = new LinkRegistration<T>(target, linkOptions.MaxMessages, linkOptions.PropagateCompletion, this.HandleUnlink);
                 this._linkManager.AddLink(registration, linkOptions.Append);
-
-                if (!this._itemAvailable && !this._calledReadyCallback)
-                {
-                    this._calledReadyCallback = true;
-                    callCallback = true;
-                }
             }
 
-            if (callCallback) this._readyToNextItemCallback?.Invoke();
+            if (!this._itemAvailable && !this._calledReadyCallback)
+            {
+                this._calledReadyCallback = true;
+                callCallback = true;
+            }
 
-            this.OfferToTargets(this.ConsumeToAccept);
+            if (callCallback) this.CallReadyToNextItemCallback(true);
+
+            this.OfferToTargetsOnTaskScheduler();
 
             return new ActionDisposable(registration.Unlink);
         }
@@ -107,28 +98,22 @@ namespace BiDaFlow.Internal
 
             T output;
 
-            lock (this.Lock)
+            lock (this.ItemLock)
             {
-                if (this._isCompleted)
+                if (this._messageId != messageHeader.Id || (this._reservedBy != null && this._reservedBy != target))
                 {
                     messageConsumed = false;
                     return default!;
                 }
 
-                if (this._messageId != messageHeader.Id || (this._resevedBy != null && this._resevedBy != target))
+                if (this._reservedBy != null)
                 {
-                    messageConsumed = false;
-                    return default!;
-                }
-
-                if (this._resevedBy != null)
-                {
-                    this._resevedBy = null;
+                    this._reservedBy = null;
                 }
 
                 messageConsumed = this._itemAvailable;
                 this._itemAvailable = false;
-                this._resevedBy = null;
+                this._reservedBy = null;
                 this._messageId++;
                 output = this._offeringItem;
 
@@ -142,7 +127,11 @@ namespace BiDaFlow.Internal
                 this._calledReadyCallback = this._linkManager.Count > 0;
             }
 
-            if (this._calledReadyCallback) this._readyToNextItemCallback?.Invoke();
+            if (this._calledReadyCallback && this._readyToNextItemCallback != null)
+            {
+                if (!this._isCompleted)
+                    this.CallReadyToNextItemCallback(true);
+            }
 
             return output;
         }
@@ -152,13 +141,13 @@ namespace BiDaFlow.Internal
             if (!messageHeader.IsValid) throw new ArgumentException("messageHeader is not valid.");
             if (target == null) throw new ArgumentNullException(nameof(target));
 
-            lock (this.Lock)
-            {
-                if (this._isCompleted) return false;
+            if (this._isCompleted) return false;
 
-                if (this._resevedBy == null && this._messageId == messageHeader.Id)
+            lock (this.ItemLock)
+            {
+                if (this._reservedBy == null && this._messageId == messageHeader.Id)
                 {
-                    this._resevedBy = target;
+                    this._reservedBy = target;
                     return true;
                 }
             }
@@ -171,11 +160,11 @@ namespace BiDaFlow.Internal
             if (!messageHeader.IsValid) throw new ArgumentException("messageHeader is not valid.");
             if (target == null) throw new ArgumentNullException(nameof(target));
 
-            lock (this.Lock)
+            lock (this.ItemLock)
             {
-                if (this._resevedBy == target && this._messageId == messageHeader.Id)
+                if (this._reservedBy == target && this._messageId == messageHeader.Id)
                 {
-                    this._resevedBy = null;
+                    this._reservedBy = null;
                 }
                 else
                 {
@@ -183,35 +172,44 @@ namespace BiDaFlow.Internal
                 }
             }
 
-            this.OfferToTargets(this.ConsumeToAccept);
+            this.OfferToTargetsOnTaskScheduler();
+        }
+
+        public void Complete()
+        {
+            // TODO
+        }
+
+        public void Fault(Exception exception)
+        {
+            if (exception == null) throw new ArgumentNullException(nameof(exception));
+            // TODO
         }
 
         private void HandleUnlink(LinkRegistration<T> registration)
         {
             if (registration == null) throw new ArgumentNullException(nameof(registration));
 
-            lock (this.Lock)
-            {
-                if (this._isCompleted) return;
-
-                // Remove from the list of linked targets
-                this._linkManager.RemoveLink(registration);
-            }
+            // Remove from the list of linked targets
+            this._linkManager.RemoveLink(registration);
 
             if (this._linkManager.GetRegistration(registration.Target) == null)
             {
                 // Release reservation
-                if (Equals(this._resevedBy, registration.Target))
+                lock (this.ItemLock)
                 {
-                    this._resevedBy = null;
-                    this.OfferToTargets(this.ConsumeToAccept);
+                    if (Equals(this._reservedBy, registration.Target))
+                    {
+                        this._reservedBy = null;
+                        this.OfferToTargetsOnTaskScheduler();
+                    }
                 }
             }
         }
 
         private void HandleCompletion(Task completionTask)
         {
-            lock (this.Lock)
+            lock (this.CompletionLock) // TODO
             {
                 if (this._isCompleted) return;
                 this._isCompleted = true;
@@ -221,77 +219,63 @@ namespace BiDaFlow.Internal
                 registration.Complete(completionTask.Exception);
         }
 
-        private void OfferToTargets(bool consumeToAccept)
+        private void OfferToTargets()
         {
-            if (!this.CanOffer()) return;
-
-            this._taskFactory.StartNew(() =>
+            try
             {
-                try
+            StartOffer:
+                lock (this.ItemLock)
                 {
-                StartOffer:
-                    DataflowMessageHeader messageHeader;
-                    T messageValue;
+                    if (!this.CanOffer()) return;
 
-                    lock (this.Lock)
+                    var messageHeader = new DataflowMessageHeader(this._messageId);
+                    var messageValue = this._offeringItem;
+
+                    foreach (var registration in this._linkManager)
                     {
-                        if (!this.CanOffer()) return;
+                        var status = registration.Target.OfferMessage(messageHeader, messageValue, this._parent, false);
 
-                        messageHeader = new DataflowMessageHeader(this._messageId);
-                        messageValue = this._offeringItem;
-                    }
-
-                    lock (this.OfferLock)
-                    {
-                        foreach (var registration in this._linkManager)
+                        switch (status)
                         {
-                            var status = registration.Target.OfferMessage(messageHeader, messageValue, this._parent, true);
+                            case DataflowMessageStatus.Accepted:
+                            case DataflowMessageStatus.NotAvailable:
+                                goto StartOffer;
 
-                            switch (status)
-                            {
-                                case DataflowMessageStatus.Accepted:
-                                    lock (this.Lock)
-                                    {
-                                        if (!consumeToAccept)
-                                        {
-                                            this._itemAvailable = false;
-                                            this._messageId++;
-                                            registration.DecrementRemainingMessages();
-                                        }
-
-                                        // If the link has reached to MaxMessages, HandleUnlink has been called in DecrementRemainingMessages.
-                                        // Here we can check whether a link is left.
-                                        this._calledReadyCallback = !this._itemAvailable && this._linkManager.Count > 0;
-
-                                        if (this._calledReadyCallback)
-                                            goto CallReadyCallback;
-                                        else
-                                            goto StartOffer;
-                                    }
-
-                                case DataflowMessageStatus.NotAvailable:
-                                    goto StartOffer;
-
-                                case DataflowMessageStatus.DecliningPermanently:
-                                    registration.Unlink();
-                                    break;
-                            }
+                            case DataflowMessageStatus.DecliningPermanently:
+                                registration.Unlink();
+                                break;
                         }
                     }
-
-                    goto StartOffer;
-
-                CallReadyCallback:
-                    this._readyToNextItemCallback?.Invoke();
-                    goto StartOffer;
                 }
-                catch (Exception ex)
-                {
-                    this._parent.Fault(ex);
-                }
-            });
+
+                goto StartOffer;
+            }
+            catch (Exception ex)
+            {
+                this._parent.Fault(ex);
+            }
         }
 
-        private bool CanOffer() => this._itemAvailable && this._resevedBy == null;
+        private void OfferToTargetsOnTaskScheduler()
+        {
+            if (!this.CanOffer()) return;
+            this._taskFactory.StartNew(this._offerToTargetsDelegate);
+        }
+
+        private bool CanOffer() => this._itemAvailable && this._reservedBy == null;
+
+        private void CallReadyToNextItemCallback(bool onTaskScheduler)
+        {
+            if (this._readyToNextItemCallback == null) return;
+
+            if (onTaskScheduler)
+            {
+                this._taskFactory.StartNew(this._readyToNextItemCallback);
+            }
+            else
+            {
+                this._readyToNextItemCallback();
+            }
+        }
     }
 }
