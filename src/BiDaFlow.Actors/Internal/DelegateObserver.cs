@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BiDaFlow.Internal
+namespace BiDaFlow.Actors.Internal
 {
     internal sealed class DelegateObserver<T> : IObserver<T>
     {

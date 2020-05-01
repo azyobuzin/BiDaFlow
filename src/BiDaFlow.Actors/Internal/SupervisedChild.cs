@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks.Dataflow;
 
-namespace BiDaFlow.Actors
+namespace BiDaFlow.Actors.Internal
 {
     internal sealed class SupervisedChild
     {

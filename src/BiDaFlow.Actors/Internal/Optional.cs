@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace BiDaFlow.Internal
+namespace BiDaFlow.Actors.Internal
 {
     [StructLayout(LayoutKind.Auto)]
     internal readonly struct Optional<T>

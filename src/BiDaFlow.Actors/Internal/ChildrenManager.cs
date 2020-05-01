@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using BiDaFlow.Internal;
 
-namespace BiDaFlow.Actors
+namespace BiDaFlow.Actors.Internal
 {
     internal sealed class ChildrenManager
     {

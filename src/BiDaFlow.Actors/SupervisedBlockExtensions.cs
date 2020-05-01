@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
+using BiDaFlow.Actors.Internal;
 using BiDaFlow.Blocks;
 using BiDaFlow.Fluent;
 using BiDaFlow.Internal;

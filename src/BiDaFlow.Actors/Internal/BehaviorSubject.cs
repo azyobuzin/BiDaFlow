@@ -1,6 +1,7 @@
 ﻿using System;
+using BiDaFlow.Internal;
 
-namespace BiDaFlow.Internal
+namespace BiDaFlow.Actors.Internal
 {
     internal sealed class BehaviorSubject<T> : IObservable<T>, IObserver<T>
     {

@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\BiDaFlow.Actors\BiDaFlow.Actors.csproj" />
     <ProjectReference Include="..\..\src\BiDaFlow.AsyncEnumerable\BiDaFlow.AsyncEnumerable.csproj" />
     <ProjectReference Include="..\..\src\BiDaFlow\BiDaFlow.csproj" />
   </ItemGroup>

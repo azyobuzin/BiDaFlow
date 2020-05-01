@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 
-namespace BiDaFlow.Actors
+namespace BiDaFlow.Actors.Internal
 {
     internal sealed class SupervisedSourceBlock<T> : ISourceBlock<T>
     {

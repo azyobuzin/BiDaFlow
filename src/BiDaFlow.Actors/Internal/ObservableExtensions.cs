@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Threading;
+using BiDaFlow.Internal;
 
-namespace BiDaFlow.Internal
+namespace BiDaFlow.Actors.Internal
 {
     internal static class ObservableExtensions
     {
