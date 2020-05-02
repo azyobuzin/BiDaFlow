@@ -308,7 +308,7 @@ namespace BiDaFlow.Internal
                     }
 
                     // If the state is not changed, begin waiting.
-                    // The state can be transit to WaitingToOffer by some methods.
+                    // The state can transition to WaitingToOffer by some methods.
                     if (!this.TransitionAtomically(StateEnum.Offering, StateEnum.WaitingToBeConsumed))
                     {
                         Debug.Assert(this.State == StateEnum.WaitingToOffer);
@@ -391,11 +391,16 @@ namespace BiDaFlow.Internal
             {
                 this.State = StateEnum.Completed;
 
-                if (this._exceptions.Count > 0)
+                lock (this._exceptions)
                 {
-                    this._tcs.TrySetException(this._exceptions);
+                    if (this._exceptions.Count > 0)
+                    {
+                        this._tcs.TrySetException(this._exceptions);
+                        return;
+                    }
                 }
-                else if (this._cancellationToken.IsCancellationRequested)
+
+                if (this._cancellationToken.IsCancellationRequested)
                 {
                     this._tcs.TrySetCanceled(this._cancellationToken);
                 }

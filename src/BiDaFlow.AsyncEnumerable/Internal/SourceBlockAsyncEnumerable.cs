@@ -9,6 +9,7 @@ using BiDaFlow.Fluent;
 
 namespace BiDaFlow.Internal
 {
+    /// <seealso cref="Fluent.DataflowAsyncEnumerable.AsAsyncEnumerable{T}(ISourceBlock{T})"/>
     internal sealed class SourceBlockAsyncEnumerable<T> : IAsyncEnumerable<T>
     {
         private readonly ISourceBlock<T> _source;

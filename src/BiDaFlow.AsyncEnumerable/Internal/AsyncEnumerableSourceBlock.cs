@@ -6,6 +6,7 @@ using System.Threading.Tasks.Dataflow;
 
 namespace BiDaFlow.Internal
 {
+    /// <seealso cref="Fluent.FluentDataflow.AsSourceBlock{T}(IEnumerable{T}, TaskScheduler, CancellationToken)"/>
     internal sealed class AsyncEnumerableSourceBlock<T> : IReceivableSourceBlock<T>
     {
         private readonly EnumerableSourceCore<T> _core;
