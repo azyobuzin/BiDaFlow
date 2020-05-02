@@ -30,13 +30,23 @@ namespace BiDaFlow.Fluent
         }
 
         public static IAsyncEnumerable<TOutput> RunThroughDataflowBlock<TInput, TOutput>(
+           this IAsyncEnumerable<TInput> source,
+           Func<CancellationToken, IPropagatorBlock<TInput, TOutput>> propagatorFactory)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (propagatorFactory == null) throw new ArgumentNullException(nameof(propagatorFactory));
+
+            return new RunThroughAsyncEnumerable<TInput, TOutput>(source, propagatorFactory);
+        }
+
+        public static IAsyncEnumerable<TOutput> RunThroughDataflowBlock<TInput, TOutput>(
             this IAsyncEnumerable<TInput> source,
             Func<IPropagatorBlock<TInput, TOutput>> propagatorFactory)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (propagatorFactory == null) throw new ArgumentNullException(nameof(propagatorFactory));
 
-            return new RunThroughAsyncEnumerable<TInput, TOutput>(source, propagatorFactory);
+            return new RunThroughAsyncEnumerable<TInput, TOutput>(source, _ => propagatorFactory());
         }
     }
 }
