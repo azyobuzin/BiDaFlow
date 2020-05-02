@@ -16,6 +16,13 @@ namespace BiDaFlow.Fluent
             return source.PropagateCompletion(target, WhenPropagate.Both);
         }
 
+        /// <summary>
+        /// Links <paramref name="source"/> to <paramref name="target"/> to notify completion of <paramref name="source"/> to <paramref name="target"/>.
+        /// </summary>
+        /// <returns>An <see cref="IDisposable"/> to unlink the source from the target.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source"/> or <paramref name="target"/> is <see langword="null"/>.
+        /// </exception>
         public static IDisposable PropagateCompletion(this IDataflowBlock source, IDataflowBlock target, WhenPropagate when)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
@@ -64,6 +71,14 @@ namespace BiDaFlow.Fluent
 
         private static readonly DataflowLinkOptions s_propagateCompletionOptions = new DataflowLinkOptions() { PropagateCompletion = true };
 
+        /// <summary>
+        /// Links the <see cref="ISourceBlock{TOutput}"/> to the specified <see cref="ITargetBlock{TInput}"/> propagating completion.
+        /// </summary>
+        /// <remarks>
+        /// This method is the same as <c>DataflowBlock.LinkTo(source, target, new DataflowLinkOptions() { PropagateCompletion = true })</c>.
+        /// </remarks>
+        /// <seealso cref="DataflowBlock.LinkTo{TOutput}(ISourceBlock{TOutput}, ITargetBlock{TOutput})"/>
+        /// <inheritdoc cref="DataflowBlock.LinkTo{TOutput}(ISourceBlock{TOutput}, ITargetBlock{TOutput})"/>
         public static IDisposable LinkWithCompletion<TOutput>(this ISourceBlock<TOutput> source, ITargetBlock<TOutput> target)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
@@ -72,45 +87,56 @@ namespace BiDaFlow.Fluent
             return source.LinkTo(target, s_propagateCompletionOptions);
         }
 
-        public static ISourceBlock<T> CompletedSourceBlock<T>()
+        /// <summary>
+        /// Returns a <see cref="ISourceBlock{TOutput}"/> that have been completed.
+        /// </summary>
+        public static ISourceBlock<TOutput> CompletedSourceBlock<TOutput>()
         {
-            return CompletedSourceBlockHolder<T>.Instance;
+            return CompletedSourceBlockHolder<TOutput>.Instance;
         }
 
-        public static ISourceBlock<T> AsSourceBlock<T>(this IEnumerable<T> enumerable, CancellationToken cancellationToken = default)
+        public static ISourceBlock<TOutput> AsSourceBlock<TOutput>(this IEnumerable<TOutput> enumerable, CancellationToken cancellationToken = default)
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
 
-            return new EnumerableSourceBlock<T>(enumerable, null, cancellationToken);
+            return new EnumerableSourceBlock<TOutput>(enumerable, null, cancellationToken);
         }
 
-        public static ISourceBlock<T> AsSourceBlock<T>(this IEnumerable<T> enumerable, TaskScheduler taskScheduler, CancellationToken cancellationToken)
+        public static ISourceBlock<TOutput> AsSourceBlock<TOutput>(this IEnumerable<TOutput> enumerable, TaskScheduler taskScheduler, CancellationToken cancellationToken)
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
             if (taskScheduler == null) throw new ArgumentNullException(nameof(taskScheduler));
 
-            return new EnumerableSourceBlock<T>(enumerable, taskScheduler, cancellationToken);
+            return new EnumerableSourceBlock<TOutput>(enumerable, taskScheduler, cancellationToken);
         }
 
-        public static ISourceBlock<T> ToSourceBlock<T>(this IEnumerator<T> enumerator, CancellationToken cancellationToken = default)
+        public static ISourceBlock<TOutput> ToSourceBlock<TOutput>(this IEnumerator<TOutput> enumerator, CancellationToken cancellationToken = default)
         {
             if (enumerator == null) throw new ArgumentNullException(nameof(enumerator));
 
-            return new EnumerableSourceBlock<T>(enumerator, null, cancellationToken);
+            return new EnumerableSourceBlock<TOutput>(enumerator, null, cancellationToken);
         }
 
-        public static ISourceBlock<T> ToSourceBlock<T>(this IEnumerator<T> enumerator, TaskScheduler taskScheduler, CancellationToken cancellationToken)
+        public static ISourceBlock<TOutput> ToSourceBlock<TOutput>(this IEnumerator<TOutput> enumerator, TaskScheduler taskScheduler, CancellationToken cancellationToken)
         {
             if (enumerator == null) throw new ArgumentNullException(nameof(enumerator));
             if (taskScheduler == null) throw new ArgumentNullException(nameof(taskScheduler));
 
-            return new EnumerableSourceBlock<T>(enumerator, taskScheduler, cancellationToken);
+            return new EnumerableSourceBlock<TOutput>(enumerator, taskScheduler, cancellationToken);
         }
 
-        public static IObserver<T> AsObserverDroppingOverflowItems<T>(this ITargetBlock<T> target)
+        /// <summary>
+        /// Creates a new <see cref="IObserver{T}"/> abstraction over the <see cref="ITargetBlock{TInput}"/>.
+        /// This method drops overflow items in contrast to <seealso cref="DataflowBlock.AsObserver{TInput}(ITargetBlock{TInput})"/>,
+        /// which buffers overflow items with <see cref="DataflowBlock.SendAsync{TInput}(ITargetBlock{TInput}, TInput)"/>.
+        /// </summary>
+        /// <param name="target">The target to wrap</param>
+        /// <returns>An oberver that wraps the target block.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="target"/> is <see langword="null"/>.</exception>
+        public static IObserver<TInput> AsObserverDroppingOverflowItems<TInput>(this ITargetBlock<TInput> target)
         {
             if (target == null) throw new ArgumentNullException(nameof(target));
-            return new DroppingObserver<T>(target);
+            return new DroppingObserver<TInput>(target);
         }
 
         public static IPropagatorBlock<TInput, TOutput> Chain<TInput, TSourceOutput, TOutput>(
@@ -130,7 +156,7 @@ namespace BiDaFlow.Fluent
             if (target == null) throw new ArgumentNullException(nameof(target));
 
             source.LinkWithCompletion(target);
-            return source;
+            return new ToTargetBlockBlock<TInput>(source, target);
         }
 
         public static IDataflowBlock RunWith<T>(this ISourceBlock<T> source, ITargetBlock<T> target)
@@ -142,7 +168,7 @@ namespace BiDaFlow.Fluent
             return new RunWithBlock(source, target);
         }
 
-        public static ISourceBlock<T> Merge<T>(IEnumerable<ISourceBlock<T>> sources)
+        public static ISourceBlock<TOutput> Merge<TOutput>(IEnumerable<ISourceBlock<TOutput>> sources)
         {
             if (sources == null) throw new ArgumentNullException(nameof(sources));
 
@@ -158,9 +184,9 @@ namespace BiDaFlow.Fluent
             );
 
             var workingCount = sourceList.Count;
-            if (workingCount == 0) return CompletedSourceBlock<T>();
+            if (workingCount == 0) return CompletedSourceBlock<TOutput>();
 
-            var resultBlock = new TransformWithoutBufferBlock<T, T>(IdentityFunc<T>.Instance);
+            var resultBlock = new TransformWithoutBufferBlock<TOutput, TOutput>(IdentityFunc<TOutput>.Instance);
 
             foreach (var source in sourceList)
             {
@@ -187,9 +213,9 @@ namespace BiDaFlow.Fluent
             return resultBlock;
         }
 
-        public static ISourceBlock<T> Merge<T>(params ISourceBlock<T>[] sources)
+        public static ISourceBlock<TOutput> Merge<TOutput>(params ISourceBlock<TOutput>[] sources)
         {
-            return Merge((IEnumerable<ISourceBlock<T>>)sources);
+            return Merge((IEnumerable<ISourceBlock<TOutput>>)sources);
         }
 
         public static IPropagatorBlock<TInput, TOutput> Merge<TInput, TOutput>(this IPropagatorBlock<TInput, TOutput> propagator, IEnumerable<ISourceBlock<TOutput>> sources)

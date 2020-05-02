@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
-    <Version>0.1.0</Version>
     <LangVersion>8</LangVersion>
     <Nullable>enable</Nullable>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
 </Project>

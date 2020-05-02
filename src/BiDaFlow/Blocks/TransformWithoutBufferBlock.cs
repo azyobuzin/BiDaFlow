@@ -8,6 +8,10 @@ using BiDaFlow.Internal;
 
 namespace BiDaFlow.Blocks
 {
+    /// <summary>
+    /// Provides a dataflow block like <seealso cref="TransformBlock{TInput, TOutput}"/>.
+    /// This block does not consume items from source blocks until offering a message to link targets succeeds.
+    /// </summary>
     public class TransformWithoutBufferBlock<TInput, TOutput> : IPropagatorBlock<TInput, TOutput>
     {
         private readonly Func<TInput, TOutput> _transform;
@@ -21,6 +25,25 @@ namespace BiDaFlow.Blocks
         private long _nextId;
         private readonly LinkedList<OfferingMessage> _offeringMessages = new LinkedList<OfferingMessage>(); // TODO: more efficient structure
 
+        /// <summary>
+        /// Initializes a new <see cref="TransformWithoutBufferBlock{TInput, TOutput}"/>.
+        /// </summary>
+        /// 
+        /// <param name="transform">
+        /// A transform function.
+        /// <para>Note that this function should be pure because it can be called multiple times for the same item.</para>
+        /// </param>
+        /// 
+        /// <param name="taskScheduler">A <see cref="TaskScheduler"/> used by offering messages.</param>
+        /// 
+        /// <param name="cancellationToken">
+        /// A <see cref="CancellationToken"/> to monitor for cancellation requests.
+        /// <para>When cancellation is requested, this block behaves like when <see cref="Complete"/> is called.</para>
+        /// </param>
+        /// 
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="transform"/> or <paramref name="taskScheduler"/> is <see langword="null"/>.
+        /// </exception>
         public TransformWithoutBufferBlock(Func<TInput, TOutput> transform, TaskScheduler taskScheduler, CancellationToken cancellationToken)
         {
             this._transform = transform ?? throw new ArgumentNullException(nameof(transform));
@@ -42,9 +65,44 @@ namespace BiDaFlow.Blocks
             this.Completion.ContinueWith(this.HandleCompletion, taskScheduler);
         }
 
+        /// <summary>
+        /// Initializes a new <see cref="TransformWithoutBufferBlock{TInput, TOutput}"/>.
+        /// </summary>
+        /// 
+        /// <param name="transform">
+        /// A transform function.
+        /// <para>Note that this function should be pure because it can be called multiple times for the same item.</para>
+        /// </param>
+        /// 
+        /// <exception cref="ArgumentNullException"><paramref name="transform"/> is <see langword="null"/>.</exception>
+        /// 
+        /// <remarks>
+        /// This overload calls <see cref="TransformWithoutBufferBlock{TInput, TOutput}.TransformWithoutBufferBlock(Func{TInput, TOutput}, TaskScheduler, CancellationToken)"/>
+        /// with <see cref="TaskScheduler.Default"/> and <see cref="CancellationToken.None"/>.
+        /// </remarks>
         public TransformWithoutBufferBlock(Func<TInput, TOutput> transform)
             : this(transform, TaskScheduler.Default, CancellationToken.None) { }
 
+        /// <summary>
+        /// Initializes a new <see cref="TransformWithoutBufferBlock{TInput, TOutput}"/>.
+        /// </summary>
+        /// 
+        /// <param name="transform">
+        /// A transform function.
+        /// <para>Note that this function should be pure because it can be called multiple times for the same item.</para>
+        /// </param>
+        /// 
+        /// <param name="cancellationToken">
+        /// A <see cref="CancellationToken"/> to monitor for cancellation requests.
+        /// <para>When cancellation is requested, this block behaves like when <see cref="Complete"/> is called.</para>
+        /// </param>
+        /// 
+        /// <exception cref="ArgumentNullException"><paramref name="transform"/> is <see langword="null"/>.</exception>
+        /// 
+        /// <remarks>
+        /// This overload calls <see cref="TransformWithoutBufferBlock{TInput, TOutput}.TransformWithoutBufferBlock(Func{TInput, TOutput}, TaskScheduler, CancellationToken)"/>
+        /// with <see cref="TaskScheduler.Default"/>.
+        /// </remarks>
         public TransformWithoutBufferBlock(Func<TInput, TOutput> transform, CancellationToken cancellationToken)
             : this(transform, TaskScheduler.Default, cancellationToken) { }
 
@@ -58,8 +116,16 @@ namespace BiDaFlow.Blocks
         /// </summary>
         private object OfferLock => this._offeringMessages;
 
+        /// <inheritdoc cref="IDataflowBlock.Completion"/>
         public Task Completion => this._tcs.Task;
 
+        /// <summary>
+        /// Signals to the block to stop consuming and offering messages.
+        /// </summary>
+        /// <remarks>
+        /// When this method is called, <see cref="Completion"/> will immediately be completed
+        /// because this block has no buffer.
+        /// </remarks>
         public void Complete()
         {
             this.CompleteCore(null);
@@ -72,6 +138,7 @@ namespace BiDaFlow.Blocks
             this.CompleteCore(exception);
         }
 
+        /// <inheritdoc cref="ISourceBlock{TOutput}.LinkTo(ITargetBlock{TOutput}, DataflowLinkOptions)"/>
         public IDisposable LinkTo(ITargetBlock<TOutput> target, DataflowLinkOptions linkOptions)
         {
             if (target == null) throw new ArgumentNullException(nameof(target));
