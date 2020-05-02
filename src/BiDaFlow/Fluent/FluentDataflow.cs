@@ -11,6 +11,7 @@ namespace BiDaFlow.Fluent
 {
     public static class FluentDataflow
     {
+        /// <inheritdoc cref="PropagateCompletion(IDataflowBlock, IDataflowBlock, WhenPropagate)"/>
         public static IDisposable PropagateCompletion(this IDataflowBlock source, IDataflowBlock target)
         {
             return source.PropagateCompletion(target, WhenPropagate.Both);
@@ -130,6 +131,7 @@ namespace BiDaFlow.Fluent
         /// This method drops overflow items in contrast to <seealso cref="DataflowBlock.AsObserver{TInput}(ITargetBlock{TInput})"/>,
         /// which buffers overflow items with <see cref="DataflowBlock.SendAsync{TInput}(ITargetBlock{TInput}, TInput)"/>.
         /// </summary>
+        /// <typeparam name="TInput">Specifies the type of input accepted by the target block.</typeparam>
         /// <param name="target">The target to wrap</param>
         /// <returns>An oberver that wraps the target block.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="target"/> is <see langword="null"/>.</exception>
