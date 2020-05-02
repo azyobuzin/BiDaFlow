@@ -1,0 +1,540 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Actor&lt;TOutput&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Actor&lt;TOutput&gt;
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="BiDaFlow.Actors.Actor`1">
+  
+  
+  <h1 id="BiDaFlow_Actors_Actor_1" data-uid="BiDaFlow.Actors.Actor`1" class="text-break">Class Actor&lt;TOutput&gt;
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="BiDaFlow.Actors.Actor.html">Actor</a></div>
+    <div class="level2"><span class="xref">Actor&lt;TOutput&gt;</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.isourceblock-1">ISourceBlock</a>&lt;TOutput&gt;</div>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.idataflowblock">IDataflowBlock</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_Completion">Actor.Completion</a>
+    </div>
+    <div>
+      <a class="xref" href="BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_Complete">Actor.Complete()</a>
+    </div>
+    <div>
+      <a class="xref" href="BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_Fault_System_Exception_">Actor.Fault(Exception)</a>
+    </div>
+    <div>
+      <a class="xref" href="BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_OnCompleted_System_AggregateException_">Actor.OnCompleted(AggregateException)</a>
+    </div>
+    <div>
+      <a class="xref" href="BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_CreateMessage_System_Func_System_Threading_Tasks_Task__">Actor.CreateMessage(Func&lt;Task&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_CreateMessage_System_Action_">Actor.CreateMessage(Action)</a>
+    </div>
+    <div>
+      <a class="xref" href="BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_CreateMessageWithReply__1_System_Func_System_Threading_Tasks_Task___0___">Actor.CreateMessageWithReply&lt;TReply&gt;(Func&lt;Task&lt;TReply&gt;&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_CreateMessageWithReply__1_System_Func___0__">Actor.CreateMessageWithReply&lt;TReply&gt;(Func&lt;TReply&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_SuperviseChild_System_Threading_Tasks_Dataflow_IDataflowBlock_BiDaFlow_Actors_SupervisionOptions_">Actor.SuperviseChild(IDataflowBlock, SupervisionOptions)</a>
+    </div>
+    <div>
+      <a class="xref" href="BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_SuperviseChild_System_Threading_Tasks_Dataflow_IDataflowBlock_">Actor.SuperviseChild(IDataflowBlock)</a>
+    </div>
+    <div>
+      <a class="xref" href="BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_System_Threading_Tasks_Dataflow_IDataflowBlock_Complete">Actor.IDataflowBlock.Complete()</a>
+    </div>
+    <div>
+      <a class="xref" href="BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_System_Exception_">Actor.IDataflowBlock.Fault(Exception)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="BiDaFlow.Actors.html">BiDaFlow.Actors</a></h6>
+  <h6><strong>Assembly</strong>: BiDaFlow.Actors.dll</h6>
+  <h5 id="BiDaFlow_Actors_Actor_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class Actor&lt;TOutput&gt; : Actor, ISourceBlock&lt;TOutput&gt;, IDataflowBlock</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TOutput</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Actors_Actor_1__ctor.md&amp;value=---%0Auid%3A%20BiDaFlow.Actors.Actor%601.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow.Actors/Actor.cs/#L104">View Source</a>
+  </span>
+  <a id="BiDaFlow_Actors_Actor_1__ctor_" data-uid="BiDaFlow.Actors.Actor`1.#ctor*"></a>
+  <h4 id="BiDaFlow_Actors_Actor_1__ctor" data-uid="BiDaFlow.Actors.Actor`1.#ctor">Actor()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Actor()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Actors_Actor_1__ctor_BiDaFlow_Actors_ActorOptions_.md&amp;value=---%0Auid%3A%20BiDaFlow.Actors.Actor%601.%23ctor(BiDaFlow.Actors.ActorOptions)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow.Actors/Actor.cs/#L90">View Source</a>
+  </span>
+  <a id="BiDaFlow_Actors_Actor_1__ctor_" data-uid="BiDaFlow.Actors.Actor`1.#ctor*"></a>
+  <h4 id="BiDaFlow_Actors_Actor_1__ctor_BiDaFlow_Actors_ActorOptions_" data-uid="BiDaFlow.Actors.Actor`1.#ctor(BiDaFlow.Actors.ActorOptions)">Actor(ActorOptions)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Actor(ActorOptions options)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="BiDaFlow.Actors.ActorOptions.html">ActorOptions</a></td>
+        <td><span class="parametername">options</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Actors_Actor_1_SendOutputAsync__0_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20BiDaFlow.Actors.Actor%601.SendOutputAsync(%600%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow.Actors/Actor.cs/#L106">View Source</a>
+  </span>
+  <a id="BiDaFlow_Actors_Actor_1_SendOutputAsync_" data-uid="BiDaFlow.Actors.Actor`1.SendOutputAsync*"></a>
+  <h4 id="BiDaFlow_Actors_Actor_1_SendOutputAsync__0_System_Threading_CancellationToken_" data-uid="BiDaFlow.Actors.Actor`1.SendOutputAsync(`0,System.Threading.CancellationToken)">SendOutputAsync(TOutput, CancellationToken)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task&lt;bool&gt; SendOutputAsync(TOutput outputValue, CancellationToken cancellationToken = default(CancellationToken))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TOutput</span></td>
+        <td><span class="parametername">outputValue</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ConsumeMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__0__System_Boolean__.md&amp;value=---%0Auid%3A%20BiDaFlow.Actors.Actor%601.System%23Threading%23Tasks%23Dataflow%23ISourceBlock%7BTOutput%7D%23ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader%2CSystem.Threading.Tasks.Dataflow.ITargetBlock%7B%600%7D%2CSystem.Boolean%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow.Actors/Actor.cs/#L116">View Source</a>
+  </span>
+  <a id="BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ConsumeMessage_" data-uid="BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ConsumeMessage*"></a>
+  <h4 id="BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ConsumeMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__0__System_Boolean__" data-uid="BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0},System.Boolean@)">ISourceBlock&lt;TOutput&gt;.ConsumeMessage(DataflowMessageHeader, ITargetBlock&lt;TOutput&gt;, out Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TOutput ISourceBlock&lt;TOutput&gt;.ConsumeMessage(DataflowMessageHeader messageHeader, ITargetBlock&lt;TOutput&gt; target, out bool messageConsumed)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.dataflowmessageheader">DataflowMessageHeader</a></td>
+        <td><span class="parametername">messageHeader</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.itargetblock-1">ITargetBlock</a>&lt;TOutput&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">messageConsumed</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TOutput</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__LinkTo_System_Threading_Tasks_Dataflow_ITargetBlock__0__System_Threading_Tasks_Dataflow_DataflowLinkOptions_.md&amp;value=---%0Auid%3A%20BiDaFlow.Actors.Actor%601.System%23Threading%23Tasks%23Dataflow%23ISourceBlock%7BTOutput%7D%23LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock%7B%600%7D%2CSystem.Threading.Tasks.Dataflow.DataflowLinkOptions)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow.Actors/Actor.cs/#L111">View Source</a>
+  </span>
+  <a id="BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__LinkTo_" data-uid="BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#LinkTo*"></a>
+  <h4 id="BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__LinkTo_System_Threading_Tasks_Dataflow_ITargetBlock__0__System_Threading_Tasks_Dataflow_DataflowLinkOptions_" data-uid="BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock{`0},System.Threading.Tasks.Dataflow.DataflowLinkOptions)">ISourceBlock&lt;TOutput&gt;.LinkTo(ITargetBlock&lt;TOutput&gt;, DataflowLinkOptions)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDisposable ISourceBlock&lt;TOutput&gt;.LinkTo(ITargetBlock&lt;TOutput&gt; target, DataflowLinkOptions linkOptions)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.itargetblock-1">ITargetBlock</a>&lt;TOutput&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.dataflowlinkoptions">DataflowLinkOptions</a></td>
+        <td><span class="parametername">linkOptions</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReleaseReservation_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__0__.md&amp;value=---%0Auid%3A%20BiDaFlow.Actors.Actor%601.System%23Threading%23Tasks%23Dataflow%23ISourceBlock%7BTOutput%7D%23ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader%2CSystem.Threading.Tasks.Dataflow.ITargetBlock%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow.Actors/Actor.cs/#L126">View Source</a>
+  </span>
+  <a id="BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReleaseReservation_" data-uid="BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReleaseReservation*"></a>
+  <h4 id="BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReleaseReservation_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__0__" data-uid="BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0})">ISourceBlock&lt;TOutput&gt;.ReleaseReservation(DataflowMessageHeader, ITargetBlock&lt;TOutput&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ISourceBlock&lt;TOutput&gt;.ReleaseReservation(DataflowMessageHeader messageHeader, ITargetBlock&lt;TOutput&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.dataflowmessageheader">DataflowMessageHeader</a></td>
+        <td><span class="parametername">messageHeader</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.itargetblock-1">ITargetBlock</a>&lt;TOutput&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReserveMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__0__.md&amp;value=---%0Auid%3A%20BiDaFlow.Actors.Actor%601.System%23Threading%23Tasks%23Dataflow%23ISourceBlock%7BTOutput%7D%23ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader%2CSystem.Threading.Tasks.Dataflow.ITargetBlock%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow.Actors/Actor.cs/#L121">View Source</a>
+  </span>
+  <a id="BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReserveMessage_" data-uid="BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReserveMessage*"></a>
+  <h4 id="BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReserveMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__0__" data-uid="BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0})">ISourceBlock&lt;TOutput&gt;.ReserveMessage(DataflowMessageHeader, ITargetBlock&lt;TOutput&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool ISourceBlock&lt;TOutput&gt;.ReserveMessage(DataflowMessageHeader messageHeader, ITargetBlock&lt;TOutput&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.dataflowmessageheader">DataflowMessageHeader</a></td>
+        <td><span class="parametername">messageHeader</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.itargetblock-1">ITargetBlock</a>&lt;TOutput&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.isourceblock-1">System.Threading.Tasks.Dataflow.ISourceBlock&lt;TOutput&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.idataflowblock">System.Threading.Tasks.Dataflow.IDataflowBlock</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.DataflowAsyncEnumerable.html#BiDaFlow_Fluent_DataflowAsyncEnumerable_AsAsyncEnumerable__1_System_Threading_Tasks_Dataflow_ISourceBlock___0__">DataflowAsyncEnumerable.AsAsyncEnumerable&lt;TOutput&gt;(ISourceBlock&lt;TOutput&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_PropagateCompletion_System_Threading_Tasks_Dataflow_IDataflowBlock_System_Threading_Tasks_Dataflow_IDataflowBlock_">FluentDataflow.PropagateCompletion(IDataflowBlock, IDataflowBlock)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_PropagateCompletion_System_Threading_Tasks_Dataflow_IDataflowBlock_System_Threading_Tasks_Dataflow_IDataflowBlock_BiDaFlow_Fluent_WhenPropagate_">FluentDataflow.PropagateCompletion(IDataflowBlock, IDataflowBlock, WhenPropagate)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_LinkWithCompletion__1_System_Threading_Tasks_Dataflow_ISourceBlock___0__System_Threading_Tasks_Dataflow_ITargetBlock___0__">FluentDataflow.LinkWithCompletion&lt;TOutput&gt;(ISourceBlock&lt;TOutput&gt;, ITargetBlock&lt;TOutput&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_RunWith__1_System_Threading_Tasks_Dataflow_ISourceBlock___0__System_Threading_Tasks_Dataflow_ITargetBlock___0__">FluentDataflow.RunWith&lt;T&gt;(ISourceBlock&lt;T&gt;, ITargetBlock&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Actors.ActorExtensions.html#BiDaFlow_Actors_ActorExtensions_AsTargetBlock__2___0_System_Func___0___1_BiDaFlow_Actors_Envelope__">ActorExtensions.AsTargetBlock&lt;TActor, TInput&gt;(TActor, Func&lt;TActor, TInput, Envelope&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Actors_Actor_1.md&amp;value=---%0Auid%3A%20BiDaFlow.Actors.Actor%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow.Actors/Actor.cs/#L86" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

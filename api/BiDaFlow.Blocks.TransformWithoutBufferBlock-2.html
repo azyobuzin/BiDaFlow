@@ -1,0 +1,757 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TransformWithoutBufferBlock&lt;TInput, TOutput&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TransformWithoutBufferBlock&lt;TInput, TOutput&gt;
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2">
+  
+  
+  <h1 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2" class="text-break">Class TransformWithoutBufferBlock&lt;TInput, TOutput&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>Provides a dataflow block like <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.transformblock-2">TransformBlock&lt;TInput,TOutput&gt;</a>.
+This block does not consume items from source blocks until offering a message to link targets succeeds.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">TransformWithoutBufferBlock&lt;TInput, TOutput&gt;</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.ipropagatorblock-2">IPropagatorBlock</a>&lt;TInput, TOutput&gt;</div>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.itargetblock-1">ITargetBlock</a>&lt;TInput&gt;</div>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.isourceblock-1">ISourceBlock</a>&lt;TOutput&gt;</div>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.idataflowblock">IDataflowBlock</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="BiDaFlow.Blocks.html">BiDaFlow.Blocks</a></h6>
+  <h6><strong>Assembly</strong>: BiDaFlow.dll</h6>
+  <h5 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TransformWithoutBufferBlock&lt;TInput, TOutput&gt; : IPropagatorBlock&lt;TInput, TOutput&gt;, ITargetBlock&lt;TInput&gt;, ISourceBlock&lt;TOutput&gt;, IDataflowBlock</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TInput</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TOutput</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.%23ctor(System.Func%7B%600%2C%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L83">View Source</a>
+  </span>
+  <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor*"></a>
+  <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor(System.Func{`0,`1})">TransformWithoutBufferBlock(Func&lt;TInput, TOutput&gt;)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new <a class="xref" href="BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html">TransformWithoutBufferBlock&lt;TInput, TOutput&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TransformWithoutBufferBlock(Func&lt;TInput, TOutput&gt; transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TInput, TOutput&gt;</td>
+        <td><span class="parametername">transform</span></td>
+        <td><p>A transform function.
+<p>Note that this function should be pure because it can be called multiple times for the same item.</p></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This overload calls <a class="xref" href="BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__System_Threading_Tasks_TaskScheduler_System_Threading_CancellationToken_">TransformWithoutBufferBlock(Func&lt;TInput, TOutput&gt;, TaskScheduler, CancellationToken)</a>
+with <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.taskscheduler.default#System_Threading_Tasks_TaskScheduler_Default">Default</a> and <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken.none#System_Threading_CancellationToken_None">None</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">transform</code> is <span class="xref">null</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.%23ctor(System.Func%7B%600%2C%601%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L106">View Source</a>
+  </span>
+  <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor*"></a>
+  <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__System_Threading_CancellationToken_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor(System.Func{`0,`1},System.Threading.CancellationToken)">TransformWithoutBufferBlock(Func&lt;TInput, TOutput&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new <a class="xref" href="BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html">TransformWithoutBufferBlock&lt;TInput, TOutput&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TransformWithoutBufferBlock(Func&lt;TInput, TOutput&gt; transform, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TInput, TOutput&gt;</td>
+        <td><span class="parametername">transform</span></td>
+        <td><p>A transform function.
+<p>Note that this function should be pure because it can be called multiple times for the same item.</p></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>A <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> to monitor for cancellation requests.
+<p>When cancellation is requested, this block behaves like when <a class="xref" href="BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Complete">Complete()</a> is called.</p></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__System_Threading_CancellationToken__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This overload calls <a class="xref" href="BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__System_Threading_Tasks_TaskScheduler_System_Threading_CancellationToken_">TransformWithoutBufferBlock(Func&lt;TInput, TOutput&gt;, TaskScheduler, CancellationToken)</a>
+with <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.taskscheduler.default#System_Threading_Tasks_TaskScheduler_Default">Default</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">transform</code> is <span class="xref">null</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__System_Threading_Tasks_TaskScheduler_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.%23ctor(System.Func%7B%600%2C%601%7D%2CSystem.Threading.Tasks.TaskScheduler%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L47">View Source</a>
+  </span>
+  <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor*"></a>
+  <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__System_Threading_Tasks_TaskScheduler_System_Threading_CancellationToken_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor(System.Func{`0,`1},System.Threading.Tasks.TaskScheduler,System.Threading.CancellationToken)">TransformWithoutBufferBlock(Func&lt;TInput, TOutput&gt;, TaskScheduler, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new <a class="xref" href="BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html">TransformWithoutBufferBlock&lt;TInput, TOutput&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TransformWithoutBufferBlock(Func&lt;TInput, TOutput&gt; transform, TaskScheduler taskScheduler, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TInput, TOutput&gt;</td>
+        <td><span class="parametername">transform</span></td>
+        <td><p>A transform function.
+<p>Note that this function should be pure because it can be called multiple times for the same item.</p></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.taskscheduler">TaskScheduler</a></td>
+        <td><span class="parametername">taskScheduler</span></td>
+        <td><p>A <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.taskscheduler">TaskScheduler</a> used by offering messages.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>A <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> to monitor for cancellation requests.
+<p>When cancellation is requested, this block behaves like when <a class="xref" href="BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Complete">Complete()</a> is called.</p></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">transform</code> or <code data-dev-comment-type="paramref" class="paramref">taskScheduler</code> is <span class="xref">null</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Completion.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.Completion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L120">View Source</a>
+  </span>
+  <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Completion_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Completion*"></a>
+  <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Completion" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Completion">Completion</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task Completion { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Complete.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.Complete%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L129">View Source</a>
+  </span>
+  <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Complete_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Complete*"></a>
+  <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Complete" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Complete">Complete()</h4>
+  <div class="markdown level1 summary"><p>Signals to the block to stop consuming and offering messages.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Complete()</code></pre>
+  </div>
+  <h5 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Complete_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>When this method is called, <a class="xref" href="BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Completion">Completion</a> will immediately be completed
+because this block has no buffer.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_LinkTo_System_Threading_Tasks_Dataflow_ITargetBlock__1__System_Threading_Tasks_Dataflow_DataflowLinkOptions_.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock%7B%601%7D%2CSystem.Threading.Tasks.Dataflow.DataflowLinkOptions)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L142">View Source</a>
+  </span>
+  <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_LinkTo_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.LinkTo*"></a>
+  <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_LinkTo_System_Threading_Tasks_Dataflow_ITargetBlock__1__System_Threading_Tasks_Dataflow_DataflowLinkOptions_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock{`1},System.Threading.Tasks.Dataflow.DataflowLinkOptions)">LinkTo(ITargetBlock&lt;TOutput&gt;, DataflowLinkOptions)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IDisposable LinkTo(ITargetBlock&lt;TOutput&gt; target, DataflowLinkOptions linkOptions)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.itargetblock-1">ITargetBlock</a>&lt;TOutput&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.dataflowlinkoptions">DataflowLinkOptions</a></td>
+        <td><span class="parametername">linkOptions</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_System_Exception_.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.System%23Threading%23Tasks%23Dataflow%23IDataflowBlock%23Fault(System.Exception)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L134">View Source</a>
+  </span>
+  <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault*"></a>
+  <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_System_Exception_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault(System.Exception)">IDataflowBlock.Fault(Exception)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void IDataflowBlock.Fault(Exception exception)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ConsumeMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__System_Boolean__.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.System%23Threading%23Tasks%23Dataflow%23ISourceBlock%7BTOutput%7D%23ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader%2CSystem.Threading.Tasks.Dataflow.ITargetBlock%7B%601%7D%2CSystem.Boolean%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L171">View Source</a>
+  </span>
+  <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ConsumeMessage_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ConsumeMessage*"></a>
+  <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ConsumeMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__System_Boolean__" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`1},System.Boolean@)">ISourceBlock&lt;TOutput&gt;.ConsumeMessage(DataflowMessageHeader, ITargetBlock&lt;TOutput&gt;, out Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TOutput ISourceBlock&lt;TOutput&gt;.ConsumeMessage(DataflowMessageHeader messageHeader, ITargetBlock&lt;TOutput&gt; target, out bool messageConsumed)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.dataflowmessageheader">DataflowMessageHeader</a></td>
+        <td><span class="parametername">messageHeader</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.itargetblock-1">ITargetBlock</a>&lt;TOutput&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">messageConsumed</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TOutput</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReleaseReservation_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.System%23Threading%23Tasks%23Dataflow%23ISourceBlock%7BTOutput%7D%23ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader%2CSystem.Threading.Tasks.Dataflow.ITargetBlock%7B%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L256">View Source</a>
+  </span>
+  <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReleaseReservation_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReleaseReservation*"></a>
+  <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReleaseReservation_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`1})">ISourceBlock&lt;TOutput&gt;.ReleaseReservation(DataflowMessageHeader, ITargetBlock&lt;TOutput&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ISourceBlock&lt;TOutput&gt;.ReleaseReservation(DataflowMessageHeader messageHeader, ITargetBlock&lt;TOutput&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.dataflowmessageheader">DataflowMessageHeader</a></td>
+        <td><span class="parametername">messageHeader</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.itargetblock-1">ITargetBlock</a>&lt;TOutput&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReserveMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.System%23Threading%23Tasks%23Dataflow%23ISourceBlock%7BTOutput%7D%23ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader%2CSystem.Threading.Tasks.Dataflow.ITargetBlock%7B%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L228">View Source</a>
+  </span>
+  <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReserveMessage_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReserveMessage*"></a>
+  <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReserveMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`1})">ISourceBlock&lt;TOutput&gt;.ReserveMessage(DataflowMessageHeader, ITargetBlock&lt;TOutput&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool ISourceBlock&lt;TOutput&gt;.ReserveMessage(DataflowMessageHeader messageHeader, ITargetBlock&lt;TOutput&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.dataflowmessageheader">DataflowMessageHeader</a></td>
+        <td><span class="parametername">messageHeader</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.itargetblock-1">ITargetBlock</a>&lt;TOutput&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ITargetBlock_TInput__OfferMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader__0_System_Threading_Tasks_Dataflow_ISourceBlock__0__System_Boolean_.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.System%23Threading%23Tasks%23Dataflow%23ITargetBlock%7BTInput%7D%23OfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader%2C%600%2CSystem.Threading.Tasks.Dataflow.ISourceBlock%7B%600%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L291">View Source</a>
+  </span>
+  <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ITargetBlock_TInput__OfferMessage_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ITargetBlock{TInput}#OfferMessage*"></a>
+  <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ITargetBlock_TInput__OfferMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader__0_System_Threading_Tasks_Dataflow_ISourceBlock__0__System_Boolean_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ITargetBlock{TInput}#OfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,`0,System.Threading.Tasks.Dataflow.ISourceBlock{`0},System.Boolean)">ITargetBlock&lt;TInput&gt;.OfferMessage(DataflowMessageHeader, TInput, ISourceBlock&lt;TInput&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DataflowMessageStatus ITargetBlock&lt;TInput&gt;.OfferMessage(DataflowMessageHeader messageHeader, TInput messageValue, ISourceBlock&lt;TInput&gt; source, bool consumeToAccept)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.dataflowmessageheader">DataflowMessageHeader</a></td>
+        <td><span class="parametername">messageHeader</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">TInput</span></td>
+        <td><span class="parametername">messageValue</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.isourceblock-1">ISourceBlock</a>&lt;TInput&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">consumeToAccept</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.dataflowmessagestatus">DataflowMessageStatus</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.ipropagatorblock-2">System.Threading.Tasks.Dataflow.IPropagatorBlock&lt;TInput,TOutput&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.itargetblock-1">System.Threading.Tasks.Dataflow.ITargetBlock&lt;TInput&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.isourceblock-1">System.Threading.Tasks.Dataflow.ISourceBlock&lt;TOutput&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.idataflowblock">System.Threading.Tasks.Dataflow.IDataflowBlock</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.DataflowAsyncEnumerable.html#BiDaFlow_Fluent_DataflowAsyncEnumerable_AsAsyncEnumerable__1_System_Threading_Tasks_Dataflow_ISourceBlock___0__">DataflowAsyncEnumerable.AsAsyncEnumerable&lt;TOutput&gt;(ISourceBlock&lt;TOutput&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_PropagateCompletion_System_Threading_Tasks_Dataflow_IDataflowBlock_System_Threading_Tasks_Dataflow_IDataflowBlock_">FluentDataflow.PropagateCompletion(IDataflowBlock, IDataflowBlock)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_PropagateCompletion_System_Threading_Tasks_Dataflow_IDataflowBlock_System_Threading_Tasks_Dataflow_IDataflowBlock_BiDaFlow_Fluent_WhenPropagate_">FluentDataflow.PropagateCompletion(IDataflowBlock, IDataflowBlock, WhenPropagate)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_LinkWithCompletion__1_System_Threading_Tasks_Dataflow_ISourceBlock___0__System_Threading_Tasks_Dataflow_ITargetBlock___0__">FluentDataflow.LinkWithCompletion&lt;TOutput&gt;(ISourceBlock&lt;TOutput&gt;, ITargetBlock&lt;TOutput&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_AsObserverDroppingOverflowItems__1_System_Threading_Tasks_Dataflow_ITargetBlock___0__">FluentDataflow.AsObserverDroppingOverflowItems&lt;TInput&gt;(ITargetBlock&lt;TInput&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_Chain__3_System_Threading_Tasks_Dataflow_IPropagatorBlock___0___1__System_Threading_Tasks_Dataflow_IPropagatorBlock___1___2__">FluentDataflow.Chain&lt;TInput, TSourceOutput, TOutput&gt;(IPropagatorBlock&lt;TInput, TSourceOutput&gt;, IPropagatorBlock&lt;TSourceOutput, TOutput&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_ToTargetBlock__2_System_Threading_Tasks_Dataflow_IPropagatorBlock___0___1__System_Threading_Tasks_Dataflow_ITargetBlock___1__">FluentDataflow.ToTargetBlock&lt;TInput, TOutput&gt;(IPropagatorBlock&lt;TInput, TOutput&gt;, ITargetBlock&lt;TOutput&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_RunWith__1_System_Threading_Tasks_Dataflow_ISourceBlock___0__System_Threading_Tasks_Dataflow_ITargetBlock___0__">FluentDataflow.RunWith&lt;T&gt;(ISourceBlock&lt;T&gt;, ITargetBlock&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_Merge__2_System_Threading_Tasks_Dataflow_IPropagatorBlock___0___1__System_Collections_Generic_IEnumerable_System_Threading_Tasks_Dataflow_ISourceBlock___1___">FluentDataflow.Merge&lt;TInput, TOutput&gt;(IPropagatorBlock&lt;TInput, TOutput&gt;, IEnumerable&lt;ISourceBlock&lt;TOutput&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_Merge__2_System_Threading_Tasks_Dataflow_IPropagatorBlock___0___1__System_Threading_Tasks_Dataflow_ISourceBlock___1____">FluentDataflow.Merge&lt;TInput, TOutput&gt;(IPropagatorBlock&lt;TInput, TOutput&gt;, ISourceBlock&lt;TOutput&gt;[])</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L15" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

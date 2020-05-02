@@ -1,0 +1,1332 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: BiDaFlow.Actors
+  name: BiDaFlow.Actors
+  href: api/BiDaFlow.Actors.html
+  commentId: N:BiDaFlow.Actors
+  fullName: BiDaFlow.Actors
+  nameWithType: BiDaFlow.Actors
+- uid: BiDaFlow.Actors.Actor
+  name: Actor
+  href: api/BiDaFlow.Actors.Actor.html
+  commentId: T:BiDaFlow.Actors.Actor
+  fullName: BiDaFlow.Actors.Actor
+  nameWithType: Actor
+- uid: BiDaFlow.Actors.Actor.#ctor
+  name: Actor()
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor__ctor
+  commentId: M:BiDaFlow.Actors.Actor.#ctor
+  fullName: BiDaFlow.Actors.Actor.Actor()
+  nameWithType: Actor.Actor()
+- uid: BiDaFlow.Actors.Actor.#ctor(BiDaFlow.Actors.ActorOptions)
+  name: Actor(ActorOptions)
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor__ctor_BiDaFlow_Actors_ActorOptions_
+  commentId: M:BiDaFlow.Actors.Actor.#ctor(BiDaFlow.Actors.ActorOptions)
+  fullName: BiDaFlow.Actors.Actor.Actor(BiDaFlow.Actors.ActorOptions)
+  nameWithType: Actor.Actor(ActorOptions)
+- uid: BiDaFlow.Actors.Actor.#ctor*
+  name: Actor
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor__ctor_
+  commentId: Overload:BiDaFlow.Actors.Actor.#ctor
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.Actor.Actor
+  nameWithType: Actor.Actor
+- uid: BiDaFlow.Actors.Actor.Complete
+  name: Complete()
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_Complete
+  commentId: M:BiDaFlow.Actors.Actor.Complete
+  fullName: BiDaFlow.Actors.Actor.Complete()
+  nameWithType: Actor.Complete()
+- uid: BiDaFlow.Actors.Actor.Complete*
+  name: Complete
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_Complete_
+  commentId: Overload:BiDaFlow.Actors.Actor.Complete
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.Actor.Complete
+  nameWithType: Actor.Complete
+- uid: BiDaFlow.Actors.Actor.Completion
+  name: Completion
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_Completion
+  commentId: P:BiDaFlow.Actors.Actor.Completion
+  fullName: BiDaFlow.Actors.Actor.Completion
+  nameWithType: Actor.Completion
+- uid: BiDaFlow.Actors.Actor.Completion*
+  name: Completion
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_Completion_
+  commentId: Overload:BiDaFlow.Actors.Actor.Completion
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.Actor.Completion
+  nameWithType: Actor.Completion
+- uid: BiDaFlow.Actors.Actor.CreateMessage(System.Action)
+  name: CreateMessage(Action)
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_CreateMessage_System_Action_
+  commentId: M:BiDaFlow.Actors.Actor.CreateMessage(System.Action)
+  fullName: BiDaFlow.Actors.Actor.CreateMessage(System.Action)
+  nameWithType: Actor.CreateMessage(Action)
+- uid: BiDaFlow.Actors.Actor.CreateMessage(System.Func{System.Threading.Tasks.Task})
+  name: CreateMessage(Func<Task>)
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_CreateMessage_System_Func_System_Threading_Tasks_Task__
+  commentId: M:BiDaFlow.Actors.Actor.CreateMessage(System.Func{System.Threading.Tasks.Task})
+  name.vb: CreateMessage(Func(Of Task))
+  fullName: BiDaFlow.Actors.Actor.CreateMessage(System.Func<System.Threading.Tasks.Task>)
+  fullName.vb: BiDaFlow.Actors.Actor.CreateMessage(System.Func(Of System.Threading.Tasks.Task))
+  nameWithType: Actor.CreateMessage(Func<Task>)
+  nameWithType.vb: Actor.CreateMessage(Func(Of Task))
+- uid: BiDaFlow.Actors.Actor.CreateMessage*
+  name: CreateMessage
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_CreateMessage_
+  commentId: Overload:BiDaFlow.Actors.Actor.CreateMessage
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.Actor.CreateMessage
+  nameWithType: Actor.CreateMessage
+- uid: BiDaFlow.Actors.Actor.CreateMessageWithReply*
+  name: CreateMessageWithReply
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_CreateMessageWithReply_
+  commentId: Overload:BiDaFlow.Actors.Actor.CreateMessageWithReply
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.Actor.CreateMessageWithReply
+  nameWithType: Actor.CreateMessageWithReply
+- uid: BiDaFlow.Actors.Actor.CreateMessageWithReply``1(System.Func{``0})
+  name: CreateMessageWithReply<TReply>(Func<TReply>)
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_CreateMessageWithReply__1_System_Func___0__
+  commentId: M:BiDaFlow.Actors.Actor.CreateMessageWithReply``1(System.Func{``0})
+  name.vb: CreateMessageWithReply(Of TReply)(Func(Of TReply))
+  fullName: BiDaFlow.Actors.Actor.CreateMessageWithReply<TReply>(System.Func<TReply>)
+  fullName.vb: BiDaFlow.Actors.Actor.CreateMessageWithReply(Of TReply)(System.Func(Of TReply))
+  nameWithType: Actor.CreateMessageWithReply<TReply>(Func<TReply>)
+  nameWithType.vb: Actor.CreateMessageWithReply(Of TReply)(Func(Of TReply))
+- uid: BiDaFlow.Actors.Actor.CreateMessageWithReply``1(System.Func{System.Threading.Tasks.Task{``0}})
+  name: CreateMessageWithReply<TReply>(Func<Task<TReply>>)
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_CreateMessageWithReply__1_System_Func_System_Threading_Tasks_Task___0___
+  commentId: M:BiDaFlow.Actors.Actor.CreateMessageWithReply``1(System.Func{System.Threading.Tasks.Task{``0}})
+  name.vb: CreateMessageWithReply(Of TReply)(Func(Of Task(Of TReply)))
+  fullName: BiDaFlow.Actors.Actor.CreateMessageWithReply<TReply>(System.Func<System.Threading.Tasks.Task<TReply>>)
+  fullName.vb: BiDaFlow.Actors.Actor.CreateMessageWithReply(Of TReply)(System.Func(Of System.Threading.Tasks.Task(Of TReply)))
+  nameWithType: Actor.CreateMessageWithReply<TReply>(Func<Task<TReply>>)
+  nameWithType.vb: Actor.CreateMessageWithReply(Of TReply)(Func(Of Task(Of TReply)))
+- uid: BiDaFlow.Actors.Actor.Fault(System.Exception)
+  name: Fault(Exception)
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_Fault_System_Exception_
+  commentId: M:BiDaFlow.Actors.Actor.Fault(System.Exception)
+  fullName: BiDaFlow.Actors.Actor.Fault(System.Exception)
+  nameWithType: Actor.Fault(Exception)
+- uid: BiDaFlow.Actors.Actor.Fault*
+  name: Fault
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_Fault_
+  commentId: Overload:BiDaFlow.Actors.Actor.Fault
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.Actor.Fault
+  nameWithType: Actor.Fault
+- uid: BiDaFlow.Actors.Actor.OnCompleted(System.AggregateException)
+  name: OnCompleted(AggregateException)
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_OnCompleted_System_AggregateException_
+  commentId: M:BiDaFlow.Actors.Actor.OnCompleted(System.AggregateException)
+  fullName: BiDaFlow.Actors.Actor.OnCompleted(System.AggregateException)
+  nameWithType: Actor.OnCompleted(AggregateException)
+- uid: BiDaFlow.Actors.Actor.OnCompleted*
+  name: OnCompleted
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_OnCompleted_
+  commentId: Overload:BiDaFlow.Actors.Actor.OnCompleted
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.Actor.OnCompleted
+  nameWithType: Actor.OnCompleted
+- uid: BiDaFlow.Actors.Actor.SuperviseChild(System.Threading.Tasks.Dataflow.IDataflowBlock)
+  name: SuperviseChild(IDataflowBlock)
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_SuperviseChild_System_Threading_Tasks_Dataflow_IDataflowBlock_
+  commentId: M:BiDaFlow.Actors.Actor.SuperviseChild(System.Threading.Tasks.Dataflow.IDataflowBlock)
+  fullName: BiDaFlow.Actors.Actor.SuperviseChild(System.Threading.Tasks.Dataflow.IDataflowBlock)
+  nameWithType: Actor.SuperviseChild(IDataflowBlock)
+- uid: BiDaFlow.Actors.Actor.SuperviseChild(System.Threading.Tasks.Dataflow.IDataflowBlock,BiDaFlow.Actors.SupervisionOptions)
+  name: SuperviseChild(IDataflowBlock, SupervisionOptions)
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_SuperviseChild_System_Threading_Tasks_Dataflow_IDataflowBlock_BiDaFlow_Actors_SupervisionOptions_
+  commentId: M:BiDaFlow.Actors.Actor.SuperviseChild(System.Threading.Tasks.Dataflow.IDataflowBlock,BiDaFlow.Actors.SupervisionOptions)
+  fullName: BiDaFlow.Actors.Actor.SuperviseChild(System.Threading.Tasks.Dataflow.IDataflowBlock, BiDaFlow.Actors.SupervisionOptions)
+  nameWithType: Actor.SuperviseChild(IDataflowBlock, SupervisionOptions)
+- uid: BiDaFlow.Actors.Actor.SuperviseChild*
+  name: SuperviseChild
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_SuperviseChild_
+  commentId: Overload:BiDaFlow.Actors.Actor.SuperviseChild
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.Actor.SuperviseChild
+  nameWithType: Actor.SuperviseChild
+- uid: BiDaFlow.Actors.Actor.System#Threading#Tasks#Dataflow#IDataflowBlock#Complete
+  name: IDataflowBlock.Complete()
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_System_Threading_Tasks_Dataflow_IDataflowBlock_Complete
+  commentId: M:BiDaFlow.Actors.Actor.System#Threading#Tasks#Dataflow#IDataflowBlock#Complete
+  name.vb: System.Threading.Tasks.Dataflow.IDataflowBlock.Complete()
+  fullName: BiDaFlow.Actors.Actor.System.Threading.Tasks.Dataflow.IDataflowBlock.Complete()
+  nameWithType: Actor.IDataflowBlock.Complete()
+  nameWithType.vb: Actor.System.Threading.Tasks.Dataflow.IDataflowBlock.Complete()
+- uid: BiDaFlow.Actors.Actor.System#Threading#Tasks#Dataflow#IDataflowBlock#Complete*
+  name: IDataflowBlock.Complete
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_System_Threading_Tasks_Dataflow_IDataflowBlock_Complete_
+  commentId: Overload:BiDaFlow.Actors.Actor.System#Threading#Tasks#Dataflow#IDataflowBlock#Complete
+  isSpec: "True"
+  name.vb: System.Threading.Tasks.Dataflow.IDataflowBlock.Complete
+  fullName: BiDaFlow.Actors.Actor.System.Threading.Tasks.Dataflow.IDataflowBlock.Complete
+  nameWithType: Actor.IDataflowBlock.Complete
+  nameWithType.vb: Actor.System.Threading.Tasks.Dataflow.IDataflowBlock.Complete
+- uid: BiDaFlow.Actors.Actor.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault(System.Exception)
+  name: IDataflowBlock.Fault(Exception)
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_System_Exception_
+  commentId: M:BiDaFlow.Actors.Actor.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault(System.Exception)
+  name.vb: System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(Exception)
+  fullName: BiDaFlow.Actors.Actor.System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(System.Exception)
+  nameWithType: Actor.IDataflowBlock.Fault(Exception)
+  nameWithType.vb: Actor.System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(Exception)
+- uid: BiDaFlow.Actors.Actor.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault*
+  name: IDataflowBlock.Fault
+  href: api/BiDaFlow.Actors.Actor.html#BiDaFlow_Actors_Actor_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_
+  commentId: Overload:BiDaFlow.Actors.Actor.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault
+  isSpec: "True"
+  name.vb: System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
+  fullName: BiDaFlow.Actors.Actor.System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
+  nameWithType: Actor.IDataflowBlock.Fault
+  nameWithType.vb: Actor.System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
+- uid: BiDaFlow.Actors.Actor`1
+  name: Actor<TOutput>
+  href: api/BiDaFlow.Actors.Actor-1.html
+  commentId: T:BiDaFlow.Actors.Actor`1
+  name.vb: Actor(Of TOutput)
+  fullName: BiDaFlow.Actors.Actor<TOutput>
+  fullName.vb: BiDaFlow.Actors.Actor(Of TOutput)
+  nameWithType: Actor<TOutput>
+  nameWithType.vb: Actor(Of TOutput)
+- uid: BiDaFlow.Actors.Actor`1.#ctor
+  name: Actor()
+  href: api/BiDaFlow.Actors.Actor-1.html#BiDaFlow_Actors_Actor_1__ctor
+  commentId: M:BiDaFlow.Actors.Actor`1.#ctor
+  fullName: BiDaFlow.Actors.Actor<TOutput>.Actor()
+  fullName.vb: BiDaFlow.Actors.Actor(Of TOutput).Actor()
+  nameWithType: Actor<TOutput>.Actor()
+  nameWithType.vb: Actor(Of TOutput).Actor()
+- uid: BiDaFlow.Actors.Actor`1.#ctor(BiDaFlow.Actors.ActorOptions)
+  name: Actor(ActorOptions)
+  href: api/BiDaFlow.Actors.Actor-1.html#BiDaFlow_Actors_Actor_1__ctor_BiDaFlow_Actors_ActorOptions_
+  commentId: M:BiDaFlow.Actors.Actor`1.#ctor(BiDaFlow.Actors.ActorOptions)
+  fullName: BiDaFlow.Actors.Actor<TOutput>.Actor(BiDaFlow.Actors.ActorOptions)
+  fullName.vb: BiDaFlow.Actors.Actor(Of TOutput).Actor(BiDaFlow.Actors.ActorOptions)
+  nameWithType: Actor<TOutput>.Actor(ActorOptions)
+  nameWithType.vb: Actor(Of TOutput).Actor(ActorOptions)
+- uid: BiDaFlow.Actors.Actor`1.#ctor*
+  name: Actor
+  href: api/BiDaFlow.Actors.Actor-1.html#BiDaFlow_Actors_Actor_1__ctor_
+  commentId: Overload:BiDaFlow.Actors.Actor`1.#ctor
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.Actor<TOutput>.Actor
+  fullName.vb: BiDaFlow.Actors.Actor(Of TOutput).Actor
+  nameWithType: Actor<TOutput>.Actor
+  nameWithType.vb: Actor(Of TOutput).Actor
+- uid: BiDaFlow.Actors.Actor`1.SendOutputAsync(`0,System.Threading.CancellationToken)
+  name: SendOutputAsync(TOutput, CancellationToken)
+  href: api/BiDaFlow.Actors.Actor-1.html#BiDaFlow_Actors_Actor_1_SendOutputAsync__0_System_Threading_CancellationToken_
+  commentId: M:BiDaFlow.Actors.Actor`1.SendOutputAsync(`0,System.Threading.CancellationToken)
+  fullName: BiDaFlow.Actors.Actor<TOutput>.SendOutputAsync(TOutput, System.Threading.CancellationToken)
+  fullName.vb: BiDaFlow.Actors.Actor(Of TOutput).SendOutputAsync(TOutput, System.Threading.CancellationToken)
+  nameWithType: Actor<TOutput>.SendOutputAsync(TOutput, CancellationToken)
+  nameWithType.vb: Actor(Of TOutput).SendOutputAsync(TOutput, CancellationToken)
+- uid: BiDaFlow.Actors.Actor`1.SendOutputAsync*
+  name: SendOutputAsync
+  href: api/BiDaFlow.Actors.Actor-1.html#BiDaFlow_Actors_Actor_1_SendOutputAsync_
+  commentId: Overload:BiDaFlow.Actors.Actor`1.SendOutputAsync
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.Actor<TOutput>.SendOutputAsync
+  fullName.vb: BiDaFlow.Actors.Actor(Of TOutput).SendOutputAsync
+  nameWithType: Actor<TOutput>.SendOutputAsync
+  nameWithType.vb: Actor(Of TOutput).SendOutputAsync
+- uid: BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0},System.Boolean@)
+  name: ISourceBlock<TOutput>.ConsumeMessage(DataflowMessageHeader, ITargetBlock<TOutput>, out Boolean)
+  href: api/BiDaFlow.Actors.Actor-1.html#BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ConsumeMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__0__System_Boolean__
+  commentId: M:BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0},System.Boolean@)
+  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage(DataflowMessageHeader, ITargetBlock(Of TOutput), ByRef Boolean)
+  fullName: BiDaFlow.Actors.Actor<TOutput>.System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock<TOutput>, out System.Boolean)
+  fullName.vb: BiDaFlow.Actors.Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock(Of TOutput), ByRef System.Boolean)
+  nameWithType: Actor<TOutput>.ISourceBlock<TOutput>.ConsumeMessage(DataflowMessageHeader, ITargetBlock<TOutput>, out Boolean)
+  nameWithType.vb: Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage(DataflowMessageHeader, ITargetBlock(Of TOutput), ByRef Boolean)
+- uid: BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ConsumeMessage*
+  name: ISourceBlock<TOutput>.ConsumeMessage
+  href: api/BiDaFlow.Actors.Actor-1.html#BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ConsumeMessage_
+  commentId: Overload:BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ConsumeMessage
+  isSpec: "True"
+  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage
+  fullName: BiDaFlow.Actors.Actor<TOutput>.System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage
+  fullName.vb: BiDaFlow.Actors.Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage
+  nameWithType: Actor<TOutput>.ISourceBlock<TOutput>.ConsumeMessage
+  nameWithType.vb: Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage
+- uid: BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock{`0},System.Threading.Tasks.Dataflow.DataflowLinkOptions)
+  name: ISourceBlock<TOutput>.LinkTo(ITargetBlock<TOutput>, DataflowLinkOptions)
+  href: api/BiDaFlow.Actors.Actor-1.html#BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__LinkTo_System_Threading_Tasks_Dataflow_ITargetBlock__0__System_Threading_Tasks_Dataflow_DataflowLinkOptions_
+  commentId: M:BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock{`0},System.Threading.Tasks.Dataflow.DataflowLinkOptions)
+  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.LinkTo(ITargetBlock(Of TOutput), DataflowLinkOptions)
+  fullName: BiDaFlow.Actors.Actor<TOutput>.System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock<TOutput>, System.Threading.Tasks.Dataflow.DataflowLinkOptions)
+  fullName.vb: BiDaFlow.Actors.Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock(Of TOutput), System.Threading.Tasks.Dataflow.DataflowLinkOptions)
+  nameWithType: Actor<TOutput>.ISourceBlock<TOutput>.LinkTo(ITargetBlock<TOutput>, DataflowLinkOptions)
+  nameWithType.vb: Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.LinkTo(ITargetBlock(Of TOutput), DataflowLinkOptions)
+- uid: BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#LinkTo*
+  name: ISourceBlock<TOutput>.LinkTo
+  href: api/BiDaFlow.Actors.Actor-1.html#BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__LinkTo_
+  commentId: Overload:BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#LinkTo
+  isSpec: "True"
+  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.LinkTo
+  fullName: BiDaFlow.Actors.Actor<TOutput>.System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.LinkTo
+  fullName.vb: BiDaFlow.Actors.Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.LinkTo
+  nameWithType: Actor<TOutput>.ISourceBlock<TOutput>.LinkTo
+  nameWithType.vb: Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.LinkTo
+- uid: BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0})
+  name: ISourceBlock<TOutput>.ReleaseReservation(DataflowMessageHeader, ITargetBlock<TOutput>)
+  href: api/BiDaFlow.Actors.Actor-1.html#BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReleaseReservation_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__0__
+  commentId: M:BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0})
+  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation(DataflowMessageHeader, ITargetBlock(Of TOutput))
+  fullName: BiDaFlow.Actors.Actor<TOutput>.System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock<TOutput>)
+  fullName.vb: BiDaFlow.Actors.Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock(Of TOutput))
+  nameWithType: Actor<TOutput>.ISourceBlock<TOutput>.ReleaseReservation(DataflowMessageHeader, ITargetBlock<TOutput>)
+  nameWithType.vb: Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation(DataflowMessageHeader, ITargetBlock(Of TOutput))
+- uid: BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReleaseReservation*
+  name: ISourceBlock<TOutput>.ReleaseReservation
+  href: api/BiDaFlow.Actors.Actor-1.html#BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReleaseReservation_
+  commentId: Overload:BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReleaseReservation
+  isSpec: "True"
+  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation
+  fullName: BiDaFlow.Actors.Actor<TOutput>.System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation
+  fullName.vb: BiDaFlow.Actors.Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation
+  nameWithType: Actor<TOutput>.ISourceBlock<TOutput>.ReleaseReservation
+  nameWithType.vb: Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation
+- uid: BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0})
+  name: ISourceBlock<TOutput>.ReserveMessage(DataflowMessageHeader, ITargetBlock<TOutput>)
+  href: api/BiDaFlow.Actors.Actor-1.html#BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReserveMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__0__
+  commentId: M:BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0})
+  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage(DataflowMessageHeader, ITargetBlock(Of TOutput))
+  fullName: BiDaFlow.Actors.Actor<TOutput>.System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock<TOutput>)
+  fullName.vb: BiDaFlow.Actors.Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock(Of TOutput))
+  nameWithType: Actor<TOutput>.ISourceBlock<TOutput>.ReserveMessage(DataflowMessageHeader, ITargetBlock<TOutput>)
+  nameWithType.vb: Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage(DataflowMessageHeader, ITargetBlock(Of TOutput))
+- uid: BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReserveMessage*
+  name: ISourceBlock<TOutput>.ReserveMessage
+  href: api/BiDaFlow.Actors.Actor-1.html#BiDaFlow_Actors_Actor_1_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReserveMessage_
+  commentId: Overload:BiDaFlow.Actors.Actor`1.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReserveMessage
+  isSpec: "True"
+  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage
+  fullName: BiDaFlow.Actors.Actor<TOutput>.System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage
+  fullName.vb: BiDaFlow.Actors.Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage
+  nameWithType: Actor<TOutput>.ISourceBlock<TOutput>.ReserveMessage
+  nameWithType.vb: Actor(Of TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage
+- uid: BiDaFlow.Actors.ActorExtensions
+  name: ActorExtensions
+  href: api/BiDaFlow.Actors.ActorExtensions.html
+  commentId: T:BiDaFlow.Actors.ActorExtensions
+  fullName: BiDaFlow.Actors.ActorExtensions
+  nameWithType: ActorExtensions
+- uid: BiDaFlow.Actors.ActorExtensions.AsTargetBlock*
+  name: AsTargetBlock
+  href: api/BiDaFlow.Actors.ActorExtensions.html#BiDaFlow_Actors_ActorExtensions_AsTargetBlock_
+  commentId: Overload:BiDaFlow.Actors.ActorExtensions.AsTargetBlock
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.ActorExtensions.AsTargetBlock
+  nameWithType: ActorExtensions.AsTargetBlock
+- uid: BiDaFlow.Actors.ActorExtensions.AsTargetBlock``2(``0,System.Func{``0,``1,BiDaFlow.Actors.Envelope})
+  name: AsTargetBlock<TActor, TInput>(TActor, Func<TActor, TInput, Envelope>)
+  href: api/BiDaFlow.Actors.ActorExtensions.html#BiDaFlow_Actors_ActorExtensions_AsTargetBlock__2___0_System_Func___0___1_BiDaFlow_Actors_Envelope__
+  commentId: M:BiDaFlow.Actors.ActorExtensions.AsTargetBlock``2(``0,System.Func{``0,``1,BiDaFlow.Actors.Envelope})
+  name.vb: AsTargetBlock(Of TActor, TInput)(TActor, Func(Of TActor, TInput, Envelope))
+  fullName: BiDaFlow.Actors.ActorExtensions.AsTargetBlock<TActor, TInput>(TActor, System.Func<TActor, TInput, BiDaFlow.Actors.Envelope>)
+  fullName.vb: BiDaFlow.Actors.ActorExtensions.AsTargetBlock(Of TActor, TInput)(TActor, System.Func(Of TActor, TInput, BiDaFlow.Actors.Envelope))
+  nameWithType: ActorExtensions.AsTargetBlock<TActor, TInput>(TActor, Func<TActor, TInput, Envelope>)
+  nameWithType.vb: ActorExtensions.AsTargetBlock(Of TActor, TInput)(TActor, Func(Of TActor, TInput, Envelope))
+- uid: BiDaFlow.Actors.ActorOptions
+  name: ActorOptions
+  href: api/BiDaFlow.Actors.ActorOptions.html
+  commentId: T:BiDaFlow.Actors.ActorOptions
+  fullName: BiDaFlow.Actors.ActorOptions
+  nameWithType: ActorOptions
+- uid: BiDaFlow.Actors.Envelope
+  name: Envelope
+  href: api/BiDaFlow.Actors.Envelope.html
+  commentId: T:BiDaFlow.Actors.Envelope
+  fullName: BiDaFlow.Actors.Envelope
+  nameWithType: Envelope
+- uid: BiDaFlow.Actors.Envelope.Post
+  name: Post()
+  href: api/BiDaFlow.Actors.Envelope.html#BiDaFlow_Actors_Envelope_Post
+  commentId: M:BiDaFlow.Actors.Envelope.Post
+  fullName: BiDaFlow.Actors.Envelope.Post()
+  nameWithType: Envelope.Post()
+- uid: BiDaFlow.Actors.Envelope.Post*
+  name: Post
+  href: api/BiDaFlow.Actors.Envelope.html#BiDaFlow_Actors_Envelope_Post_
+  commentId: Overload:BiDaFlow.Actors.Envelope.Post
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.Envelope.Post
+  nameWithType: Envelope.Post
+- uid: BiDaFlow.Actors.Envelope.SendAsync
+  name: SendAsync()
+  href: api/BiDaFlow.Actors.Envelope.html#BiDaFlow_Actors_Envelope_SendAsync
+  commentId: M:BiDaFlow.Actors.Envelope.SendAsync
+  fullName: BiDaFlow.Actors.Envelope.SendAsync()
+  nameWithType: Envelope.SendAsync()
+- uid: BiDaFlow.Actors.Envelope.SendAsync(System.Threading.CancellationToken)
+  name: SendAsync(CancellationToken)
+  href: api/BiDaFlow.Actors.Envelope.html#BiDaFlow_Actors_Envelope_SendAsync_System_Threading_CancellationToken_
+  commentId: M:BiDaFlow.Actors.Envelope.SendAsync(System.Threading.CancellationToken)
+  fullName: BiDaFlow.Actors.Envelope.SendAsync(System.Threading.CancellationToken)
+  nameWithType: Envelope.SendAsync(CancellationToken)
+- uid: BiDaFlow.Actors.Envelope.SendAsync*
+  name: SendAsync
+  href: api/BiDaFlow.Actors.Envelope.html#BiDaFlow_Actors_Envelope_SendAsync_
+  commentId: Overload:BiDaFlow.Actors.Envelope.SendAsync
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.Envelope.SendAsync
+  nameWithType: Envelope.SendAsync
+- uid: BiDaFlow.Actors.EnvelopeWithReply`1
+  name: EnvelopeWithReply<TReply>
+  href: api/BiDaFlow.Actors.EnvelopeWithReply-1.html
+  commentId: T:BiDaFlow.Actors.EnvelopeWithReply`1
+  name.vb: EnvelopeWithReply(Of TReply)
+  fullName: BiDaFlow.Actors.EnvelopeWithReply<TReply>
+  fullName.vb: BiDaFlow.Actors.EnvelopeWithReply(Of TReply)
+  nameWithType: EnvelopeWithReply<TReply>
+  nameWithType.vb: EnvelopeWithReply(Of TReply)
+- uid: BiDaFlow.Actors.EnvelopeWithReply`1.DiscardReply
+  name: DiscardReply()
+  href: api/BiDaFlow.Actors.EnvelopeWithReply-1.html#BiDaFlow_Actors_EnvelopeWithReply_1_DiscardReply
+  commentId: M:BiDaFlow.Actors.EnvelopeWithReply`1.DiscardReply
+  fullName: BiDaFlow.Actors.EnvelopeWithReply<TReply>.DiscardReply()
+  fullName.vb: BiDaFlow.Actors.EnvelopeWithReply(Of TReply).DiscardReply()
+  nameWithType: EnvelopeWithReply<TReply>.DiscardReply()
+  nameWithType.vb: EnvelopeWithReply(Of TReply).DiscardReply()
+- uid: BiDaFlow.Actors.EnvelopeWithReply`1.DiscardReply*
+  name: DiscardReply
+  href: api/BiDaFlow.Actors.EnvelopeWithReply-1.html#BiDaFlow_Actors_EnvelopeWithReply_1_DiscardReply_
+  commentId: Overload:BiDaFlow.Actors.EnvelopeWithReply`1.DiscardReply
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.EnvelopeWithReply<TReply>.DiscardReply
+  fullName.vb: BiDaFlow.Actors.EnvelopeWithReply(Of TReply).DiscardReply
+  nameWithType: EnvelopeWithReply<TReply>.DiscardReply
+  nameWithType.vb: EnvelopeWithReply(Of TReply).DiscardReply
+- uid: BiDaFlow.Actors.EnvelopeWithReply`1.PostAndReceiveReplyAsync
+  name: PostAndReceiveReplyAsync()
+  href: api/BiDaFlow.Actors.EnvelopeWithReply-1.html#BiDaFlow_Actors_EnvelopeWithReply_1_PostAndReceiveReplyAsync
+  commentId: M:BiDaFlow.Actors.EnvelopeWithReply`1.PostAndReceiveReplyAsync
+  fullName: BiDaFlow.Actors.EnvelopeWithReply<TReply>.PostAndReceiveReplyAsync()
+  fullName.vb: BiDaFlow.Actors.EnvelopeWithReply(Of TReply).PostAndReceiveReplyAsync()
+  nameWithType: EnvelopeWithReply<TReply>.PostAndReceiveReplyAsync()
+  nameWithType.vb: EnvelopeWithReply(Of TReply).PostAndReceiveReplyAsync()
+- uid: BiDaFlow.Actors.EnvelopeWithReply`1.PostAndReceiveReplyAsync*
+  name: PostAndReceiveReplyAsync
+  href: api/BiDaFlow.Actors.EnvelopeWithReply-1.html#BiDaFlow_Actors_EnvelopeWithReply_1_PostAndReceiveReplyAsync_
+  commentId: Overload:BiDaFlow.Actors.EnvelopeWithReply`1.PostAndReceiveReplyAsync
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.EnvelopeWithReply<TReply>.PostAndReceiveReplyAsync
+  fullName.vb: BiDaFlow.Actors.EnvelopeWithReply(Of TReply).PostAndReceiveReplyAsync
+  nameWithType: EnvelopeWithReply<TReply>.PostAndReceiveReplyAsync
+  nameWithType.vb: EnvelopeWithReply(Of TReply).PostAndReceiveReplyAsync
+- uid: BiDaFlow.Actors.EnvelopeWithReply`1.SendAndReceiveReplyAsync
+  name: SendAndReceiveReplyAsync()
+  href: api/BiDaFlow.Actors.EnvelopeWithReply-1.html#BiDaFlow_Actors_EnvelopeWithReply_1_SendAndReceiveReplyAsync
+  commentId: M:BiDaFlow.Actors.EnvelopeWithReply`1.SendAndReceiveReplyAsync
+  fullName: BiDaFlow.Actors.EnvelopeWithReply<TReply>.SendAndReceiveReplyAsync()
+  fullName.vb: BiDaFlow.Actors.EnvelopeWithReply(Of TReply).SendAndReceiveReplyAsync()
+  nameWithType: EnvelopeWithReply<TReply>.SendAndReceiveReplyAsync()
+  nameWithType.vb: EnvelopeWithReply(Of TReply).SendAndReceiveReplyAsync()
+- uid: BiDaFlow.Actors.EnvelopeWithReply`1.SendAndReceiveReplyAsync(System.Threading.CancellationToken)
+  name: SendAndReceiveReplyAsync(CancellationToken)
+  href: api/BiDaFlow.Actors.EnvelopeWithReply-1.html#BiDaFlow_Actors_EnvelopeWithReply_1_SendAndReceiveReplyAsync_System_Threading_CancellationToken_
+  commentId: M:BiDaFlow.Actors.EnvelopeWithReply`1.SendAndReceiveReplyAsync(System.Threading.CancellationToken)
+  fullName: BiDaFlow.Actors.EnvelopeWithReply<TReply>.SendAndReceiveReplyAsync(System.Threading.CancellationToken)
+  fullName.vb: BiDaFlow.Actors.EnvelopeWithReply(Of TReply).SendAndReceiveReplyAsync(System.Threading.CancellationToken)
+  nameWithType: EnvelopeWithReply<TReply>.SendAndReceiveReplyAsync(CancellationToken)
+  nameWithType.vb: EnvelopeWithReply(Of TReply).SendAndReceiveReplyAsync(CancellationToken)
+- uid: BiDaFlow.Actors.EnvelopeWithReply`1.SendAndReceiveReplyAsync*
+  name: SendAndReceiveReplyAsync
+  href: api/BiDaFlow.Actors.EnvelopeWithReply-1.html#BiDaFlow_Actors_EnvelopeWithReply_1_SendAndReceiveReplyAsync_
+  commentId: Overload:BiDaFlow.Actors.EnvelopeWithReply`1.SendAndReceiveReplyAsync
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.EnvelopeWithReply<TReply>.SendAndReceiveReplyAsync
+  fullName.vb: BiDaFlow.Actors.EnvelopeWithReply(Of TReply).SendAndReceiveReplyAsync
+  nameWithType: EnvelopeWithReply<TReply>.SendAndReceiveReplyAsync
+  nameWithType.vb: EnvelopeWithReply(Of TReply).SendAndReceiveReplyAsync
+- uid: BiDaFlow.Actors.KilledBySupervisorException
+  name: KilledBySupervisorException
+  href: api/BiDaFlow.Actors.KilledBySupervisorException.html
+  commentId: T:BiDaFlow.Actors.KilledBySupervisorException
+  fullName: BiDaFlow.Actors.KilledBySupervisorException
+  nameWithType: KilledBySupervisorException
+- uid: BiDaFlow.Actors.KilledBySupervisorException.#ctor
+  name: KilledBySupervisorException()
+  href: api/BiDaFlow.Actors.KilledBySupervisorException.html#BiDaFlow_Actors_KilledBySupervisorException__ctor
+  commentId: M:BiDaFlow.Actors.KilledBySupervisorException.#ctor
+  fullName: BiDaFlow.Actors.KilledBySupervisorException.KilledBySupervisorException()
+  nameWithType: KilledBySupervisorException.KilledBySupervisorException()
+- uid: BiDaFlow.Actors.KilledBySupervisorException.#ctor(System.String)
+  name: KilledBySupervisorException(String)
+  href: api/BiDaFlow.Actors.KilledBySupervisorException.html#BiDaFlow_Actors_KilledBySupervisorException__ctor_System_String_
+  commentId: M:BiDaFlow.Actors.KilledBySupervisorException.#ctor(System.String)
+  fullName: BiDaFlow.Actors.KilledBySupervisorException.KilledBySupervisorException(System.String)
+  nameWithType: KilledBySupervisorException.KilledBySupervisorException(String)
+- uid: BiDaFlow.Actors.KilledBySupervisorException.#ctor(System.String,System.Exception)
+  name: KilledBySupervisorException(String, Exception)
+  href: api/BiDaFlow.Actors.KilledBySupervisorException.html#BiDaFlow_Actors_KilledBySupervisorException__ctor_System_String_System_Exception_
+  commentId: M:BiDaFlow.Actors.KilledBySupervisorException.#ctor(System.String,System.Exception)
+  fullName: BiDaFlow.Actors.KilledBySupervisorException.KilledBySupervisorException(System.String, System.Exception)
+  nameWithType: KilledBySupervisorException.KilledBySupervisorException(String, Exception)
+- uid: BiDaFlow.Actors.KilledBySupervisorException.#ctor*
+  name: KilledBySupervisorException
+  href: api/BiDaFlow.Actors.KilledBySupervisorException.html#BiDaFlow_Actors_KilledBySupervisorException__ctor_
+  commentId: Overload:BiDaFlow.Actors.KilledBySupervisorException.#ctor
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.KilledBySupervisorException.KilledBySupervisorException
+  nameWithType: KilledBySupervisorException.KilledBySupervisorException
+- uid: BiDaFlow.Actors.MessageNeverProcessedException
+  name: MessageNeverProcessedException
+  href: api/BiDaFlow.Actors.MessageNeverProcessedException.html
+  commentId: T:BiDaFlow.Actors.MessageNeverProcessedException
+  fullName: BiDaFlow.Actors.MessageNeverProcessedException
+  nameWithType: MessageNeverProcessedException
+- uid: BiDaFlow.Actors.MessageNeverProcessedException.#ctor
+  name: MessageNeverProcessedException()
+  href: api/BiDaFlow.Actors.MessageNeverProcessedException.html#BiDaFlow_Actors_MessageNeverProcessedException__ctor
+  commentId: M:BiDaFlow.Actors.MessageNeverProcessedException.#ctor
+  fullName: BiDaFlow.Actors.MessageNeverProcessedException.MessageNeverProcessedException()
+  nameWithType: MessageNeverProcessedException.MessageNeverProcessedException()
+- uid: BiDaFlow.Actors.MessageNeverProcessedException.#ctor(System.String)
+  name: MessageNeverProcessedException(String)
+  href: api/BiDaFlow.Actors.MessageNeverProcessedException.html#BiDaFlow_Actors_MessageNeverProcessedException__ctor_System_String_
+  commentId: M:BiDaFlow.Actors.MessageNeverProcessedException.#ctor(System.String)
+  fullName: BiDaFlow.Actors.MessageNeverProcessedException.MessageNeverProcessedException(System.String)
+  nameWithType: MessageNeverProcessedException.MessageNeverProcessedException(String)
+- uid: BiDaFlow.Actors.MessageNeverProcessedException.#ctor(System.String,System.Exception)
+  name: MessageNeverProcessedException(String, Exception)
+  href: api/BiDaFlow.Actors.MessageNeverProcessedException.html#BiDaFlow_Actors_MessageNeverProcessedException__ctor_System_String_System_Exception_
+  commentId: M:BiDaFlow.Actors.MessageNeverProcessedException.#ctor(System.String,System.Exception)
+  fullName: BiDaFlow.Actors.MessageNeverProcessedException.MessageNeverProcessedException(System.String, System.Exception)
+  nameWithType: MessageNeverProcessedException.MessageNeverProcessedException(String, Exception)
+- uid: BiDaFlow.Actors.MessageNeverProcessedException.#ctor*
+  name: MessageNeverProcessedException
+  href: api/BiDaFlow.Actors.MessageNeverProcessedException.html#BiDaFlow_Actors_MessageNeverProcessedException__ctor_
+  commentId: Overload:BiDaFlow.Actors.MessageNeverProcessedException.#ctor
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.MessageNeverProcessedException.MessageNeverProcessedException
+  nameWithType: MessageNeverProcessedException.MessageNeverProcessedException
+- uid: BiDaFlow.Actors.RescueAction
+  name: RescueAction
+  href: api/BiDaFlow.Actors.RescueAction.html
+  commentId: T:BiDaFlow.Actors.RescueAction
+  fullName: BiDaFlow.Actors.RescueAction
+  nameWithType: RescueAction
+- uid: BiDaFlow.Actors.RescueAction.Complete
+  name: Complete
+  href: api/BiDaFlow.Actors.RescueAction.html#BiDaFlow_Actors_RescueAction_Complete
+  commentId: F:BiDaFlow.Actors.RescueAction.Complete
+  fullName: BiDaFlow.Actors.RescueAction.Complete
+  nameWithType: RescueAction.Complete
+- uid: BiDaFlow.Actors.RescueAction.Restart
+  name: Restart
+  href: api/BiDaFlow.Actors.RescueAction.html#BiDaFlow_Actors_RescueAction_Restart
+  commentId: F:BiDaFlow.Actors.RescueAction.Restart
+  fullName: BiDaFlow.Actors.RescueAction.Restart
+  nameWithType: RescueAction.Restart
+- uid: BiDaFlow.Actors.RescueAction.Rethrow
+  name: Rethrow
+  href: api/BiDaFlow.Actors.RescueAction.html#BiDaFlow_Actors_RescueAction_Rethrow
+  commentId: F:BiDaFlow.Actors.RescueAction.Rethrow
+  fullName: BiDaFlow.Actors.RescueAction.Rethrow
+  nameWithType: RescueAction.Rethrow
+- uid: BiDaFlow.Actors.SupervisedBlock`1
+  name: SupervisedBlock<T>
+  href: api/BiDaFlow.Actors.SupervisedBlock-1.html
+  commentId: T:BiDaFlow.Actors.SupervisedBlock`1
+  name.vb: SupervisedBlock(Of T)
+  fullName: BiDaFlow.Actors.SupervisedBlock<T>
+  fullName.vb: BiDaFlow.Actors.SupervisedBlock(Of T)
+  nameWithType: SupervisedBlock<T>
+  nameWithType.vb: SupervisedBlock(Of T)
+- uid: BiDaFlow.Actors.SupervisedBlock`1.Completion
+  name: Completion
+  href: api/BiDaFlow.Actors.SupervisedBlock-1.html#BiDaFlow_Actors_SupervisedBlock_1_Completion
+  commentId: P:BiDaFlow.Actors.SupervisedBlock`1.Completion
+  fullName: BiDaFlow.Actors.SupervisedBlock<T>.Completion
+  fullName.vb: BiDaFlow.Actors.SupervisedBlock(Of T).Completion
+  nameWithType: SupervisedBlock<T>.Completion
+  nameWithType.vb: SupervisedBlock(Of T).Completion
+- uid: BiDaFlow.Actors.SupervisedBlock`1.Completion*
+  name: Completion
+  href: api/BiDaFlow.Actors.SupervisedBlock-1.html#BiDaFlow_Actors_SupervisedBlock_1_Completion_
+  commentId: Overload:BiDaFlow.Actors.SupervisedBlock`1.Completion
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.SupervisedBlock<T>.Completion
+  fullName.vb: BiDaFlow.Actors.SupervisedBlock(Of T).Completion
+  nameWithType: SupervisedBlock<T>.Completion
+  nameWithType.vb: SupervisedBlock(Of T).Completion
+- uid: BiDaFlow.Actors.SupervisedBlock`1.System#Threading#Tasks#Dataflow#IDataflowBlock#Complete
+  name: IDataflowBlock.Complete()
+  href: api/BiDaFlow.Actors.SupervisedBlock-1.html#BiDaFlow_Actors_SupervisedBlock_1_System_Threading_Tasks_Dataflow_IDataflowBlock_Complete
+  commentId: M:BiDaFlow.Actors.SupervisedBlock`1.System#Threading#Tasks#Dataflow#IDataflowBlock#Complete
+  name.vb: System.Threading.Tasks.Dataflow.IDataflowBlock.Complete()
+  fullName: BiDaFlow.Actors.SupervisedBlock<T>.System.Threading.Tasks.Dataflow.IDataflowBlock.Complete()
+  fullName.vb: BiDaFlow.Actors.SupervisedBlock(Of T).System.Threading.Tasks.Dataflow.IDataflowBlock.Complete()
+  nameWithType: SupervisedBlock<T>.IDataflowBlock.Complete()
+  nameWithType.vb: SupervisedBlock(Of T).System.Threading.Tasks.Dataflow.IDataflowBlock.Complete()
+- uid: BiDaFlow.Actors.SupervisedBlock`1.System#Threading#Tasks#Dataflow#IDataflowBlock#Complete*
+  name: IDataflowBlock.Complete
+  href: api/BiDaFlow.Actors.SupervisedBlock-1.html#BiDaFlow_Actors_SupervisedBlock_1_System_Threading_Tasks_Dataflow_IDataflowBlock_Complete_
+  commentId: Overload:BiDaFlow.Actors.SupervisedBlock`1.System#Threading#Tasks#Dataflow#IDataflowBlock#Complete
+  isSpec: "True"
+  name.vb: System.Threading.Tasks.Dataflow.IDataflowBlock.Complete
+  fullName: BiDaFlow.Actors.SupervisedBlock<T>.System.Threading.Tasks.Dataflow.IDataflowBlock.Complete
+  fullName.vb: BiDaFlow.Actors.SupervisedBlock(Of T).System.Threading.Tasks.Dataflow.IDataflowBlock.Complete
+  nameWithType: SupervisedBlock<T>.IDataflowBlock.Complete
+  nameWithType.vb: SupervisedBlock(Of T).System.Threading.Tasks.Dataflow.IDataflowBlock.Complete
+- uid: BiDaFlow.Actors.SupervisedBlock`1.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault(System.Exception)
+  name: IDataflowBlock.Fault(Exception)
+  href: api/BiDaFlow.Actors.SupervisedBlock-1.html#BiDaFlow_Actors_SupervisedBlock_1_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_System_Exception_
+  commentId: M:BiDaFlow.Actors.SupervisedBlock`1.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault(System.Exception)
+  name.vb: System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(Exception)
+  fullName: BiDaFlow.Actors.SupervisedBlock<T>.System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(System.Exception)
+  fullName.vb: BiDaFlow.Actors.SupervisedBlock(Of T).System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(System.Exception)
+  nameWithType: SupervisedBlock<T>.IDataflowBlock.Fault(Exception)
+  nameWithType.vb: SupervisedBlock(Of T).System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(Exception)
+- uid: BiDaFlow.Actors.SupervisedBlock`1.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault*
+  name: IDataflowBlock.Fault
+  href: api/BiDaFlow.Actors.SupervisedBlock-1.html#BiDaFlow_Actors_SupervisedBlock_1_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_
+  commentId: Overload:BiDaFlow.Actors.SupervisedBlock`1.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault
+  isSpec: "True"
+  name.vb: System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
+  fullName: BiDaFlow.Actors.SupervisedBlock<T>.System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
+  fullName.vb: BiDaFlow.Actors.SupervisedBlock(Of T).System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
+  nameWithType: SupervisedBlock<T>.IDataflowBlock.Fault
+  nameWithType.vb: SupervisedBlock(Of T).System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
+- uid: BiDaFlow.Actors.SupervisedBlock`1.TryGetWrappedBlock(`0@)
+  name: TryGetWrappedBlock(out T)
+  href: api/BiDaFlow.Actors.SupervisedBlock-1.html#BiDaFlow_Actors_SupervisedBlock_1_TryGetWrappedBlock__0__
+  commentId: M:BiDaFlow.Actors.SupervisedBlock`1.TryGetWrappedBlock(`0@)
+  name.vb: TryGetWrappedBlock(ByRef T)
+  fullName: BiDaFlow.Actors.SupervisedBlock<T>.TryGetWrappedBlock(out T)
+  fullName.vb: BiDaFlow.Actors.SupervisedBlock(Of T).TryGetWrappedBlock(ByRef T)
+  nameWithType: SupervisedBlock<T>.TryGetWrappedBlock(out T)
+  nameWithType.vb: SupervisedBlock(Of T).TryGetWrappedBlock(ByRef T)
+- uid: BiDaFlow.Actors.SupervisedBlock`1.TryGetWrappedBlock*
+  name: TryGetWrappedBlock
+  href: api/BiDaFlow.Actors.SupervisedBlock-1.html#BiDaFlow_Actors_SupervisedBlock_1_TryGetWrappedBlock_
+  commentId: Overload:BiDaFlow.Actors.SupervisedBlock`1.TryGetWrappedBlock
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.SupervisedBlock<T>.TryGetWrappedBlock
+  fullName.vb: BiDaFlow.Actors.SupervisedBlock(Of T).TryGetWrappedBlock
+  nameWithType: SupervisedBlock<T>.TryGetWrappedBlock
+  nameWithType.vb: SupervisedBlock(Of T).TryGetWrappedBlock
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions
+  name: SupervisedBlockExtensions
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html
+  commentId: T:BiDaFlow.Actors.SupervisedBlockExtensions
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions
+  nameWithType: SupervisedBlockExtensions
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.AsPropagatorBlock*
+  name: AsPropagatorBlock
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_AsPropagatorBlock_
+  commentId: Overload:BiDaFlow.Actors.SupervisedBlockExtensions.AsPropagatorBlock
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.AsPropagatorBlock
+  nameWithType: SupervisedBlockExtensions.AsPropagatorBlock
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.AsPropagatorBlock``3(BiDaFlow.Actors.SupervisedBlock{``0})
+  name: AsPropagatorBlock<T, TInput, TOutput>(SupervisedBlock<T>)
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_AsPropagatorBlock__3_BiDaFlow_Actors_SupervisedBlock___0__
+  commentId: M:BiDaFlow.Actors.SupervisedBlockExtensions.AsPropagatorBlock``3(BiDaFlow.Actors.SupervisedBlock{``0})
+  name.vb: AsPropagatorBlock(Of T, TInput, TOutput)(SupervisedBlock(Of T))
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.AsPropagatorBlock<T, TInput, TOutput>(BiDaFlow.Actors.SupervisedBlock<T>)
+  fullName.vb: BiDaFlow.Actors.SupervisedBlockExtensions.AsPropagatorBlock(Of T, TInput, TOutput)(BiDaFlow.Actors.SupervisedBlock(Of T))
+  nameWithType: SupervisedBlockExtensions.AsPropagatorBlock<T, TInput, TOutput>(SupervisedBlock<T>)
+  nameWithType.vb: SupervisedBlockExtensions.AsPropagatorBlock(Of T, TInput, TOutput)(SupervisedBlock(Of T))
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.AsSourceBlock*
+  name: AsSourceBlock
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_AsSourceBlock_
+  commentId: Overload:BiDaFlow.Actors.SupervisedBlockExtensions.AsSourceBlock
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.AsSourceBlock
+  nameWithType: SupervisedBlockExtensions.AsSourceBlock
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.AsSourceBlock``2(BiDaFlow.Actors.SupervisedBlock{``0})
+  name: AsSourceBlock<T, TOutput>(SupervisedBlock<T>)
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_AsSourceBlock__2_BiDaFlow_Actors_SupervisedBlock___0__
+  commentId: M:BiDaFlow.Actors.SupervisedBlockExtensions.AsSourceBlock``2(BiDaFlow.Actors.SupervisedBlock{``0})
+  name.vb: AsSourceBlock(Of T, TOutput)(SupervisedBlock(Of T))
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.AsSourceBlock<T, TOutput>(BiDaFlow.Actors.SupervisedBlock<T>)
+  fullName.vb: BiDaFlow.Actors.SupervisedBlockExtensions.AsSourceBlock(Of T, TOutput)(BiDaFlow.Actors.SupervisedBlock(Of T))
+  nameWithType: SupervisedBlockExtensions.AsSourceBlock<T, TOutput>(SupervisedBlock<T>)
+  nameWithType.vb: SupervisedBlockExtensions.AsSourceBlock(Of T, TOutput)(SupervisedBlock(Of T))
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.AsTargetBlock*
+  name: AsTargetBlock
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_AsTargetBlock_
+  commentId: Overload:BiDaFlow.Actors.SupervisedBlockExtensions.AsTargetBlock
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.AsTargetBlock
+  nameWithType: SupervisedBlockExtensions.AsTargetBlock
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.AsTargetBlock``2(BiDaFlow.Actors.SupervisedBlock{``0})
+  name: AsTargetBlock<T, TInput>(SupervisedBlock<T>)
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_AsTargetBlock__2_BiDaFlow_Actors_SupervisedBlock___0__
+  commentId: M:BiDaFlow.Actors.SupervisedBlockExtensions.AsTargetBlock``2(BiDaFlow.Actors.SupervisedBlock{``0})
+  name.vb: AsTargetBlock(Of T, TInput)(SupervisedBlock(Of T))
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.AsTargetBlock<T, TInput>(BiDaFlow.Actors.SupervisedBlock<T>)
+  fullName.vb: BiDaFlow.Actors.SupervisedBlockExtensions.AsTargetBlock(Of T, TInput)(BiDaFlow.Actors.SupervisedBlock(Of T))
+  nameWithType: SupervisedBlockExtensions.AsTargetBlock<T, TInput>(SupervisedBlock<T>)
+  nameWithType.vb: SupervisedBlockExtensions.AsTargetBlock(Of T, TInput)(SupervisedBlock(Of T))
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.AsTargetBlock``2(BiDaFlow.Actors.SupervisedBlock{``0},System.Func{``0,``1,BiDaFlow.Actors.Envelope})
+  name: AsTargetBlock<TActor, TInput>(SupervisedBlock<TActor>, Func<TActor, TInput, Envelope>)
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_AsTargetBlock__2_BiDaFlow_Actors_SupervisedBlock___0__System_Func___0___1_BiDaFlow_Actors_Envelope__
+  commentId: M:BiDaFlow.Actors.SupervisedBlockExtensions.AsTargetBlock``2(BiDaFlow.Actors.SupervisedBlock{``0},System.Func{``0,``1,BiDaFlow.Actors.Envelope})
+  name.vb: AsTargetBlock(Of TActor, TInput)(SupervisedBlock(Of TActor), Func(Of TActor, TInput, Envelope))
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.AsTargetBlock<TActor, TInput>(BiDaFlow.Actors.SupervisedBlock<TActor>, System.Func<TActor, TInput, BiDaFlow.Actors.Envelope>)
+  fullName.vb: BiDaFlow.Actors.SupervisedBlockExtensions.AsTargetBlock(Of TActor, TInput)(BiDaFlow.Actors.SupervisedBlock(Of TActor), System.Func(Of TActor, TInput, BiDaFlow.Actors.Envelope))
+  nameWithType: SupervisedBlockExtensions.AsTargetBlock<TActor, TInput>(SupervisedBlock<TActor>, Func<TActor, TInput, Envelope>)
+  nameWithType.vb: SupervisedBlockExtensions.AsTargetBlock(Of TActor, TInput)(SupervisedBlock(Of TActor), Func(Of TActor, TInput, Envelope))
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.Post*
+  name: Post
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_Post_
+  commentId: Overload:BiDaFlow.Actors.SupervisedBlockExtensions.Post
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.Post
+  nameWithType: SupervisedBlockExtensions.Post
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.Post``1(BiDaFlow.Actors.SupervisedBlock{``0},System.Func{``0,BiDaFlow.Actors.Envelope})
+  name: Post<TActor>(SupervisedBlock<TActor>, Func<TActor, Envelope>)
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_Post__1_BiDaFlow_Actors_SupervisedBlock___0__System_Func___0_BiDaFlow_Actors_Envelope__
+  commentId: M:BiDaFlow.Actors.SupervisedBlockExtensions.Post``1(BiDaFlow.Actors.SupervisedBlock{``0},System.Func{``0,BiDaFlow.Actors.Envelope})
+  name.vb: Post(Of TActor)(SupervisedBlock(Of TActor), Func(Of TActor, Envelope))
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.Post<TActor>(BiDaFlow.Actors.SupervisedBlock<TActor>, System.Func<TActor, BiDaFlow.Actors.Envelope>)
+  fullName.vb: BiDaFlow.Actors.SupervisedBlockExtensions.Post(Of TActor)(BiDaFlow.Actors.SupervisedBlock(Of TActor), System.Func(Of TActor, BiDaFlow.Actors.Envelope))
+  nameWithType: SupervisedBlockExtensions.Post<TActor>(SupervisedBlock<TActor>, Func<TActor, Envelope>)
+  nameWithType.vb: SupervisedBlockExtensions.Post(Of TActor)(SupervisedBlock(Of TActor), Func(Of TActor, Envelope))
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.PostAndReceiveReplyAsync*
+  name: PostAndReceiveReplyAsync
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_PostAndReceiveReplyAsync_
+  commentId: Overload:BiDaFlow.Actors.SupervisedBlockExtensions.PostAndReceiveReplyAsync
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.PostAndReceiveReplyAsync
+  nameWithType: SupervisedBlockExtensions.PostAndReceiveReplyAsync
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.PostAndReceiveReplyAsync``2(BiDaFlow.Actors.SupervisedBlock{``0},System.Func{``0,BiDaFlow.Actors.EnvelopeWithReply{``1}})
+  name: PostAndReceiveReplyAsync<TActor, TReply>(SupervisedBlock<TActor>, Func<TActor, EnvelopeWithReply<TReply>>)
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_PostAndReceiveReplyAsync__2_BiDaFlow_Actors_SupervisedBlock___0__System_Func___0_BiDaFlow_Actors_EnvelopeWithReply___1___
+  commentId: M:BiDaFlow.Actors.SupervisedBlockExtensions.PostAndReceiveReplyAsync``2(BiDaFlow.Actors.SupervisedBlock{``0},System.Func{``0,BiDaFlow.Actors.EnvelopeWithReply{``1}})
+  name.vb: PostAndReceiveReplyAsync(Of TActor, TReply)(SupervisedBlock(Of TActor), Func(Of TActor, EnvelopeWithReply(Of TReply)))
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.PostAndReceiveReplyAsync<TActor, TReply>(BiDaFlow.Actors.SupervisedBlock<TActor>, System.Func<TActor, BiDaFlow.Actors.EnvelopeWithReply<TReply>>)
+  fullName.vb: BiDaFlow.Actors.SupervisedBlockExtensions.PostAndReceiveReplyAsync(Of TActor, TReply)(BiDaFlow.Actors.SupervisedBlock(Of TActor), System.Func(Of TActor, BiDaFlow.Actors.EnvelopeWithReply(Of TReply)))
+  nameWithType: SupervisedBlockExtensions.PostAndReceiveReplyAsync<TActor, TReply>(SupervisedBlock<TActor>, Func<TActor, EnvelopeWithReply<TReply>>)
+  nameWithType.vb: SupervisedBlockExtensions.PostAndReceiveReplyAsync(Of TActor, TReply)(SupervisedBlock(Of TActor), Func(Of TActor, EnvelopeWithReply(Of TReply)))
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.SendAndReceiveReplyAsync*
+  name: SendAndReceiveReplyAsync
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_SendAndReceiveReplyAsync_
+  commentId: Overload:BiDaFlow.Actors.SupervisedBlockExtensions.SendAndReceiveReplyAsync
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.SendAndReceiveReplyAsync
+  nameWithType: SupervisedBlockExtensions.SendAndReceiveReplyAsync
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.SendAndReceiveReplyAsync``2(BiDaFlow.Actors.SupervisedBlock{``0},System.Func{``0,BiDaFlow.Actors.EnvelopeWithReply{``1}},System.Threading.CancellationToken)
+  name: SendAndReceiveReplyAsync<TActor, TReply>(SupervisedBlock<TActor>, Func<TActor, EnvelopeWithReply<TReply>>, CancellationToken)
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_SendAndReceiveReplyAsync__2_BiDaFlow_Actors_SupervisedBlock___0__System_Func___0_BiDaFlow_Actors_EnvelopeWithReply___1___System_Threading_CancellationToken_
+  commentId: M:BiDaFlow.Actors.SupervisedBlockExtensions.SendAndReceiveReplyAsync``2(BiDaFlow.Actors.SupervisedBlock{``0},System.Func{``0,BiDaFlow.Actors.EnvelopeWithReply{``1}},System.Threading.CancellationToken)
+  name.vb: SendAndReceiveReplyAsync(Of TActor, TReply)(SupervisedBlock(Of TActor), Func(Of TActor, EnvelopeWithReply(Of TReply)), CancellationToken)
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.SendAndReceiveReplyAsync<TActor, TReply>(BiDaFlow.Actors.SupervisedBlock<TActor>, System.Func<TActor, BiDaFlow.Actors.EnvelopeWithReply<TReply>>, System.Threading.CancellationToken)
+  fullName.vb: BiDaFlow.Actors.SupervisedBlockExtensions.SendAndReceiveReplyAsync(Of TActor, TReply)(BiDaFlow.Actors.SupervisedBlock(Of TActor), System.Func(Of TActor, BiDaFlow.Actors.EnvelopeWithReply(Of TReply)), System.Threading.CancellationToken)
+  nameWithType: SupervisedBlockExtensions.SendAndReceiveReplyAsync<TActor, TReply>(SupervisedBlock<TActor>, Func<TActor, EnvelopeWithReply<TReply>>, CancellationToken)
+  nameWithType.vb: SupervisedBlockExtensions.SendAndReceiveReplyAsync(Of TActor, TReply)(SupervisedBlock(Of TActor), Func(Of TActor, EnvelopeWithReply(Of TReply)), CancellationToken)
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.SendAsync*
+  name: SendAsync
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_SendAsync_
+  commentId: Overload:BiDaFlow.Actors.SupervisedBlockExtensions.SendAsync
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.SendAsync
+  nameWithType: SupervisedBlockExtensions.SendAsync
+- uid: BiDaFlow.Actors.SupervisedBlockExtensions.SendAsync``1(BiDaFlow.Actors.SupervisedBlock{``0},System.Func{``0,BiDaFlow.Actors.Envelope},System.Threading.CancellationToken)
+  name: SendAsync<TActor>(SupervisedBlock<TActor>, Func<TActor, Envelope>, CancellationToken)
+  href: api/BiDaFlow.Actors.SupervisedBlockExtensions.html#BiDaFlow_Actors_SupervisedBlockExtensions_SendAsync__1_BiDaFlow_Actors_SupervisedBlock___0__System_Func___0_BiDaFlow_Actors_Envelope__System_Threading_CancellationToken_
+  commentId: M:BiDaFlow.Actors.SupervisedBlockExtensions.SendAsync``1(BiDaFlow.Actors.SupervisedBlock{``0},System.Func{``0,BiDaFlow.Actors.Envelope},System.Threading.CancellationToken)
+  name.vb: SendAsync(Of TActor)(SupervisedBlock(Of TActor), Func(Of TActor, Envelope), CancellationToken)
+  fullName: BiDaFlow.Actors.SupervisedBlockExtensions.SendAsync<TActor>(BiDaFlow.Actors.SupervisedBlock<TActor>, System.Func<TActor, BiDaFlow.Actors.Envelope>, System.Threading.CancellationToken)
+  fullName.vb: BiDaFlow.Actors.SupervisedBlockExtensions.SendAsync(Of TActor)(BiDaFlow.Actors.SupervisedBlock(Of TActor), System.Func(Of TActor, BiDaFlow.Actors.Envelope), System.Threading.CancellationToken)
+  nameWithType: SupervisedBlockExtensions.SendAsync<TActor>(SupervisedBlock<TActor>, Func<TActor, Envelope>, CancellationToken)
+  nameWithType.vb: SupervisedBlockExtensions.SendAsync(Of TActor)(SupervisedBlock(Of TActor), Func(Of TActor, Envelope), CancellationToken)
+- uid: BiDaFlow.Actors.SupervisionOptions
+  name: SupervisionOptions
+  href: api/BiDaFlow.Actors.SupervisionOptions.html
+  commentId: T:BiDaFlow.Actors.SupervisionOptions
+  fullName: BiDaFlow.Actors.SupervisionOptions
+  nameWithType: SupervisionOptions
+- uid: BiDaFlow.Actors.SupervisionOptions.KillWhenCompleted
+  name: KillWhenCompleted
+  href: api/BiDaFlow.Actors.SupervisionOptions.html#BiDaFlow_Actors_SupervisionOptions_KillWhenCompleted
+  commentId: P:BiDaFlow.Actors.SupervisionOptions.KillWhenCompleted
+  fullName: BiDaFlow.Actors.SupervisionOptions.KillWhenCompleted
+  nameWithType: SupervisionOptions.KillWhenCompleted
+- uid: BiDaFlow.Actors.SupervisionOptions.KillWhenCompleted*
+  name: KillWhenCompleted
+  href: api/BiDaFlow.Actors.SupervisionOptions.html#BiDaFlow_Actors_SupervisionOptions_KillWhenCompleted_
+  commentId: Overload:BiDaFlow.Actors.SupervisionOptions.KillWhenCompleted
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.SupervisionOptions.KillWhenCompleted
+  nameWithType: SupervisionOptions.KillWhenCompleted
+- uid: BiDaFlow.Actors.SupervisionOptions.OneForAll
+  name: OneForAll
+  href: api/BiDaFlow.Actors.SupervisionOptions.html#BiDaFlow_Actors_SupervisionOptions_OneForAll
+  commentId: P:BiDaFlow.Actors.SupervisionOptions.OneForAll
+  fullName: BiDaFlow.Actors.SupervisionOptions.OneForAll
+  nameWithType: SupervisionOptions.OneForAll
+- uid: BiDaFlow.Actors.SupervisionOptions.OneForAll*
+  name: OneForAll
+  href: api/BiDaFlow.Actors.SupervisionOptions.html#BiDaFlow_Actors_SupervisionOptions_OneForAll_
+  commentId: Overload:BiDaFlow.Actors.SupervisionOptions.OneForAll
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.SupervisionOptions.OneForAll
+  nameWithType: SupervisionOptions.OneForAll
+- uid: BiDaFlow.Actors.SupervisionOptions.WaitCompletion
+  name: WaitCompletion
+  href: api/BiDaFlow.Actors.SupervisionOptions.html#BiDaFlow_Actors_SupervisionOptions_WaitCompletion
+  commentId: P:BiDaFlow.Actors.SupervisionOptions.WaitCompletion
+  fullName: BiDaFlow.Actors.SupervisionOptions.WaitCompletion
+  nameWithType: SupervisionOptions.WaitCompletion
+- uid: BiDaFlow.Actors.SupervisionOptions.WaitCompletion*
+  name: WaitCompletion
+  href: api/BiDaFlow.Actors.SupervisionOptions.html#BiDaFlow_Actors_SupervisionOptions_WaitCompletion_
+  commentId: Overload:BiDaFlow.Actors.SupervisionOptions.WaitCompletion
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.SupervisionOptions.WaitCompletion
+  nameWithType: SupervisionOptions.WaitCompletion
+- uid: BiDaFlow.Actors.Supervisor
+  name: Supervisor
+  href: api/BiDaFlow.Actors.Supervisor.html
+  commentId: T:BiDaFlow.Actors.Supervisor
+  fullName: BiDaFlow.Actors.Supervisor
+  nameWithType: Supervisor
+- uid: BiDaFlow.Actors.Supervisor.OneForOne*
+  name: OneForOne
+  href: api/BiDaFlow.Actors.Supervisor.html#BiDaFlow_Actors_Supervisor_OneForOne_
+  commentId: Overload:BiDaFlow.Actors.Supervisor.OneForOne
+  isSpec: "True"
+  fullName: BiDaFlow.Actors.Supervisor.OneForOne
+  nameWithType: Supervisor.OneForOne
+- uid: BiDaFlow.Actors.Supervisor.OneForOne``1(System.Func{``0},System.Func{``0,System.AggregateException,System.Threading.Tasks.Task{BiDaFlow.Actors.RescueAction}})
+  name: OneForOne<T>(Func<T>, Func<T, AggregateException, Task<RescueAction>>)
+  href: api/BiDaFlow.Actors.Supervisor.html#BiDaFlow_Actors_Supervisor_OneForOne__1_System_Func___0__System_Func___0_System_AggregateException_System_Threading_Tasks_Task_BiDaFlow_Actors_RescueAction___
+  commentId: M:BiDaFlow.Actors.Supervisor.OneForOne``1(System.Func{``0},System.Func{``0,System.AggregateException,System.Threading.Tasks.Task{BiDaFlow.Actors.RescueAction}})
+  name.vb: OneForOne(Of T)(Func(Of T), Func(Of T, AggregateException, Task(Of RescueAction)))
+  fullName: BiDaFlow.Actors.Supervisor.OneForOne<T>(System.Func<T>, System.Func<T, System.AggregateException, System.Threading.Tasks.Task<BiDaFlow.Actors.RescueAction>>)
+  fullName.vb: BiDaFlow.Actors.Supervisor.OneForOne(Of T)(System.Func(Of T), System.Func(Of T, System.AggregateException, System.Threading.Tasks.Task(Of BiDaFlow.Actors.RescueAction)))
+  nameWithType: Supervisor.OneForOne<T>(Func<T>, Func<T, AggregateException, Task<RescueAction>>)
+  nameWithType.vb: Supervisor.OneForOne(Of T)(Func(Of T), Func(Of T, AggregateException, Task(Of RescueAction)))
+- uid: BiDaFlow.Actors.Supervisor.OneForOne``1(System.Func{System.Threading.Tasks.Task{``0}},System.Func{``0,System.AggregateException,System.Threading.Tasks.Task{BiDaFlow.Actors.RescueAction}})
+  name: OneForOne<T>(Func<Task<T>>, Func<T, AggregateException, Task<RescueAction>>)
+  href: api/BiDaFlow.Actors.Supervisor.html#BiDaFlow_Actors_Supervisor_OneForOne__1_System_Func_System_Threading_Tasks_Task___0___System_Func___0_System_AggregateException_System_Threading_Tasks_Task_BiDaFlow_Actors_RescueAction___
+  commentId: M:BiDaFlow.Actors.Supervisor.OneForOne``1(System.Func{System.Threading.Tasks.Task{``0}},System.Func{``0,System.AggregateException,System.Threading.Tasks.Task{BiDaFlow.Actors.RescueAction}})
+  name.vb: OneForOne(Of T)(Func(Of Task(Of T)), Func(Of T, AggregateException, Task(Of RescueAction)))
+  fullName: BiDaFlow.Actors.Supervisor.OneForOne<T>(System.Func<System.Threading.Tasks.Task<T>>, System.Func<T, System.AggregateException, System.Threading.Tasks.Task<BiDaFlow.Actors.RescueAction>>)
+  fullName.vb: BiDaFlow.Actors.Supervisor.OneForOne(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), System.Func(Of T, System.AggregateException, System.Threading.Tasks.Task(Of BiDaFlow.Actors.RescueAction)))
+  nameWithType: Supervisor.OneForOne<T>(Func<Task<T>>, Func<T, AggregateException, Task<RescueAction>>)
+  nameWithType.vb: Supervisor.OneForOne(Of T)(Func(Of Task(Of T)), Func(Of T, AggregateException, Task(Of RescueAction)))
+- uid: BiDaFlow.Blocks
+  name: BiDaFlow.Blocks
+  href: api/BiDaFlow.Blocks.html
+  commentId: N:BiDaFlow.Blocks
+  fullName: BiDaFlow.Blocks
+  nameWithType: BiDaFlow.Blocks
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2
+  name: TransformWithoutBufferBlock<TInput, TOutput>
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html
+  commentId: T:BiDaFlow.Blocks.TransformWithoutBufferBlock`2
+  name.vb: TransformWithoutBufferBlock(Of TInput, TOutput)
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput)
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput)
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor(System.Func{`0,`1})
+  name: TransformWithoutBufferBlock(Func<TInput, TOutput>)
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__
+  commentId: M:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor(System.Func{`0,`1})
+  name.vb: TransformWithoutBufferBlock(Func(Of TInput, TOutput))
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.TransformWithoutBufferBlock(System.Func<TInput, TOutput>)
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).TransformWithoutBufferBlock(System.Func(Of TInput, TOutput))
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.TransformWithoutBufferBlock(Func<TInput, TOutput>)
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).TransformWithoutBufferBlock(Func(Of TInput, TOutput))
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor(System.Func{`0,`1},System.Threading.CancellationToken)
+  name: TransformWithoutBufferBlock(Func<TInput, TOutput>, CancellationToken)
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__System_Threading_CancellationToken_
+  commentId: M:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor(System.Func{`0,`1},System.Threading.CancellationToken)
+  name.vb: TransformWithoutBufferBlock(Func(Of TInput, TOutput), CancellationToken)
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.TransformWithoutBufferBlock(System.Func<TInput, TOutput>, System.Threading.CancellationToken)
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).TransformWithoutBufferBlock(System.Func(Of TInput, TOutput), System.Threading.CancellationToken)
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.TransformWithoutBufferBlock(Func<TInput, TOutput>, CancellationToken)
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).TransformWithoutBufferBlock(Func(Of TInput, TOutput), CancellationToken)
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor(System.Func{`0,`1},System.Threading.Tasks.TaskScheduler,System.Threading.CancellationToken)
+  name: TransformWithoutBufferBlock(Func<TInput, TOutput>, TaskScheduler, CancellationToken)
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__System_Threading_Tasks_TaskScheduler_System_Threading_CancellationToken_
+  commentId: M:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor(System.Func{`0,`1},System.Threading.Tasks.TaskScheduler,System.Threading.CancellationToken)
+  name.vb: TransformWithoutBufferBlock(Func(Of TInput, TOutput), TaskScheduler, CancellationToken)
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.TransformWithoutBufferBlock(System.Func<TInput, TOutput>, System.Threading.Tasks.TaskScheduler, System.Threading.CancellationToken)
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).TransformWithoutBufferBlock(System.Func(Of TInput, TOutput), System.Threading.Tasks.TaskScheduler, System.Threading.CancellationToken)
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.TransformWithoutBufferBlock(Func<TInput, TOutput>, TaskScheduler, CancellationToken)
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).TransformWithoutBufferBlock(Func(Of TInput, TOutput), TaskScheduler, CancellationToken)
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor*
+  name: TransformWithoutBufferBlock
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_
+  commentId: Overload:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor
+  isSpec: "True"
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.TransformWithoutBufferBlock
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).TransformWithoutBufferBlock
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.TransformWithoutBufferBlock
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).TransformWithoutBufferBlock
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Complete
+  name: Complete()
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Complete
+  commentId: M:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Complete
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.Complete()
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).Complete()
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.Complete()
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).Complete()
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Complete*
+  name: Complete
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Complete_
+  commentId: Overload:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Complete
+  isSpec: "True"
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.Complete
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).Complete
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.Complete
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).Complete
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Completion
+  name: Completion
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Completion
+  commentId: P:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Completion
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.Completion
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).Completion
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.Completion
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).Completion
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Completion*
+  name: Completion
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Completion_
+  commentId: Overload:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Completion
+  isSpec: "True"
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.Completion
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).Completion
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.Completion
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).Completion
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock{`1},System.Threading.Tasks.Dataflow.DataflowLinkOptions)
+  name: LinkTo(ITargetBlock<TOutput>, DataflowLinkOptions)
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_LinkTo_System_Threading_Tasks_Dataflow_ITargetBlock__1__System_Threading_Tasks_Dataflow_DataflowLinkOptions_
+  commentId: M:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock{`1},System.Threading.Tasks.Dataflow.DataflowLinkOptions)
+  name.vb: LinkTo(ITargetBlock(Of TOutput), DataflowLinkOptions)
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock<TOutput>, System.Threading.Tasks.Dataflow.DataflowLinkOptions)
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock(Of TOutput), System.Threading.Tasks.Dataflow.DataflowLinkOptions)
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.LinkTo(ITargetBlock<TOutput>, DataflowLinkOptions)
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).LinkTo(ITargetBlock(Of TOutput), DataflowLinkOptions)
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.LinkTo*
+  name: LinkTo
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_LinkTo_
+  commentId: Overload:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.LinkTo
+  isSpec: "True"
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.LinkTo
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).LinkTo
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.LinkTo
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).LinkTo
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault(System.Exception)
+  name: IDataflowBlock.Fault(Exception)
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_System_Exception_
+  commentId: M:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault(System.Exception)
+  name.vb: System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(Exception)
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(System.Exception)
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(System.Exception)
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.IDataflowBlock.Fault(Exception)
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(Exception)
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault*
+  name: IDataflowBlock.Fault
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_
+  commentId: Overload:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault
+  isSpec: "True"
+  name.vb: System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.IDataflowBlock.Fault
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`1},System.Boolean@)
+  name: ISourceBlock<TOutput>.ConsumeMessage(DataflowMessageHeader, ITargetBlock<TOutput>, out Boolean)
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ConsumeMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__System_Boolean__
+  commentId: M:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`1},System.Boolean@)
+  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage(DataflowMessageHeader, ITargetBlock(Of TOutput), ByRef Boolean)
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock<TOutput>, out System.Boolean)
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock(Of TOutput), ByRef System.Boolean)
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.ISourceBlock<TOutput>.ConsumeMessage(DataflowMessageHeader, ITargetBlock<TOutput>, out Boolean)
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage(DataflowMessageHeader, ITargetBlock(Of TOutput), ByRef Boolean)
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ConsumeMessage*
+  name: ISourceBlock<TOutput>.ConsumeMessage
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ConsumeMessage_
+  commentId: Overload:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ConsumeMessage
+  isSpec: "True"
+  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.ISourceBlock<TOutput>.ConsumeMessage
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ConsumeMessage
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`1})
+  name: ISourceBlock<TOutput>.ReleaseReservation(DataflowMessageHeader, ITargetBlock<TOutput>)
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReleaseReservation_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__
+  commentId: M:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`1})
+  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation(DataflowMessageHeader, ITargetBlock(Of TOutput))
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock<TOutput>)
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock(Of TOutput))
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.ISourceBlock<TOutput>.ReleaseReservation(DataflowMessageHeader, ITargetBlock<TOutput>)
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation(DataflowMessageHeader, ITargetBlock(Of TOutput))
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReleaseReservation*
+  name: ISourceBlock<TOutput>.ReleaseReservation
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReleaseReservation_
+  commentId: Overload:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReleaseReservation
+  isSpec: "True"
+  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.ISourceBlock<TOutput>.ReleaseReservation
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReleaseReservation
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`1})
+  name: ISourceBlock<TOutput>.ReserveMessage(DataflowMessageHeader, ITargetBlock<TOutput>)
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReserveMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__
+  commentId: M:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`1})
+  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage(DataflowMessageHeader, ITargetBlock(Of TOutput))
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock<TOutput>)
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock(Of TOutput))
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.ISourceBlock<TOutput>.ReserveMessage(DataflowMessageHeader, ITargetBlock<TOutput>)
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage(DataflowMessageHeader, ITargetBlock(Of TOutput))
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReserveMessage*
+  name: ISourceBlock<TOutput>.ReserveMessage
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReserveMessage_
+  commentId: Overload:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReserveMessage
+  isSpec: "True"
+  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.ISourceBlock<TOutput>.ReserveMessage
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>.ReserveMessage
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ITargetBlock{TInput}#OfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,`0,System.Threading.Tasks.Dataflow.ISourceBlock{`0},System.Boolean)
+  name: ITargetBlock<TInput>.OfferMessage(DataflowMessageHeader, TInput, ISourceBlock<TInput>, Boolean)
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ITargetBlock_TInput__OfferMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader__0_System_Threading_Tasks_Dataflow_ISourceBlock__0__System_Boolean_
+  commentId: M:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ITargetBlock{TInput}#OfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,`0,System.Threading.Tasks.Dataflow.ISourceBlock{`0},System.Boolean)
+  name.vb: System.Threading.Tasks.Dataflow.ITargetBlock<TInput>.OfferMessage(DataflowMessageHeader, TInput, ISourceBlock(Of TInput), Boolean)
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.System.Threading.Tasks.Dataflow.ITargetBlock<TInput>.OfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, TInput, System.Threading.Tasks.Dataflow.ISourceBlock<TInput>, System.Boolean)
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ITargetBlock<TInput>.OfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, TInput, System.Threading.Tasks.Dataflow.ISourceBlock(Of TInput), System.Boolean)
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.ITargetBlock<TInput>.OfferMessage(DataflowMessageHeader, TInput, ISourceBlock<TInput>, Boolean)
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ITargetBlock<TInput>.OfferMessage(DataflowMessageHeader, TInput, ISourceBlock(Of TInput), Boolean)
+- uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ITargetBlock{TInput}#OfferMessage*
+  name: ITargetBlock<TInput>.OfferMessage
+  href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html#BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ITargetBlock_TInput__OfferMessage_
+  commentId: Overload:BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ITargetBlock{TInput}#OfferMessage
+  isSpec: "True"
+  name.vb: System.Threading.Tasks.Dataflow.ITargetBlock<TInput>.OfferMessage
+  fullName: BiDaFlow.Blocks.TransformWithoutBufferBlock<TInput, TOutput>.System.Threading.Tasks.Dataflow.ITargetBlock<TInput>.OfferMessage
+  fullName.vb: BiDaFlow.Blocks.TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ITargetBlock<TInput>.OfferMessage
+  nameWithType: TransformWithoutBufferBlock<TInput, TOutput>.ITargetBlock<TInput>.OfferMessage
+  nameWithType.vb: TransformWithoutBufferBlock(Of TInput, TOutput).System.Threading.Tasks.Dataflow.ITargetBlock<TInput>.OfferMessage
+- uid: BiDaFlow.Fluent
+  name: BiDaFlow.Fluent
+  href: api/BiDaFlow.Fluent.html
+  commentId: N:BiDaFlow.Fluent
+  fullName: BiDaFlow.Fluent
+  nameWithType: BiDaFlow.Fluent
+- uid: BiDaFlow.Fluent.DataflowAsyncEnumerable
+  name: DataflowAsyncEnumerable
+  href: api/BiDaFlow.Fluent.DataflowAsyncEnumerable.html
+  commentId: T:BiDaFlow.Fluent.DataflowAsyncEnumerable
+  fullName: BiDaFlow.Fluent.DataflowAsyncEnumerable
+  nameWithType: DataflowAsyncEnumerable
+- uid: BiDaFlow.Fluent.DataflowAsyncEnumerable.AsAsyncEnumerable*
+  name: AsAsyncEnumerable
+  href: api/BiDaFlow.Fluent.DataflowAsyncEnumerable.html#BiDaFlow_Fluent_DataflowAsyncEnumerable_AsAsyncEnumerable_
+  commentId: Overload:BiDaFlow.Fluent.DataflowAsyncEnumerable.AsAsyncEnumerable
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.DataflowAsyncEnumerable.AsAsyncEnumerable
+  nameWithType: DataflowAsyncEnumerable.AsAsyncEnumerable
+- uid: BiDaFlow.Fluent.DataflowAsyncEnumerable.AsAsyncEnumerable``1(System.Threading.Tasks.Dataflow.ISourceBlock{``0})
+  name: AsAsyncEnumerable<TOutput>(ISourceBlock<TOutput>)
+  href: api/BiDaFlow.Fluent.DataflowAsyncEnumerable.html#BiDaFlow_Fluent_DataflowAsyncEnumerable_AsAsyncEnumerable__1_System_Threading_Tasks_Dataflow_ISourceBlock___0__
+  commentId: M:BiDaFlow.Fluent.DataflowAsyncEnumerable.AsAsyncEnumerable``1(System.Threading.Tasks.Dataflow.ISourceBlock{``0})
+  name.vb: AsAsyncEnumerable(Of TOutput)(ISourceBlock(Of TOutput))
+  fullName: BiDaFlow.Fluent.DataflowAsyncEnumerable.AsAsyncEnumerable<TOutput>(System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>)
+  fullName.vb: BiDaFlow.Fluent.DataflowAsyncEnumerable.AsAsyncEnumerable(Of TOutput)(System.Threading.Tasks.Dataflow.ISourceBlock(Of TOutput))
+  nameWithType: DataflowAsyncEnumerable.AsAsyncEnumerable<TOutput>(ISourceBlock<TOutput>)
+  nameWithType.vb: DataflowAsyncEnumerable.AsAsyncEnumerable(Of TOutput)(ISourceBlock(Of TOutput))
+- uid: BiDaFlow.Fluent.DataflowAsyncEnumerable.AsSourceBlock*
+  name: AsSourceBlock
+  href: api/BiDaFlow.Fluent.DataflowAsyncEnumerable.html#BiDaFlow_Fluent_DataflowAsyncEnumerable_AsSourceBlock_
+  commentId: Overload:BiDaFlow.Fluent.DataflowAsyncEnumerable.AsSourceBlock
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.DataflowAsyncEnumerable.AsSourceBlock
+  nameWithType: DataflowAsyncEnumerable.AsSourceBlock
+- uid: BiDaFlow.Fluent.DataflowAsyncEnumerable.AsSourceBlock``1(System.Collections.Generic.IAsyncEnumerable{``0},System.Threading.CancellationToken)
+  name: AsSourceBlock<TOutput>(IAsyncEnumerable<TOutput>, CancellationToken)
+  href: api/BiDaFlow.Fluent.DataflowAsyncEnumerable.html#BiDaFlow_Fluent_DataflowAsyncEnumerable_AsSourceBlock__1_System_Collections_Generic_IAsyncEnumerable___0__System_Threading_CancellationToken_
+  commentId: M:BiDaFlow.Fluent.DataflowAsyncEnumerable.AsSourceBlock``1(System.Collections.Generic.IAsyncEnumerable{``0},System.Threading.CancellationToken)
+  name.vb: AsSourceBlock(Of TOutput)(IAsyncEnumerable(Of TOutput), CancellationToken)
+  fullName: BiDaFlow.Fluent.DataflowAsyncEnumerable.AsSourceBlock<TOutput>(System.Collections.Generic.IAsyncEnumerable<TOutput>, System.Threading.CancellationToken)
+  fullName.vb: BiDaFlow.Fluent.DataflowAsyncEnumerable.AsSourceBlock(Of TOutput)(System.Collections.Generic.IAsyncEnumerable(Of TOutput), System.Threading.CancellationToken)
+  nameWithType: DataflowAsyncEnumerable.AsSourceBlock<TOutput>(IAsyncEnumerable<TOutput>, CancellationToken)
+  nameWithType.vb: DataflowAsyncEnumerable.AsSourceBlock(Of TOutput)(IAsyncEnumerable(Of TOutput), CancellationToken)
+- uid: BiDaFlow.Fluent.DataflowAsyncEnumerable.AsSourceBlock``1(System.Collections.Generic.IAsyncEnumerable{``0},System.Threading.Tasks.TaskScheduler,System.Threading.CancellationToken)
+  name: AsSourceBlock<TOutput>(IAsyncEnumerable<TOutput>, TaskScheduler, CancellationToken)
+  href: api/BiDaFlow.Fluent.DataflowAsyncEnumerable.html#BiDaFlow_Fluent_DataflowAsyncEnumerable_AsSourceBlock__1_System_Collections_Generic_IAsyncEnumerable___0__System_Threading_Tasks_TaskScheduler_System_Threading_CancellationToken_
+  commentId: M:BiDaFlow.Fluent.DataflowAsyncEnumerable.AsSourceBlock``1(System.Collections.Generic.IAsyncEnumerable{``0},System.Threading.Tasks.TaskScheduler,System.Threading.CancellationToken)
+  name.vb: AsSourceBlock(Of TOutput)(IAsyncEnumerable(Of TOutput), TaskScheduler, CancellationToken)
+  fullName: BiDaFlow.Fluent.DataflowAsyncEnumerable.AsSourceBlock<TOutput>(System.Collections.Generic.IAsyncEnumerable<TOutput>, System.Threading.Tasks.TaskScheduler, System.Threading.CancellationToken)
+  fullName.vb: BiDaFlow.Fluent.DataflowAsyncEnumerable.AsSourceBlock(Of TOutput)(System.Collections.Generic.IAsyncEnumerable(Of TOutput), System.Threading.Tasks.TaskScheduler, System.Threading.CancellationToken)
+  nameWithType: DataflowAsyncEnumerable.AsSourceBlock<TOutput>(IAsyncEnumerable<TOutput>, TaskScheduler, CancellationToken)
+  nameWithType.vb: DataflowAsyncEnumerable.AsSourceBlock(Of TOutput)(IAsyncEnumerable(Of TOutput), TaskScheduler, CancellationToken)
+- uid: BiDaFlow.Fluent.DataflowAsyncEnumerable.RunThroughDataflowBlock*
+  name: RunThroughDataflowBlock
+  href: api/BiDaFlow.Fluent.DataflowAsyncEnumerable.html#BiDaFlow_Fluent_DataflowAsyncEnumerable_RunThroughDataflowBlock_
+  commentId: Overload:BiDaFlow.Fluent.DataflowAsyncEnumerable.RunThroughDataflowBlock
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.DataflowAsyncEnumerable.RunThroughDataflowBlock
+  nameWithType: DataflowAsyncEnumerable.RunThroughDataflowBlock
+- uid: BiDaFlow.Fluent.DataflowAsyncEnumerable.RunThroughDataflowBlock``2(System.Collections.Generic.IAsyncEnumerable{``0},System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Dataflow.IPropagatorBlock{``0,``1}})
+  name: RunThroughDataflowBlock<TInput, TOutput>(IAsyncEnumerable<TInput>, Func<CancellationToken, IPropagatorBlock<TInput, TOutput>>)
+  href: api/BiDaFlow.Fluent.DataflowAsyncEnumerable.html#BiDaFlow_Fluent_DataflowAsyncEnumerable_RunThroughDataflowBlock__2_System_Collections_Generic_IAsyncEnumerable___0__System_Func_System_Threading_CancellationToken_System_Threading_Tasks_Dataflow_IPropagatorBlock___0___1___
+  commentId: M:BiDaFlow.Fluent.DataflowAsyncEnumerable.RunThroughDataflowBlock``2(System.Collections.Generic.IAsyncEnumerable{``0},System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Dataflow.IPropagatorBlock{``0,``1}})
+  name.vb: RunThroughDataflowBlock(Of TInput, TOutput)(IAsyncEnumerable(Of TInput), Func(Of CancellationToken, IPropagatorBlock(Of TInput, TOutput)))
+  fullName: BiDaFlow.Fluent.DataflowAsyncEnumerable.RunThroughDataflowBlock<TInput, TOutput>(System.Collections.Generic.IAsyncEnumerable<TInput>, System.Func<System.Threading.CancellationToken, System.Threading.Tasks.Dataflow.IPropagatorBlock<TInput, TOutput>>)
+  fullName.vb: BiDaFlow.Fluent.DataflowAsyncEnumerable.RunThroughDataflowBlock(Of TInput, TOutput)(System.Collections.Generic.IAsyncEnumerable(Of TInput), System.Func(Of System.Threading.CancellationToken, System.Threading.Tasks.Dataflow.IPropagatorBlock(Of TInput, TOutput)))
+  nameWithType: DataflowAsyncEnumerable.RunThroughDataflowBlock<TInput, TOutput>(IAsyncEnumerable<TInput>, Func<CancellationToken, IPropagatorBlock<TInput, TOutput>>)
+  nameWithType.vb: DataflowAsyncEnumerable.RunThroughDataflowBlock(Of TInput, TOutput)(IAsyncEnumerable(Of TInput), Func(Of CancellationToken, IPropagatorBlock(Of TInput, TOutput)))
+- uid: BiDaFlow.Fluent.DataflowAsyncEnumerable.RunThroughDataflowBlock``2(System.Collections.Generic.IAsyncEnumerable{``0},System.Func{System.Threading.Tasks.Dataflow.IPropagatorBlock{``0,``1}})
+  name: RunThroughDataflowBlock<TInput, TOutput>(IAsyncEnumerable<TInput>, Func<IPropagatorBlock<TInput, TOutput>>)
+  href: api/BiDaFlow.Fluent.DataflowAsyncEnumerable.html#BiDaFlow_Fluent_DataflowAsyncEnumerable_RunThroughDataflowBlock__2_System_Collections_Generic_IAsyncEnumerable___0__System_Func_System_Threading_Tasks_Dataflow_IPropagatorBlock___0___1___
+  commentId: M:BiDaFlow.Fluent.DataflowAsyncEnumerable.RunThroughDataflowBlock``2(System.Collections.Generic.IAsyncEnumerable{``0},System.Func{System.Threading.Tasks.Dataflow.IPropagatorBlock{``0,``1}})
+  name.vb: RunThroughDataflowBlock(Of TInput, TOutput)(IAsyncEnumerable(Of TInput), Func(Of IPropagatorBlock(Of TInput, TOutput)))
+  fullName: BiDaFlow.Fluent.DataflowAsyncEnumerable.RunThroughDataflowBlock<TInput, TOutput>(System.Collections.Generic.IAsyncEnumerable<TInput>, System.Func<System.Threading.Tasks.Dataflow.IPropagatorBlock<TInput, TOutput>>)
+  fullName.vb: BiDaFlow.Fluent.DataflowAsyncEnumerable.RunThroughDataflowBlock(Of TInput, TOutput)(System.Collections.Generic.IAsyncEnumerable(Of TInput), System.Func(Of System.Threading.Tasks.Dataflow.IPropagatorBlock(Of TInput, TOutput)))
+  nameWithType: DataflowAsyncEnumerable.RunThroughDataflowBlock<TInput, TOutput>(IAsyncEnumerable<TInput>, Func<IPropagatorBlock<TInput, TOutput>>)
+  nameWithType.vb: DataflowAsyncEnumerable.RunThroughDataflowBlock(Of TInput, TOutput)(IAsyncEnumerable(Of TInput), Func(Of IPropagatorBlock(Of TInput, TOutput)))
+- uid: BiDaFlow.Fluent.FluentDataflow
+  name: FluentDataflow
+  href: api/BiDaFlow.Fluent.FluentDataflow.html
+  commentId: T:BiDaFlow.Fluent.FluentDataflow
+  fullName: BiDaFlow.Fluent.FluentDataflow
+  nameWithType: FluentDataflow
+- uid: BiDaFlow.Fluent.FluentDataflow.AsObserverDroppingOverflowItems*
+  name: AsObserverDroppingOverflowItems
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_AsObserverDroppingOverflowItems_
+  commentId: Overload:BiDaFlow.Fluent.FluentDataflow.AsObserverDroppingOverflowItems
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.FluentDataflow.AsObserverDroppingOverflowItems
+  nameWithType: FluentDataflow.AsObserverDroppingOverflowItems
+- uid: BiDaFlow.Fluent.FluentDataflow.AsObserverDroppingOverflowItems``1(System.Threading.Tasks.Dataflow.ITargetBlock{``0})
+  name: AsObserverDroppingOverflowItems<TInput>(ITargetBlock<TInput>)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_AsObserverDroppingOverflowItems__1_System_Threading_Tasks_Dataflow_ITargetBlock___0__
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.AsObserverDroppingOverflowItems``1(System.Threading.Tasks.Dataflow.ITargetBlock{``0})
+  name.vb: AsObserverDroppingOverflowItems(Of TInput)(ITargetBlock(Of TInput))
+  fullName: BiDaFlow.Fluent.FluentDataflow.AsObserverDroppingOverflowItems<TInput>(System.Threading.Tasks.Dataflow.ITargetBlock<TInput>)
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.AsObserverDroppingOverflowItems(Of TInput)(System.Threading.Tasks.Dataflow.ITargetBlock(Of TInput))
+  nameWithType: FluentDataflow.AsObserverDroppingOverflowItems<TInput>(ITargetBlock<TInput>)
+  nameWithType.vb: FluentDataflow.AsObserverDroppingOverflowItems(Of TInput)(ITargetBlock(Of TInput))
+- uid: BiDaFlow.Fluent.FluentDataflow.AsSourceBlock*
+  name: AsSourceBlock
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_AsSourceBlock_
+  commentId: Overload:BiDaFlow.Fluent.FluentDataflow.AsSourceBlock
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.FluentDataflow.AsSourceBlock
+  nameWithType: FluentDataflow.AsSourceBlock
+- uid: BiDaFlow.Fluent.FluentDataflow.AsSourceBlock``1(System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)
+  name: AsSourceBlock<TOutput>(IEnumerable<TOutput>, CancellationToken)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_AsSourceBlock__1_System_Collections_Generic_IEnumerable___0__System_Threading_CancellationToken_
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.AsSourceBlock``1(System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)
+  name.vb: AsSourceBlock(Of TOutput)(IEnumerable(Of TOutput), CancellationToken)
+  fullName: BiDaFlow.Fluent.FluentDataflow.AsSourceBlock<TOutput>(System.Collections.Generic.IEnumerable<TOutput>, System.Threading.CancellationToken)
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.AsSourceBlock(Of TOutput)(System.Collections.Generic.IEnumerable(Of TOutput), System.Threading.CancellationToken)
+  nameWithType: FluentDataflow.AsSourceBlock<TOutput>(IEnumerable<TOutput>, CancellationToken)
+  nameWithType.vb: FluentDataflow.AsSourceBlock(Of TOutput)(IEnumerable(Of TOutput), CancellationToken)
+- uid: BiDaFlow.Fluent.FluentDataflow.AsSourceBlock``1(System.Collections.Generic.IEnumerable{``0},System.Threading.Tasks.TaskScheduler,System.Threading.CancellationToken)
+  name: AsSourceBlock<TOutput>(IEnumerable<TOutput>, TaskScheduler, CancellationToken)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_AsSourceBlock__1_System_Collections_Generic_IEnumerable___0__System_Threading_Tasks_TaskScheduler_System_Threading_CancellationToken_
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.AsSourceBlock``1(System.Collections.Generic.IEnumerable{``0},System.Threading.Tasks.TaskScheduler,System.Threading.CancellationToken)
+  name.vb: AsSourceBlock(Of TOutput)(IEnumerable(Of TOutput), TaskScheduler, CancellationToken)
+  fullName: BiDaFlow.Fluent.FluentDataflow.AsSourceBlock<TOutput>(System.Collections.Generic.IEnumerable<TOutput>, System.Threading.Tasks.TaskScheduler, System.Threading.CancellationToken)
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.AsSourceBlock(Of TOutput)(System.Collections.Generic.IEnumerable(Of TOutput), System.Threading.Tasks.TaskScheduler, System.Threading.CancellationToken)
+  nameWithType: FluentDataflow.AsSourceBlock<TOutput>(IEnumerable<TOutput>, TaskScheduler, CancellationToken)
+  nameWithType.vb: FluentDataflow.AsSourceBlock(Of TOutput)(IEnumerable(Of TOutput), TaskScheduler, CancellationToken)
+- uid: BiDaFlow.Fluent.FluentDataflow.Chain*
+  name: Chain
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_Chain_
+  commentId: Overload:BiDaFlow.Fluent.FluentDataflow.Chain
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.FluentDataflow.Chain
+  nameWithType: FluentDataflow.Chain
+- uid: BiDaFlow.Fluent.FluentDataflow.Chain``3(System.Threading.Tasks.Dataflow.IPropagatorBlock{``0,``1},System.Threading.Tasks.Dataflow.IPropagatorBlock{``1,``2})
+  name: Chain<TInput, TSourceOutput, TOutput>(IPropagatorBlock<TInput, TSourceOutput>, IPropagatorBlock<TSourceOutput, TOutput>)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_Chain__3_System_Threading_Tasks_Dataflow_IPropagatorBlock___0___1__System_Threading_Tasks_Dataflow_IPropagatorBlock___1___2__
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.Chain``3(System.Threading.Tasks.Dataflow.IPropagatorBlock{``0,``1},System.Threading.Tasks.Dataflow.IPropagatorBlock{``1,``2})
+  name.vb: Chain(Of TInput, TSourceOutput, TOutput)(IPropagatorBlock(Of TInput, TSourceOutput), IPropagatorBlock(Of TSourceOutput, TOutput))
+  fullName: BiDaFlow.Fluent.FluentDataflow.Chain<TInput, TSourceOutput, TOutput>(System.Threading.Tasks.Dataflow.IPropagatorBlock<TInput, TSourceOutput>, System.Threading.Tasks.Dataflow.IPropagatorBlock<TSourceOutput, TOutput>)
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.Chain(Of TInput, TSourceOutput, TOutput)(System.Threading.Tasks.Dataflow.IPropagatorBlock(Of TInput, TSourceOutput), System.Threading.Tasks.Dataflow.IPropagatorBlock(Of TSourceOutput, TOutput))
+  nameWithType: FluentDataflow.Chain<TInput, TSourceOutput, TOutput>(IPropagatorBlock<TInput, TSourceOutput>, IPropagatorBlock<TSourceOutput, TOutput>)
+  nameWithType.vb: FluentDataflow.Chain(Of TInput, TSourceOutput, TOutput)(IPropagatorBlock(Of TInput, TSourceOutput), IPropagatorBlock(Of TSourceOutput, TOutput))
+- uid: BiDaFlow.Fluent.FluentDataflow.CompletedSourceBlock*
+  name: CompletedSourceBlock
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_CompletedSourceBlock_
+  commentId: Overload:BiDaFlow.Fluent.FluentDataflow.CompletedSourceBlock
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.FluentDataflow.CompletedSourceBlock
+  nameWithType: FluentDataflow.CompletedSourceBlock
+- uid: BiDaFlow.Fluent.FluentDataflow.CompletedSourceBlock``1
+  name: CompletedSourceBlock<TOutput>()
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_CompletedSourceBlock__1
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.CompletedSourceBlock``1
+  name.vb: CompletedSourceBlock(Of TOutput)()
+  fullName: BiDaFlow.Fluent.FluentDataflow.CompletedSourceBlock<TOutput>()
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.CompletedSourceBlock(Of TOutput)()
+  nameWithType: FluentDataflow.CompletedSourceBlock<TOutput>()
+  nameWithType.vb: FluentDataflow.CompletedSourceBlock(Of TOutput)()
+- uid: BiDaFlow.Fluent.FluentDataflow.LinkWithCompletion*
+  name: LinkWithCompletion
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_LinkWithCompletion_
+  commentId: Overload:BiDaFlow.Fluent.FluentDataflow.LinkWithCompletion
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.FluentDataflow.LinkWithCompletion
+  nameWithType: FluentDataflow.LinkWithCompletion
+- uid: BiDaFlow.Fluent.FluentDataflow.LinkWithCompletion``1(System.Threading.Tasks.Dataflow.ISourceBlock{``0},System.Threading.Tasks.Dataflow.ITargetBlock{``0})
+  name: LinkWithCompletion<TOutput>(ISourceBlock<TOutput>, ITargetBlock<TOutput>)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_LinkWithCompletion__1_System_Threading_Tasks_Dataflow_ISourceBlock___0__System_Threading_Tasks_Dataflow_ITargetBlock___0__
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.LinkWithCompletion``1(System.Threading.Tasks.Dataflow.ISourceBlock{``0},System.Threading.Tasks.Dataflow.ITargetBlock{``0})
+  name.vb: LinkWithCompletion(Of TOutput)(ISourceBlock(Of TOutput), ITargetBlock(Of TOutput))
+  fullName: BiDaFlow.Fluent.FluentDataflow.LinkWithCompletion<TOutput>(System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>, System.Threading.Tasks.Dataflow.ITargetBlock<TOutput>)
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.LinkWithCompletion(Of TOutput)(System.Threading.Tasks.Dataflow.ISourceBlock(Of TOutput), System.Threading.Tasks.Dataflow.ITargetBlock(Of TOutput))
+  nameWithType: FluentDataflow.LinkWithCompletion<TOutput>(ISourceBlock<TOutput>, ITargetBlock<TOutput>)
+  nameWithType.vb: FluentDataflow.LinkWithCompletion(Of TOutput)(ISourceBlock(Of TOutput), ITargetBlock(Of TOutput))
+- uid: BiDaFlow.Fluent.FluentDataflow.Merge*
+  name: Merge
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_Merge_
+  commentId: Overload:BiDaFlow.Fluent.FluentDataflow.Merge
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.FluentDataflow.Merge
+  nameWithType: FluentDataflow.Merge
+- uid: BiDaFlow.Fluent.FluentDataflow.Merge``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Dataflow.ISourceBlock{``0}})
+  name: Merge<TOutput>(IEnumerable<ISourceBlock<TOutput>>)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_Merge__1_System_Collections_Generic_IEnumerable_System_Threading_Tasks_Dataflow_ISourceBlock___0___
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.Merge``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Dataflow.ISourceBlock{``0}})
+  name.vb: Merge(Of TOutput)(IEnumerable(Of ISourceBlock(Of TOutput)))
+  fullName: BiDaFlow.Fluent.FluentDataflow.Merge<TOutput>(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>>)
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.Merge(Of TOutput)(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Dataflow.ISourceBlock(Of TOutput)))
+  nameWithType: FluentDataflow.Merge<TOutput>(IEnumerable<ISourceBlock<TOutput>>)
+  nameWithType.vb: FluentDataflow.Merge(Of TOutput)(IEnumerable(Of ISourceBlock(Of TOutput)))
+- uid: BiDaFlow.Fluent.FluentDataflow.Merge``1(System.Threading.Tasks.Dataflow.ISourceBlock{``0}[])
+  name: Merge<TOutput>(ISourceBlock<TOutput>[])
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_Merge__1_System_Threading_Tasks_Dataflow_ISourceBlock___0____
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.Merge``1(System.Threading.Tasks.Dataflow.ISourceBlock{``0}[])
+  name.vb: Merge(Of TOutput)(ISourceBlock(Of TOutput)())
+  fullName: BiDaFlow.Fluent.FluentDataflow.Merge<TOutput>(System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>[])
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.Merge(Of TOutput)(System.Threading.Tasks.Dataflow.ISourceBlock(Of TOutput)())
+  nameWithType: FluentDataflow.Merge<TOutput>(ISourceBlock<TOutput>[])
+  nameWithType.vb: FluentDataflow.Merge(Of TOutput)(ISourceBlock(Of TOutput)())
+- uid: BiDaFlow.Fluent.FluentDataflow.Merge``2(System.Threading.Tasks.Dataflow.IPropagatorBlock{``0,``1},System.Collections.Generic.IEnumerable{System.Threading.Tasks.Dataflow.ISourceBlock{``1}})
+  name: Merge<TInput, TOutput>(IPropagatorBlock<TInput, TOutput>, IEnumerable<ISourceBlock<TOutput>>)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_Merge__2_System_Threading_Tasks_Dataflow_IPropagatorBlock___0___1__System_Collections_Generic_IEnumerable_System_Threading_Tasks_Dataflow_ISourceBlock___1___
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.Merge``2(System.Threading.Tasks.Dataflow.IPropagatorBlock{``0,``1},System.Collections.Generic.IEnumerable{System.Threading.Tasks.Dataflow.ISourceBlock{``1}})
+  name.vb: Merge(Of TInput, TOutput)(IPropagatorBlock(Of TInput, TOutput), IEnumerable(Of ISourceBlock(Of TOutput)))
+  fullName: BiDaFlow.Fluent.FluentDataflow.Merge<TInput, TOutput>(System.Threading.Tasks.Dataflow.IPropagatorBlock<TInput, TOutput>, System.Collections.Generic.IEnumerable<System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>>)
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.Merge(Of TInput, TOutput)(System.Threading.Tasks.Dataflow.IPropagatorBlock(Of TInput, TOutput), System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Dataflow.ISourceBlock(Of TOutput)))
+  nameWithType: FluentDataflow.Merge<TInput, TOutput>(IPropagatorBlock<TInput, TOutput>, IEnumerable<ISourceBlock<TOutput>>)
+  nameWithType.vb: FluentDataflow.Merge(Of TInput, TOutput)(IPropagatorBlock(Of TInput, TOutput), IEnumerable(Of ISourceBlock(Of TOutput)))
+- uid: BiDaFlow.Fluent.FluentDataflow.Merge``2(System.Threading.Tasks.Dataflow.IPropagatorBlock{``0,``1},System.Threading.Tasks.Dataflow.ISourceBlock{``1}[])
+  name: Merge<TInput, TOutput>(IPropagatorBlock<TInput, TOutput>, ISourceBlock<TOutput>[])
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_Merge__2_System_Threading_Tasks_Dataflow_IPropagatorBlock___0___1__System_Threading_Tasks_Dataflow_ISourceBlock___1____
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.Merge``2(System.Threading.Tasks.Dataflow.IPropagatorBlock{``0,``1},System.Threading.Tasks.Dataflow.ISourceBlock{``1}[])
+  name.vb: Merge(Of TInput, TOutput)(IPropagatorBlock(Of TInput, TOutput), ISourceBlock(Of TOutput)())
+  fullName: BiDaFlow.Fluent.FluentDataflow.Merge<TInput, TOutput>(System.Threading.Tasks.Dataflow.IPropagatorBlock<TInput, TOutput>, System.Threading.Tasks.Dataflow.ISourceBlock<TOutput>[])
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.Merge(Of TInput, TOutput)(System.Threading.Tasks.Dataflow.IPropagatorBlock(Of TInput, TOutput), System.Threading.Tasks.Dataflow.ISourceBlock(Of TOutput)())
+  nameWithType: FluentDataflow.Merge<TInput, TOutput>(IPropagatorBlock<TInput, TOutput>, ISourceBlock<TOutput>[])
+  nameWithType.vb: FluentDataflow.Merge(Of TInput, TOutput)(IPropagatorBlock(Of TInput, TOutput), ISourceBlock(Of TOutput)())
+- uid: BiDaFlow.Fluent.FluentDataflow.PropagateCompletion(System.Threading.Tasks.Dataflow.IDataflowBlock,System.Threading.Tasks.Dataflow.IDataflowBlock)
+  name: PropagateCompletion(IDataflowBlock, IDataflowBlock)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_PropagateCompletion_System_Threading_Tasks_Dataflow_IDataflowBlock_System_Threading_Tasks_Dataflow_IDataflowBlock_
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.PropagateCompletion(System.Threading.Tasks.Dataflow.IDataflowBlock,System.Threading.Tasks.Dataflow.IDataflowBlock)
+  fullName: BiDaFlow.Fluent.FluentDataflow.PropagateCompletion(System.Threading.Tasks.Dataflow.IDataflowBlock, System.Threading.Tasks.Dataflow.IDataflowBlock)
+  nameWithType: FluentDataflow.PropagateCompletion(IDataflowBlock, IDataflowBlock)
+- uid: BiDaFlow.Fluent.FluentDataflow.PropagateCompletion(System.Threading.Tasks.Dataflow.IDataflowBlock,System.Threading.Tasks.Dataflow.IDataflowBlock,BiDaFlow.Fluent.WhenPropagate)
+  name: PropagateCompletion(IDataflowBlock, IDataflowBlock, WhenPropagate)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_PropagateCompletion_System_Threading_Tasks_Dataflow_IDataflowBlock_System_Threading_Tasks_Dataflow_IDataflowBlock_BiDaFlow_Fluent_WhenPropagate_
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.PropagateCompletion(System.Threading.Tasks.Dataflow.IDataflowBlock,System.Threading.Tasks.Dataflow.IDataflowBlock,BiDaFlow.Fluent.WhenPropagate)
+  fullName: BiDaFlow.Fluent.FluentDataflow.PropagateCompletion(System.Threading.Tasks.Dataflow.IDataflowBlock, System.Threading.Tasks.Dataflow.IDataflowBlock, BiDaFlow.Fluent.WhenPropagate)
+  nameWithType: FluentDataflow.PropagateCompletion(IDataflowBlock, IDataflowBlock, WhenPropagate)
+- uid: BiDaFlow.Fluent.FluentDataflow.PropagateCompletion*
+  name: PropagateCompletion
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_PropagateCompletion_
+  commentId: Overload:BiDaFlow.Fluent.FluentDataflow.PropagateCompletion
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.FluentDataflow.PropagateCompletion
+  nameWithType: FluentDataflow.PropagateCompletion
+- uid: BiDaFlow.Fluent.FluentDataflow.RunWith*
+  name: RunWith
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_RunWith_
+  commentId: Overload:BiDaFlow.Fluent.FluentDataflow.RunWith
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.FluentDataflow.RunWith
+  nameWithType: FluentDataflow.RunWith
+- uid: BiDaFlow.Fluent.FluentDataflow.RunWith``1(System.Threading.Tasks.Dataflow.ISourceBlock{``0},System.Threading.Tasks.Dataflow.ITargetBlock{``0})
+  name: RunWith<T>(ISourceBlock<T>, ITargetBlock<T>)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_RunWith__1_System_Threading_Tasks_Dataflow_ISourceBlock___0__System_Threading_Tasks_Dataflow_ITargetBlock___0__
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.RunWith``1(System.Threading.Tasks.Dataflow.ISourceBlock{``0},System.Threading.Tasks.Dataflow.ITargetBlock{``0})
+  name.vb: RunWith(Of T)(ISourceBlock(Of T), ITargetBlock(Of T))
+  fullName: BiDaFlow.Fluent.FluentDataflow.RunWith<T>(System.Threading.Tasks.Dataflow.ISourceBlock<T>, System.Threading.Tasks.Dataflow.ITargetBlock<T>)
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.RunWith(Of T)(System.Threading.Tasks.Dataflow.ISourceBlock(Of T), System.Threading.Tasks.Dataflow.ITargetBlock(Of T))
+  nameWithType: FluentDataflow.RunWith<T>(ISourceBlock<T>, ITargetBlock<T>)
+  nameWithType.vb: FluentDataflow.RunWith(Of T)(ISourceBlock(Of T), ITargetBlock(Of T))
+- uid: BiDaFlow.Fluent.FluentDataflow.ToSourceBlock*
+  name: ToSourceBlock
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_ToSourceBlock_
+  commentId: Overload:BiDaFlow.Fluent.FluentDataflow.ToSourceBlock
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.FluentDataflow.ToSourceBlock
+  nameWithType: FluentDataflow.ToSourceBlock
+- uid: BiDaFlow.Fluent.FluentDataflow.ToSourceBlock``1(System.Collections.Generic.IEnumerator{``0},System.Threading.CancellationToken)
+  name: ToSourceBlock<TOutput>(IEnumerator<TOutput>, CancellationToken)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_ToSourceBlock__1_System_Collections_Generic_IEnumerator___0__System_Threading_CancellationToken_
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.ToSourceBlock``1(System.Collections.Generic.IEnumerator{``0},System.Threading.CancellationToken)
+  name.vb: ToSourceBlock(Of TOutput)(IEnumerator(Of TOutput), CancellationToken)
+  fullName: BiDaFlow.Fluent.FluentDataflow.ToSourceBlock<TOutput>(System.Collections.Generic.IEnumerator<TOutput>, System.Threading.CancellationToken)
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.ToSourceBlock(Of TOutput)(System.Collections.Generic.IEnumerator(Of TOutput), System.Threading.CancellationToken)
+  nameWithType: FluentDataflow.ToSourceBlock<TOutput>(IEnumerator<TOutput>, CancellationToken)
+  nameWithType.vb: FluentDataflow.ToSourceBlock(Of TOutput)(IEnumerator(Of TOutput), CancellationToken)
+- uid: BiDaFlow.Fluent.FluentDataflow.ToSourceBlock``1(System.Collections.Generic.IEnumerator{``0},System.Threading.Tasks.TaskScheduler,System.Threading.CancellationToken)
+  name: ToSourceBlock<TOutput>(IEnumerator<TOutput>, TaskScheduler, CancellationToken)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_ToSourceBlock__1_System_Collections_Generic_IEnumerator___0__System_Threading_Tasks_TaskScheduler_System_Threading_CancellationToken_
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.ToSourceBlock``1(System.Collections.Generic.IEnumerator{``0},System.Threading.Tasks.TaskScheduler,System.Threading.CancellationToken)
+  name.vb: ToSourceBlock(Of TOutput)(IEnumerator(Of TOutput), TaskScheduler, CancellationToken)
+  fullName: BiDaFlow.Fluent.FluentDataflow.ToSourceBlock<TOutput>(System.Collections.Generic.IEnumerator<TOutput>, System.Threading.Tasks.TaskScheduler, System.Threading.CancellationToken)
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.ToSourceBlock(Of TOutput)(System.Collections.Generic.IEnumerator(Of TOutput), System.Threading.Tasks.TaskScheduler, System.Threading.CancellationToken)
+  nameWithType: FluentDataflow.ToSourceBlock<TOutput>(IEnumerator<TOutput>, TaskScheduler, CancellationToken)
+  nameWithType.vb: FluentDataflow.ToSourceBlock(Of TOutput)(IEnumerator(Of TOutput), TaskScheduler, CancellationToken)
+- uid: BiDaFlow.Fluent.FluentDataflow.ToTargetBlock*
+  name: ToTargetBlock
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_ToTargetBlock_
+  commentId: Overload:BiDaFlow.Fluent.FluentDataflow.ToTargetBlock
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.FluentDataflow.ToTargetBlock
+  nameWithType: FluentDataflow.ToTargetBlock
+- uid: BiDaFlow.Fluent.FluentDataflow.ToTargetBlock``2(System.Threading.Tasks.Dataflow.IPropagatorBlock{``0,``1},System.Threading.Tasks.Dataflow.ITargetBlock{``1})
+  name: ToTargetBlock<TInput, TOutput>(IPropagatorBlock<TInput, TOutput>, ITargetBlock<TOutput>)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_ToTargetBlock__2_System_Threading_Tasks_Dataflow_IPropagatorBlock___0___1__System_Threading_Tasks_Dataflow_ITargetBlock___1__
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.ToTargetBlock``2(System.Threading.Tasks.Dataflow.IPropagatorBlock{``0,``1},System.Threading.Tasks.Dataflow.ITargetBlock{``1})
+  name.vb: ToTargetBlock(Of TInput, TOutput)(IPropagatorBlock(Of TInput, TOutput), ITargetBlock(Of TOutput))
+  fullName: BiDaFlow.Fluent.FluentDataflow.ToTargetBlock<TInput, TOutput>(System.Threading.Tasks.Dataflow.IPropagatorBlock<TInput, TOutput>, System.Threading.Tasks.Dataflow.ITargetBlock<TOutput>)
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.ToTargetBlock(Of TInput, TOutput)(System.Threading.Tasks.Dataflow.IPropagatorBlock(Of TInput, TOutput), System.Threading.Tasks.Dataflow.ITargetBlock(Of TOutput))
+  nameWithType: FluentDataflow.ToTargetBlock<TInput, TOutput>(IPropagatorBlock<TInput, TOutput>, ITargetBlock<TOutput>)
+  nameWithType.vb: FluentDataflow.ToTargetBlock(Of TInput, TOutput)(IPropagatorBlock(Of TInput, TOutput), ITargetBlock(Of TOutput))
+- uid: BiDaFlow.Fluent.WhenPropagate
+  name: WhenPropagate
+  href: api/BiDaFlow.Fluent.WhenPropagate.html
+  commentId: T:BiDaFlow.Fluent.WhenPropagate
+  fullName: BiDaFlow.Fluent.WhenPropagate
+  nameWithType: WhenPropagate
+- uid: BiDaFlow.Fluent.WhenPropagate.Both
+  name: Both
+  href: api/BiDaFlow.Fluent.WhenPropagate.html#BiDaFlow_Fluent_WhenPropagate_Both
+  commentId: F:BiDaFlow.Fluent.WhenPropagate.Both
+  fullName: BiDaFlow.Fluent.WhenPropagate.Both
+  nameWithType: WhenPropagate.Both
+- uid: BiDaFlow.Fluent.WhenPropagate.Complete
+  name: Complete
+  href: api/BiDaFlow.Fluent.WhenPropagate.html#BiDaFlow_Fluent_WhenPropagate_Complete
+  commentId: F:BiDaFlow.Fluent.WhenPropagate.Complete
+  fullName: BiDaFlow.Fluent.WhenPropagate.Complete
+  nameWithType: WhenPropagate.Complete
+- uid: BiDaFlow.Fluent.WhenPropagate.Fault
+  name: Fault
+  href: api/BiDaFlow.Fluent.WhenPropagate.html#BiDaFlow_Fluent_WhenPropagate_Fault
+  commentId: F:BiDaFlow.Fluent.WhenPropagate.Fault
+  fullName: BiDaFlow.Fluent.WhenPropagate.Fault
+  nameWithType: WhenPropagate.Fault

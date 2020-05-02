@@ -1,0 +1,344 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/azyobuzin/source/repos/BiDaFlow/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Actors.Actor-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Actors.Actor-1.html",
+          "hash": "NfYFxWgrIzCrZgrtRnc7Jw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Actors.Actor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Actors.Actor.html",
+          "hash": "bZjRYwE4EK+2CpK0AJ3eTw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Actors.ActorExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Actors.ActorExtensions.html",
+          "hash": "dV400YWNF/yv2qfa3EkOYQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Actors.ActorOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Actors.ActorOptions.html",
+          "hash": "lppZyIM4NXOLN8e4mrybXQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Actors.Envelope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Actors.Envelope.html",
+          "hash": "AAtuNg7fbetzMieRFxUmeQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Actors.EnvelopeWithReply-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Actors.EnvelopeWithReply-1.html",
+          "hash": "I4bXZxuyX1VLBphwojGmKw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Actors.KilledBySupervisorException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Actors.KilledBySupervisorException.html",
+          "hash": "JnTsQDE2AmwJ8YoI1cZnSA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Actors.MessageNeverProcessedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Actors.MessageNeverProcessedException.html",
+          "hash": "xDQVCHeN8FtskYCYSSOt4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Actors.RescueAction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Actors.RescueAction.html",
+          "hash": "8rB/O7togx81diVXghdjPg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Actors.SupervisedBlock-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Actors.SupervisedBlock-1.html",
+          "hash": "0NiGGOGaGYxyU/0J+vGDGA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Actors.SupervisedBlockExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Actors.SupervisedBlockExtensions.html",
+          "hash": "BA/odHDEStyI+vwnqcniJQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Actors.SupervisionOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Actors.SupervisionOptions.html",
+          "hash": "0tHTJlVk9mfhsvjxxnOPfQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Actors.Supervisor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Actors.Supervisor.html",
+          "hash": "+IfB+FxpMfdxzhdZr/5i4A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Actors.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Actors.html",
+          "hash": "NAXztIMdXlZpdWjgDzZ+aw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html",
+          "hash": "QO3ZpjzMFemom6mJ+JvEuQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.html",
+          "hash": "F76m8O53Tlern+Shz86b4g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.DataflowAsyncEnumerable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.DataflowAsyncEnumerable.html",
+          "hash": "VBA/dF4uTYrdRaGvSbq/6w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.html",
+          "hash": "r9cHXu+Dhq7gHM2h7rj2Ug=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.WhenPropagate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.WhenPropagate.html",
+          "hash": "wG+Hwt3tRZX6GExVietoYg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.html",
+          "hash": "9xro5Qv/Z1U6pzFDh5a+rg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "BTWe5pUCzbmWMBOiyBiTmw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "sWB6jwH+/lenUzToHVHwYA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "qwiymCjRaPmRR8UzT2HoQA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "3VjsrbBIcBPUMlxlLNm9AQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 2,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 20,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
