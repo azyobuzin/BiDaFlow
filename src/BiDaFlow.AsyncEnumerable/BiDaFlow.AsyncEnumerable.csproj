@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <RootNamespace>BiDaFlow</RootNamespace>
+    <PackageTags>Parallel;Dataflow</PackageTags>
+    <Description>Integration with TPL Dataflow and AsyncEnumerable</Description>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
@@ -16,5 +18,11 @@
   <ItemGroup>
     <ProjectReference Include="..\BiDaFlow\BiDaFlow.csproj" />
   </ItemGroup>
+
+  <Target Name="SetDependencyVersion" AfterTargets="_GetProjectReferenceVersions">
+    <ItemGroup>
+      <_ProjectReferencesWithVersions Update="..\BiDaFlow\BiDaFlow.csproj" ProjectVersion="[0.1,0.2)" />
+    </ItemGroup>
+  </Target>
 
 </Project>
