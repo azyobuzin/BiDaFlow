@@ -2,6 +2,13 @@
 
 Battery Included Dataflow Library
 
+[API Documentation](https://azyobuzin.github.io/BiDaFlow/api/index.html)
+
+# NuGet
+
+- [BiDaFlow](https://www.nuget.org/packages/BiDaFlow)
+- [BiDaFlow.AsyncEnumerable](https://www.nuget.org/packages/BiDaFlow.AsyncEnumerable)
+
 # Features
 
 ## Fluent API for TPL Dataflow
