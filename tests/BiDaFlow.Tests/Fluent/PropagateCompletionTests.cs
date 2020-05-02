@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using BiDaFlow.Fluent;
 using ChainingAssertion;
@@ -9,7 +10,7 @@ namespace BiDaFlow.Tests.Fluent
     public class PropagateCompletionTests
     {
         [Fact]
-        public void TestPropagateComplete()
+        public async Task TestPropagateComplete()
         {
             var sourceBlock = new BufferBlock<int>();
             var targetBlock = new BufferBlock<int>();
@@ -19,11 +20,11 @@ namespace BiDaFlow.Tests.Fluent
 
             sourceBlock.Complete();
 
-            targetBlock.Completion.Wait(TestUtils.CancelSometimeSoon());
+            await targetBlock.Completion.CompleteSoon();
         }
 
         [Fact]
-        public void TestPropagateFault()
+        public async Task TestPropagateFault()
         {
             var sourceBlock = new BufferBlock<int>();
             var targetBlock = new BufferBlock<int>();
@@ -33,15 +34,15 @@ namespace BiDaFlow.Tests.Fluent
 
             ((IDataflowBlock)sourceBlock).Fault(new Exception("test"));
 
-            var ex = Assert
-                .Throws<AggregateException>(() => targetBlock.Completion.Wait(TestUtils.CancelSometimeSoon()))
+            var aex = (await Assert
+                .ThrowsAsync<AggregateException>(() => targetBlock.Completion.CompleteSoon()))
                 .Flatten();
-            ex.InnerExceptions.Count.Is(1);
-            ex.InnerException!.Message.Is("test");
+            aex.InnerExceptions.Count.Is(1);
+            aex.InnerException!.Message.Is("test");
         }
 
         [Fact]
-        public void TestUnlink()
+        public async Task TestUnlink()
         {
             var sourceBlock = new BufferBlock<int>();
             var targetBlock = new BufferBlock<int>();
@@ -52,7 +53,7 @@ namespace BiDaFlow.Tests.Fluent
             unlinker.Dispose();
             sourceBlock.Complete();
 
-            Assert.ThrowsAny<OperationCanceledException>(() => targetBlock.Completion.Wait(TestUtils.CancelSometimeSoon()));
+            await targetBlock.Completion.NeverComplete();
             sourceBlock.Completion.IsCompleted.IsTrue();
         }
     }

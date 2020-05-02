@@ -41,9 +41,9 @@ namespace BiDaFlow.Tests.Blocks
             testBlock.Post(2).IsTrue();
             testBlock.Post(3).IsTrue();
 
-            target1.Receive(TestUtils.CancelSometimeSoon()).Is(1);
-            target2.Receive(TestUtils.CancelSometimeSoon()).Is(3);
-            target3.Receive(TestUtils.CancelSometimeSoon()).Is(2);
+            target1.Receive(TestUtils.SometimeSoon).Is(1);
+            target2.Receive(TestUtils.SometimeSoon).Is(3);
+            target3.Receive(TestUtils.SometimeSoon).Is(2);
         }
 
         [Fact]
@@ -55,7 +55,7 @@ namespace BiDaFlow.Tests.Blocks
 
             testBlock.Post(1).IsTrue();
 
-            targetBlock.Receive(TestUtils.CancelSometimeSoon()).Is(1);
+            (await targetBlock.ReceiveAsync(TestUtils.SometimeSoon)).Is(1);
             await targetBlock.Completion.NeverComplete();
 
             testBlock.Post(2).IsTrue();

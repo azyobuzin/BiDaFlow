@@ -25,15 +25,15 @@ namespace BiDaFlow.Tests.Blocks
             inputBlock.Count.Is(3);
             transformBlock.Completion.IsCompleted.IsFalse();
 
-            transformBlock.Receive().Is(10);
+            (await transformBlock.ReceiveAsync(TestUtils.SometimeSoon)).Is(10);
             inputBlock.Count.Is(2);
             transformBlock.Completion.IsCompleted.IsFalse();
 
-            transformBlock.Receive().Is(20);
+            (await transformBlock.ReceiveAsync(TestUtils.SometimeSoon)).Is(20);
             inputBlock.Count.Is(1);
             transformBlock.Completion.IsCompleted.IsFalse();
 
-            transformBlock.Receive().Is(30);
+            (await transformBlock.ReceiveAsync(TestUtils.SometimeSoon)).Is(30);
             inputBlock.Count.Is(0);
 
             await transformBlock.Completion.CompleteSoon();
@@ -69,9 +69,9 @@ namespace BiDaFlow.Tests.Blocks
             transformBlock.Post(2).IsTrue();
             transformBlock.Post(3).IsTrue();
 
-            target1.Receive(TestUtils.CancelSometimeSoon()).Is(1);
-            target2.Receive(TestUtils.CancelSometimeSoon()).Is(3);
-            target3.Receive(TestUtils.CancelSometimeSoon()).Is(2);
+            target1.Receive(TestUtils.SometimeSoon).Is(1);
+            target2.Receive(TestUtils.SometimeSoon).Is(3);
+            target3.Receive(TestUtils.SometimeSoon).Is(2);
         }
 
         [Fact]
@@ -83,7 +83,7 @@ namespace BiDaFlow.Tests.Blocks
 
             transformBlock.Post(1).IsTrue();
 
-            targetBlock.Receive(TestUtils.CancelSometimeSoon()).Is(1);
+            (await targetBlock.ReceiveAsync(TestUtils.SometimeSoon)).Is(1);
             await targetBlock.Completion.NeverComplete();
 
             transformBlock.Post(2).IsFalse();

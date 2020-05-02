@@ -96,22 +96,16 @@ namespace BiDaFlow.Internal
                 this.CompleteCore();
         }
 
-        public void Fault(Exception exception, bool enumerating)
+        public void Fault(Exception exception)
+        {
+            this.AddException(exception);
+            this.Complete(false);
+        }
+
+        public void AddException(Exception exception)
         {
             if (exception == null) throw new ArgumentNullException(nameof(exception));
-
             lock (this._exceptions) this._exceptions.Add(exception);
-            this._completeRequested = true;
-
-            if (enumerating)
-            {
-                Debug.Assert(this.State == StateEnum.Enumerating);
-                this.CompleteCore();
-                return;
-            }
-
-            if (this.TransitionAtomically(StateEnum.WaitingForLink, StateEnum.Completed))
-                this.CompleteCore();
         }
 
         public void OfferItem(T item)
@@ -391,22 +385,26 @@ namespace BiDaFlow.Internal
             {
                 this.State = StateEnum.Completed;
 
+                var isError = false;
                 lock (this._exceptions)
                 {
                     if (this._exceptions.Count > 0)
                     {
+                        isError = true;
                         this._tcs.TrySetException(this._exceptions);
-                        return;
                     }
                 }
 
-                if (this._cancellationToken.IsCancellationRequested)
+                if (!isError)
                 {
-                    this._tcs.TrySetCanceled(this._cancellationToken);
-                }
-                else
-                {
-                    this._tcs.TrySetResult(default);
+                    if (this._cancellationToken.IsCancellationRequested)
+                    {
+                        this._tcs.TrySetCanceled(this._cancellationToken);
+                    }
+                    else
+                    {
+                        this._tcs.TrySetResult(default);
+                    }
                 }
 
                 var completionTask = this.Completion;

@@ -11,18 +11,21 @@ namespace BiDaFlow.Blocks
     {
         private readonly EnumerableSourceCore<T> _core;
         private readonly IEnumerable<T>? _enumerable;
+        private readonly CancellationToken _cancellationToken;
         private IEnumerator<T>? _enumerator;
 
         public EnumerableSourceBlock(IEnumerable<T> enumerable, TaskScheduler? taskScheduler, CancellationToken cancellationToken)
         {
             this._core = new EnumerableSourceCore<T>(this, this.Enumerate, taskScheduler, cancellationToken);
             this._enumerable = enumerable;
+            this._cancellationToken = cancellationToken;
         }
 
         public EnumerableSourceBlock(IEnumerator<T> enumerator, TaskScheduler? taskScheduler, CancellationToken cancellationToken)
         {
             this._core = new EnumerableSourceCore<T>(this, this.Enumerate, taskScheduler, cancellationToken);
             this._enumerator = enumerator;
+            this._cancellationToken = cancellationToken;
         }
 
         private void Enumerate()
@@ -46,13 +49,29 @@ namespace BiDaFlow.Blocks
                 }
                 else
                 {
-                    this._enumerator.Dispose();
-                    this._core.Complete(true);
+                    Cleanup();
                 }
             }
             catch (Exception ex)
             {
-                this._core.Fault(ex, true);
+                var canceled = ex is OperationCanceledException && this._cancellationToken.IsCancellationRequested;
+                if (!canceled) this._core.AddException(ex);
+
+                Cleanup();
+            }
+
+            void Cleanup()
+            {
+                try
+                {
+                    this._enumerator?.Dispose();
+                }
+                catch (Exception disposeException)
+                {
+                    this._core.AddException(disposeException);
+                }
+
+                this._core.Complete(true);
             }
         }
 
@@ -62,7 +81,7 @@ namespace BiDaFlow.Blocks
             => this._core.Complete(false);
 
         void IDataflowBlock.Fault(Exception exception)
-            => this._core.Fault(exception, false);
+            => this._core.Fault(exception);
 
         IDisposable ISourceBlock<T>.LinkTo(ITargetBlock<T> target, DataflowLinkOptions linkOptions)
             => this._core.LinkTo(target, linkOptions);

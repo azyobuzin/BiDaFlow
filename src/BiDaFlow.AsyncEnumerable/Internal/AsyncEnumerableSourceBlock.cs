@@ -21,7 +21,6 @@ namespace BiDaFlow.Internal
             this._cancellationToken = cancellationToken;
         }
 
-
         private async void Enumerate()
         {
             // Do not use ConfigureAwait(false) to respect taskScheduler
@@ -45,17 +44,32 @@ namespace BiDaFlow.Internal
                 }
                 else
                 {
-                    await this._enumerator.DisposeAsync();
-                    this._core.Complete(true);
+                    await Cleanup();
                 }
-            }
-            catch (OperationCanceledException) when (this._cancellationToken.IsCancellationRequested)
-            {
-                this._core.Complete(true);
             }
             catch (Exception ex)
             {
-                this._core.Fault(ex, true);
+                var canceled = ex is OperationCanceledException && this._cancellationToken.IsCancellationRequested;
+                if (!canceled) this._core.AddException(ex);
+
+                await Cleanup();
+            }
+
+            async ValueTask Cleanup()
+            {
+                if (this._enumerator != null)
+                {
+                    try
+                    {
+                        await this._enumerator.DisposeAsync();
+                    }
+                    catch (Exception disposeException)
+                    {
+                        this._core.AddException(disposeException);
+                    }
+                }
+
+                this._core.Complete(true);
             }
         }
 
@@ -65,7 +79,7 @@ namespace BiDaFlow.Internal
             => this._core.Complete(false);
 
         void IDataflowBlock.Fault(Exception exception)
-            => this._core.Fault(exception, false);
+            => this._core.Fault(exception);
 
         IDisposable ISourceBlock<T>.LinkTo(ITargetBlock<T> target, DataflowLinkOptions linkOptions)
             => this._core.LinkTo(target, linkOptions);
