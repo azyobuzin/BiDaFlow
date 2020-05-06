@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BiDaFlow.Tests", "tests\BiD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BiDaFlow.AsyncEnumerable", "src\BiDaFlow.AsyncEnumerable\BiDaFlow.AsyncEnumerable.csproj", "{E10845ED-D52B-42BE-875F-63A977C4080E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiDaFlow.Actors", "src\BiDaFlow.Actors\BiDaFlow.Actors.csproj", "{165B2FBF-E47D-4950-B5CE-0174E4F64CC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BiDaFlow.Actors", "src\BiDaFlow.Actors\BiDaFlow.Actors.csproj", "{165B2FBF-E47D-4950-B5CE-0174E4F64CC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiDaFlow.ReactiveStreams", "src\BiDaFlow.ReactiveStreams\BiDaFlow.ReactiveStreams.csproj", "{661FBE1A-B537-4852-9CA1-47E7A3A9EED1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{165B2FBF-E47D-4950-B5CE-0174E4F64CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{165B2FBF-E47D-4950-B5CE-0174E4F64CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{165B2FBF-E47D-4950-B5CE-0174E4F64CC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{661FBE1A-B537-4852-9CA1-47E7A3A9EED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{661FBE1A-B537-4852-9CA1-47E7A3A9EED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{661FBE1A-B537-4852-9CA1-47E7A3A9EED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{661FBE1A-B537-4852-9CA1-47E7A3A9EED1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
