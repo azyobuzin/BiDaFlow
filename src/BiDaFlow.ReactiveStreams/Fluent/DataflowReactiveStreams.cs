@@ -9,10 +9,27 @@ namespace BiDaFlow.Fluent
 {
     public static class DataflowReactiveStreams
     {
-        public static ISourceBlock<TOutput> AsSourceBlock<TOutput>(this IPublisher<TOutput> source, int prefetch)
+        public static ISourceBlock<TOutput> AsSourceBlock<TOutput>(this IPublisher<TOutput> source, int prefetch, CancellationToken cancellationToken = default)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (prefetch < 1) throw new ArgumentOutOfRangeException(nameof(prefetch), "prefetch cannot be less than 1.");
+
+            throw new NotImplementedException();
+        }
+
+        public static ITargetBlock<TInput> ToTargetBlock<TInput>(this ISubscriber<TInput> subscriber)
+        {
+            if (subscriber == null) throw new ArgumentNullException(nameof(subscriber));
+
+            throw new NotImplementedException();
+        }
+
+        public static IPropagatorBlock<TInput, TOutput> ToPropagatorBlock<TInput, TOutput>(
+            this IProcessor<TInput, TOutput> processor,
+            int prefetch,
+            CancellationToken cancellationToken = default)
+        {
+            if (processor == null) throw new ArgumentNullException(nameof(processor));
 
             throw new NotImplementedException();
         }
@@ -47,9 +64,11 @@ namespace BiDaFlow.Fluent
 
         public static IPublisher<TOutput> RunThroughDataflowBlock<TInput, TOutput>(
             this IPublisher<TInput> source,
+            int prefetch,
             Func<CancellationToken, IPropagatorBlock<TInput, TOutput>> propagatorFactory)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (prefetch < 1) throw new ArgumentOutOfRangeException(nameof(prefetch), "prefetch cannot be less than 1.");
             if (propagatorFactory == null) throw new ArgumentNullException(nameof(propagatorFactory));
 
             throw new NotImplementedException();
@@ -57,9 +76,11 @@ namespace BiDaFlow.Fluent
 
         public static IPublisher<TOutput> RunThroughDataflowBlock<TInput, TOutput>(
             this IPublisher<TInput> source,
+            int prefetch,
             Func<IPropagatorBlock<TInput, TOutput>> propagatorFactory)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (prefetch < 1) throw new ArgumentOutOfRangeException(nameof(prefetch), "prefetch cannot be less than 1.");
             if (propagatorFactory == null) throw new ArgumentNullException(nameof(propagatorFactory));
 
             throw new NotImplementedException();

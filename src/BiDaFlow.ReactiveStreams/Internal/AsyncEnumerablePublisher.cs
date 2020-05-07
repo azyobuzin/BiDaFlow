@@ -58,7 +58,7 @@ namespace BiDaFlow.Internal
 
                 var current = this._requested;
                 var newVal = unchecked(current + n);
-                if (newVal < 0) newVal = long.MaxValue;
+                if (newVal < current) newVal = long.MaxValue;
                 this._requested = newVal;
 
                 if (!this._workerRunning)
