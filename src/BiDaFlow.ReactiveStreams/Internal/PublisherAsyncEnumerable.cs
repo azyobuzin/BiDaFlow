@@ -39,36 +39,38 @@ namespace BiDaFlow.Internal
 
             if (cancellationToken.CanBeCanceled)
             {
-                _cancellationReg = cancellationToken.Register(async () =>
+                _cancellationReg = cancellationToken.Register(HandleCancellation);
+            }
+
+            async void HandleCancellation()
+            {
+                var subscription = await this._subscription.Task.ConfigureAwait(false);
+
+                Exception? exception = null;
+
+                lock (this.SubscriptionLock)
                 {
-                    var subscription = await this._subscription.Task.ConfigureAwait(false);
-
-                    Exception? exception = null;
-
-                    lock (this.SubscriptionLock)
+                    if (!this._isCompleted)
                     {
-                        if (!this._isCompleted)
+                        this._isCompleted = true;
+                        try
                         {
-                            this._isCompleted = true;
-                            try
-                            {
-                                subscription.Cancel();
-                            }
-                            catch (Exception ex)
-                            {
-                                exception = ex;
-                            }
+                            subscription.Cancel();
+                        }
+                        catch (Exception ex)
+                        {
+                            exception = ex;
                         }
                     }
+                }
 
-                    if (WriteResult())
-                    {
-                        if (exception == null)
-                            this._taskHelper.SetResult(null);
-                        else
-                            this._taskHelper.SetException(exception);
-                    }
-                });
+                if (WriteResult())
+                {
+                    if (exception == null)
+                        this._taskHelper.SetResult(null);
+                    else
+                        this._taskHelper.SetException(exception);
+                }
             }
         }
 

@@ -28,7 +28,7 @@ namespace BiDaFlow.Internal
     internal sealed class SourceBlockAsyncEnumerator<T> : IAsyncEnumerator<T>, ITargetBlock<T>, IValueTaskSource<bool>
     {
         private readonly ISourceBlock<T> _source;
-        private readonly CancellationToken _cancellationToken;
+        private CancellationToken _cancellationToken;
         private ManualResetValueTaskSourceCore<bool?> _taskHelper;
         private readonly IDisposable _unlinker;
         private CancellationTokenRegistration _cancellationReg;

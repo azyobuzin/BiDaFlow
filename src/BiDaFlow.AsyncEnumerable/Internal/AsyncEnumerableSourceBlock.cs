@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
@@ -21,6 +22,7 @@ namespace BiDaFlow.Internal
             this._cancellationToken = cancellationToken;
         }
 
+        [SuppressMessage("Usage", "VSTHRD100:Avoid async void methods", Justification = "All exceptions will be handled.")]
         private async void Enumerate()
         {
             // Do not use ConfigureAwait(false) to respect taskScheduler

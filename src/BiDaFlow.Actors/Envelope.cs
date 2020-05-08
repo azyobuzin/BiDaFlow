@@ -52,7 +52,7 @@ namespace BiDaFlow.Actors
             if (envelope.Post())
             {
                 // Throw MessageNeverProcessedException when Address is completed
-                this.Address.Completion.ContinueWith(
+                _ = this.Address.Completion.ContinueWith(
                     (_, state) => ((TaskCompletionSource<TReply>)state).TrySetException(
                         MessageNeverProcessedException.CreateCompleted()),
                     tcs,
@@ -75,7 +75,7 @@ namespace BiDaFlow.Actors
             var cts = new CancellationTokenSource();
             var envelope = this.HandleReply(tcs, cts);
 
-            envelope.SendAsync(cancellationToken)
+            _ = envelope.SendAsync(cancellationToken)
                 .ContinueWith(
                     t =>
                     {
@@ -100,7 +100,7 @@ namespace BiDaFlow.Actors
                         }
 
                         // Throw MessageNeverProcessedException when Address is completed
-                        this.Address.Completion.ContinueWith(
+                        _ = this.Address.Completion.ContinueWith(
                             (_, state) => ((TaskCompletionSource<TReply>)state).TrySetException(
                                 MessageNeverProcessedException.CreateCompleted()),
                             tcs,

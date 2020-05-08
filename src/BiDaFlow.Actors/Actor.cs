@@ -92,7 +92,7 @@ namespace BiDaFlow.Actors
             var taskScheduler = options?.TaskScheduler ?? TaskScheduler.Default;
             this._helperBlock = new TransformWithoutBufferBlock<TOutput, TOutput>(IdentityFunc<TOutput>.Instance, taskScheduler, CancellationToken.None);
 
-            this.Completion.ContinueWith(
+            _ = this.Completion.ContinueWith(
                 (_, state) => ((IDataflowBlock)state).Complete(),
                 this._helperBlock,
                 CancellationToken.None,

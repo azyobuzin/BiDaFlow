@@ -20,7 +20,7 @@ namespace BiDaFlow.Actors
 
             options ??= ActorOptions.Default;
             this._block = new ActionBlock<Envelope?>(
-                this.HandleEnvelope,
+                this.HandleEnvelopeAsync,
                 new ExecutionDataflowBlockOptions()
                 {
                     TaskScheduler = options.TaskScheduler,
@@ -48,7 +48,7 @@ namespace BiDaFlow.Actors
             this.CancellationToken = options.CancellationToken;
         }
 
-        private Task? HandleEnvelope(Envelope? envelope)
+        private Task? HandleEnvelopeAsync(Envelope? envelope)
         {
             if (envelope == null) return null;
 

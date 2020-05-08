@@ -41,7 +41,7 @@ namespace BiDaFlow.Fluent
 
             var cts = new CancellationTokenSource();
 
-            task.ContinueWith(
+            _ = task.ContinueWith(
                 _ =>
                 {
                     if (!cts.IsCancellationRequested)
@@ -194,7 +194,7 @@ namespace BiDaFlow.Fluent
             {
                 source.LinkTo(resultBlock);
 
-                source.Completion.ContinueWith(
+                _ = source.Completion.ContinueWith(
                     t =>
                     {
                         var newWorkingCount = Interlocked.Decrement(ref workingCount);

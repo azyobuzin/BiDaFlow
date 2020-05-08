@@ -22,14 +22,14 @@ namespace BiDaFlow.Actors
 
             this._currentBlockSubject.Subscribe(this.SetContinuationToBlock);
 
-            this.Completion.ContinueWith(
+            _ = this.Completion.ContinueWith(
                 (_, state) => ((SupervisedBlock<T>)state)._currentBlockSubject.OnCompleted(),
                 this,
                 CancellationToken.None,
                 TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.DenyChildAttach,
                 taskScheduler);
 
-            new TaskFactory(taskScheduler).StartNew(this.Restart);
+            _ = new TaskFactory(taskScheduler).StartNew(this.Restart);
         }
 
         public Task Completion => this._tcs.Task;
@@ -74,7 +74,7 @@ namespace BiDaFlow.Actors
                 return;
             }
 
-            startTask.ContinueWith(
+            _ = startTask.ContinueWith(
                 (t, state) =>
                 {
                     var self = (SupervisedBlock<T>)state;
@@ -111,7 +111,7 @@ namespace BiDaFlow.Actors
 
             var newBlock = blockOpt.Value;
 
-            newBlock.Completion.ContinueWith(
+            _ = newBlock.Completion.ContinueWith(
                 (completionTask, state) => ((SupervisedBlock<T>)state).Rescue(completionTask),
                 this,
                 this.TaskScheduler
@@ -141,7 +141,7 @@ namespace BiDaFlow.Actors
                 return;
             }
 
-            rescueTask.ContinueWith(
+            _ = rescueTask.ContinueWith(
                 t =>
                 {
                     if (t.Exception != null)

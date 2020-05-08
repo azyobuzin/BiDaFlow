@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
@@ -48,6 +49,7 @@ namespace BiDaFlow.Fluent
         /// because the internal target block doesn't have a buffer.
         /// </para>
         /// </remarks>
+        [SuppressMessage("Style", "VSTHRD200:Use Async naming convention")]
         public static IAsyncEnumerable<TOutput> AsAsyncEnumerable<TOutput>(this ISourceBlock<TOutput> source)
         {
             return new SourceBlockAsyncEnumerable<TOutput>(source ?? throw new ArgumentNullException(nameof(source)));
@@ -93,6 +95,7 @@ namespace BiDaFlow.Fluent
         ///     .ForEachAsync(x => Console.WriteLine(x));
         /// ]]></code>
         /// </example>
+        [SuppressMessage("Style", "VSTHRD200:Use Async naming convention")]
         public static IAsyncEnumerable<TOutput> RunThroughDataflowBlock<TInput, TOutput>(
            this IAsyncEnumerable<TInput> source,
            Func<CancellationToken, IPropagatorBlock<TInput, TOutput>> propagatorFactory)
@@ -104,6 +107,7 @@ namespace BiDaFlow.Fluent
         }
 
         /// <inheritdoc cref="RunThroughDataflowBlock{TInput, TOutput}(IAsyncEnumerable{TInput}, Func{CancellationToken, IPropagatorBlock{TInput, TOutput}})"/>
+        [SuppressMessage("Style", "VSTHRD200:Use Async naming convention")]
         public static IAsyncEnumerable<TOutput> RunThroughDataflowBlock<TInput, TOutput>(
             this IAsyncEnumerable<TInput> source,
             Func<IPropagatorBlock<TInput, TOutput>> propagatorFactory)

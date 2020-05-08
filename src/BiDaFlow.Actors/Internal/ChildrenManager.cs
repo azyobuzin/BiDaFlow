@@ -48,7 +48,7 @@ namespace BiDaFlow.Actors.Internal
 
             var oneForAll = options.OneForAll;
 
-            block.Completion.ContinueWith(
+            _ = block.Completion.ContinueWith(
                 completionTask =>
                 {
                     detacher.Dispose();
