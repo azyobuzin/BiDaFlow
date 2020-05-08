@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using BiDaFlow.Internal;
 using Reactive.Streams;
@@ -14,7 +16,7 @@ namespace BiDaFlow.Fluent
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (prefetch < 1) throw new ArgumentOutOfRangeException(nameof(prefetch), "prefetch cannot be less than 1.");
 
-            throw new NotImplementedException();
+            return new PublisherSourceBlock<TOutput>(prefetch, TaskScheduler.Default, cancellationToken);
         }
 
         public static ITargetBlock<TInput> ToTargetBlock<TInput>(this ISubscriber<TInput> subscriber)
@@ -48,6 +50,7 @@ namespace BiDaFlow.Fluent
             throw new NotImplementedException();
         }
 
+        [SuppressMessage("Style", "VSTHRD200:Use Async naming convention")]
         public static IAsyncEnumerable<T> AsAsyncEnumerable<T>(this IPublisher<T> source)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));

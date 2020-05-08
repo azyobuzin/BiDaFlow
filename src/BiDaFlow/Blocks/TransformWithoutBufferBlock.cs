@@ -54,7 +54,7 @@ namespace BiDaFlow.Blocks
             if (cancellationToken.CanBeCanceled)
             {
                 var reg = cancellationToken.Register(state => ((IDataflowBlock)state).Complete(), this);
-                this.Completion.ContinueWith(
+                _ = this.Completion.ContinueWith(
                     (_, state) => ((IDisposable)state).Dispose(),
                     reg,
                     cancellationToken,
@@ -62,7 +62,7 @@ namespace BiDaFlow.Blocks
                     TaskScheduler.Default);
             }
 
-            this.Completion.ContinueWith(this.HandleCompletion, taskScheduler);
+            _ = this.Completion.ContinueWith(this.HandleCompletion, taskScheduler);
         }
 
         /// <summary>
@@ -358,6 +358,9 @@ namespace BiDaFlow.Blocks
                     {
                         foreach (var registration in this._linkManager)
                         {
+                            if (enqueuedNode?.Value.ReservedBy != null) break;
+                            if (registration.Unlinked) continue;
+
                             var status = registration.Target.OfferMessage(myHeader, transformedValue, this, consumeToAccept);
 
                             switch (status)
@@ -396,7 +399,7 @@ namespace BiDaFlow.Blocks
         {
             if (this._completeRequested) return;
 
-            this._taskFactory.StartNew(() =>
+            _ = this._taskFactory.StartNew(() =>
             {
                 try
                 {
@@ -417,6 +420,9 @@ namespace BiDaFlow.Blocks
                     {
                         foreach (var registration in this._linkManager)
                         {
+                            if (message.ReservedBy != null) break;
+                            if (registration.Unlinked) continue;
+
                             var status = registration.Target.OfferMessage(message.MessageHeader, message.TransformedValue, this, true);
 
                             switch (status)

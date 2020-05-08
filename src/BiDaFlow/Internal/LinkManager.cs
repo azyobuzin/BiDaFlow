@@ -5,6 +5,7 @@ using System.Threading.Tasks.Dataflow;
 
 namespace BiDaFlow.Internal
 {
+    [UsedBySubpackage]
     internal sealed class LinkManager<T> : IEnumerable<LinkRegistration<T>>
     {
         private readonly DoubleLinkedList<LinkRegistration<T>> _links = new DoubleLinkedList<LinkRegistration<T>>();

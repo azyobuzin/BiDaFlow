@@ -15,6 +15,12 @@ namespace BiDaFlow.Internal
             this._state = (int)(initialState ? StateEnum.Signaled : StateEnum.NotSignaled);
         }
 
+        public bool RunContinuationsAsynchronously
+        {
+            get => this._taskHelper.RunContinuationsAsynchronously;
+            set => this._taskHelper.RunContinuationsAsynchronously = value;
+        }
+
         public ValueTask WaitAsync()
         {
             if (this._state == (int)StateEnum.Awaiting)

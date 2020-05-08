@@ -7,6 +7,7 @@ using System.Threading.Tasks.Dataflow;
 
 namespace BiDaFlow.Internal
 {
+    [UsedBySubpackage]
     internal sealed class EnumerableSourceCore<T>
     {
         private readonly ISourceBlock<T> _parent;
@@ -281,6 +282,11 @@ namespace BiDaFlow.Internal
 
                         foreach (var registration in this._linkManager)
                         {
+                            // The item can be reserved in OfferMessage
+                            if (Volatile.Read(ref this._reservedBy) != null) break;
+
+                            if (registration.Unlinked) continue;
+
                             var status = registration.Target.OfferMessage(messageHeader, messageValue, this._parent, false);
 
                             switch (status)
