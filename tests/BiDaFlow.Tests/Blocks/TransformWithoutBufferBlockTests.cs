@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using BiDaFlow.Blocks;
+using BiDaFlow.Fluent;
 using ChainingAssertion;
 using Xunit;
 
@@ -14,7 +15,7 @@ namespace BiDaFlow.Tests.Blocks
         {
             var inputBlock = new BufferBlock<int>();
             var transformBlock = new TransformWithoutBufferBlock<int, int>(x => x * 10);
-            inputBlock.LinkTo(transformBlock, new DataflowLinkOptions() { PropagateCompletion = true });
+            inputBlock.LinkWithCompletion(transformBlock);
 
             inputBlock.Post(1);
             inputBlock.Post(2);
@@ -49,6 +50,8 @@ namespace BiDaFlow.Tests.Blocks
             cts.Cancel();
 
             await transformBlock.Completion.CanceledSoon();
+
+            (await transformBlock.SendAsync(1)).IsFalse();
         }
 
         [Fact]

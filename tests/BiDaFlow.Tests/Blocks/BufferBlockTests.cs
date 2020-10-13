@@ -22,6 +22,8 @@ namespace BiDaFlow.Tests.Blocks
             cts.Cancel();
 
             await testBlock.Completion.CanceledSoon();
+
+            (await testBlock.SendAsync(1)).IsFalse();
         }
 
         [Fact]
