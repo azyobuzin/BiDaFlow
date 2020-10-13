@@ -17,6 +17,9 @@ namespace BiDaFlow.Blocks
 
         public ProxySourceBlock(ITargetBlock<T> targetWrapper, ISourceBlock<T> source)
         {
+            if (targetWrapper == null) throw new ArgumentNullException(nameof(targetWrapper));
+            if (source == null) throw new ArgumentNullException(nameof(source));
+
             this._targetWrapper = targetWrapper;
             this._source = source;
         }

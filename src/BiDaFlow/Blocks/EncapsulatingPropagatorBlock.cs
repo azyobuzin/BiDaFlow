@@ -35,8 +35,8 @@ namespace BiDaFlow.Blocks
         public bool ReserveMessage(DataflowMessageHeader messageHeader, ITargetBlock<TOutput> target)
             => this._terminal.ReserveMessage(messageHeader, target);
 
-        public DataflowMessageStatus OfferMessage(DataflowMessageHeader messageHeader, TInput messageValue, ISourceBlock<TInput> source, bool consumeToAccept)
-            => this._entrance.OfferMessage(messageHeader, messageValue, new ProxySourceBlock<TInput>(this, source), consumeToAccept);
+        public DataflowMessageStatus OfferMessage(DataflowMessageHeader messageHeader, TInput messageValue, ISourceBlock<TInput>? source, bool consumeToAccept)
+            => this._entrance.OfferMessage(messageHeader, messageValue, source != null ? new ProxySourceBlock<TInput>(this, source) : null, consumeToAccept);
 
         public bool TryReceive(Predicate<TOutput>? filter, out TOutput item)
         {

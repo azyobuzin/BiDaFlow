@@ -107,7 +107,7 @@ namespace BiDaFlow.Internal
 
         Task IDataflowBlock.Completion => throw new NotImplementedException();
 
-        DataflowMessageStatus ITargetBlock<T>.OfferMessage(DataflowMessageHeader messageHeader, T messageValue, ISourceBlock<T> source, bool consumeToAccept)
+        DataflowMessageStatus ITargetBlock<T>.OfferMessage(DataflowMessageHeader messageHeader, T messageValue, ISourceBlock<T>? source, bool consumeToAccept)
         {
             if (source != null && source != this._source) throw new ArgumentException("Unexpected source.");
             if (!messageHeader.IsValid) throw new ArgumentException("messageHeader is not valid.");
