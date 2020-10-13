@@ -7,7 +7,6 @@ using System.Threading.Tasks.Dataflow;
 
 namespace BiDaFlow.Internal
 {
-    [UsedBySubpackage]
     internal sealed class EnumerableSourceCore<T>
     {
         private readonly ISourceBlock<T> _parent;

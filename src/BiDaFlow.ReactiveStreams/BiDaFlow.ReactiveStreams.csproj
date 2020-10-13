@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\BiDaFlow\Internal\ActionDisposable.cs" Link="Internal\ActionDisposable.cs" />
+    <Compile Include="..\BiDaFlow\Internal\DoubleLinkedList.cs" Link="Internal\DoubleLinkedList.cs" />
+    <Compile Include="..\BiDaFlow\Internal\LinkManager.cs" Link="Internal\LinkManager.cs" />
+    <Compile Include="..\BiDaFlow\Internal\LinkRegistration.cs" Link="Internal\LinkRegistration.cs" />
+    <Compile Include="..\BiDaFlow\Internal\SingleLinkedList.cs" Link="Internal\SingleLinkedList.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Reactive.Streams" Version="[1.0.2, 2)" />
   </ItemGroup>
 
@@ -18,8 +26,8 @@
 
   <Target Name="SetDependencyVersion" AfterTargets="_GetProjectReferenceVersions">
     <ItemGroup>
-      <_ProjectReferencesWithVersions Update="..\BiDaFlow\BiDaFlow.csproj" ProjectVersion="[0.1,0.2)" />
-      <_ProjectReferencesWithVersions Update="..\BiDaFlow.AsyncEnumerable\BiDaFlow.AsyncEnumerable.csproj" ProjectVersion="[0.1,0.2)" />
+      <_ProjectReferencesWithVersions Update="..\BiDaFlow\BiDaFlow.csproj" ProjectVersion="[0.2,0.3)" />
+      <_ProjectReferencesWithVersions Update="..\BiDaFlow.AsyncEnumerable\BiDaFlow.AsyncEnumerable.csproj" ProjectVersion="[0.2,0.3)" />
     </ItemGroup>
   </Target>
 

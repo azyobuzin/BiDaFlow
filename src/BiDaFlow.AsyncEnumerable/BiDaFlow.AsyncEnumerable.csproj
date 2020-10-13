@@ -12,17 +12,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Threading.Tasks.Dataflow" Version="4.6.0" />
+    <Compile Include="..\BiDaFlow\Internal\ActionDisposable.cs" Link="Internal\ActionDisposable.cs" />
+    <Compile Include="..\BiDaFlow\Internal\DoubleLinkedList.cs" Link="Internal\DoubleLinkedList.cs" />
+    <Compile Include="..\BiDaFlow\Internal\EnumerableSourceCore.cs" Link="Internal\EnumerableSourceCore.cs" />
+    <Compile Include="..\BiDaFlow\Internal\LinkManager.cs" Link="Internal\LinkManager.cs" />
+    <Compile Include="..\BiDaFlow\Internal\LinkRegistration.cs" Link="Internal\LinkRegistration.cs" />
+    <Compile Include="..\BiDaFlow\Internal\SingleLinkedList.cs" Link="Internal\SingleLinkedList.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BiDaFlow\BiDaFlow.csproj" />
+    <PackageReference Include="System.Threading.Tasks.Dataflow" Version="4.6.0" />
   </ItemGroup>
-
-  <Target Name="SetDependencyVersion" AfterTargets="_GetProjectReferenceVersions">
-    <ItemGroup>
-      <_ProjectReferencesWithVersions Update="..\BiDaFlow\BiDaFlow.csproj" ProjectVersion="[0.1,0.2)" />
-    </ItemGroup>
-  </Target>
 
 </Project>

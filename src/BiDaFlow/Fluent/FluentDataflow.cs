@@ -11,6 +11,8 @@ namespace BiDaFlow.Fluent
 {
     public static class FluentDataflow
     {
+        private static readonly DataflowLinkOptions s_propagateCompletionOptions = new DataflowLinkOptions() { PropagateCompletion = true };
+
         /// <inheritdoc cref="PropagateCompletion(IDataflowBlock, IDataflowBlock, WhenPropagate)"/>
         public static IDisposable PropagateCompletion(this IDataflowBlock source, IDataflowBlock target)
         {
@@ -68,24 +70,6 @@ namespace BiDaFlow.Fluent
                         target.Fault(exception);
                 }
             }
-        }
-
-        private static readonly DataflowLinkOptions s_propagateCompletionOptions = new DataflowLinkOptions() { PropagateCompletion = true };
-
-        /// <summary>
-        /// Links the <see cref="ISourceBlock{TOutput}"/> to the specified <see cref="ITargetBlock{TInput}"/> propagating completion.
-        /// </summary>
-        /// <remarks>
-        /// This method is the same as <c>DataflowBlock.LinkTo(source, target, new DataflowLinkOptions() { PropagateCompletion = true })</c>.
-        /// </remarks>
-        /// <seealso cref="DataflowBlock.LinkTo{TOutput}(ISourceBlock{TOutput}, ITargetBlock{TOutput})"/>
-        /// <inheritdoc cref="DataflowBlock.LinkTo{TOutput}(ISourceBlock{TOutput}, ITargetBlock{TOutput})"/>
-        public static IDisposable LinkWithCompletion<TOutput>(this ISourceBlock<TOutput> source, ITargetBlock<TOutput> target)
-        {
-            if (source == null) throw new ArgumentNullException(nameof(source));
-            if (target == null) throw new ArgumentNullException(nameof(target));
-
-            return source.LinkTo(target, s_propagateCompletionOptions);
         }
 
         /// <summary>
@@ -148,7 +132,7 @@ namespace BiDaFlow.Fluent
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (follower == null) throw new ArgumentNullException(nameof(follower));
 
-            source.LinkWithCompletion(follower);
+            source.LinkTo(follower, s_propagateCompletionOptions);
             return DataflowBlock.Encapsulate(source, follower);
         }
 
@@ -157,7 +141,7 @@ namespace BiDaFlow.Fluent
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (target == null) throw new ArgumentNullException(nameof(target));
 
-            source.LinkWithCompletion(target);
+            source.LinkTo(target, s_propagateCompletionOptions);
             return new ToTargetBlockBlock<TInput>(source, target);
         }
 
@@ -166,7 +150,7 @@ namespace BiDaFlow.Fluent
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (target == null) throw new ArgumentNullException(nameof(target));
 
-            source.LinkWithCompletion(target);
+            source.LinkTo(target, s_propagateCompletionOptions);
             return new RunWithBlock(source, target);
         }
 

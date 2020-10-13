@@ -3,7 +3,6 @@ using System.Threading;
 
 namespace BiDaFlow.Internal
 {
-    [UsedBySubpackage]
     internal sealed class ActionDisposable : IDisposable
     {
         private Action? _action;

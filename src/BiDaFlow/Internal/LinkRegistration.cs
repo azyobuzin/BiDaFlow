@@ -4,7 +4,6 @@ using System.Threading.Tasks.Dataflow;
 
 namespace BiDaFlow.Internal
 {
-    [UsedBySubpackage]
     internal sealed class LinkRegistration<T>
     {
         public ITargetBlock<T> Target { get; }

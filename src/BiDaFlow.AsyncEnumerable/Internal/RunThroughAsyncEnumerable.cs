@@ -26,7 +26,7 @@ namespace BiDaFlow.Internal
                 throw new InvalidOperationException("propagatorFactory returned null.");
 
             var sourceBlock = this._inputEnumerable.AsSourceBlock(cancellationToken);
-            sourceBlock.LinkWithCompletion(propagatorBlock);
+            sourceBlock.LinkTo(propagatorBlock, new DataflowLinkOptions() { PropagateCompletion = true });
             return propagatorBlock.AsAsyncEnumerable().GetAsyncEnumerator(cancellationToken);
         }
     }

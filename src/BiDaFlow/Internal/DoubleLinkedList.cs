@@ -2,7 +2,6 @@
 
 namespace BiDaFlow.Internal
 {
-    [UsedBySubpackage]
     internal sealed class DoubleLinkedList<T>
     {
         public Node? First { get; private set; }

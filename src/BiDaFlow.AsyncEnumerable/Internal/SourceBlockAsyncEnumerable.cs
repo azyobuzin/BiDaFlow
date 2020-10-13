@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using System.Threading.Tasks.Sources;
-using BiDaFlow.Fluent;
 
 namespace BiDaFlow.Internal
 {
@@ -40,7 +39,7 @@ namespace BiDaFlow.Internal
         public SourceBlockAsyncEnumerator(ISourceBlock<T> source, CancellationToken cancellationToken)
         {
             this._source = source;
-            this._unlinker = source.LinkWithCompletion(this);
+            this._unlinker = source.LinkTo(this, new DataflowLinkOptions() { PropagateCompletion = true });
             this._cancellationToken = cancellationToken;
 
             this._taskHelper.RunContinuationsAsynchronously = true;

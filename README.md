@@ -4,10 +4,12 @@ Battery Included Dataflow Library
 
 [API Documentation](https://azyobuzin.github.io/BiDaFlow/api/index.html)
 
-# NuGet
+# Packages
 
-- [BiDaFlow](https://www.nuget.org/packages/BiDaFlow)
-- [BiDaFlow.AsyncEnumerable](https://www.nuget.org/packages/BiDaFlow.AsyncEnumerable)
+| Package | Version | Changelog |
+| ------- | ------- | --------- |
+| [BiDaFlow](https://www.nuget.org/packages/BiDaFlow) | 0.1.0 | [CHANGELOG.md](BiDaFlow/CHANGELOG.md) |
+| [BiDaFlow.AsyncEnumerable](https://www.nuget.org/packages/BiDaFlow.AsyncEnumerable) | 0.1.0 | [CHANGELOG.md](BiDaFlow.AsyncEnumerable/CHANGELOG.md) |
 
 # Features
 
@@ -54,5 +56,4 @@ await AsyncEnumerable.Range(1, 100)
 
 # Roadmap
 
-- BiDaFlow.Actors - a lightweight actor-like programming framework with IDataflowBlock
 - BiDaFlow.ReactiveStreams - integration with [Reactive Streams](https://github.com/reactive-streams/reactive-streams-dotnet), TPL Dataflow and AsyncEnumerable
