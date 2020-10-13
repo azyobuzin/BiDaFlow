@@ -8,8 +8,8 @@
 
 | Package | Version | Changelog |
 | ------- | ------- | --------- |
-| [BiDaFlow](https://www.nuget.org/packages/BiDaFlow) | 0.1.0, 0.2.0-alpha1 | [CHANGELOG.md](BiDaFlow/CHANGELOG.md) |
-| [BiDaFlow.AsyncEnumerable](https://www.nuget.org/packages/BiDaFlow.AsyncEnumerable) | 0.1.0, 0.2.0-alpha1 | [CHANGELOG.md](BiDaFlow.AsyncEnumerable/CHANGELOG.md) |
+| [BiDaFlow](https://www.nuget.org/packages/BiDaFlow) | 0.1.0, 0.2.0-alpha1 | [CHANGELOG.md](src/BiDaFlow/CHANGELOG.md) |
+| [BiDaFlow.AsyncEnumerable](https://www.nuget.org/packages/BiDaFlow.AsyncEnumerable) | 0.1.0, 0.2.0-alpha1 | [CHANGELOG.md](src/BiDaFlow.AsyncEnumerable/CHANGELOG.md) |
 
 # Features
 
