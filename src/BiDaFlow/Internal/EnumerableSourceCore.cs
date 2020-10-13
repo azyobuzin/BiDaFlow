@@ -32,7 +32,7 @@ namespace BiDaFlow.Internal
 
             if (taskScheduler == null || taskScheduler == TaskScheduler.Default)
             {
-#if NETSTANDARD2_0
+#if THREADPOOL
                 WaitCallback enumerateCb = x => ((Action)x).Invoke();
                 this._enumerate = () => ThreadPool.QueueUserWorkItem(enumerateCb, enumerate);
 

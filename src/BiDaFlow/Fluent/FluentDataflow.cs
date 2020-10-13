@@ -125,6 +125,39 @@ namespace BiDaFlow.Fluent
             return new DroppingObserver<TInput>(target);
         }
 
+        public static ITargetBlock<TInput> EncapsulateAsTargetBlock<TInput>(ITargetBlock<TInput> entrance, IDataflowBlock terminal)
+        {
+            if (entrance == null) throw new ArgumentNullException(nameof(entrance));
+            if (terminal == null) throw new ArgumentNullException(nameof(terminal));
+
+            return new EncapsulatingTargetBlock<TInput>(entrance, terminal);
+        }
+
+        public static ISourceBlock<TOutput> EncapsulateAsSourceBlock<TOutput>(IDataflowBlock entrance, ISourceBlock<TOutput> terminal)
+        {
+            if (entrance == null) throw new ArgumentNullException(nameof(entrance));
+            if (terminal == null) throw new ArgumentNullException(nameof(terminal));
+
+            return new EncapsulatingSourceBlock<TOutput>(entrance, terminal);
+        }
+
+        public static IPropagatorBlock<TInput, TOutput> EncapsulateAsPropagatorBlock<TInput, TOutput>(ITargetBlock<TInput> entrance, ISourceBlock<TOutput> terminal)
+        {
+            if (entrance == null) throw new ArgumentNullException(nameof(entrance));
+            if (terminal == null) throw new ArgumentNullException(nameof(terminal));
+
+            // TODO: implement work around for https://github.com/dotnet/runtime/issues/35751
+            return DataflowBlock.Encapsulate(entrance, terminal);
+        }
+
+        public static IDataflowBlock EncapsulateAsDataflowBlock(IDataflowBlock entrance, IDataflowBlock terminal)
+        {
+            if (entrance == null) throw new ArgumentNullException(nameof(entrance));
+            if (terminal == null) throw new ArgumentNullException(nameof(terminal));
+
+            return new EncapsulatingDataflowBlock(entrance, terminal);
+        }
+
         public static IPropagatorBlock<TInput, TOutput> Chain<TInput, TSourceOutput, TOutput>(
             this IPropagatorBlock<TInput, TSourceOutput> source,
             IPropagatorBlock<TSourceOutput, TOutput> follower)
@@ -133,16 +166,16 @@ namespace BiDaFlow.Fluent
             if (follower == null) throw new ArgumentNullException(nameof(follower));
 
             source.LinkTo(follower, s_propagateCompletionOptions);
-            return DataflowBlock.Encapsulate(source, follower);
+            return EncapsulateAsPropagatorBlock(source, follower);
         }
 
-        public static ITargetBlock<TInput> ToTargetBlock<TInput, TOutput>(this IPropagatorBlock<TInput, TOutput> source, ITargetBlock<TOutput> target)
+        public static ITargetBlock<TInput> ChainToTarget<TInput, TOutput>(this IPropagatorBlock<TInput, TOutput> source, ITargetBlock<TOutput> target)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (target == null) throw new ArgumentNullException(nameof(target));
 
             source.LinkTo(target, s_propagateCompletionOptions);
-            return new ToTargetBlockBlock<TInput>(source, target);
+            return EncapsulateAsTargetBlock(source, target);
         }
 
         public static IDataflowBlock RunWith<T>(this ISourceBlock<T> source, ITargetBlock<T> target)
@@ -151,7 +184,7 @@ namespace BiDaFlow.Fluent
             if (target == null) throw new ArgumentNullException(nameof(target));
 
             source.LinkTo(target, s_propagateCompletionOptions);
-            return new RunWithBlock(source, target);
+            return EncapsulateAsDataflowBlock(source, target);
         }
 
         public static ISourceBlock<TOutput> Merge<TOutput>(IEnumerable<ISourceBlock<TOutput>> sources)
@@ -210,7 +243,7 @@ namespace BiDaFlow.Fluent
             if (sources == null) throw new ArgumentNullException(nameof(sources));
 
             var mergedSource = Merge(new[] { propagator }.Concat(sources));
-            return DataflowBlock.Encapsulate(propagator, mergedSource);
+            return EncapsulateAsPropagatorBlock(propagator, mergedSource);
         }
 
         public static IPropagatorBlock<TInput, TOutput> Merge<TInput, TOutput>(this IPropagatorBlock<TInput, TOutput> propagator, params ISourceBlock<TOutput>[] sources)
