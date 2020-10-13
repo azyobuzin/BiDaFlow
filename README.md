@@ -1,6 +1,6 @@
 # BiDaFlow
 
-Battery Included Dataflow Library
+**Get the power of parallel processing with TPL Dataflow**
 
 [API Documentation](https://azyobuzin.github.io/BiDaFlow/api/index.html)
 
@@ -8,8 +8,8 @@ Battery Included Dataflow Library
 
 | Package | Version | Changelog |
 | ------- | ------- | --------- |
-| [BiDaFlow](https://www.nuget.org/packages/BiDaFlow) | 0.1.0 | [CHANGELOG.md](BiDaFlow/CHANGELOG.md) |
-| [BiDaFlow.AsyncEnumerable](https://www.nuget.org/packages/BiDaFlow.AsyncEnumerable) | 0.1.0 | [CHANGELOG.md](BiDaFlow.AsyncEnumerable/CHANGELOG.md) |
+| [BiDaFlow](https://www.nuget.org/packages/BiDaFlow) | 0.1.0, 0.2.0-alpha1 | [CHANGELOG.md](BiDaFlow/CHANGELOG.md) |
+| [BiDaFlow.AsyncEnumerable](https://www.nuget.org/packages/BiDaFlow.AsyncEnumerable) | 0.1.0, 0.2.0-alpha1 | [CHANGELOG.md](BiDaFlow.AsyncEnumerable/CHANGELOG.md) |
 
 # Features
 
@@ -27,12 +27,15 @@ await Enumerable.Range(1, 100).AsSourceBlock()
                 {
                     BoundedCapacity = 4,
                     MaxDegreeOfParallelism = 4,
+                    SingleProducerConstrained = true,
                 }))
-            // ToTargetBlock makes a new ITargetBlock linking the upstream and downstream blocks
-            .ToTargetBlock(new ActionBlock<int>(x => Console.WriteLine(x)))
+            // ChainToTarget makes a new ITargetBlock linking the upstream and downstream blocks
+            .ChainToTarget(new ActionBlock<int>(x => Console.WriteLine(x)))
     )
     .Completion;
 ```
+
+Do you want to make more customized block? You can use `FluentDataflow.EncapsulateAsDataflowBlock`.
 
 ## AsyncEnumerable Integration
 
@@ -46,6 +49,7 @@ await AsyncEnumerable.Range(1, 100)
             {
                 BoundedCapacity = 6,
                 MaxDegreeOfParallelism = 4,
+                EnsureOrdered = false,
                 SingleProducerConstrained = true,
             })
     )

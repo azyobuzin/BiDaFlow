@@ -5,7 +5,8 @@
         {
           "src": "../src",
           "files": [
-            "**.csproj"
+            "BiDaFlow/BiDaFlow.csproj",
+            "BiDaFlow.AsyncEnumerable/BiDaFlow.AsyncEnumerable.csproj"
           ]
         }
       ],

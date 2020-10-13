@@ -10,6 +10,7 @@ namespace BiDaFlow.Fluent
 {
     public static class DataflowAsyncEnumerable
     {
+        /// <exception cref="ArgumentNullException"><paramref name="enumerable"/> is <see langword="null"/>.</exception>
         public static ISourceBlock<TOutput> AsSourceBlock<TOutput>(this IAsyncEnumerable<TOutput> enumerable, CancellationToken cancellationToken = default)
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
@@ -17,6 +18,7 @@ namespace BiDaFlow.Fluent
             return new AsyncEnumerableSourceBlock<TOutput>(enumerable, null, cancellationToken);
         }
 
+        /// <exception cref="ArgumentNullException"><paramref name="enumerable"/> or <paramref name="taskScheduler"/> is <see langword="null"/>.</exception>
         public static ISourceBlock<TOutput> AsSourceBlock<TOutput>(this IAsyncEnumerable<TOutput> enumerable, TaskScheduler taskScheduler, CancellationToken cancellationToken)
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
