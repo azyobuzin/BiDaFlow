@@ -146,8 +146,7 @@ namespace BiDaFlow.Fluent
             if (entrance == null) throw new ArgumentNullException(nameof(entrance));
             if (terminal == null) throw new ArgumentNullException(nameof(terminal));
 
-            // TODO: implement work around for https://github.com/dotnet/runtime/issues/35751
-            return DataflowBlock.Encapsulate(entrance, terminal);
+            return new EncapsulatingPropagatorBlock<TInput, TOutput>(entrance, terminal);
         }
 
         public static IDataflowBlock EncapsulateAsDataflowBlock(IDataflowBlock entrance, IDataflowBlock terminal)

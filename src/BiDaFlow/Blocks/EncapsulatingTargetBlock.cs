@@ -22,6 +22,6 @@ namespace BiDaFlow.Blocks
         public void Fault(Exception exception) => this._entrance.Fault(exception);
 
         public DataflowMessageStatus OfferMessage(DataflowMessageHeader messageHeader, T messageValue, ISourceBlock<T> source, bool consumeToAccept)
-            => this._entrance.OfferMessage(messageHeader, messageValue, source, consumeToAccept);
+            => this._entrance.OfferMessage(messageHeader, messageValue, new ProxySourceBlock<T>(this, source), consumeToAccept);
     }
 }
