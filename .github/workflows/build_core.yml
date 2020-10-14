@@ -9,6 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       version_suffix:
+        description: Suffix of package version
         required: false
 
 jobs:
