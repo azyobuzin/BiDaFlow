@@ -1,0 +1,17 @@
+name: Test
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: dotnet restore
+        run: dotnet restore
+        working-directory: tests/BiDaFlow.Tests
+
+      - name: dotnet test
+        run: dotnet test --no-restore --verbosity normal
+        working-directory: tests/BiDaFlow.Tests
