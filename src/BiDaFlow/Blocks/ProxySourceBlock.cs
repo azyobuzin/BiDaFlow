@@ -40,6 +40,6 @@ namespace BiDaFlow.Blocks
             => this._source.ReleaseReservation(messageHeader, this._targetWrapper);
 
         public bool ReserveMessage(DataflowMessageHeader messageHeader, ITargetBlock<T> target)
-            => this.ReserveMessage(messageHeader, this._targetWrapper);
+            => this._source.ReserveMessage(messageHeader, this._targetWrapper);
     }
 }

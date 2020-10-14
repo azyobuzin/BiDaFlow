@@ -66,9 +66,9 @@ namespace BiDaFlow.Tests.Blocks
         {
             var testBlock = new FilterBlock<int>(x => x % 2 != 0);
 
-            var target1 = new BufferBlock<int>(new DataflowBlockOptions() { BoundedCapacity = 1 });
-            var target2 = new BufferBlock<int>(new DataflowBlockOptions() { BoundedCapacity = 1 });
-            var target3 = new BufferBlock<int>(new DataflowBlockOptions() { BoundedCapacity = 1 });
+            var target1 = new WriteOnceBlock<int>(null);
+            var target2 = new WriteOnceBlock<int>(null);
+            var target3 = new WriteOnceBlock<int>(null);
 
             testBlock.LinkTo(target1);
             testBlock.LinkTo(target2, x => x != 3);

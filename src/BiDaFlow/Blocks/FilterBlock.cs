@@ -110,7 +110,7 @@ namespace BiDaFlow.Blocks
         }
 
         /// <inheritdoc/>
-        public Task Completion => this._inputBlock.Completion;
+        public Task Completion => this._outputBlock.Completion;
 
         /// <inheritdoc/>
         public void Complete() => this._inputBlock.Complete();
@@ -136,11 +136,23 @@ namespace BiDaFlow.Blocks
         /// <inheritdoc/>
         public bool TryReceive(Predicate<T>? filter, out T item)
         {
-            var result = this._inputBlock.TryReceive(
-                t => t.Item2 && (filter == null || filter(t.Item1)),
-                out var item2);
-            item = item2.Item1;
-            return result;
+            Predicate<(T, bool)>? filter2 = null;
+            if (filter != null)
+                filter2 = t => t.Item2 && filter(t.Item1);
+
+            while (true)
+            {
+                var result = this._inputBlock.TryReceive(filter2, out var item2);
+
+                if (result && !item2.Item2)
+                {
+                    // received item to be dropped. retry.
+                    continue;
+                }
+
+                item = item2.Item1;
+                return result;
+            }
         }
 
         /// <inheritdoc/>
