@@ -1,0 +1,27 @@
+name: Deploy Documentation
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: dotnet restore
+        run: dotnet restore
+
+      - name: Install docfx
+        run: choco install docfx -y
+
+      - name: Build
+        run: docfx
+        working-directory: docs
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_site
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
