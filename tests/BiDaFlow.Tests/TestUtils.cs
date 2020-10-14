@@ -7,7 +7,7 @@ namespace BiDaFlow.Tests
 {
     internal static class TestUtils
     {
-        public static readonly TimeSpan SometimeSoon = new TimeSpan(100 * TimeSpan.TicksPerMillisecond);
+        public static readonly TimeSpan SometimeSoon = new TimeSpan(250 * TimeSpan.TicksPerMillisecond);
 
         public static CancellationToken CancelAfter(TimeSpan delay)
         {
