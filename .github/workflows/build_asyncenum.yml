@@ -1,0 +1,30 @@
+name: Build BiDaFlow.AsyncEnumerable
+
+on:
+  push:
+    paths:
+      - src/BiDaFlow.AsyncEnumerable/**
+      - '**/Directory.Build.*'
+
+  workflow_dispatch:
+    inputs:
+      version_suffix:
+        description: Suffix of package version
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build and Pack
+        uses: ./.github/actions/build
+        with:
+          project-dir: src/BiDaFlow.AsyncEnumerable
+
+      - name: Upload nupkg
+        uses: actions/upload-artifact@v2
+        with:
+          name: nupkg
+          path: src/BiDaFlow.AsyncEnumerable/bin/Release/*nupkg
