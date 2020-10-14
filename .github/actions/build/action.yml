@@ -1,0 +1,21 @@
+name: Build and Pack
+description: Builds a project and creates a nupkg
+
+inputs:
+  project-dir:
+    description: 'Path to project directory'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - run: |
+        $versionSuffix =
+          if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch') {
+            '${{ github.event.inputs.version_suffix }}'
+          } else {
+            "ci.$($env:GITHUB_RUN_ID)+$($env:GITHUB_SHA.Substring(0,7))"
+          }
+        dotnet pack -c Release --version-suffix "$versionSuffix"
+      shell: pwsh
+      working-directory: ${{ inputs.project-dir }}

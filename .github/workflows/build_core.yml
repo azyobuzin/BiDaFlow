@@ -1,0 +1,28 @@
+name: Build BiDaFlow
+
+on:
+  push:
+    paths:
+      - src/BiDaFlow/**
+
+  workflow_dispatch:
+    inputs:
+      version_suffix:
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build and Pack
+        uses: ./.github/actions/build
+        with:
+          project-dir: src/BiDaFlow
+
+      - name: Upload nupkg
+        uses: actions/upload-artifact@v2
+        with:
+          name: nupkg
+          path: src/BiDaFlow/bin/Release/*nupkg
