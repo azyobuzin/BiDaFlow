@@ -1,15 +1,39 @@
 {
   "homepages": [],
-  "source_base_path": "C:/Users/azyobuzin/source/repos/BiDaFlow/docs",
+  "source_base_path": "D:/a/BiDaFlow/BiDaFlow/docs",
   "xrefmap": "xrefmap.yml",
   "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.DropBlock-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.DropBlock-1.html",
+          "hash": "o/1O7MfEYrJmA/eCKHDTow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.FilterBlock-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.FilterBlock-1.html",
+          "hash": "uxzK1WlyLbH/WTpHPfEWnA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
     {
       "type": "ManagedReference",
       "source_relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.yml",
       "output": {
         ".html": {
           "relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html",
-          "hash": "fHcTt7DBXL7y7ZFi21pLDQ=="
+          "hash": "DNhltBOD9Y+Q/bKgcsHLyw=="
         }
       },
       "is_incremental": false,
@@ -21,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/BiDaFlow.Blocks.html",
-          "hash": "LJDN435xx7JIk+QZeQdYQw=="
+          "hash": "7Gf1Kfq5GUMs/Lq39EhLNw=="
         }
       },
       "is_incremental": false,
@@ -33,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/BiDaFlow.Fluent.DataflowAsyncEnumerable.html",
-          "hash": "lJ3BExh2J0jPFqmF79tVeQ=="
+          "hash": "6L3fS/7Gjs398WXMNW4uAw=="
         }
       },
       "is_incremental": false,
@@ -45,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.html",
-          "hash": "zjXYa5Gb3HEjh/e302qfAg=="
+          "hash": "uibEYxrY5xwevMF0tDrwNg=="
         }
       },
       "is_incremental": false,
@@ -57,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/BiDaFlow.Fluent.WhenPropagate.html",
-          "hash": "jyXHfHLPfdE9XoGD8ud1aw=="
+          "hash": "6pMfqQ2SJLdih+PULaFvTg=="
         }
       },
       "is_incremental": false,
@@ -69,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/BiDaFlow.Fluent.html",
-          "hash": "hI50ZEaQd0kyUGgxMCzF6g=="
+          "hash": "v+vztYdzxlb1XDCkdJscFQ=="
         }
       },
       "is_incremental": false,
@@ -81,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "y03p0obO2z+zoqHuz91f4Q=="
+          "hash": "kvpO9nlWKrlTuad78cIc3w=="
         }
       },
       "is_incremental": false,
@@ -93,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "kSClRok0cdz0N/9HV6hR6w=="
+          "hash": "255aoeQAJ3lA/JL93cap/g=="
         }
       },
       "is_incremental": false,
@@ -105,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "uim3mG3uOwfVTuQNWxnH7g=="
+          "hash": "mkeSL7bV0osPmGx6qj7dlg=="
         }
       },
       "is_incremental": false,
@@ -144,7 +168,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 6,
+          "total_file_count": 8,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
