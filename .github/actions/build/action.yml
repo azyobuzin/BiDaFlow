@@ -16,6 +16,7 @@ runs:
           } else {
             "ci.$($env:GITHUB_RUN_ID)+$($env:GITHUB_SHA.Substring(0,7))"
           }
-        dotnet pack -c Release --version-suffix "$versionSuffix"
+        if ($versionSuffix) { $versionSuffix = @('--version-suffix', "$versionSuffix") }
+        dotnet pack -c Release $versionSuffix
       shell: pwsh
       working-directory: ${{ inputs.project-dir }}
