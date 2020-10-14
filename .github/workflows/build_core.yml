@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - src/BiDaFlow/**
+      - '**/Directory.Build.*'
 
   workflow_dispatch:
     inputs:
