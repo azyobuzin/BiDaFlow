@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <RootNamespace>BiDaFlow</RootNamespace>
     <PackageTags>Dataflow;reactive;stream</PackageTags>

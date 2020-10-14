@@ -8,8 +8,8 @@
 
 | Package | Version | Changelog |
 | ------- | ------- | --------- |
-| [BiDaFlow](https://www.nuget.org/packages/BiDaFlow) | 0.1.0, 0.2.0-alpha1 | [CHANGELOG.md](src/BiDaFlow/CHANGELOG.md) |
-| [BiDaFlow.AsyncEnumerable](https://www.nuget.org/packages/BiDaFlow.AsyncEnumerable) | 0.1.0, 0.2.0-alpha1 | [CHANGELOG.md](src/BiDaFlow.AsyncEnumerable/CHANGELOG.md) |
+| [BiDaFlow](https://www.nuget.org/packages/BiDaFlow) | 0.1.0, 0.2.0-alpha2 | [CHANGELOG.md](src/BiDaFlow/CHANGELOG.md) |
+| [BiDaFlow.AsyncEnumerable](https://www.nuget.org/packages/BiDaFlow.AsyncEnumerable) | 0.2.0 | [CHANGELOG.md](src/BiDaFlow.AsyncEnumerable/CHANGELOG.md) |
 
 # Features
 
@@ -36,8 +36,12 @@ await Enumerable.Range(1, 100).AsSourceBlock()
 ```
 
 Do you want to make more customized block? You can use `FluentDataflow.EncapsulateAsDataflowBlock`.
+See the API documentation and get the power to make blocks freely.
 
 ## AsyncEnumerable Integration
+
+`IAsyncEnumerable` is the key interface of data flow with back pressure in .NET.
+BiDaFlow.AsyncEnumerable empowers `IAsyncEnumerable` to be able to process data parallelly in manner of Task Async.
 
 ```csharp
 await AsyncEnumerable.Range(1, 100)

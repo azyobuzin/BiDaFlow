@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <VersionPrefix>0.2.0</VersionPrefix>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
     <TargetFrameworks>netstandard2.0;netstandard1.3</TargetFrameworks>
     <PackageTags>Parallel;Dataflow</PackageTags>
     <Description>Constructs and manipulates TPL Dataflow blocks fluently.</Description>

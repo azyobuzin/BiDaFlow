@@ -4,9 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [0.2.0-alpha2] - 2020-10-15
 ### Added
 - `DropBlock` and `FilterBlock`
+    - Known issue: Tests fail at random?
+- Provides deterministic binary on NuGet
 
 ### Fixed
 - Fix wrong null handling in the classes encapsulating `ITargetBlock`
@@ -28,5 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `FluentDataflow` class that provides functions to construct and manipulate dataflow blocks
 - `TransformWithoutBufferBlock`
 
+[0.2.0-alpha2]: https://github.com/azyobuzin/BiDaFlow/releases/tag/core-v0.2.0-alpha2
 [0.2.0-alpha1]: https://github.com/azyobuzin/BiDaFlow/releases/tag/core-v0.2.0-alpha1
 [0.1.0]: https://github.com/azyobuzin/BiDaFlow/releases/tag/core-v0.1.0
