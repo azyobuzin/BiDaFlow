@@ -19,8 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: dotnet restore
-        run: dotnet restore
+      - name: dotnet build
+        run: dotnet build
         working-directory: tests/BiDaFlow.Tests
 
       - name: dotnet test
