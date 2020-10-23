@@ -52,6 +52,8 @@ namespace BiDaFlow.Internal
             if (n < 0) throw new ArgumentOutOfRangeException(nameof(n), "n cannot be negative.");
             if (n == 0) return;
 
+            var startWorker = false;
+
             lock (this.Lock)
             {
                 if (this._isCompleted) return;
@@ -62,20 +64,32 @@ namespace BiDaFlow.Internal
                 this._requested = newVal;
 
                 if (!this._workerRunning)
-                    this.StartWorker();
+                {
+                    this._workerRunning = true;
+                    startWorker = true;
+                }
             }
+
+            if (startWorker) this.StartWorker();
         }
 
         public void Cancel()
         {
             this._cts.Cancel();
 
+            var startWorker = false;
+
             lock (this.Lock)
             {
                 // Wake the worker to dispose the enumerator
                 if (!this._isCompleted && !this._workerRunning)
-                    this.StartWorker();
+                {
+                    this._workerRunning = true;
+                    startWorker = true;
+                }
             }
+
+            if (startWorker) this.StartWorker();
         }
 
         private void StartWorker()
@@ -125,7 +139,7 @@ namespace BiDaFlow.Internal
                     }
                     catch (Exception ex)
                     {
-                        exception = ex;
+                        exception = exception == null ? ex : new AggregateException(exception, ex);
                     }
 
                     if (!self._cts.IsCancellationRequested)
