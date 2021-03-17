@@ -19,18 +19,28 @@ namespace BiDaFlow.Tests
             return CancelAfter(SometimeSoon);
         }
 
-        public static async Task CompleteSoon(this Task task)
+        public static async Task CompleteWithin(this Task task, TimeSpan timeout)
         {
-            await Task.WhenAny(task, Task.Delay(SometimeSoon)).ConfigureAwait(false);
+            await Task.WhenAny(task, Task.Delay(timeout)).ConfigureAwait(false);
             task.IsCompleted.IsTrue();
             await task;
         }
 
-        public static async Task<T> CompleteSoon<T>(this Task<T> task)
+        public static async Task<T> CompleteWithin<T>(this Task<T> task, TimeSpan timeout)
         {
-            await Task.WhenAny(task, Task.Delay(SometimeSoon)).ConfigureAwait(false);
+            await Task.WhenAny(task, Task.Delay(timeout)).ConfigureAwait(false);
             task.IsCompleted.IsTrue();
             return await task;
+        }
+
+        public static Task CompleteSoon(this Task task)
+        {
+            return CompleteWithin(task, SometimeSoon);
+        }
+
+        public static Task<T> CompleteSoon<T>(this Task<T> task)
+        {
+            return CompleteWithin(task, SometimeSoon);
         }
 
         public static async Task CanceledSoon(this Task task)

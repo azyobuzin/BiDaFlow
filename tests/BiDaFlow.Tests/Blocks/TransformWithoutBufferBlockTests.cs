@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using BiDaFlow.Blocks;
@@ -74,6 +75,39 @@ namespace BiDaFlow.Tests.Blocks
             target1.Receive(TestUtils.SometimeSoon).Is(1);
             target2.Receive(TestUtils.SometimeSoon).Is(3);
             target3.Receive(TestUtils.SometimeSoon).Is(2);
+        }
+
+        [Fact]
+        public async Task TestMultiProducerAndSlowConsumer()
+        {
+            var actionCount = 0;
+
+            var producer1 = new BufferBlock<int>();
+            var producer2 = new BufferBlock<int>();
+            var transformBlock = new TransformWithoutBufferBlock<int, int>(x => x);
+            var consumer = new ActionBlock<int>(
+                async i =>
+                {
+                    await Task.Delay(50);
+                    actionCount++;
+                },
+                new ExecutionDataflowBlockOptions()
+                {
+                    BoundedCapacity = 1,
+                });
+
+            producer1.LinkTo(transformBlock);
+            producer2.LinkTo(transformBlock);
+            transformBlock.LinkTo(consumer);
+
+            for (var i = 1; i <= 3; i++)
+            {
+                producer1.Post(i);
+                producer2.Post(i);
+            }
+
+            await Task.Delay(new TimeSpan(50 * 6 * TimeSpan.TicksPerMillisecond) + TestUtils.SometimeSoon);
+            actionCount.Is(6);
         }
 
         [Fact]

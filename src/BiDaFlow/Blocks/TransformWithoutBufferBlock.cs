@@ -545,7 +545,7 @@ namespace BiDaFlow.Blocks
                 registration.Complete(completionTask.Exception);
         }
 
-        private class OfferingMessage
+        private sealed class OfferingMessage
         {
             public DataflowMessageHeader MessageHeader { get; }
             public ISourceBlock<TInput> Source { get; }
