@@ -109,7 +109,6 @@ namespace BiDaFlow.Internal
 
         DataflowMessageStatus ITargetBlock<T>.OfferMessage(DataflowMessageHeader messageHeader, T messageValue, ISourceBlock<T>? source, bool consumeToAccept)
         {
-            if (source != null && source != this._source) throw new ArgumentException("Unexpected source.");
             if (!messageHeader.IsValid) throw new ArgumentException("messageHeader is not valid.");
             if (consumeToAccept && source == null) throw new ArgumentException("source is null though consumeToAccept is true.");
 

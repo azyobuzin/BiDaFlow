@@ -73,7 +73,7 @@ namespace BiDaFlow.Fluent
         /// </exception>
         /// <remarks>
         /// <para>
-        /// If the dataflow block instatiated in <paramref name="propagatorFactory"/> will not be used somewhere else,
+        /// If the dataflow block instantiated in <paramref name="propagatorFactory"/> will not be used somewhere else,
         /// you can specify <see langword="true"/> to <see cref="ExecutionDataflowBlockOptions.SingleProducerConstrained"/>
         /// of the options object for the block.
         /// </para>

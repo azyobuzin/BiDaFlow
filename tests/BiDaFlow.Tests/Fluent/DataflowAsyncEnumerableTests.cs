@@ -64,5 +64,23 @@ namespace BiDaFlow.Tests.Fluent
 
             (await enumerator2.MoveNextAsync().AsTask().CompleteSoon()).Is(false);
         }
+
+        [Fact]
+        public async Task RunThroughDataflowBlock_Encapsulated()
+        {
+            // https://github.com/azyobuzin/BiDaFlow/issues/3
+
+            IPropagatorBlock<int, int> PropagatorFactory()
+            {
+                var block = new BufferBlock<int>();
+                return DataflowBlock.Encapsulate(block, block);
+            }
+
+            var results = await AsyncEnumerable.Range(1, 3)
+                .RunThroughDataflowBlock(PropagatorFactory)
+                .ToArrayAsync();
+
+            results.Is(1, 2, 3);
+        }
     }
 }
