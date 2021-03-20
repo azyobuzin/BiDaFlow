@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks.Dataflow;
 
 namespace BiDaFlow.Internal
 {
     internal sealed class LinkManager<T> : IEnumerable<LinkRegistration<T>>
     {
-        private readonly DoubleLinkedList<LinkRegistration<T>> _links = new DoubleLinkedList<LinkRegistration<T>>();
-        private readonly Dictionary<ITargetBlock<T>, SingleLinkedList<DoubleLinkedList<LinkRegistration<T>>.Node>> _targetToNodeTable = new Dictionary<ITargetBlock<T>, SingleLinkedList<DoubleLinkedList<LinkRegistration<T>>.Node>>();
+        private readonly DoubleLinkedList<LinkRegistration<T>> _links = new();
+        private readonly Dictionary<ITargetBlock<T>, SingleLinkedList<DoubleLinkedList<LinkRegistration<T>>.Node>> _targetToNodeTable = new();
 
         public int Count => this._links.Count;
 
@@ -95,6 +96,7 @@ namespace BiDaFlow.Internal
         IEnumerator IEnumerable.GetEnumerator()
             => this.GetEnumerator();
 
+        [StructLayout(LayoutKind.Auto)]
         internal struct LinkEnumerator : IEnumerator<LinkRegistration<T>>
         {
             private DoubleLinkedList<LinkRegistration<T>>.Node? _nextNode;

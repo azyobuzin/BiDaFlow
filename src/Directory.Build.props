@@ -12,6 +12,7 @@
     <Authors>azyobuzin</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/azyobuzin/BiDaFlow</PackageProjectUrl>
+    <LangVersion>9</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework.StartsWith('netstandard2'))">
