@@ -15,6 +15,7 @@
     <Compile Include="..\BiDaFlow\Internal\LinkManager.cs" Link="Internal\LinkManager.cs" />
     <Compile Include="..\BiDaFlow\Internal\LinkRegistration.cs" Link="Internal\LinkRegistration.cs" />
     <Compile Include="..\BiDaFlow\Internal\SingleLinkedList.cs" Link="Internal\SingleLinkedList.cs" />
+    <Compile Include="..\BiDaFlow\Internal\TaskSchedulerAutoResetEvent.cs" Link="Internal\TaskSchedulerAutoResetEvent.cs" />
   </ItemGroup>
 
   <ItemGroup>

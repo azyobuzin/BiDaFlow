@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
@@ -54,12 +55,21 @@ namespace BiDaFlow.Tests.Fluent
         [Fact]
         public async Task TestSlowConsumer()
         {
+            var stopwatch = Stopwatch.StartNew();
+
+            void Log(string message)
+            {
+                Debug.WriteLine($"[{stopwatch.ElapsedMilliseconds:D3}ms] {message}", nameof(TestSlowConsumer));
+            }
+
             IPropagatorBlock<int, int> CreateDelayBlock(int delay, int multiplier)
             {
                 return new TransformBlock<int, int>(
                     async x =>
                     {
+                        Log("Delay Enter " + x);
                         await Task.Delay(delay);
+                        Log("Delay Return " + x);
                         return x * multiplier;
                     },
                     new ExecutionDataflowBlockOptions()
@@ -74,7 +84,13 @@ namespace BiDaFlow.Tests.Fluent
             var block2 = CreateDelayBlock(75, 10);
             var testBlock = FluentDataflow.Merge(new ISourceBlock<int>[] { block1, block2 });
             var consumer = new TransformBlock<int, int>(
-                async x => { await Task.Delay(50); return x; },
+                async x =>
+                {
+                    Log("Consumer Enter " + x);
+                    await Task.Delay(50);
+                    Log("Consumer Return " + x);
+                    return x;
+                },
                 new ExecutionDataflowBlockOptions() { BoundedCapacity = 1 }
             );
 
@@ -88,7 +104,7 @@ namespace BiDaFlow.Tests.Fluent
             sourceBlock.Post(4); // to block2
             sourceBlock.Complete();
 
-            var timeoutToken = TestUtils.CancelAfter(new TimeSpan(300 * TimeSpan.TicksPerMillisecond));
+            var timeoutToken = TestUtils.CancelAfter(new TimeSpan(500 * TimeSpan.TicksPerMillisecond));
             (await consumer.AsAsyncEnumerable().ToArrayAsync(timeoutToken))
                 .Is(1, 20, 3, 40);
         }

@@ -10,10 +10,10 @@ namespace BiDaFlow.Internal
     internal sealed class EnumerableSourceCore<T>
     {
         private readonly ISourceBlock<T> _parent;
-        private CancellationToken _cancellationToken;
-        private CancellationTokenRegistration _cancelReg;
+        private readonly CancellationToken _cancellationToken;
+        private readonly CancellationTokenRegistration _cancelReg;
         private readonly LinkManager<T> _linkManager = new LinkManager<T>();
-        private readonly TaskCompletionSource<ValueTuple> _tcs = new TaskCompletionSource<ValueTuple>();
+        private readonly TaskCompletionSource<ValueTuple> _tcs = new TaskCompletionSource<ValueTuple>(TaskCreationOptions.RunContinuationsAsynchronously);
         private readonly List<Exception> _exceptions = new List<Exception>();
 
         private readonly Action _enumerate;
@@ -282,7 +282,7 @@ namespace BiDaFlow.Internal
                         foreach (var registration in this._linkManager)
                         {
                             // The item can be reserved in OfferMessage
-                            if (Volatile.Read(ref this._reservedBy) != null) break;
+                            if (this._reservedBy != null) break;
 
                             if (registration.Unlinked) continue;
 

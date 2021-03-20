@@ -80,8 +80,8 @@ namespace BiDaFlow.Internal
             lock (this._links)
             {
                 return this._targetToNodeTable.TryGetValue(target, out var node)
-                ? node.Value.Value
-                : null;
+                    ? node.Value.Value
+                    : null;
             }
         }
 

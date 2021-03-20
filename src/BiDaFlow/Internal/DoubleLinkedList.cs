@@ -81,7 +81,7 @@ namespace BiDaFlow.Internal
             this.Count = 0;
         }
 
-        public class Node
+        public sealed class Node
         {
             public T Value { get; set; }
             public Node? Next { get; set; }

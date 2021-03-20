@@ -24,7 +24,7 @@ namespace BiDaFlow.Internal
 
     internal sealed class AsyncEnumerableSubscription<T> : ISubscription
     {
-        private readonly IAsyncEnumerator<T> _enumerator;
+        private readonly IAsyncEnumerator<T>? _enumerator;
         private readonly ISubscriber<T> _subscriber;
         private readonly CancellationTokenSource _cts = new CancellationTokenSource();
         private bool _isCompleted;
@@ -99,6 +99,7 @@ namespace BiDaFlow.Internal
             static async void WorkerProc(object state)
             {
                 var self = (AsyncEnumerableSubscription<T>)state;
+                var enumerator = self._enumerator ?? throw new InvalidOperationException();
                 Exception? exception = null;
 
                 try
@@ -116,12 +117,12 @@ namespace BiDaFlow.Internal
                             self._requested--;
                         }
 
-                        var hasNext = await self._enumerator.MoveNextAsync().ConfigureAwait(false);
+                        var hasNext = await enumerator.MoveNextAsync().ConfigureAwait(false);
 
                         if (!hasNext || self._cts.IsCancellationRequested)
                             break;
 
-                        self._subscriber.OnNext(self._enumerator.Current);
+                        self._subscriber.OnNext(enumerator.Current);
                     }
                 }
                 catch (Exception ex)
@@ -135,7 +136,7 @@ namespace BiDaFlow.Internal
 
                     try
                     {
-                        await self._enumerator.DisposeAsync().ConfigureAwait(false);
+                        await enumerator.DisposeAsync().ConfigureAwait(false);
                     }
                     catch (Exception ex)
                     {

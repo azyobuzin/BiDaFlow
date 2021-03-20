@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -12,31 +11,30 @@ namespace BiDaFlow.Internal
 {
     internal sealed class PublisherSourceBlock<T> : ISourceBlock<T>, ISubscriber<T>
     {
-        private readonly TaskScheduler? _taskScheduler;
-        private CancellationToken _cancellationToken;
-        private CancellationTokenRegistration _cancelReg;
-        private readonly TaskCompletionSource<ValueTuple> _tcs = new TaskCompletionSource<ValueTuple>();
-        private readonly LinkManager<T> _linkManager = new LinkManager<T>();
-        private readonly ConcurrentQueue<T> _queue = new ConcurrentQueue<T>();
-        private readonly AsyncAutoResetEvent _resetEvent;
+        private readonly CancellationToken _cancellationToken;
+        private readonly CancellationTokenRegistration _cancelReg;
+        private readonly TaskCompletionSource<ValueTuple> _tcs = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        private readonly LinkManager<T> _linkManager = new();
+        private readonly Queue<T> _queue;
+        private readonly TaskSchedulerAutoResetEvent _offerEvent;
         private long _messageId = 1;
         private ITargetBlock<T>? _reservedBy;
         private ISubscription? _upstream;
         private int _freeCount;
         private bool _upstreamCanceled;
         private bool _completeRequested;
-        private readonly List<Exception> _exceptions = new List<Exception>();
+        private readonly List<Exception> _exceptions = new();
 
         public PublisherSourceBlock(int prefetch, TaskScheduler? taskScheduler, CancellationToken cancellationToken)
         {
-            this._taskScheduler = taskScheduler;
             this._cancellationToken = cancellationToken;
-            this._resetEvent = new AsyncAutoResetEvent(true) { RunContinuationsAsynchronously = true };
+            this._offerEvent = new TaskSchedulerAutoResetEvent(true, taskScheduler);
             this._freeCount = prefetch;
+            this._queue = new Queue<T>(prefetch);
 
             if (cancellationToken.CanBeCanceled)
             {
-                this._cancelReg = cancellationToken.Register(this.Complete);
+                this._cancelReg = cancellationToken.Register(state => ((IDataflowBlock)state).Complete(), this);
             }
         }
 
@@ -47,7 +45,7 @@ namespace BiDaFlow.Internal
         public void Complete()
         {
             this._completeRequested = true;
-            this._resetEvent.Set();
+            this._offerEvent.Set();
         }
 
         public void Fault(Exception exception)
@@ -92,7 +90,7 @@ namespace BiDaFlow.Internal
                 this._linkManager.AddLink(registration, linkOptions.Append);
             }
 
-            this._resetEvent.Set();
+            this.OfferToTargets();
 
             return new ActionDisposable(registration.Unlink);
         }
@@ -108,12 +106,13 @@ namespace BiDaFlow.Internal
             {
                 if (this._messageId != messageHeader.Id ||
                     (this._reservedBy != null && !Equals(this._reservedBy, target)) ||
-                    !this._queue.TryDequeue(out output))
+                    this._queue.Count == 0)
                 {
                     messageConsumed = false;
                     return default!;
                 }
 
+                output = this._queue.Dequeue();
                 this._reservedBy = null;
                 this._messageId++;
                 Interlocked.Increment(ref this._freeCount);
@@ -121,7 +120,7 @@ namespace BiDaFlow.Internal
                 this._linkManager.GetRegistration(target)?.DecrementRemainingMessages();
             }
 
-            this._resetEvent.Set();
+            this.OfferToTargets();
 
             messageConsumed = true;
             return output;
@@ -149,7 +148,7 @@ namespace BiDaFlow.Internal
             if (!messageHeader.IsValid) throw new ArgumentException("messageHeader is not valid.");
             if (target == null) throw new ArgumentNullException(nameof(target));
 
-            if (this._reservedBy == target && this._messageId == messageHeader.Id)
+            if (Equals(this._reservedBy, target) && this._messageId == messageHeader.Id)
             {
                 this._reservedBy = null;
             }
@@ -158,7 +157,7 @@ namespace BiDaFlow.Internal
                 throw new InvalidOperationException("The message has not been reserved by the target.");
             }
 
-            this._resetEvent.Set();
+            this.OfferToTargets();
         }
 
         #endregion
@@ -179,19 +178,13 @@ namespace BiDaFlow.Internal
             }
 
             // Start worker
-            if (this._taskScheduler == null || this._taskScheduler == TaskScheduler.Default)
-            {
-                ThreadPool.QueueUserWorkItem(state => ((PublisherSourceBlock<T>)state).OfferWorker(), this);
-            }
-            else
-            {
-                _ = new TaskFactory(this._taskScheduler).StartNew(this.OfferWorker);
-            }
+            _ = OfferWorkerAsync();
         }
 
         void ISubscriber<T>.OnNext(T element)
         {
-            this._queue.Enqueue(element);
+            lock (this.OfferLock)
+                this._queue.Enqueue(element);
         }
 
         void ISubscriber<T>.OnComplete()
@@ -222,14 +215,60 @@ namespace BiDaFlow.Internal
             if (n > 0) this._upstream!.Request(n);
         }
 
-        [SuppressMessage("Usage", "VSTHRD100:Avoid async void methods")]
-        private async void OfferWorker()
+        private async Task OfferWorkerAsync()
         {
             Debug.Assert(this._upstream != null);
 
             try
             {
-                await OfferLoopAsync();
+                while (!this._completeRequested)
+                {
+                    this.Request();
+
+                    await this._offerEvent;
+
+                    if (this._reservedBy != null) continue;
+
+                    lock (this.OfferLock)
+                    {
+                    StartOffer:
+                        if (this._queue.Count > 0)
+                        {
+                            var messageHeader = new DataflowMessageHeader(this._messageId);
+                            var messageValue = this._queue.Peek();
+
+                            foreach (var registration in this._linkManager)
+                            {
+                                // The item can be reserved in OfferMessage
+                                if (this._reservedBy != null) break;
+
+                                if (registration.Unlinked) continue;
+
+                                var status = registration.Target.OfferMessage(messageHeader, messageValue, this, false);
+
+                                switch (status)
+                                {
+                                    case DataflowMessageStatus.Accepted:
+                                        this._queue.Dequeue();
+
+                                        Interlocked.Increment(ref this._freeCount);
+
+                                        this._messageId++;
+                                        registration.DecrementRemainingMessages();
+
+                                        goto StartOffer;
+
+                                    case DataflowMessageStatus.NotAvailable:
+                                        throw new InvalidOperationException("Target cannot return NotAvailable if consumeToAccept is false.");
+
+                                    case DataflowMessageStatus.DecliningPermanently:
+                                        registration.Unlink();
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -254,56 +293,10 @@ namespace BiDaFlow.Internal
             this.CompleteCore();
         }
 
-        private async ValueTask OfferLoopAsync()
+        private void OfferToTargets()
         {
-            while (!this._completeRequested)
-            {
-                this.Request();
-
-                await this._resetEvent.WaitAsync();
-
-                if (this._reservedBy != null) continue;
-
-                lock (this.OfferLock)
-                {
-                StartOffer:
-                    if (this._queue.TryPeek(out var messageValue))
-                    {
-                        var messageHeader = new DataflowMessageHeader(this._messageId);
-
-                        foreach (var registration in this._linkManager)
-                        {
-                            // The item can be reserved in OfferMessage
-                            if (Volatile.Read(ref this._reservedBy) != null) break;
-
-                            if (registration.Unlinked) continue;
-
-                            var status = registration.Target.OfferMessage(messageHeader, messageValue, this, false);
-
-                            switch (status)
-                            {
-                                case DataflowMessageStatus.Accepted:
-                                    var dequeued = this._queue.TryDequeue(out _);
-                                    Debug.Assert(dequeued);
-
-                                    Interlocked.Increment(ref this._freeCount);
-
-                                    this._messageId++;
-                                    registration.DecrementRemainingMessages();
-
-                                    goto StartOffer;
-
-                                case DataflowMessageStatus.NotAvailable:
-                                    throw new InvalidOperationException("Target cannot return NotAvailable if consumeToAccept is false.");
-
-                                case DataflowMessageStatus.DecliningPermanently:
-                                    registration.Unlink();
-                                    break;
-                            }
-                        }
-                    }
-                }
-            }
+            if (this._reservedBy != null || this._queue.Count == 0 || this._linkManager.Count == 0) return;
+            this._offerEvent.Set();
         }
 
         private void CompleteCore()
@@ -362,7 +355,7 @@ namespace BiDaFlow.Internal
 
                 if (released)
                 {
-                    this._resetEvent.Set();
+                    this.OfferToTargets();
                 }
             }
         }
