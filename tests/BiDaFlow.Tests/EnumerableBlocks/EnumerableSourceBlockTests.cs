@@ -61,12 +61,11 @@ namespace BiDaFlow.Tests.EnumerableBlocks
         public async Task TestCancelInOffering()
         {
             var iterator = new TestIterator(3);
-            var cts = new CancellationTokenSource();
+            var cts = new CancellationTokenSource(50);
             var testBlock = iterator.AsSourceBlock(cts.Token);
             var targetBlock = new TransformWithoutBufferBlock<int, int>(x => x);
 
             testBlock.LinkTo(targetBlock);
-            cts.Cancel();
 
             // When link is added, call MoveNext once and buffer the result.
             // The task is not completed until the buffered value is consumed.
@@ -96,6 +95,24 @@ namespace BiDaFlow.Tests.EnumerableBlocks
             var aex = testBlock.Completion.Exception!;
             aex.InnerExceptions.Count.Is(1);
             aex.InnerException!.Message.Is("test");
+        }
+
+        [Theory, InlineData(1), InlineData(2)]
+        public async Task TestDisposeEnumerator(int receiveCount)
+        {
+            var iterator = new TestIterator(2);
+            var cts = new CancellationTokenSource();
+            var testBlock = iterator.AsSourceBlock(cts.Token);
+
+            for (var i = 1; i <= receiveCount; i++)
+            {
+                (await testBlock.ReceiveAsync(TestUtils.SometimeSoon)).Is(i);
+            }
+
+            cts.Cancel();
+
+            await testBlock.Completion.CanceledSoon();
+            iterator.Disposed.IsTrue();
         }
 
         private class TestIterator : IEnumerable<int>, IEnumerator<int>
