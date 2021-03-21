@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 ### Fixed
 - `DataflowAsyncEnumerable.AsSourceBlock(IAsyncEnumerable<T>)` would not dispose the enumerator when the cancel is requested
+- Fix deadlock in `SourceBlockAsyncEnumerator`, which occurs when the source offers a message while `MoveNextAsync` is running
 
 ## [0.2.1] - 2021-03-17
 ### Fixed

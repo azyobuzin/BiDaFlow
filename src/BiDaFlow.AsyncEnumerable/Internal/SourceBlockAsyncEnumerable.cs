@@ -56,44 +56,53 @@ namespace BiDaFlow.Internal
 
         public ValueTask<bool> MoveNextAsync()
         {
-            lock (this.Lock)
-            {
-                this._taskHelper.Reset();
+            if (this._isAwaiting) throw new InvalidOperationException("Do not call MoveNextAsync until the previous task is completed.");
 
-                if (this._exception != null)
+            this._taskHelper.Reset();
+
+            while (true)
+            {
+                DataflowMessageHeader messageHeader;
+
+                lock (this.Lock)
                 {
-                    this._taskHelper.SetException(this._exception);
-                }
-                else if (this._cancellationToken.IsCancellationRequested)
-                {
-                    this._taskHelper.SetResult(null);
-                }
-                else if (this._isCompleted)
-                {
-                    this._taskHelper.SetResult(false);
-                }
-                else
-                {
-                    this._isAwaiting = true;
+                    if (this._exception != null)
+                    {
+                        this._taskHelper.SetException(this._exception);
+                        break;
+                    }
+                    else if (this._cancellationToken.IsCancellationRequested)
+                    {
+                        this._taskHelper.SetResult(null);
+                        break;
+                    }
+                    else if (this._isCompleted)
+                    {
+                        this._taskHelper.SetResult(false);
+                        break;
+                    }
+                    else if (this._queue.Count == 0)
+                    {
+                        this._isAwaiting = true;
+                        break;
+                    }
 
                     // Dequeue postponed message
-                    while (this._queue.Count > 0)
-                    {
-                        var header = this._queue.Dequeue();
-                        var consumedValue = this._source.ConsumeMessage(header, this, out var consumed);
-
-                        if (consumed)
-                        {
-                            this.Current = consumedValue;
-                            this._isAwaiting = false;
-                            this._taskHelper.SetResult(true);
-                            break;
-                        }
-                    }
+                    messageHeader = this._queue.Dequeue();
                 }
 
-                return new ValueTask<bool>(this, this._taskHelper.Version);
+                // Call ConsumeMessage outside the lock to avoid deadlock in the source block (OutgoingLock)
+                var consumedValue = this._source.ConsumeMessage(messageHeader, this, out var consumed);
+
+                if (consumed)
+                {
+                    this.Current = consumedValue;
+                    this._taskHelper.SetResult(true);
+                    break;
+                }
             }
+
+            return new ValueTask<bool>(this, this._taskHelper.Version);
         }
 
         public ValueTask DisposeAsync()
