@@ -275,7 +275,9 @@ namespace BiDaFlow.Internal
                 this.AddException(ex);
             }
 
+#pragma warning disable VSTHRD103 // Call async methods when in an async method
             this._cancelReg.Dispose();
+#pragma warning restore VSTHRD103
 
             try
             {
