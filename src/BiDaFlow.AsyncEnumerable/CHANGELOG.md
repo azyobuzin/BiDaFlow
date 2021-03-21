@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+### Fixed
+- `DataflowAsyncEnumerable.AsSourceBlock(IAsyncEnumerable<T>)` would not dispose the enumerator when the cancel is requested
+
 ## [0.2.1] - 2021-03-17
 ### Fixed
 - Fix throwing `ArgumentException` when input encapsulated block to `RunThroughDataflowBlock` ([#3](https://github.com/azyobuzin/BiDaFlow/issues/3))

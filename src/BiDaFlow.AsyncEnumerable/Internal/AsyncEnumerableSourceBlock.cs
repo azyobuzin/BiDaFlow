@@ -7,7 +7,7 @@ using System.Threading.Tasks.Dataflow;
 
 namespace BiDaFlow.Internal
 {
-    /// <summary>Used by <c>FluentDataflow.AsSourceBlock</c></summary>
+    /// <summary>Used by <c>DataflowAsyncEnumerable.AsSourceBlock</c></summary>
     internal sealed class AsyncEnumerableSourceBlock<T> : IReceivableSourceBlock<T>
     {
         private readonly EnumerableSourceCore<T> _core;
@@ -31,16 +31,15 @@ namespace BiDaFlow.Internal
             {
                 if (this._enumerator == null)
                 {
-                    this._enumerator = this._enumerable.GetAsyncEnumerator(this._cancellationToken);
-
-                    if (this._enumerator == null)
+                    if (this._core.CompleteRequested ||
+                        (this._enumerator = this._enumerable.GetAsyncEnumerator(this._cancellationToken)) == null)
                     {
                         this._core.Complete(true);
                         return;
                     }
                 }
 
-                if (await this._enumerator.MoveNextAsync())
+                if (!this._core.CompleteRequested && await this._enumerator.MoveNextAsync())
                 {
                     this._core.OfferItem(this._enumerator.Current);
                 }

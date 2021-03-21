@@ -34,16 +34,15 @@ namespace BiDaFlow.Blocks
             {
                 if (this._enumerator == null)
                 {
-                    this._enumerator = this._enumerable!.GetEnumerator();
-
-                    if (this._enumerator == null)
+                    if (this._core.CompleteRequested ||
+                        (this._enumerator = this._enumerable!.GetEnumerator()) == null)
                     {
                         this._core.Complete(true);
                         return;
                     }
                 }
 
-                if (this._enumerator.MoveNext())
+                if (!this._core.CompleteRequested && this._enumerator.MoveNext())
                 {
                     this._core.OfferItem(this._enumerator.Current);
                 }

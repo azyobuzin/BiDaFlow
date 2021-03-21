@@ -12,15 +12,14 @@ namespace BiDaFlow.Internal
         private readonly ISourceBlock<T> _parent;
         private readonly CancellationToken _cancellationToken;
         private readonly CancellationTokenRegistration _cancelReg;
-        private readonly LinkManager<T> _linkManager = new LinkManager<T>();
-        private readonly TaskCompletionSource<ValueTuple> _tcs = new TaskCompletionSource<ValueTuple>(TaskCreationOptions.RunContinuationsAsynchronously);
-        private readonly List<Exception> _exceptions = new List<Exception>();
+        private readonly LinkManager<T> _linkManager = new();
+        private readonly TaskCompletionSource<ValueTuple> _tcs = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        private readonly List<Exception> _exceptions = new();
 
         private readonly Action _enumerate;
         private readonly Action _offerToTargetsOnTaskScheduler;
 
         private int _state = (int)StateEnum.WaitingForLink;
-        private bool _completeRequested;
         private long _messageId = 1;
         private T _messageValue = default!;
         private ITargetBlock<T>? _reservedBy;
@@ -57,7 +56,7 @@ namespace BiDaFlow.Internal
             if (cancellationToken.IsCancellationRequested)
             {
                 this.State = StateEnum.Completed;
-                this._completeRequested = true;
+                this.CompleteRequested = true;
                 this._tcs.TrySetCanceled(cancellationToken);
             }
             else if (cancellationToken.CanBeCanceled)
@@ -79,11 +78,13 @@ namespace BiDaFlow.Internal
             set => this._state = (int)value;
         }
 
+        public bool CompleteRequested { get; private set; }
+
         public Task Completion => this._tcs.Task;
 
         public void Complete(bool enumerating)
         {
-            this._completeRequested = true;
+            this.CompleteRequested = true;
 
             if (enumerating)
             {
@@ -92,8 +93,7 @@ namespace BiDaFlow.Internal
                 return;
             }
 
-            if (this.TransitionAtomically(StateEnum.WaitingForLink, StateEnum.Completed))
-                this.CompleteCore();
+            this.EnumerateOrComplete(StateEnum.WaitingForLink);
         }
 
         public void Fault(Exception exception)
@@ -144,11 +144,9 @@ namespace BiDaFlow.Internal
 
                 registration = new LinkRegistration<T>(target, linkOptions.MaxMessages, linkOptions.PropagateCompletion, this.HandleUnlink);
                 this._linkManager.AddLink(registration, linkOptions.Append);
-
-                if (this.TransitionAtomically(StateEnum.WaitingForLink, StateEnum.Enumerating))
-                    this._enumerate();
             }
 
+            this.EnumerateOrComplete(StateEnum.WaitingForLink);
             this.OfferToTargetsIfWaiting();
 
             return new ActionDisposable(registration.Unlink);
@@ -177,7 +175,7 @@ namespace BiDaFlow.Internal
 
                 this._linkManager.GetRegistration(target)?.DecrementRemainingMessages();
 
-                this.EnumerateOrComplete();
+                this.EnumerateOrComplete(StateEnum.WaitingToBeConsumed);
             }
 
             messageConsumed = true;
@@ -235,9 +233,10 @@ namespace BiDaFlow.Internal
             {
                 switch (this.State)
                 {
-                    case StateEnum.WaitingForLink:
-                    case StateEnum.Enumerating:
-                    case StateEnum.Completed:
+                    case StateEnum.WaitingToOffer:
+                    case StateEnum.WaitingToBeConsumed:
+                        break;
+                    default:
                         // item is not available
                         return false;
                 }
@@ -251,7 +250,7 @@ namespace BiDaFlow.Internal
                 item = messageValue;
                 this._messageId++;
 
-                this.EnumerateOrComplete();
+                this.EnumerateOrComplete(StateEnum.WaitingToBeConsumed);
             }
 
             return true;
@@ -293,7 +292,7 @@ namespace BiDaFlow.Internal
                                 case DataflowMessageStatus.Accepted:
                                     this._messageId++;
                                     registration.DecrementRemainingMessages();
-                                    this.EnumerateOrComplete();
+                                    this.EnumerateOrComplete(StateEnum.Offering);
                                     goto StartOffer;
 
                                 case DataflowMessageStatus.NotAvailable:
@@ -358,30 +357,28 @@ namespace BiDaFlow.Internal
             }
         }
 
-        private void EnumerateOrComplete()
+        private void EnumerateOrComplete(StateEnum expectedCurrentState)
         {
-            Debug.Assert(this.State == StateEnum.Offering || this.State == StateEnum.WaitingToBeConsumed);
+            if (!this.TransitionAtomically(expectedCurrentState, StateEnum.Enumerating))
+                return;
 
-            if (this._completeRequested)
+            bool enumerate;
+
+            // Lock to avoid to add a link in setting WaitingForLink to State
+            lock (this.CompletionLock)
             {
-                this.CompleteCore();
-            }
-            else
-            {
-                // Lock to avoid to add a link in setting WaitingForLink to State
-                lock (this.CompletionLock)
+                if (this.CompleteRequested || this._linkManager.Count > 0)
                 {
-                    if (this._linkManager.Count > 0)
-                    {
-                        this.State = StateEnum.Enumerating;
-                        this._enumerate();
-                    }
-                    else
-                    {
-                        this.State = StateEnum.WaitingForLink;
-                    }
+                    enumerate = true;
+                }
+                else
+                {
+                    this.TransitionAtomically(StateEnum.Enumerating, StateEnum.WaitingForLink);
+                    enumerate = false;
                 }
             }
+
+            if (enumerate) this._enumerate();
         }
 
         private void CompleteCore()
