@@ -354,7 +354,49 @@ namespace BiDaFlow.Fluent
             });
         }
 
-        /// <inheritdoc cref="LinkWithProbe{T}(ISourceBlock{T}, ITargetBlock{T}, DataflowLinkOptions, ILinkProbe{T})"/>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/>, <paramref name="target"/> or <paramref name="probe"/> is <see langword="null"/>.</exception>
+        /// <example>
+        /// <code><![CDATA[
+        /// IDisposable unlinker = source.LinkWithProbe(target, new ConsoleProbe<T>("ExampleLink"));
+        /// 
+        /// class ConsoleProbe<T> : ILinkProbe<T>
+        /// {
+        ///     public string Name { get; }
+        /// 
+        ///     public ConsoleProbe(string name) => this.Name = name;
+        /// 
+        ///     void ILinkProbe<T>.OnComplete()
+        ///     {
+        ///         Console.WriteLine("{0}: -> Complete", this.Name);
+        ///     }
+        /// 
+        ///     void ILinkProbe<T>.OnFault(Exception exception)
+        ///     {
+        ///         Console.WriteLine("{0}: -> Fault({1})", this.Name, exception.GetType().Name);
+        ///     }
+        /// 
+        ///     void ILinkProbe<T>.OnOfferResponse(DataflowMessageHeader messageHeader, T messageValue, DataflowMessageStatus status)
+        ///     {
+        ///         Console.WriteLine("{0}: -> OfferMessage({1}), <- {2}", this.Name, messageHeader.Id, status);
+        ///     }
+        /// 
+        ///     void ILinkProbe<T>.OnConsumeResponse(DataflowMessageHeader messageHeader, bool messageConsumed, T? messageValue)
+        ///     {
+        ///         Console.WriteLine("{0}: <- ConsumeMessage({1}), -> {2}", this.Name, messageHeader.Id, messageConsumed);
+        ///     }
+        /// 
+        ///     void ILinkProbe<T>.OnReserveResponse(DataflowMessageHeader messageHeader, bool reserved)
+        ///     {
+        ///         Console.WriteLine("{0}: <- ReserveMessage({1}), -> {2}", this.Name, messageHeader.Id, reserved);
+        ///     }
+        /// 
+        ///     void ILinkProbe<T>.OnUnlink()
+        ///     {
+        ///         Console.WriteLine("{0}: Unlink");
+        ///     }
+        /// }
+        /// ]]></code>
+        /// </example>
         public static IDisposable LinkWithProbe<T>(this ISourceBlock<T> source, ITargetBlock<T> target, ILinkProbe<T> probe)
         {
             return source.LinkWithProbe(target, s_defaultOptions, probe);
