@@ -11,6 +11,9 @@ namespace BiDaFlow.Fluent
 {
     public static class FluentDataflow
     {
+        private static readonly DataflowLinkOptions s_defaultOptions = new();
+        private static readonly DataflowLinkOptions s_propagateCompletionOptions = new() { PropagateCompletion = true };
+
         /// <inheritdoc cref="PropagateCompletion(IDataflowBlock, IDataflowBlock, WhenPropagate)"/>
         public static IDisposable PropagateCompletion(this IDataflowBlock source, IDataflowBlock target)
         {
@@ -69,8 +72,6 @@ namespace BiDaFlow.Fluent
                 }
             }
         }
-
-        private static readonly DataflowLinkOptions s_propagateCompletionOptions = new DataflowLinkOptions() { PropagateCompletion = true };
 
         /// <summary>
         /// Links the <see cref="ISourceBlock{TOutput}"/> to the specified <see cref="ITargetBlock{TInput}"/> propagating completion.
@@ -333,6 +334,30 @@ namespace BiDaFlow.Fluent
         public static IPropagatorBlock<TInput, TOutput> Merge<TInput, TOutput>(this IPropagatorBlock<TInput, TOutput> propagator, params ISourceBlock<TOutput>[] sources)
         {
             return propagator.Merge((IEnumerable<ISourceBlock<TOutput>>)sources);
+        }
+
+        /// <exception cref="ArgumentNullException"><paramref name="source"/>, <paramref name="target"/>, <paramref name="linkOptions"/> or <paramref name="probe"/> is <see langword="null"/>.</exception>
+        public static IDisposable LinkWithProbe<T>(this ISourceBlock<T> source, ITargetBlock<T> target, DataflowLinkOptions linkOptions, ILinkProbe<T> probe)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (target == null) throw new ArgumentNullException(nameof(target));
+            if (linkOptions == null) throw new ArgumentNullException(nameof(linkOptions));
+            if (probe == null) throw new ArgumentNullException(nameof(probe));
+
+            probe.Initialize(source, target, linkOptions);
+            var unlinker = source.LinkTo(new ProbePropagatorBlock<T>(source, target, probe), linkOptions);
+
+            return new ActionDisposable(() =>
+            {
+                probe.OnUnlink();
+                unlinker.Dispose();
+            });
+        }
+
+        /// <inheritdoc cref="LinkWithProbe{T}(ISourceBlock{T}, ITargetBlock{T}, DataflowLinkOptions, ILinkProbe{T})"/>
+        public static IDisposable LinkWithProbe<T>(this ISourceBlock<T> source, ITargetBlock<T> target, ILinkProbe<T> probe)
+        {
+            return source.LinkWithProbe(target, s_defaultOptions, probe);
         }
     }
 }
