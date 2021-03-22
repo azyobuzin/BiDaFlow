@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class DataflowAsyncEnumerable
    ">
-    <meta name="generator" content="docfx 2.56.2.0">
+    <meta name="generator" content="docfx 2.56.7.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -121,7 +121,7 @@
   </span>
   <a id="BiDaFlow_Fluent_DataflowAsyncEnumerable_AsAsyncEnumerable_" data-uid="BiDaFlow.Fluent.DataflowAsyncEnumerable.AsAsyncEnumerable*"></a>
   <h4 id="BiDaFlow_Fluent_DataflowAsyncEnumerable_AsAsyncEnumerable__1_System_Threading_Tasks_Dataflow_ISourceBlock___0__" data-uid="BiDaFlow.Fluent.DataflowAsyncEnumerable.AsAsyncEnumerable``1(System.Threading.Tasks.Dataflow.ISourceBlock{``0})">AsAsyncEnumerable&lt;TOutput&gt;(ISourceBlock&lt;TOutput&gt;)</h4>
-  <div class="markdown level1 summary"><p>Creates an <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable&lt;T&gt;</a> to consume the elements from <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.isourceblock-1">ISourceBlock&lt;TOutput&gt;</a>.</p>
+  <div class="markdown level1 summary"><p>Creates an <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable&lt;T&gt;</a> to consume the items from <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.isourceblock-1">ISourceBlock&lt;TOutput&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -459,8 +459,8 @@ because the internal target block doesn&apos;t have a buffer.
   </table>
   <h5 id="BiDaFlow_Fluent_DataflowAsyncEnumerable_RunThroughDataflowBlock__2_System_Collections_Generic_IAsyncEnumerable___0__System_Func_System_Threading_CancellationToken_System_Threading_Tasks_Dataflow_IPropagatorBlock___0___1____remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>
-If the dataflow block instatiated in <code data-dev-comment-type="paramref" class="paramref">propagatorFactory</code> will not be used somewhere else,
-you can specify <span class="xref">true</span> to <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.executiondataflowblockoptions.singleproducerconstrained#System_Threading_Tasks_Dataflow_ExecutionDataflowBlockOptions_SingleProducerConstrained">SingleProducerConstrained</a>
+If the dataflow block instantiated in <code data-dev-comment-type="paramref" class="paramref">propagatorFactory</code> will not be used somewhere else,
+you can set <span class="xref">true</span> to <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.executiondataflowblockoptions.singleproducerconstrained#System_Threading_Tasks_Dataflow_ExecutionDataflowBlockOptions_SingleProducerConstrained">SingleProducerConstrained</a>
 of the options object for the block.
 </p>
 </div>
@@ -575,8 +575,8 @@ of the options object for the block.
   </table>
   <h5 id="BiDaFlow_Fluent_DataflowAsyncEnumerable_RunThroughDataflowBlock__2_System_Collections_Generic_IAsyncEnumerable___0__System_Func_System_Threading_Tasks_Dataflow_IPropagatorBlock___0___1____remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>
-If the dataflow block instatiated in <code data-dev-comment-type="paramref" class="paramref">propagatorFactory</code> will not be used somewhere else,
-you can specify <span class="xref">true</span> to <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.executiondataflowblockoptions.singleproducerconstrained#System_Threading_Tasks_Dataflow_ExecutionDataflowBlockOptions_SingleProducerConstrained">SingleProducerConstrained</a>
+If the dataflow block instantiated in <code data-dev-comment-type="paramref" class="paramref">propagatorFactory</code> will not be used somewhere else,
+you can set <span class="xref">true</span> to <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.dataflow.executiondataflowblockoptions.singleproducerconstrained#System_Threading_Tasks_Dataflow_ExecutionDataflowBlockOptions_SingleProducerConstrained">SingleProducerConstrained</a>
 of the options object for the block.
 </p>
 </div>
@@ -612,7 +612,8 @@ of the options object for the block.
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

@@ -113,243 +113,6 @@ references:
   fullName.vb: BiDaFlow.Blocks.DropBlock(Of TInput).System.Threading.Tasks.Dataflow.ITargetBlock<TInput>.OfferMessage
   nameWithType: DropBlock<TInput>.ITargetBlock<TInput>.OfferMessage
   nameWithType.vb: DropBlock(Of TInput).System.Threading.Tasks.Dataflow.ITargetBlock<TInput>.OfferMessage
-- uid: BiDaFlow.Blocks.FilterBlock`1
-  name: FilterBlock<T>
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html
-  commentId: T:BiDaFlow.Blocks.FilterBlock`1
-  name.vb: FilterBlock(Of T)
-  fullName: BiDaFlow.Blocks.FilterBlock<T>
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T)
-  nameWithType: FilterBlock<T>
-  nameWithType.vb: FilterBlock(Of T)
-- uid: BiDaFlow.Blocks.FilterBlock`1.#ctor(System.Func{`0,System.Boolean})
-  name: FilterBlock(Func<T, Boolean>)
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1__ctor_System_Func__0_System_Boolean__
-  commentId: M:BiDaFlow.Blocks.FilterBlock`1.#ctor(System.Func{`0,System.Boolean})
-  name.vb: FilterBlock(Func(Of T, Boolean))
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.FilterBlock(System.Func<T, System.Boolean>)
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).FilterBlock(System.Func(Of T, System.Boolean))
-  nameWithType: FilterBlock<T>.FilterBlock(Func<T, Boolean>)
-  nameWithType.vb: FilterBlock(Of T).FilterBlock(Func(Of T, Boolean))
-- uid: BiDaFlow.Blocks.FilterBlock`1.#ctor(System.Func{`0,System.Boolean},System.Threading.Tasks.Dataflow.ExecutionDataflowBlockOptions)
-  name: FilterBlock(Func<T, Boolean>, ExecutionDataflowBlockOptions)
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1__ctor_System_Func__0_System_Boolean__System_Threading_Tasks_Dataflow_ExecutionDataflowBlockOptions_
-  commentId: M:BiDaFlow.Blocks.FilterBlock`1.#ctor(System.Func{`0,System.Boolean},System.Threading.Tasks.Dataflow.ExecutionDataflowBlockOptions)
-  name.vb: FilterBlock(Func(Of T, Boolean), ExecutionDataflowBlockOptions)
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.FilterBlock(System.Func<T, System.Boolean>, System.Threading.Tasks.Dataflow.ExecutionDataflowBlockOptions)
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).FilterBlock(System.Func(Of T, System.Boolean), System.Threading.Tasks.Dataflow.ExecutionDataflowBlockOptions)
-  nameWithType: FilterBlock<T>.FilterBlock(Func<T, Boolean>, ExecutionDataflowBlockOptions)
-  nameWithType.vb: FilterBlock(Of T).FilterBlock(Func(Of T, Boolean), ExecutionDataflowBlockOptions)
-- uid: BiDaFlow.Blocks.FilterBlock`1.#ctor(System.Func{`0,System.Threading.Tasks.Task{System.Boolean}})
-  name: FilterBlock(Func<T, Task<Boolean>>)
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1__ctor_System_Func__0_System_Threading_Tasks_Task_System_Boolean___
-  commentId: M:BiDaFlow.Blocks.FilterBlock`1.#ctor(System.Func{`0,System.Threading.Tasks.Task{System.Boolean}})
-  name.vb: FilterBlock(Func(Of T, Task(Of Boolean)))
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.FilterBlock(System.Func<T, System.Threading.Tasks.Task<System.Boolean>>)
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).FilterBlock(System.Func(Of T, System.Threading.Tasks.Task(Of System.Boolean)))
-  nameWithType: FilterBlock<T>.FilterBlock(Func<T, Task<Boolean>>)
-  nameWithType.vb: FilterBlock(Of T).FilterBlock(Func(Of T, Task(Of Boolean)))
-- uid: BiDaFlow.Blocks.FilterBlock`1.#ctor(System.Func{`0,System.Threading.Tasks.Task{System.Boolean}},System.Threading.Tasks.Dataflow.ExecutionDataflowBlockOptions)
-  name: FilterBlock(Func<T, Task<Boolean>>, ExecutionDataflowBlockOptions)
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1__ctor_System_Func__0_System_Threading_Tasks_Task_System_Boolean___System_Threading_Tasks_Dataflow_ExecutionDataflowBlockOptions_
-  commentId: M:BiDaFlow.Blocks.FilterBlock`1.#ctor(System.Func{`0,System.Threading.Tasks.Task{System.Boolean}},System.Threading.Tasks.Dataflow.ExecutionDataflowBlockOptions)
-  name.vb: FilterBlock(Func(Of T, Task(Of Boolean)), ExecutionDataflowBlockOptions)
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.FilterBlock(System.Func<T, System.Threading.Tasks.Task<System.Boolean>>, System.Threading.Tasks.Dataflow.ExecutionDataflowBlockOptions)
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).FilterBlock(System.Func(Of T, System.Threading.Tasks.Task(Of System.Boolean)), System.Threading.Tasks.Dataflow.ExecutionDataflowBlockOptions)
-  nameWithType: FilterBlock<T>.FilterBlock(Func<T, Task<Boolean>>, ExecutionDataflowBlockOptions)
-  nameWithType.vb: FilterBlock(Of T).FilterBlock(Func(Of T, Task(Of Boolean)), ExecutionDataflowBlockOptions)
-- uid: BiDaFlow.Blocks.FilterBlock`1.#ctor*
-  name: FilterBlock
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1__ctor_
-  commentId: Overload:BiDaFlow.Blocks.FilterBlock`1.#ctor
-  isSpec: "True"
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.FilterBlock
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).FilterBlock
-  nameWithType: FilterBlock<T>.FilterBlock
-  nameWithType.vb: FilterBlock(Of T).FilterBlock
-- uid: BiDaFlow.Blocks.FilterBlock`1.Complete
-  name: Complete()
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_Complete
-  commentId: M:BiDaFlow.Blocks.FilterBlock`1.Complete
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.Complete()
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).Complete()
-  nameWithType: FilterBlock<T>.Complete()
-  nameWithType.vb: FilterBlock(Of T).Complete()
-- uid: BiDaFlow.Blocks.FilterBlock`1.Complete*
-  name: Complete
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_Complete_
-  commentId: Overload:BiDaFlow.Blocks.FilterBlock`1.Complete
-  isSpec: "True"
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.Complete
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).Complete
-  nameWithType: FilterBlock<T>.Complete
-  nameWithType.vb: FilterBlock(Of T).Complete
-- uid: BiDaFlow.Blocks.FilterBlock`1.Completion
-  name: Completion
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_Completion
-  commentId: P:BiDaFlow.Blocks.FilterBlock`1.Completion
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.Completion
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).Completion
-  nameWithType: FilterBlock<T>.Completion
-  nameWithType.vb: FilterBlock(Of T).Completion
-- uid: BiDaFlow.Blocks.FilterBlock`1.Completion*
-  name: Completion
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_Completion_
-  commentId: Overload:BiDaFlow.Blocks.FilterBlock`1.Completion
-  isSpec: "True"
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.Completion
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).Completion
-  nameWithType: FilterBlock<T>.Completion
-  nameWithType.vb: FilterBlock(Of T).Completion
-- uid: BiDaFlow.Blocks.FilterBlock`1.LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock{`0},System.Threading.Tasks.Dataflow.DataflowLinkOptions)
-  name: LinkTo(ITargetBlock<T>, DataflowLinkOptions)
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_LinkTo_System_Threading_Tasks_Dataflow_ITargetBlock__0__System_Threading_Tasks_Dataflow_DataflowLinkOptions_
-  commentId: M:BiDaFlow.Blocks.FilterBlock`1.LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock{`0},System.Threading.Tasks.Dataflow.DataflowLinkOptions)
-  name.vb: LinkTo(ITargetBlock(Of T), DataflowLinkOptions)
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock<T>, System.Threading.Tasks.Dataflow.DataflowLinkOptions)
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock(Of T), System.Threading.Tasks.Dataflow.DataflowLinkOptions)
-  nameWithType: FilterBlock<T>.LinkTo(ITargetBlock<T>, DataflowLinkOptions)
-  nameWithType.vb: FilterBlock(Of T).LinkTo(ITargetBlock(Of T), DataflowLinkOptions)
-- uid: BiDaFlow.Blocks.FilterBlock`1.LinkTo*
-  name: LinkTo
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_LinkTo_
-  commentId: Overload:BiDaFlow.Blocks.FilterBlock`1.LinkTo
-  isSpec: "True"
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.LinkTo
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).LinkTo
-  nameWithType: FilterBlock<T>.LinkTo
-  nameWithType.vb: FilterBlock(Of T).LinkTo
-- uid: BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault(System.Exception)
-  name: IDataflowBlock.Fault(Exception)
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_System_Exception_
-  commentId: M:BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault(System.Exception)
-  name.vb: System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(Exception)
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(System.Exception)
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(System.Exception)
-  nameWithType: FilterBlock<T>.IDataflowBlock.Fault(Exception)
-  nameWithType.vb: FilterBlock(Of T).System.Threading.Tasks.Dataflow.IDataflowBlock.Fault(Exception)
-- uid: BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault*
-  name: IDataflowBlock.Fault
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_
-  commentId: Overload:BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault
-  isSpec: "True"
-  name.vb: System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
-  nameWithType: FilterBlock<T>.IDataflowBlock.Fault
-  nameWithType.vb: FilterBlock(Of T).System.Threading.Tasks.Dataflow.IDataflowBlock.Fault
-- uid: BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ISourceBlock{T}#ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0},System.Boolean@)
-  name: ISourceBlock<T>.ConsumeMessage(DataflowMessageHeader, ITargetBlock<T>, out Boolean)
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_System_Threading_Tasks_Dataflow_ISourceBlock_T__ConsumeMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__0__System_Boolean__
-  commentId: M:BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ISourceBlock{T}#ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0},System.Boolean@)
-  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<T>.ConsumeMessage(DataflowMessageHeader, ITargetBlock(Of T), ByRef Boolean)
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.System.Threading.Tasks.Dataflow.ISourceBlock<T>.ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock<T>, out System.Boolean)
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).System.Threading.Tasks.Dataflow.ISourceBlock<T>.ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock(Of T), ByRef System.Boolean)
-  nameWithType: FilterBlock<T>.ISourceBlock<T>.ConsumeMessage(DataflowMessageHeader, ITargetBlock<T>, out Boolean)
-  nameWithType.vb: FilterBlock(Of T).System.Threading.Tasks.Dataflow.ISourceBlock<T>.ConsumeMessage(DataflowMessageHeader, ITargetBlock(Of T), ByRef Boolean)
-- uid: BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ISourceBlock{T}#ConsumeMessage*
-  name: ISourceBlock<T>.ConsumeMessage
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_System_Threading_Tasks_Dataflow_ISourceBlock_T__ConsumeMessage_
-  commentId: Overload:BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ISourceBlock{T}#ConsumeMessage
-  isSpec: "True"
-  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<T>.ConsumeMessage
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.System.Threading.Tasks.Dataflow.ISourceBlock<T>.ConsumeMessage
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).System.Threading.Tasks.Dataflow.ISourceBlock<T>.ConsumeMessage
-  nameWithType: FilterBlock<T>.ISourceBlock<T>.ConsumeMessage
-  nameWithType.vb: FilterBlock(Of T).System.Threading.Tasks.Dataflow.ISourceBlock<T>.ConsumeMessage
-- uid: BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ISourceBlock{T}#ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0})
-  name: ISourceBlock<T>.ReleaseReservation(DataflowMessageHeader, ITargetBlock<T>)
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_System_Threading_Tasks_Dataflow_ISourceBlock_T__ReleaseReservation_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__0__
-  commentId: M:BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ISourceBlock{T}#ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0})
-  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReleaseReservation(DataflowMessageHeader, ITargetBlock(Of T))
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock<T>)
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock(Of T))
-  nameWithType: FilterBlock<T>.ISourceBlock<T>.ReleaseReservation(DataflowMessageHeader, ITargetBlock<T>)
-  nameWithType.vb: FilterBlock(Of T).System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReleaseReservation(DataflowMessageHeader, ITargetBlock(Of T))
-- uid: BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ISourceBlock{T}#ReleaseReservation*
-  name: ISourceBlock<T>.ReleaseReservation
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_System_Threading_Tasks_Dataflow_ISourceBlock_T__ReleaseReservation_
-  commentId: Overload:BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ISourceBlock{T}#ReleaseReservation
-  isSpec: "True"
-  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReleaseReservation
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReleaseReservation
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReleaseReservation
-  nameWithType: FilterBlock<T>.ISourceBlock<T>.ReleaseReservation
-  nameWithType.vb: FilterBlock(Of T).System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReleaseReservation
-- uid: BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ISourceBlock{T}#ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0})
-  name: ISourceBlock<T>.ReserveMessage(DataflowMessageHeader, ITargetBlock<T>)
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_System_Threading_Tasks_Dataflow_ISourceBlock_T__ReserveMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__0__
-  commentId: M:BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ISourceBlock{T}#ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0})
-  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReserveMessage(DataflowMessageHeader, ITargetBlock(Of T))
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock<T>)
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Threading.Tasks.Dataflow.ITargetBlock(Of T))
-  nameWithType: FilterBlock<T>.ISourceBlock<T>.ReserveMessage(DataflowMessageHeader, ITargetBlock<T>)
-  nameWithType.vb: FilterBlock(Of T).System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReserveMessage(DataflowMessageHeader, ITargetBlock(Of T))
-- uid: BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ISourceBlock{T}#ReserveMessage*
-  name: ISourceBlock<T>.ReserveMessage
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_System_Threading_Tasks_Dataflow_ISourceBlock_T__ReserveMessage_
-  commentId: Overload:BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ISourceBlock{T}#ReserveMessage
-  isSpec: "True"
-  name.vb: System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReserveMessage
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReserveMessage
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReserveMessage
-  nameWithType: FilterBlock<T>.ISourceBlock<T>.ReserveMessage
-  nameWithType.vb: FilterBlock(Of T).System.Threading.Tasks.Dataflow.ISourceBlock<T>.ReserveMessage
-- uid: BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ITargetBlock{T}#OfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,`0,System.Threading.Tasks.Dataflow.ISourceBlock{`0},System.Boolean)
-  name: ITargetBlock<T>.OfferMessage(DataflowMessageHeader, T, ISourceBlock<T>, Boolean)
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_System_Threading_Tasks_Dataflow_ITargetBlock_T__OfferMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader__0_System_Threading_Tasks_Dataflow_ISourceBlock__0__System_Boolean_
-  commentId: M:BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ITargetBlock{T}#OfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,`0,System.Threading.Tasks.Dataflow.ISourceBlock{`0},System.Boolean)
-  name.vb: System.Threading.Tasks.Dataflow.ITargetBlock<T>.OfferMessage(DataflowMessageHeader, T, ISourceBlock(Of T), Boolean)
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.System.Threading.Tasks.Dataflow.ITargetBlock<T>.OfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, T, System.Threading.Tasks.Dataflow.ISourceBlock<T>, System.Boolean)
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).System.Threading.Tasks.Dataflow.ITargetBlock<T>.OfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, T, System.Threading.Tasks.Dataflow.ISourceBlock(Of T), System.Boolean)
-  nameWithType: FilterBlock<T>.ITargetBlock<T>.OfferMessage(DataflowMessageHeader, T, ISourceBlock<T>, Boolean)
-  nameWithType.vb: FilterBlock(Of T).System.Threading.Tasks.Dataflow.ITargetBlock<T>.OfferMessage(DataflowMessageHeader, T, ISourceBlock(Of T), Boolean)
-- uid: BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ITargetBlock{T}#OfferMessage*
-  name: ITargetBlock<T>.OfferMessage
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_System_Threading_Tasks_Dataflow_ITargetBlock_T__OfferMessage_
-  commentId: Overload:BiDaFlow.Blocks.FilterBlock`1.System#Threading#Tasks#Dataflow#ITargetBlock{T}#OfferMessage
-  isSpec: "True"
-  name.vb: System.Threading.Tasks.Dataflow.ITargetBlock<T>.OfferMessage
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.System.Threading.Tasks.Dataflow.ITargetBlock<T>.OfferMessage
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).System.Threading.Tasks.Dataflow.ITargetBlock<T>.OfferMessage
-  nameWithType: FilterBlock<T>.ITargetBlock<T>.OfferMessage
-  nameWithType.vb: FilterBlock(Of T).System.Threading.Tasks.Dataflow.ITargetBlock<T>.OfferMessage
-- uid: BiDaFlow.Blocks.FilterBlock`1.TryReceive(System.Predicate{`0},`0@)
-  name: TryReceive(Predicate<T>, out T)
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_TryReceive_System_Predicate__0___0__
-  commentId: M:BiDaFlow.Blocks.FilterBlock`1.TryReceive(System.Predicate{`0},`0@)
-  name.vb: TryReceive(Predicate(Of T), ByRef T)
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.TryReceive(System.Predicate<T>, out T)
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).TryReceive(System.Predicate(Of T), ByRef T)
-  nameWithType: FilterBlock<T>.TryReceive(Predicate<T>, out T)
-  nameWithType.vb: FilterBlock(Of T).TryReceive(Predicate(Of T), ByRef T)
-- uid: BiDaFlow.Blocks.FilterBlock`1.TryReceive*
-  name: TryReceive
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_TryReceive_
-  commentId: Overload:BiDaFlow.Blocks.FilterBlock`1.TryReceive
-  isSpec: "True"
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.TryReceive
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).TryReceive
-  nameWithType: FilterBlock<T>.TryReceive
-  nameWithType.vb: FilterBlock(Of T).TryReceive
-- uid: BiDaFlow.Blocks.FilterBlock`1.TryReceiveAll(System.Collections.Generic.IList{`0}@)
-  name: TryReceiveAll(out IList<T>)
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_TryReceiveAll_System_Collections_Generic_IList__0___
-  commentId: M:BiDaFlow.Blocks.FilterBlock`1.TryReceiveAll(System.Collections.Generic.IList{`0}@)
-  name.vb: TryReceiveAll(ByRef IList(Of T))
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.TryReceiveAll(out System.Collections.Generic.IList<T>)
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).TryReceiveAll(ByRef System.Collections.Generic.IList(Of T))
-  nameWithType: FilterBlock<T>.TryReceiveAll(out IList<T>)
-  nameWithType.vb: FilterBlock(Of T).TryReceiveAll(ByRef IList(Of T))
-- uid: BiDaFlow.Blocks.FilterBlock`1.TryReceiveAll*
-  name: TryReceiveAll
-  href: api/BiDaFlow.Blocks.FilterBlock-1.html#BiDaFlow_Blocks_FilterBlock_1_TryReceiveAll_
-  commentId: Overload:BiDaFlow.Blocks.FilterBlock`1.TryReceiveAll
-  isSpec: "True"
-  fullName: BiDaFlow.Blocks.FilterBlock<T>.TryReceiveAll
-  fullName.vb: BiDaFlow.Blocks.FilterBlock(Of T).TryReceiveAll
-  nameWithType: FilterBlock<T>.TryReceiveAll
-  nameWithType.vb: FilterBlock(Of T).TryReceiveAll
 - uid: BiDaFlow.Blocks.TransformWithoutBufferBlock`2
   name: TransformWithoutBufferBlock<TInput, TOutput>
   href: api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html
@@ -715,6 +478,31 @@ references:
   fullName.vb: BiDaFlow.Fluent.FluentDataflow.CompletedSourceBlock(Of TOutput)()
   nameWithType: FluentDataflow.CompletedSourceBlock<TOutput>()
   nameWithType.vb: FluentDataflow.CompletedSourceBlock(Of TOutput)()
+- uid: BiDaFlow.Fluent.FluentDataflow.CompleteWhen(System.Threading.Tasks.Dataflow.IDataflowBlock,System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
+  name: CompleteWhen(IDataflowBlock, IEnumerable<Task>)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_CompleteWhen_System_Threading_Tasks_Dataflow_IDataflowBlock_System_Collections_Generic_IEnumerable_System_Threading_Tasks_Task__
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.CompleteWhen(System.Threading.Tasks.Dataflow.IDataflowBlock,System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
+  name.vb: CompleteWhen(IDataflowBlock, IEnumerable(Of Task))
+  fullName: BiDaFlow.Fluent.FluentDataflow.CompleteWhen(System.Threading.Tasks.Dataflow.IDataflowBlock, System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>)
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.CompleteWhen(System.Threading.Tasks.Dataflow.IDataflowBlock, System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task))
+  nameWithType: FluentDataflow.CompleteWhen(IDataflowBlock, IEnumerable<Task>)
+  nameWithType.vb: FluentDataflow.CompleteWhen(IDataflowBlock, IEnumerable(Of Task))
+- uid: BiDaFlow.Fluent.FluentDataflow.CompleteWhen(System.Threading.Tasks.Dataflow.IDataflowBlock,System.Threading.Tasks.Task[])
+  name: CompleteWhen(IDataflowBlock, Task[])
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_CompleteWhen_System_Threading_Tasks_Dataflow_IDataflowBlock_System_Threading_Tasks_Task___
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.CompleteWhen(System.Threading.Tasks.Dataflow.IDataflowBlock,System.Threading.Tasks.Task[])
+  name.vb: CompleteWhen(IDataflowBlock, Task())
+  fullName: BiDaFlow.Fluent.FluentDataflow.CompleteWhen(System.Threading.Tasks.Dataflow.IDataflowBlock, System.Threading.Tasks.Task[])
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.CompleteWhen(System.Threading.Tasks.Dataflow.IDataflowBlock, System.Threading.Tasks.Task())
+  nameWithType: FluentDataflow.CompleteWhen(IDataflowBlock, Task[])
+  nameWithType.vb: FluentDataflow.CompleteWhen(IDataflowBlock, Task())
+- uid: BiDaFlow.Fluent.FluentDataflow.CompleteWhen*
+  name: CompleteWhen
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_CompleteWhen_
+  commentId: Overload:BiDaFlow.Fluent.FluentDataflow.CompleteWhen
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.FluentDataflow.CompleteWhen
+  nameWithType: FluentDataflow.CompleteWhen
 - uid: BiDaFlow.Fluent.FluentDataflow.EncapsulateAsDataflowBlock(System.Threading.Tasks.Dataflow.IDataflowBlock,System.Threading.Tasks.Dataflow.IDataflowBlock)
   name: EncapsulateAsDataflowBlock(IDataflowBlock, IDataflowBlock)
   href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_EncapsulateAsDataflowBlock_System_Threading_Tasks_Dataflow_IDataflowBlock_System_Threading_Tasks_Dataflow_IDataflowBlock_
@@ -792,6 +580,31 @@ references:
   fullName.vb: BiDaFlow.Fluent.FluentDataflow.LinkWithCompletion(Of TOutput)(System.Threading.Tasks.Dataflow.ISourceBlock(Of TOutput), System.Threading.Tasks.Dataflow.ITargetBlock(Of TOutput))
   nameWithType: FluentDataflow.LinkWithCompletion<TOutput>(ISourceBlock<TOutput>, ITargetBlock<TOutput>)
   nameWithType.vb: FluentDataflow.LinkWithCompletion(Of TOutput)(ISourceBlock(Of TOutput), ITargetBlock(Of TOutput))
+- uid: BiDaFlow.Fluent.FluentDataflow.LinkWithProbe*
+  name: LinkWithProbe
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_LinkWithProbe_
+  commentId: Overload:BiDaFlow.Fluent.FluentDataflow.LinkWithProbe
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.FluentDataflow.LinkWithProbe
+  nameWithType: FluentDataflow.LinkWithProbe
+- uid: BiDaFlow.Fluent.FluentDataflow.LinkWithProbe``1(System.Threading.Tasks.Dataflow.ISourceBlock{``0},System.Threading.Tasks.Dataflow.ITargetBlock{``0},BiDaFlow.Fluent.ILinkProbe{``0})
+  name: LinkWithProbe<T>(ISourceBlock<T>, ITargetBlock<T>, ILinkProbe<T>)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_LinkWithProbe__1_System_Threading_Tasks_Dataflow_ISourceBlock___0__System_Threading_Tasks_Dataflow_ITargetBlock___0__BiDaFlow_Fluent_ILinkProbe___0__
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.LinkWithProbe``1(System.Threading.Tasks.Dataflow.ISourceBlock{``0},System.Threading.Tasks.Dataflow.ITargetBlock{``0},BiDaFlow.Fluent.ILinkProbe{``0})
+  name.vb: LinkWithProbe(Of T)(ISourceBlock(Of T), ITargetBlock(Of T), ILinkProbe(Of T))
+  fullName: BiDaFlow.Fluent.FluentDataflow.LinkWithProbe<T>(System.Threading.Tasks.Dataflow.ISourceBlock<T>, System.Threading.Tasks.Dataflow.ITargetBlock<T>, BiDaFlow.Fluent.ILinkProbe<T>)
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.LinkWithProbe(Of T)(System.Threading.Tasks.Dataflow.ISourceBlock(Of T), System.Threading.Tasks.Dataflow.ITargetBlock(Of T), BiDaFlow.Fluent.ILinkProbe(Of T))
+  nameWithType: FluentDataflow.LinkWithProbe<T>(ISourceBlock<T>, ITargetBlock<T>, ILinkProbe<T>)
+  nameWithType.vb: FluentDataflow.LinkWithProbe(Of T)(ISourceBlock(Of T), ITargetBlock(Of T), ILinkProbe(Of T))
+- uid: BiDaFlow.Fluent.FluentDataflow.LinkWithProbe``1(System.Threading.Tasks.Dataflow.ISourceBlock{``0},System.Threading.Tasks.Dataflow.ITargetBlock{``0},System.Threading.Tasks.Dataflow.DataflowLinkOptions,BiDaFlow.Fluent.ILinkProbe{``0})
+  name: LinkWithProbe<T>(ISourceBlock<T>, ITargetBlock<T>, DataflowLinkOptions, ILinkProbe<T>)
+  href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_LinkWithProbe__1_System_Threading_Tasks_Dataflow_ISourceBlock___0__System_Threading_Tasks_Dataflow_ITargetBlock___0__System_Threading_Tasks_Dataflow_DataflowLinkOptions_BiDaFlow_Fluent_ILinkProbe___0__
+  commentId: M:BiDaFlow.Fluent.FluentDataflow.LinkWithProbe``1(System.Threading.Tasks.Dataflow.ISourceBlock{``0},System.Threading.Tasks.Dataflow.ITargetBlock{``0},System.Threading.Tasks.Dataflow.DataflowLinkOptions,BiDaFlow.Fluent.ILinkProbe{``0})
+  name.vb: LinkWithProbe(Of T)(ISourceBlock(Of T), ITargetBlock(Of T), DataflowLinkOptions, ILinkProbe(Of T))
+  fullName: BiDaFlow.Fluent.FluentDataflow.LinkWithProbe<T>(System.Threading.Tasks.Dataflow.ISourceBlock<T>, System.Threading.Tasks.Dataflow.ITargetBlock<T>, System.Threading.Tasks.Dataflow.DataflowLinkOptions, BiDaFlow.Fluent.ILinkProbe<T>)
+  fullName.vb: BiDaFlow.Fluent.FluentDataflow.LinkWithProbe(Of T)(System.Threading.Tasks.Dataflow.ISourceBlock(Of T), System.Threading.Tasks.Dataflow.ITargetBlock(Of T), System.Threading.Tasks.Dataflow.DataflowLinkOptions, BiDaFlow.Fluent.ILinkProbe(Of T))
+  nameWithType: FluentDataflow.LinkWithProbe<T>(ISourceBlock<T>, ITargetBlock<T>, DataflowLinkOptions, ILinkProbe<T>)
+  nameWithType.vb: FluentDataflow.LinkWithProbe(Of T)(ISourceBlock(Of T), ITargetBlock(Of T), DataflowLinkOptions, ILinkProbe(Of T))
 - uid: BiDaFlow.Fluent.FluentDataflow.Merge*
   name: Merge
   href: api/BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_Merge_
@@ -895,6 +708,203 @@ references:
   fullName.vb: BiDaFlow.Fluent.FluentDataflow.ToSourceBlock(Of TOutput)(System.Collections.Generic.IEnumerator(Of TOutput), System.Threading.Tasks.TaskScheduler, System.Threading.CancellationToken)
   nameWithType: FluentDataflow.ToSourceBlock<TOutput>(IEnumerator<TOutput>, TaskScheduler, CancellationToken)
   nameWithType.vb: FluentDataflow.ToSourceBlock(Of TOutput)(IEnumerator(Of TOutput), TaskScheduler, CancellationToken)
+- uid: BiDaFlow.Fluent.ILinkProbe`1
+  name: ILinkProbe<T>
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html
+  commentId: T:BiDaFlow.Fluent.ILinkProbe`1
+  name.vb: ILinkProbe(Of T)
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T)
+  nameWithType: ILinkProbe<T>
+  nameWithType.vb: ILinkProbe(Of T)
+- uid: BiDaFlow.Fluent.ILinkProbe`1.Initialize(System.Threading.Tasks.Dataflow.ISourceBlock{`0},System.Threading.Tasks.Dataflow.ITargetBlock{`0},System.Threading.Tasks.Dataflow.DataflowLinkOptions)
+  name: Initialize(ISourceBlock<T>, ITargetBlock<T>, DataflowLinkOptions)
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_Initialize_System_Threading_Tasks_Dataflow_ISourceBlock__0__System_Threading_Tasks_Dataflow_ITargetBlock__0__System_Threading_Tasks_Dataflow_DataflowLinkOptions_
+  commentId: M:BiDaFlow.Fluent.ILinkProbe`1.Initialize(System.Threading.Tasks.Dataflow.ISourceBlock{`0},System.Threading.Tasks.Dataflow.ITargetBlock{`0},System.Threading.Tasks.Dataflow.DataflowLinkOptions)
+  name.vb: Initialize(ISourceBlock(Of T), ITargetBlock(Of T), DataflowLinkOptions)
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.Initialize(System.Threading.Tasks.Dataflow.ISourceBlock<T>, System.Threading.Tasks.Dataflow.ITargetBlock<T>, System.Threading.Tasks.Dataflow.DataflowLinkOptions)
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).Initialize(System.Threading.Tasks.Dataflow.ISourceBlock(Of T), System.Threading.Tasks.Dataflow.ITargetBlock(Of T), System.Threading.Tasks.Dataflow.DataflowLinkOptions)
+  nameWithType: ILinkProbe<T>.Initialize(ISourceBlock<T>, ITargetBlock<T>, DataflowLinkOptions)
+  nameWithType.vb: ILinkProbe(Of T).Initialize(ISourceBlock(Of T), ITargetBlock(Of T), DataflowLinkOptions)
+- uid: BiDaFlow.Fluent.ILinkProbe`1.Initialize*
+  name: Initialize
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_Initialize_
+  commentId: Overload:BiDaFlow.Fluent.ILinkProbe`1.Initialize
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.Initialize
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).Initialize
+  nameWithType: ILinkProbe<T>.Initialize
+  nameWithType.vb: ILinkProbe(Of T).Initialize
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnComplete
+  name: OnComplete()
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnComplete
+  commentId: M:BiDaFlow.Fluent.ILinkProbe`1.OnComplete
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnComplete()
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnComplete()
+  nameWithType: ILinkProbe<T>.OnComplete()
+  nameWithType.vb: ILinkProbe(Of T).OnComplete()
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnComplete*
+  name: OnComplete
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnComplete_
+  commentId: Overload:BiDaFlow.Fluent.ILinkProbe`1.OnComplete
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnComplete
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnComplete
+  nameWithType: ILinkProbe<T>.OnComplete
+  nameWithType.vb: ILinkProbe(Of T).OnComplete
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader)
+  name: OnConsumeMessage(DataflowMessageHeader)
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnConsumeMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_
+  commentId: M:BiDaFlow.Fluent.ILinkProbe`1.OnConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader)
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader)
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader)
+  nameWithType: ILinkProbe<T>.OnConsumeMessage(DataflowMessageHeader)
+  nameWithType.vb: ILinkProbe(Of T).OnConsumeMessage(DataflowMessageHeader)
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnConsumeMessage*
+  name: OnConsumeMessage
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnConsumeMessage_
+  commentId: Overload:BiDaFlow.Fluent.ILinkProbe`1.OnConsumeMessage
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnConsumeMessage
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnConsumeMessage
+  nameWithType: ILinkProbe<T>.OnConsumeMessage
+  nameWithType.vb: ILinkProbe(Of T).OnConsumeMessage
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnConsumeResponse(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Boolean,`0)
+  name: OnConsumeResponse(DataflowMessageHeader, Boolean, T)
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnConsumeResponse_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Boolean__0_
+  commentId: M:BiDaFlow.Fluent.ILinkProbe`1.OnConsumeResponse(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Boolean,`0)
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnConsumeResponse(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Boolean, T)
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnConsumeResponse(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Boolean, T)
+  nameWithType: ILinkProbe<T>.OnConsumeResponse(DataflowMessageHeader, Boolean, T)
+  nameWithType.vb: ILinkProbe(Of T).OnConsumeResponse(DataflowMessageHeader, Boolean, T)
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnConsumeResponse*
+  name: OnConsumeResponse
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnConsumeResponse_
+  commentId: Overload:BiDaFlow.Fluent.ILinkProbe`1.OnConsumeResponse
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnConsumeResponse
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnConsumeResponse
+  nameWithType: ILinkProbe<T>.OnConsumeResponse
+  nameWithType.vb: ILinkProbe(Of T).OnConsumeResponse
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnFault(System.Exception)
+  name: OnFault(Exception)
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnFault_System_Exception_
+  commentId: M:BiDaFlow.Fluent.ILinkProbe`1.OnFault(System.Exception)
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnFault(System.Exception)
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnFault(System.Exception)
+  nameWithType: ILinkProbe<T>.OnFault(Exception)
+  nameWithType.vb: ILinkProbe(Of T).OnFault(Exception)
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnFault*
+  name: OnFault
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnFault_
+  commentId: Overload:BiDaFlow.Fluent.ILinkProbe`1.OnFault
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnFault
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnFault
+  nameWithType: ILinkProbe<T>.OnFault
+  nameWithType.vb: ILinkProbe(Of T).OnFault
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnOfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,`0,System.Boolean)
+  name: OnOfferMessage(DataflowMessageHeader, T, Boolean)
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnOfferMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader__0_System_Boolean_
+  commentId: M:BiDaFlow.Fluent.ILinkProbe`1.OnOfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,`0,System.Boolean)
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnOfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, T, System.Boolean)
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnOfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader, T, System.Boolean)
+  nameWithType: ILinkProbe<T>.OnOfferMessage(DataflowMessageHeader, T, Boolean)
+  nameWithType.vb: ILinkProbe(Of T).OnOfferMessage(DataflowMessageHeader, T, Boolean)
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnOfferMessage*
+  name: OnOfferMessage
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnOfferMessage_
+  commentId: Overload:BiDaFlow.Fluent.ILinkProbe`1.OnOfferMessage
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnOfferMessage
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnOfferMessage
+  nameWithType: ILinkProbe<T>.OnOfferMessage
+  nameWithType.vb: ILinkProbe(Of T).OnOfferMessage
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnOfferResponse(System.Threading.Tasks.Dataflow.DataflowMessageHeader,`0,System.Threading.Tasks.Dataflow.DataflowMessageStatus)
+  name: OnOfferResponse(DataflowMessageHeader, T, DataflowMessageStatus)
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnOfferResponse_System_Threading_Tasks_Dataflow_DataflowMessageHeader__0_System_Threading_Tasks_Dataflow_DataflowMessageStatus_
+  commentId: M:BiDaFlow.Fluent.ILinkProbe`1.OnOfferResponse(System.Threading.Tasks.Dataflow.DataflowMessageHeader,`0,System.Threading.Tasks.Dataflow.DataflowMessageStatus)
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnOfferResponse(System.Threading.Tasks.Dataflow.DataflowMessageHeader, T, System.Threading.Tasks.Dataflow.DataflowMessageStatus)
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnOfferResponse(System.Threading.Tasks.Dataflow.DataflowMessageHeader, T, System.Threading.Tasks.Dataflow.DataflowMessageStatus)
+  nameWithType: ILinkProbe<T>.OnOfferResponse(DataflowMessageHeader, T, DataflowMessageStatus)
+  nameWithType.vb: ILinkProbe(Of T).OnOfferResponse(DataflowMessageHeader, T, DataflowMessageStatus)
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnOfferResponse*
+  name: OnOfferResponse
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnOfferResponse_
+  commentId: Overload:BiDaFlow.Fluent.ILinkProbe`1.OnOfferResponse
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnOfferResponse
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnOfferResponse
+  nameWithType: ILinkProbe<T>.OnOfferResponse
+  nameWithType.vb: ILinkProbe(Of T).OnOfferResponse
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader)
+  name: OnReleaseReservation(DataflowMessageHeader)
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnReleaseReservation_System_Threading_Tasks_Dataflow_DataflowMessageHeader_
+  commentId: M:BiDaFlow.Fluent.ILinkProbe`1.OnReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader)
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader)
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader)
+  nameWithType: ILinkProbe<T>.OnReleaseReservation(DataflowMessageHeader)
+  nameWithType.vb: ILinkProbe(Of T).OnReleaseReservation(DataflowMessageHeader)
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnReleaseReservation*
+  name: OnReleaseReservation
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnReleaseReservation_
+  commentId: Overload:BiDaFlow.Fluent.ILinkProbe`1.OnReleaseReservation
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnReleaseReservation
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnReleaseReservation
+  nameWithType: ILinkProbe<T>.OnReleaseReservation
+  nameWithType.vb: ILinkProbe(Of T).OnReleaseReservation
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader)
+  name: OnReserveMessage(DataflowMessageHeader)
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnReserveMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_
+  commentId: M:BiDaFlow.Fluent.ILinkProbe`1.OnReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader)
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader)
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader)
+  nameWithType: ILinkProbe<T>.OnReserveMessage(DataflowMessageHeader)
+  nameWithType.vb: ILinkProbe(Of T).OnReserveMessage(DataflowMessageHeader)
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnReserveMessage*
+  name: OnReserveMessage
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnReserveMessage_
+  commentId: Overload:BiDaFlow.Fluent.ILinkProbe`1.OnReserveMessage
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnReserveMessage
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnReserveMessage
+  nameWithType: ILinkProbe<T>.OnReserveMessage
+  nameWithType.vb: ILinkProbe(Of T).OnReserveMessage
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnReserveResponse(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Boolean)
+  name: OnReserveResponse(DataflowMessageHeader, Boolean)
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnReserveResponse_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Boolean_
+  commentId: M:BiDaFlow.Fluent.ILinkProbe`1.OnReserveResponse(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Boolean)
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnReserveResponse(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Boolean)
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnReserveResponse(System.Threading.Tasks.Dataflow.DataflowMessageHeader, System.Boolean)
+  nameWithType: ILinkProbe<T>.OnReserveResponse(DataflowMessageHeader, Boolean)
+  nameWithType.vb: ILinkProbe(Of T).OnReserveResponse(DataflowMessageHeader, Boolean)
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnReserveResponse*
+  name: OnReserveResponse
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnReserveResponse_
+  commentId: Overload:BiDaFlow.Fluent.ILinkProbe`1.OnReserveResponse
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnReserveResponse
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnReserveResponse
+  nameWithType: ILinkProbe<T>.OnReserveResponse
+  nameWithType.vb: ILinkProbe(Of T).OnReserveResponse
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnUnlink
+  name: OnUnlink()
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnUnlink
+  commentId: M:BiDaFlow.Fluent.ILinkProbe`1.OnUnlink
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnUnlink()
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnUnlink()
+  nameWithType: ILinkProbe<T>.OnUnlink()
+  nameWithType.vb: ILinkProbe(Of T).OnUnlink()
+- uid: BiDaFlow.Fluent.ILinkProbe`1.OnUnlink*
+  name: OnUnlink
+  href: api/BiDaFlow.Fluent.ILinkProbe-1.html#BiDaFlow_Fluent_ILinkProbe_1_OnUnlink_
+  commentId: Overload:BiDaFlow.Fluent.ILinkProbe`1.OnUnlink
+  isSpec: "True"
+  fullName: BiDaFlow.Fluent.ILinkProbe<T>.OnUnlink
+  fullName.vb: BiDaFlow.Fluent.ILinkProbe(Of T).OnUnlink
+  nameWithType: ILinkProbe<T>.OnUnlink
+  nameWithType.vb: ILinkProbe(Of T).OnUnlink
 - uid: BiDaFlow.Fluent.WhenPropagate
   name: WhenPropagate
   href: api/BiDaFlow.Fluent.WhenPropagate.html

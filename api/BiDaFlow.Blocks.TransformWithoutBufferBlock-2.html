@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class TransformWithoutBufferBlock&lt;TInput, TOutput&gt;
    ">
-    <meta name="generator" content="docfx 2.56.2.0">
+    <meta name="generator" content="docfx 2.56.7.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -117,7 +117,8 @@ This block does not consume items from source blocks until offering a message to
   <h6><strong>Assembly</strong>: BiDaFlow.dll</h6>
   <h5 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class TransformWithoutBufferBlock&lt;TInput, TOutput&gt; : IPropagatorBlock&lt;TInput, TOutput&gt;, ITargetBlock&lt;TInput&gt;, ISourceBlock&lt;TOutput&gt;, IDataflowBlock</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;TransformWithoutBufferBlock can cause a deadlock.&quot;)]
+public class TransformWithoutBufferBlock&lt;TInput, TOutput&gt; : IPropagatorBlock&lt;TInput, TOutput&gt;, ITargetBlock&lt;TInput&gt;, ISourceBlock&lt;TOutput&gt;, IDataflowBlock</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -145,7 +146,7 @@ This block does not consume items from source blocks until offering a message to
     <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.%23ctor(System.Func%7B%600%2C%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L83">View Source</a>
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L80">View Source</a>
   </span>
   <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor*"></a>
   <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor(System.Func{`0,`1})">TransformWithoutBufferBlock(Func&lt;TInput, TOutput&gt;)</h4>
@@ -200,7 +201,7 @@ with <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threadin
     <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.%23ctor(System.Func%7B%600%2C%601%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L106">View Source</a>
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L103">View Source</a>
   </span>
   <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor*"></a>
   <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__System_Threading_CancellationToken_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor(System.Func{`0,`1},System.Threading.CancellationToken)">TransformWithoutBufferBlock(Func&lt;TInput, TOutput&gt;, CancellationToken)</h4>
@@ -262,7 +263,7 @@ with <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threadin
     <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__System_Threading_Tasks_TaskScheduler_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.%23ctor(System.Func%7B%600%2C%601%7D%2CSystem.Threading.Tasks.TaskScheduler%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L47">View Source</a>
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L51">View Source</a>
   </span>
   <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor*"></a>
   <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2__ctor_System_Func__0__1__System_Threading_Tasks_TaskScheduler_System_Threading_CancellationToken_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.#ctor(System.Func{`0,`1},System.Threading.Tasks.TaskScheduler,System.Threading.CancellationToken)">TransformWithoutBufferBlock(Func&lt;TInput, TOutput&gt;, TaskScheduler, CancellationToken)</h4>
@@ -328,7 +329,7 @@ with <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threadin
     <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Completion.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.Completion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L120">View Source</a>
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L116">View Source</a>
   </span>
   <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Completion_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Completion*"></a>
   <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Completion" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Completion">Completion</h4>
@@ -360,7 +361,7 @@ with <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threadin
     <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Complete.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.Complete%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L129">View Source</a>
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L125">View Source</a>
   </span>
   <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Complete_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Complete*"></a>
   <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_Complete" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.Complete">Complete()</h4>
@@ -380,7 +381,7 @@ because this block has no buffer.</p>
     <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_LinkTo_System_Threading_Tasks_Dataflow_ITargetBlock__1__System_Threading_Tasks_Dataflow_DataflowLinkOptions_.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock%7B%601%7D%2CSystem.Threading.Tasks.Dataflow.DataflowLinkOptions)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L142">View Source</a>
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L138">View Source</a>
   </span>
   <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_LinkTo_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.LinkTo*"></a>
   <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_LinkTo_System_Threading_Tasks_Dataflow_ITargetBlock__1__System_Threading_Tasks_Dataflow_DataflowLinkOptions_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.LinkTo(System.Threading.Tasks.Dataflow.ITargetBlock{`1},System.Threading.Tasks.Dataflow.DataflowLinkOptions)">LinkTo(ITargetBlock&lt;TOutput&gt;, DataflowLinkOptions)</h4>
@@ -434,7 +435,7 @@ because this block has no buffer.</p>
     <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_System_Exception_.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.System%23Threading%23Tasks%23Dataflow%23IDataflowBlock%23Fault(System.Exception)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L134">View Source</a>
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L131">View Source</a>
   </span>
   <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault*"></a>
   <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_IDataflowBlock_Fault_System_Exception_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#IDataflowBlock#Fault(System.Exception)">IDataflowBlock.Fault(Exception)</h4>
@@ -466,7 +467,7 @@ because this block has no buffer.</p>
     <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ConsumeMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__System_Boolean__.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.System%23Threading%23Tasks%23Dataflow%23ISourceBlock%7BTOutput%7D%23ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader%2CSystem.Threading.Tasks.Dataflow.ITargetBlock%7B%601%7D%2CSystem.Boolean%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L171">View Source</a>
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L167">View Source</a>
   </span>
   <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ConsumeMessage_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ConsumeMessage*"></a>
   <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ConsumeMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__System_Boolean__" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`1},System.Boolean@)">ISourceBlock&lt;TOutput&gt;.ConsumeMessage(DataflowMessageHeader, ITargetBlock&lt;TOutput&gt;, out Boolean)</h4>
@@ -523,7 +524,7 @@ because this block has no buffer.</p>
     <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReleaseReservation_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.System%23Threading%23Tasks%23Dataflow%23ISourceBlock%7BTOutput%7D%23ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader%2CSystem.Threading.Tasks.Dataflow.ITargetBlock%7B%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L256">View Source</a>
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L241">View Source</a>
   </span>
   <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReleaseReservation_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReleaseReservation*"></a>
   <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReleaseReservation_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReleaseReservation(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`1})">ISourceBlock&lt;TOutput&gt;.ReleaseReservation(DataflowMessageHeader, ITargetBlock&lt;TOutput&gt;)</h4>
@@ -560,7 +561,7 @@ because this block has no buffer.</p>
     <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReserveMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.System%23Threading%23Tasks%23Dataflow%23ISourceBlock%7BTOutput%7D%23ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader%2CSystem.Threading.Tasks.Dataflow.ITargetBlock%7B%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L228">View Source</a>
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L215">View Source</a>
   </span>
   <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReserveMessage_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReserveMessage*"></a>
   <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ISourceBlock_TOutput__ReserveMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader_System_Threading_Tasks_Dataflow_ITargetBlock__1__" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ISourceBlock{TOutput}#ReserveMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`1})">ISourceBlock&lt;TOutput&gt;.ReserveMessage(DataflowMessageHeader, ITargetBlock&lt;TOutput&gt;)</h4>
@@ -612,7 +613,7 @@ because this block has no buffer.</p>
     <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ITargetBlock_TInput__OfferMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader__0_System_Threading_Tasks_Dataflow_ISourceBlock__0__System_Boolean_.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602.System%23Threading%23Tasks%23Dataflow%23ITargetBlock%7BTInput%7D%23OfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader%2C%600%2CSystem.Threading.Tasks.Dataflow.ISourceBlock%7B%600%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L291">View Source</a>
+    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L273">View Source</a>
   </span>
   <a id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ITargetBlock_TInput__OfferMessage_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ITargetBlock{TInput}#OfferMessage*"></a>
   <h4 id="BiDaFlow_Blocks_TransformWithoutBufferBlock_2_System_Threading_Tasks_Dataflow_ITargetBlock_TInput__OfferMessage_System_Threading_Tasks_Dataflow_DataflowMessageHeader__0_System_Threading_Tasks_Dataflow_ISourceBlock__0__System_Boolean_" data-uid="BiDaFlow.Blocks.TransformWithoutBufferBlock`2.System#Threading#Tasks#Dataflow#ITargetBlock{TInput}#OfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,`0,System.Threading.Tasks.Dataflow.ISourceBlock{`0},System.Boolean)">ITargetBlock&lt;TInput&gt;.OfferMessage(DataflowMessageHeader, TInput, ISourceBlock&lt;TInput&gt;, Boolean)</h4>
@@ -713,6 +714,18 @@ because this block has no buffer.</p>
   <div>
       <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_Merge__2_System_Threading_Tasks_Dataflow_IPropagatorBlock___0___1__System_Threading_Tasks_Dataflow_ISourceBlock___1____">FluentDataflow.Merge&lt;TInput, TOutput&gt;(IPropagatorBlock&lt;TInput, TOutput&gt;, ISourceBlock&lt;TOutput&gt;[])</a>
   </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_CompleteWhen_System_Threading_Tasks_Dataflow_IDataflowBlock_System_Collections_Generic_IEnumerable_System_Threading_Tasks_Task__">FluentDataflow.CompleteWhen(IDataflowBlock, IEnumerable&lt;Task&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_CompleteWhen_System_Threading_Tasks_Dataflow_IDataflowBlock_System_Threading_Tasks_Task___">FluentDataflow.CompleteWhen(IDataflowBlock, Task[])</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_LinkWithProbe__1_System_Threading_Tasks_Dataflow_ISourceBlock___0__System_Threading_Tasks_Dataflow_ITargetBlock___0__System_Threading_Tasks_Dataflow_DataflowLinkOptions_BiDaFlow_Fluent_ILinkProbe___0__">FluentDataflow.LinkWithProbe&lt;T&gt;(ISourceBlock&lt;T&gt;, ITargetBlock&lt;T&gt;, DataflowLinkOptions, ILinkProbe&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="BiDaFlow.Fluent.FluentDataflow.html#BiDaFlow_Fluent_FluentDataflow_LinkWithProbe__1_System_Threading_Tasks_Dataflow_ISourceBlock___0__System_Threading_Tasks_Dataflow_ITargetBlock___0__BiDaFlow_Fluent_ILinkProbe___0__">FluentDataflow.LinkWithProbe&lt;T&gt;(ISourceBlock&lt;T&gt;, ITargetBlock&lt;T&gt;, ILinkProbe&lt;T&gt;)</a>
+  </div>
 </article>
           </div>
           
@@ -724,12 +737,13 @@ because this block has no buffer.</p>
                     <a href="https://github.com/azyobuzin/BiDaFlow/new/master/apiSpec/new?filename=BiDaFlow_Blocks_TransformWithoutBufferBlock_2.md&amp;value=---%0Auid%3A%20BiDaFlow.Blocks.TransformWithoutBufferBlock%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L15" class="contribution-link">View Source</a>
+                    <a href="https://github.com/azyobuzin/BiDaFlow/blob/master/src/BiDaFlow/Blocks/TransformWithoutBufferBlock.cs/#L16" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>
