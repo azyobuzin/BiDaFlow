@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 ### Added
 - `FluentDataflow.LinkWithProbe` to log the behavior of the block
+- `FluentDataflow.CompleteWhen`
+    - Use this instead of `Merge`.
+
+### Deprecated
+- `TransformWithoutBufferBlock`
+    - It can cause a deadlock and it seems that the issue cannot be fixed because of the protocol of DataflowBlock.
+- `FluentDataflow.Merge`
+    - It uses `TransformWithoutBufferBlock`.
+
+### Removed
+- `FilterBlock`
+    - It uses `TransformWithoutBufferBlock` and was introduced in the unstable release.
 
 ### Fixed
 - `TransformWithoutBufferBlock` would not work with multiple producers and a slow consumer

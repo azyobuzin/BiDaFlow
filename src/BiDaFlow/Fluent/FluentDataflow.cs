@@ -265,6 +265,7 @@ namespace BiDaFlow.Fluent
         /// Merges the specified source blocks. The returned block will be completed when all of the source blocks are completed.
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="sources"/> is <see langword="null"/>.</exception>
+        [Obsolete("Merge is obsolete because this uses TransformWithoutBufferBlock, an obsolete block. Use CompleteWhen instead.")]
         public static ISourceBlock<TOutput> Merge<TOutput>(IEnumerable<ISourceBlock<TOutput>> sources)
         {
             if (sources == null) throw new ArgumentNullException(nameof(sources));
@@ -311,6 +312,7 @@ namespace BiDaFlow.Fluent
         }
 
         /// <inheritdoc cref="Merge{TOutput}(IEnumerable{ISourceBlock{TOutput}})"/>
+        [Obsolete("Merge is obsolete because this uses TransformWithoutBufferBlock, an obsolete block. Use CompleteWhen instead.")]
         public static ISourceBlock<TOutput> Merge<TOutput>(params ISourceBlock<TOutput>[] sources)
         {
             return Merge((IEnumerable<ISourceBlock<TOutput>>)sources);
@@ -321,6 +323,7 @@ namespace BiDaFlow.Fluent
         /// The returned block will be completed when all of the source blocks are completed.
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="propagator"/> or <paramref name="sources"/> is <see langword="null"/>.</exception>
+        [Obsolete("Merge is obsolete because this uses TransformWithoutBufferBlock, an obsolete block. Use CompleteWhen instead.")]
         public static IPropagatorBlock<TInput, TOutput> Merge<TInput, TOutput>(this IPropagatorBlock<TInput, TOutput> propagator, IEnumerable<ISourceBlock<TOutput>> sources)
         {
             if (propagator == null) throw new ArgumentNullException(nameof(propagator));
@@ -331,9 +334,81 @@ namespace BiDaFlow.Fluent
         }
 
         /// <inheritdoc cref="Merge{TInput, TOutput}(IPropagatorBlock{TInput, TOutput}, IEnumerable{ISourceBlock{TOutput}})"/>
+        [Obsolete("Merge is obsolete because this uses TransformWithoutBufferBlock, an obsolete block. Use CompleteWhen instead.")]
         public static IPropagatorBlock<TInput, TOutput> Merge<TInput, TOutput>(this IPropagatorBlock<TInput, TOutput> propagator, params ISourceBlock<TOutput>[] sources)
         {
             return propagator.Merge((IEnumerable<ISourceBlock<TOutput>>)sources);
+        }
+
+        /// <summary>
+        /// Completes the block when all of the specified tasks are completed.
+        /// </summary>
+        /// <remarks>
+        /// If any task faults, <see cref="IDataflowBlock.Fault(Exception)"/> of the target will be called soon.
+        /// If you want to wait for the all tasks even if any task faults, specify <c>Task.WhenAll(tasks)</c> to <paramref name="tasks"/>.
+        /// </remarks>
+        /// <example>
+        /// This sample shows how to merge some source blocks.
+        /// <code><![CDATA[
+        /// IReadOnlyList<ISourceBlock<T>> sources;
+        /// ITargetBlock<T> target;
+        /// 
+        /// // Link sources to target
+        /// foreach (var source in sources)
+        ///     source.LinkTo(target);
+        /// 
+        /// // Propagate completion
+        /// target.CompleteWhen(sources.Select(s => s.Completion));
+        /// ]]></code>
+        /// </example>
+        /// <exception cref="ArgumentNullException"><paramref name="target"/> or <paramref name="tasks"/> is <see langword="null"/>.</exception>
+        public static void CompleteWhen(this IDataflowBlock target, IEnumerable<Task> tasks)
+        {
+            if (target == null) throw new ArgumentNullException(nameof(target));
+            if (tasks == null) throw new ArgumentNullException(nameof(tasks));
+
+            var taskList = tasks.ToList();
+            taskList.RemoveAll(x =>
+                x?.Status switch
+                {
+                    null => true,
+                    TaskStatus.RanToCompletion => true,
+                    TaskStatus.Canceled => true,
+                    _ => false,
+                }
+            );
+
+            var runningCount = taskList.Count;
+            if (runningCount == 0) return;
+
+            foreach (var task in taskList)
+            {
+                _ = task.ContinueWith(
+                    t =>
+                    {
+                        var newWorkingCount = Interlocked.Decrement(ref runningCount);
+
+                        var exception = t.Exception;
+                        if (exception != null)
+                        {
+                            target.Fault(exception);
+                        }
+                        else if (newWorkingCount == 0)
+                        {
+                            target.Complete();
+                        }
+                    },
+                    CancellationToken.None,
+                    TaskContinuationOptions.DenyChildAttach,
+                    TaskScheduler.Default
+                );
+            }
+        }
+
+        /// <inheritdoc cref="CompleteWhen(IDataflowBlock, IEnumerable{Task})"/>
+        public static void CompleteWhen(this IDataflowBlock target, params Task[] tasks)
+        {
+            target.CompleteWhen((IEnumerable<Task>)tasks);
         }
 
         /// <exception cref="ArgumentNullException"><paramref name="source"/>, <paramref name="target"/>, <paramref name="linkOptions"/> or <paramref name="probe"/> is <see langword="null"/>.</exception>

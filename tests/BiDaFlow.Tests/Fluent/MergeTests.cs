@@ -9,6 +9,7 @@ using Xunit;
 
 namespace BiDaFlow.Tests.Fluent
 {
+    [Obsolete("Tests for obsolete member")]
     public class MergeTests
     {
         [Fact]

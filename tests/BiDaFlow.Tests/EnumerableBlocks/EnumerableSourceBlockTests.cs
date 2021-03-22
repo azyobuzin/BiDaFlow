@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
-using BiDaFlow.Blocks;
 using BiDaFlow.Fluent;
 using ChainingAssertion;
 using Xunit;
@@ -63,7 +62,7 @@ namespace BiDaFlow.Tests.EnumerableBlocks
             var iterator = new TestIterator(3);
             var cts = new CancellationTokenSource(50);
             var testBlock = iterator.AsSourceBlock(cts.Token);
-            var targetBlock = new TransformWithoutBufferBlock<int, int>(x => x);
+            var targetBlock = new BufferBlock<int>(new DataflowBlockOptions() { BoundedCapacity = 1 });
 
             testBlock.LinkTo(targetBlock);
 
@@ -71,9 +70,17 @@ namespace BiDaFlow.Tests.EnumerableBlocks
             // The task is not completed until the buffered value is consumed.
             await testBlock.Completion.NeverComplete();
 
+            // targetBlock received 1 soon after linking
             (await targetBlock.ReceiveAsync(TestUtils.SometimeSoon)).Is(1);
 
+            // 2 was buffered and targetBlock received it soon after the previous line
+            (await targetBlock.ReceiveAsync(TestUtils.SometimeSoon)).Is(2);
+
+            // The cancel is requested and no buffer in testBlock
             await testBlock.Completion.CanceledSoon();
+
+            // targetBlock never receives 3
+            await Assert.ThrowsAnyAsync<TimeoutException>(() => targetBlock.ReceiveAsync(TestUtils.SometimeSoon));
         }
 
         [Fact]

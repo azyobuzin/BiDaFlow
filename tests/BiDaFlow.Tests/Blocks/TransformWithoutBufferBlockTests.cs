@@ -11,6 +11,7 @@ using Xunit;
 
 namespace BiDaFlow.Tests.Blocks
 {
+    [Obsolete("Tests for obsolete member")]
     public class TransformWithoutBufferBlockTests
     {
         [Fact]
