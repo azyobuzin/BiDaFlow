@@ -13,6 +13,7 @@ namespace BiDaFlow.Blocks
     /// Provides a dataflow block like <seealso cref="TransformBlock{TInput, TOutput}"/>.
     /// This block does not consume items from source blocks until offering a message to link targets succeeds.
     /// </summary>
+    [Obsolete("TransformWithoutBufferBlock can cause a deadlock.")]
     public class TransformWithoutBufferBlock<TInput, TOutput> : IPropagatorBlock<TInput, TOutput>
     {
         private readonly Func<TInput, TOutput> _transform;
@@ -26,7 +27,7 @@ namespace BiDaFlow.Blocks
         private bool _completeRequested;
         private long _messageId = 1;
         private ITargetBlock<TOutput>? _reservedBy;
-        private readonly Queue<OfferedMessage> _queue = new Queue<OfferedMessage>();
+        private readonly Queue<OfferedMessage> _queue = new();
 
         /// <summary>
         /// Initializes a new <see cref="TransformWithoutBufferBlock{TInput, TOutput}"/>.
@@ -109,6 +110,8 @@ namespace BiDaFlow.Blocks
 
         private object CompletionLock => this._tcs;
 
+        private object OfferLock => this._queue;
+
         /// <inheritdoc cref="IDataflowBlock.Completion"/>
         public Task Completion => this._tcs.Task;
 
@@ -166,6 +169,7 @@ namespace BiDaFlow.Blocks
             if (!messageHeader.IsValid) throw new ArgumentException("messageHeader is not valid.");
             if (target == null) throw new ArgumentNullException(nameof(target));
 
+            OfferedMessage offeredMessage;
             TInput consumedValue;
             TOutput output = default!;
 
@@ -179,18 +183,18 @@ namespace BiDaFlow.Blocks
                     return default!;
                 }
 
-                var offeredMessage = this._queue.Dequeue();
-                consumedValue = offeredMessage.Source.ConsumeMessage(offeredMessage.SourceHeader, this, out messageConsumed);
-
+                offeredMessage = this._queue.Dequeue();
                 this._reservedBy = null;
                 this._messageId++;
-
-                if (messageConsumed)
-                    this._linkManager.GetRegistration(target)?.DecrementRemainingMessages();
             }
+
+            // Call ConsumeMessage outside ItemLock to avoid deadlock in the source block (OutgoingLock)
+            consumedValue = offeredMessage.Source.ConsumeMessage(offeredMessage.SourceHeader, this, out messageConsumed);
 
             if (messageConsumed)
             {
+                this._linkManager.GetRegistration(target)?.DecrementRemainingMessages();
+
                 try
                 {
                     output = this._transform(consumedValue);
@@ -213,26 +217,34 @@ namespace BiDaFlow.Blocks
             if (!messageHeader.IsValid) throw new ArgumentException("messageHeader is not valid.");
             if (target == null) throw new ArgumentNullException(nameof(target));
 
+            OfferedMessage offeredMessage;
+
             lock (this.ItemLock)
             {
-                if (this._reservedBy == null && this._messageId == messageHeader.Id && this._queue.Count > 0)
-                {
-                    var offeredMessage = this._queue.Peek();
-                    if (!offeredMessage.Source.ReserveMessage(offeredMessage.SourceHeader, this))
-                        return false;
+                if (this._reservedBy != null || this._messageId != messageHeader.Id || this._queue.Count == 0)
+                    return false;
 
-                    this._reservedBy = target;
-                    return true;
-                }
+                offeredMessage = this._queue.Peek();
+                this._reservedBy = target;
             }
 
-            return false;
+            if (!offeredMessage.Source.ReserveMessage(offeredMessage.SourceHeader, this))
+            {
+                this._reservedBy = null;
+                OfferToTargets();
+                return false;
+            }
+
+            return true;
         }
 
         void ISourceBlock<TOutput>.ReleaseReservation(DataflowMessageHeader messageHeader, ITargetBlock<TOutput> target)
         {
             if (!messageHeader.IsValid) throw new ArgumentException("messageHeader is not valid.");
             if (target == null) throw new ArgumentNullException(nameof(target));
+
+            var release = false;
+            OfferedMessage offeredMessage = default;
 
             lock (this.ItemLock)
             {
@@ -242,8 +254,8 @@ namespace BiDaFlow.Blocks
 
                     if (this._queue.Count > 0)
                     {
-                        var offeredMessage = this._queue.Peek();
-                        offeredMessage.Source.ReleaseReservation(offeredMessage.SourceHeader, this);
+                        release = true;
+                        offeredMessage = this._queue.Peek();
                     }
                 }
                 else
@@ -251,6 +263,9 @@ namespace BiDaFlow.Blocks
                     throw new InvalidOperationException("The message has not been reserved by the target.");
                 }
             }
+
+            if (release)
+                offeredMessage.Source.ReleaseReservation(offeredMessage.SourceHeader, this);
 
             this.OfferToTargets();
         }
@@ -274,14 +289,17 @@ namespace BiDaFlow.Blocks
                 return DataflowMessageStatus.DecliningPermanently;
             }
 
-            lock (this.ItemLock)
-            {
-                var canOfferNow = this._queue.Count == 0;
-                this._queue.Enqueue(new OfferedMessage(source!, messageHeader, transformedValue));
+            var canOfferNow = false;
+            DataflowMessageHeader myHeader = default;
 
-                if (canOfferNow)
+            lock (this.OfferLock)
+            {
+                lock (this.ItemLock)
+                    canOfferNow = this._queue.Count == 0;
+
+                if (canOfferNow && !consumeToAccept)
                 {
-                    var myHeader = new DataflowMessageHeader(this._messageId);
+                    myHeader = new DataflowMessageHeader(this._messageId);
 
                     foreach (var registration in this._linkManager)
                     {
@@ -290,22 +308,17 @@ namespace BiDaFlow.Blocks
 
                         if (registration.Unlinked) continue;
 
-                        var status = registration.Target.OfferMessage(myHeader, transformedValue, this, consumeToAccept);
+                        var status = registration.Target.OfferMessage(myHeader, transformedValue, this, false);
 
                         switch (status)
                         {
                             case DataflowMessageStatus.Accepted:
-                                if (!consumeToAccept)
-                                    registration.DecrementRemainingMessages();
-                                goto case DataflowMessageStatus.NotAvailable;
+                                registration.DecrementRemainingMessages();
+                                this._messageId++;
+                                return DataflowMessageStatus.Accepted;
 
                             case DataflowMessageStatus.NotAvailable:
-                                if (!consumeToAccept)
-                                {
-                                    this._queue.Dequeue();
-                                    this._messageId++;
-                                }
-                                return status;
+                                throw new InvalidOperationException("Target cannot return NotAvailable if consumeToAccept is false.");
 
                             case DataflowMessageStatus.DecliningPermanently:
                                 registration.Unlink();
@@ -314,6 +327,26 @@ namespace BiDaFlow.Blocks
                     }
                 }
             }
+
+            lock (this.ItemLock)
+                this._queue.Enqueue(new OfferedMessage(source!, messageHeader, transformedValue));
+
+            if (canOfferNow && consumeToAccept)
+            {
+                var lockTaken = false;
+                try
+                {
+                    Monitor.TryEnter(this.OfferLock, ref lockTaken);
+                    if (lockTaken) return this.OfferOnce(myHeader);
+                }
+                finally
+                {
+                    if (lockTaken) Monitor.Exit(this.OfferLock);
+                }
+            }
+
+            if (this._queue.Count == 1)
+                this.OfferToTargets();
 
             return DataflowMessageStatus.Postponed;
         }
@@ -326,38 +359,8 @@ namespace BiDaFlow.Blocks
                 {
                     await this._offerEvent;
 
-                    if (this._reservedBy != null) continue;
-
-                    lock (this.ItemLock)
-                    {
-                    StartOffer:
-                        if (this._queue.Count > 0)
-                        {
-                            var messageHeader = new DataflowMessageHeader(this._messageId);
-                            var offeredMessage = this._queue.Peek();
-
-                            foreach (var registration in this._linkManager)
-                            {
-                                // The item can be reserved in OfferMessage
-                                if (this._reservedBy != null) break;
-
-                                if (registration.Unlinked) continue;
-
-                                var status = registration.Target.OfferMessage(messageHeader, offeredMessage.TransformedValue, this, true);
-
-                                switch (status)
-                                {
-                                    case DataflowMessageStatus.Accepted:
-                                    case DataflowMessageStatus.NotAvailable:
-                                        goto StartOffer;
-
-                                    case DataflowMessageStatus.DecliningPermanently:
-                                        registration.Unlink();
-                                        break;
-                                }
-                            }
-                        }
-                    }
+                    lock (this.OfferLock)
+                        this.OfferOnce(null);
                 }
             }
             catch (Exception ex)
@@ -365,8 +368,56 @@ namespace BiDaFlow.Blocks
                 this.AddException(ex);
             }
 
+#pragma warning disable VSTHRD103 // Call async methods when in an async method
             this._cancelReg.Dispose();
+#pragma warning restore VSTHRD103
+
             this.CompleteCore();
+        }
+
+        private DataflowMessageStatus OfferOnce(DataflowMessageHeader? targetHeader)
+        {
+            Debug.Assert(targetHeader == null || targetHeader.Value.IsValid);
+            Debug.Assert(Monitor.IsEntered(this.OfferLock));
+
+        StartOffer:
+            DataflowMessageHeader messageHeader;
+            OfferedMessage offeredMessage;
+
+            lock (this.ItemLock)
+            {
+                if (this._reservedBy != null)
+                    return DataflowMessageStatus.Postponed;
+                if (this._queue.Count == 0 || (targetHeader != null && targetHeader.Value.Id != this._messageId))
+                    return DataflowMessageStatus.NotAvailable;
+
+                messageHeader = new DataflowMessageHeader(this._messageId);
+                offeredMessage = this._queue.Peek();
+            }
+
+            foreach (var registration in this._linkManager)
+            {
+                // The item can be reserved in OfferMessage
+                if (this._reservedBy != null) break;
+
+                if (registration.Unlinked) continue;
+
+                var status = registration.Target.OfferMessage(messageHeader, offeredMessage.TransformedValue, this, true);
+
+                switch (status)
+                {
+                    case DataflowMessageStatus.Accepted:
+                    case DataflowMessageStatus.NotAvailable:
+                        if (targetHeader != null) return status;
+                        goto StartOffer;
+
+                    case DataflowMessageStatus.DecliningPermanently:
+                        registration.Unlink();
+                        break;
+                }
+            }
+
+            return DataflowMessageStatus.Postponed;
         }
 
         private void OfferToTargets()
@@ -448,23 +499,27 @@ namespace BiDaFlow.Blocks
 
         private void ReleasePostponedMessages()
         {
-            lock (this.ItemLock)
+            while (true)
             {
-                while (this._queue.Count > 0)
+                OfferedMessage offeredMessage;
+                bool reserved;
+
+                lock (this.ItemLock)
                 {
-                    var offeredMessage = this._queue.Dequeue();
-
-                    try
-                    {
-                        if (this._reservedBy != null || offeredMessage.Source.ReserveMessage(offeredMessage.SourceHeader, this))
-                            offeredMessage.Source.ReleaseReservation(offeredMessage.SourceHeader, this);
-                    }
-                    catch (Exception ex)
-                    {
-                        this.AddException(ex);
-                    }
-
+                    if (this._queue.Count == 0) break;
+                    offeredMessage = this._queue.Dequeue();
+                    reserved = this._reservedBy != null;
                     this._reservedBy = null;
+                }
+
+                try
+                {
+                    if (!reserved) reserved = offeredMessage.Source.ReserveMessage(offeredMessage.SourceHeader, this);
+                    if (reserved) offeredMessage.Source.ReleaseReservation(offeredMessage.SourceHeader, this);
+                }
+                catch (Exception ex)
+                {
+                    this.AddException(ex);
                 }
             }
         }

@@ -140,7 +140,7 @@ namespace BiDaFlow.Tests.Blocks
             (await sendTask.CompleteSoon()).IsFalse();
         }
 
-        [Fact]
+        [Fact(Skip = "TransformWithoutBufferBlock can't avoid this isssue in principle.")]
         public async Task TestFastProducerMultiConsumerStressTest()
         {
             // https://github.com/azyobuzin/BiDaFlow/issues/4
