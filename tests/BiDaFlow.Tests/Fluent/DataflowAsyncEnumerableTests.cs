@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using BiDaFlow.Fluent;
@@ -81,6 +83,36 @@ namespace BiDaFlow.Tests.Fluent
                 .ToArrayAsync();
 
             results.Is(1, 2, 3);
+        }
+
+        [Fact]
+        public async Task SourceBlockAsyncEnumerable_FastProducerMultiConsumerStressTest()
+        {
+            // https://github.com/azyobuzin/BiDaFlow/issues/4
+
+            var producer = new BufferBlock<int>();
+            var values = Enumerable.Range(1, 10000);
+
+            async Task<IEnumerable<int>> ConsumeAsync()
+            {
+                return await producer.AsAsyncEnumerable().ToListAsync();
+            }
+
+            async Task GenerateValues()
+            {
+                await Task.Delay(50);
+                foreach (var i in values)
+                    producer.Post(i);
+                producer.Complete();
+            }
+
+            var consumeTask1 = Task.Run(ConsumeAsync);
+            var consumeTask2 = Task.Run(ConsumeAsync);
+            var generateTask = Task.Run(GenerateValues);
+
+            await Task.WhenAll(consumeTask1, consumeTask2, generateTask).CompleteWithin(new TimeSpan(5 * TimeSpan.TicksPerSecond));
+
+            (await consumeTask1).Concat(await consumeTask2).OrderBy(x => x).Is(values);
         }
     }
 }

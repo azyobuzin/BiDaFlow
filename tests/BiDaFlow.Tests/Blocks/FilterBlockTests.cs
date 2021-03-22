@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
@@ -196,6 +198,35 @@ namespace BiDaFlow.Tests.Blocks
 
             testBlock.TryReceiveAll(out var items).IsTrue();
             items.Is(1, 3, 5);
+        }
+
+        [Fact]
+        public async Task TestFastProducerMultiConsumerStressTest()
+        {
+            // https://github.com/azyobuzin/BiDaFlow/issues/4
+
+            var producer = new BufferBlock<int>();
+            var testBlock1 = new FilterBlock<int>(x => true);
+            var testBlock2 = new FilterBlock<int>(x => true);
+            var outputs = new List<int>();
+            var slowConsumer = new ActionBlock<int>(outputs.Add, new ExecutionDataflowBlockOptions() { BoundedCapacity = 1 });
+
+            producer.LinkWithCompletion(testBlock1);
+            producer.LinkWithCompletion(testBlock2);
+            testBlock1.LinkTo(slowConsumer);
+            testBlock2.LinkTo(slowConsumer);
+
+            var values = Enumerable.Range(1, 10000);
+            foreach (var i in values)
+                producer.Post(i);
+            producer.Complete();
+
+            await Task.WhenAll(testBlock1.Completion, testBlock2.Completion)
+                .CompleteWithin(new TimeSpan(5 * TimeSpan.TicksPerSecond));
+
+            await Task.Delay(100);
+
+            outputs.OrderBy(x => x).Is(values);
         }
     }
 }
