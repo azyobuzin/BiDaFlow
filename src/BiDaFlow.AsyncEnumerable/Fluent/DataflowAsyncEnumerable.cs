@@ -28,7 +28,7 @@ namespace BiDaFlow.Fluent
         }
 
         /// <summary>
-        /// Creates an <see cref="IAsyncEnumerable{T}"/> to consume the elements from <see cref="ISourceBlock{TOutput}"/>.
+        /// Creates an <see cref="IAsyncEnumerable{T}"/> to consume the items from <see cref="ISourceBlock{TOutput}"/>.
         /// </summary>
         /// <typeparam name="TOutput">Specifies the type of data contained in the source.</typeparam>
         /// <param name="source">The source to wrap.</param>
@@ -74,7 +74,7 @@ namespace BiDaFlow.Fluent
         /// <remarks>
         /// <para>
         /// If the dataflow block instantiated in <paramref name="propagatorFactory"/> will not be used somewhere else,
-        /// you can specify <see langword="true"/> to <see cref="ExecutionDataflowBlockOptions.SingleProducerConstrained"/>
+        /// you can set <see langword="true"/> to <see cref="ExecutionDataflowBlockOptions.SingleProducerConstrained"/>
         /// of the options object for the block.
         /// </para>
         /// </remarks>

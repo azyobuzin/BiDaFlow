@@ -42,6 +42,7 @@ namespace BiDaFlow.Internal
             this._unlinker = source.LinkTo(this, new DataflowLinkOptions() { PropagateCompletion = true });
             this._cancellationToken = cancellationToken;
 
+            // We should not run the continuation synchronously because the methods of ITargetBlock are called in the OutgoingLock of the source.
             this._taskHelper.RunContinuationsAsynchronously = true;
 
             if (cancellationToken.CanBeCanceled)
