@@ -28,8 +28,8 @@ namespace BiDaFlow.Tests.Fluent
             }
 
             var sourceBlock = new BufferBlock<int>();
-            var block1 = CreateDelayBlock(50, 1);
-            var block2 = CreateDelayBlock(75, 10);
+            var block1 = CreateDelayBlock(100, 1);
+            var block2 = CreateDelayBlock(150, 10);
             var outputBlock = new BufferBlock<int>();
 
             sourceBlock.LinkWithCompletion(block1);
@@ -44,7 +44,7 @@ namespace BiDaFlow.Tests.Fluent
             sourceBlock.Post(4); // to block2
             sourceBlock.Complete();
 
-            var timeout = new TimeSpan(100 * TimeSpan.TicksPerMillisecond);
+            var timeout = new TimeSpan(500 * TimeSpan.TicksPerMillisecond);
             (await outputBlock.ReceiveAsync(timeout)).Is(1);
             (await outputBlock.ReceiveAsync(timeout)).Is(20);
             (await outputBlock.ReceiveAsync(timeout)).Is(3);

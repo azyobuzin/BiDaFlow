@@ -31,8 +31,8 @@ namespace BiDaFlow.Tests.Fluent
             }
 
             var sourceBlock = new BufferBlock<int>();
-            var block1 = CreateDelayBlock(50, 1);
-            var block2 = CreateDelayBlock(75, 10);
+            var block1 = CreateDelayBlock(100, 1);
+            var block2 = CreateDelayBlock(150, 10);
 
             sourceBlock.LinkWithCompletion(block1);
             sourceBlock.LinkWithCompletion(block2);
@@ -45,7 +45,7 @@ namespace BiDaFlow.Tests.Fluent
             sourceBlock.Post(4); // to block2
             sourceBlock.Complete();
 
-            var timeout = new TimeSpan(100 * TimeSpan.TicksPerMillisecond);
+            var timeout = new TimeSpan(500 * TimeSpan.TicksPerMillisecond);
             outputBlock.Receive(timeout).Is(1);
             outputBlock.Receive(timeout).Is(20);
             outputBlock.Receive(timeout).Is(3);
@@ -81,8 +81,8 @@ namespace BiDaFlow.Tests.Fluent
             }
 
             var sourceBlock = new BufferBlock<int>();
-            var block1 = CreateDelayBlock(50, 1);
-            var block2 = CreateDelayBlock(75, 10);
+            var block1 = CreateDelayBlock(100, 1);
+            var block2 = CreateDelayBlock(150, 10);
             var testBlock = FluentDataflow.Merge(new ISourceBlock<int>[] { block1, block2 });
             var consumer = new TransformBlock<int, int>(
                 async x =>
@@ -105,7 +105,7 @@ namespace BiDaFlow.Tests.Fluent
             sourceBlock.Post(4); // to block2
             sourceBlock.Complete();
 
-            var timeoutToken = TestUtils.CancelAfter(new TimeSpan(500 * TimeSpan.TicksPerMillisecond));
+            var timeoutToken = TestUtils.CancelAfter(new TimeSpan(2 * TimeSpan.TicksPerSecond));
             (await consumer.AsAsyncEnumerable().ToArrayAsync(timeoutToken))
                 .Is(1, 20, 3, 40);
         }
