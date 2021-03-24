@@ -8,8 +8,176 @@
       "source_relative_path": "api/BiDaFlow.Blocks.DropBlock-1.yml",
       "output": {
         ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.DropBlock-1.-ctor.html",
+          "hash": "M7n2Z5CZGony+ujbnEHmnQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.DropBlock-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.DropBlock-1.Completion.html",
+          "hash": "M5ROS0L37uU43lM0m2SHLQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.DropBlock-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.DropBlock-1.Complete.html",
+          "hash": "wWuFMz5pAzLRknkvgeyEIQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.DropBlock-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.DropBlock-1.System-Threading-Tasks-Dataflow-IDataflowBlock-Fault.html",
+          "hash": "8NvvGk0G13AEHvIoIyAEpw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.DropBlock-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.DropBlock-1.System-Threading-Tasks-Dataflow-ITargetBlock-TInput--OfferMessage.html",
+          "hash": "4iCIth1T7GRpkMX0A7lIoQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.DropBlock-1.yml",
+      "output": {
+        ".html": {
           "relative_path": "api/BiDaFlow.Blocks.DropBlock-1.html",
-          "hash": "ka0x42rOieOfDxhMxp5Q0g=="
+          "hash": "JDajtlw77lqvPDp0g8yNCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.-ctor.html",
+          "hash": "VBPvmsaZ85TEDsYN4hr+iA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.Completion.html",
+          "hash": "BTwj8Z1/FOQUM0DCMQpS2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.Complete.html",
+          "hash": "/qBWHDwM6IxQnyY0/RywqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.System-Threading-Tasks-Dataflow-IDataflowBlock-Fault.html",
+          "hash": "OiLKmG02LCNOHyND7gblpQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.LinkTo.html",
+          "hash": "g0mjUDIClS2q0/vl+dsHdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.System-Threading-Tasks-Dataflow-ISourceBlock-TOutput--ConsumeMessage.html",
+          "hash": "8pcxTdIqQ0+M6WYdYtO0sQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.System-Threading-Tasks-Dataflow-ISourceBlock-TOutput--ReserveMessage.html",
+          "hash": "VDIJCLImdWlo0r1ocBkAig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.System-Threading-Tasks-Dataflow-ISourceBlock-TOutput--ReleaseReservation.html",
+          "hash": "dUcQtJRnWctIisvVCREIFQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.System-Threading-Tasks-Dataflow-ITargetBlock-TInput--OfferMessage.html",
+          "hash": "xvpvzuQdPI1HOftVnMoZOg=="
         }
       },
       "is_incremental": false,
@@ -21,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/BiDaFlow.Blocks.TransformWithoutBufferBlock-2.html",
-          "hash": "aGctksgzfe14xkuaa81vvg=="
+          "hash": "K8dt8QN2MBNxqW5At4LsWA=="
         }
       },
       "is_incremental": false,
@@ -44,8 +212,188 @@
       "source_relative_path": "api/BiDaFlow.Fluent.DataflowAsyncEnumerable.yml",
       "output": {
         ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.DataflowAsyncEnumerable.AsSourceBlock.html",
+          "hash": "lpTVbxnRcxXQpoqfTfZj1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.DataflowAsyncEnumerable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.DataflowAsyncEnumerable.AsAsyncEnumerable.html",
+          "hash": "nM7MYZD2g6Zvb1Rj5HuenA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.DataflowAsyncEnumerable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.DataflowAsyncEnumerable.RunThroughDataflowBlock.html",
+          "hash": "2jw/HFLVgtU1SNsqgm8++Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.DataflowAsyncEnumerable.yml",
+      "output": {
+        ".html": {
           "relative_path": "api/BiDaFlow.Fluent.DataflowAsyncEnumerable.html",
-          "hash": "pTBmmKOcCSbrJU4gQ37Wpg=="
+          "hash": "uaZ86FYS7C+9DoUzMBzqKA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.ToSourceBlock.html",
+          "hash": "apUcD7wsic3UQh7/1y4LfA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.AsObserverDroppingOverflowItems.html",
+          "hash": "x/MLeXuy757Z2ThR1mkn4g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.EncapsulateAsTargetBlock.html",
+          "hash": "nFOYjauOywNmtlwklWK7BQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.EncapsulateAsSourceBlock.html",
+          "hash": "obTzYi1Hv8Ty43C1fB0bBQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.EncapsulateAsPropagatorBlock.html",
+          "hash": "d4sUtxFMxKFSIecJX8K5JA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.EncapsulateAsDataflowBlock.html",
+          "hash": "H4Sd8FvBfBQmMOAlyrS7aQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.Chain.html",
+          "hash": "A6RPhe5NqgUtk/HI5nfnUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.ChainToTarget.html",
+          "hash": "k1LHAFYVNDYW8qI0Xd6jog=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.RunWith.html",
+          "hash": "lqPRmt29s1Gmbu4GGQCuow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.Merge.html",
+          "hash": "h4D+h6hgPby3pyKillIeCQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.CompleteWhen.html",
+          "hash": "DZTylCw1ZyrgeEOpa95OWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.LinkWithProbe.html",
+          "hash": "b5/JvDxgQZk9V+S8aIsaLw=="
         }
       },
       "is_incremental": false,
@@ -57,7 +405,187 @@
       "output": {
         ".html": {
           "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.html",
-          "hash": "rhRrNrkYcaJ3+4gpQrOKNw=="
+          "hash": "Kc5J2pMExvp8CmGdyDGKew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.PropagateCompletion.html",
+          "hash": "EAGg8QfStTP09ILVU2AocA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.LinkWithCompletion.html",
+          "hash": "TLFiWw77vMJNoyaU5zNyPQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.CompletedSourceBlock.html",
+          "hash": "l+nWMaPcGYJwU9YM+NKibQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.FluentDataflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.FluentDataflow.AsSourceBlock.html",
+          "hash": "DomiP8RPyvbZISZe51rQ4g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.Initialize.html",
+          "hash": "FhHsrh7HVbwAC+E+IZOdcA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.OnComplete.html",
+          "hash": "6TaRu+oCZEIPYY4aVVxP3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.OnFault.html",
+          "hash": "Z4a66RZF7NgXvB4fMMHPVQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.OnOfferMessage.html",
+          "hash": "cNceOVzkRKuLWPxfSY9ZoA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.OnOfferResponse.html",
+          "hash": "m6xuxZlmaedRwc3Ncurntw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.OnConsumeMessage.html",
+          "hash": "L47YY5CYQuzldgoINFXpkw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.OnConsumeResponse.html",
+          "hash": "gc7innEy3DLFeUPJwrsHng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.OnReserveMessage.html",
+          "hash": "zjfoigfdJWM9A95Z+jDFow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.OnReserveResponse.html",
+          "hash": "r+GkvcSctCQB6o9P86pZOw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.OnReleaseReservation.html",
+          "hash": "ddtgQua+E4hZLYpOqJgu6w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.OnUnlink.html",
+          "hash": "cy+5eZ45x97pmXfwvV7RYw=="
         }
       },
       "is_incremental": false,
@@ -69,7 +597,7 @@
       "output": {
         ".html": {
           "relative_path": "api/BiDaFlow.Fluent.ILinkProbe-1.html",
-          "hash": "+IGXUR1sLG05WUfr5ZLDRg=="
+          "hash": "Pk7ruVg31KAMkqQYkgrcKA=="
         }
       },
       "is_incremental": false,
@@ -117,7 +645,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "3qY8boNH7Pv/SIfbLhfXlQ=="
+          "hash": "M7BkWRVWIY2L/1K9TpPeqQ=="
         }
       },
       "is_incremental": false,
@@ -130,6 +658,66 @@
         ".html": {
           "relative_path": "index.html",
           "hash": "3+VNKjTqq/GzTt4Q3UajYg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "packages/docfx.console/content/api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "packages/docfx.console/content/api/index.html",
+          "hash": "WAOi1mXUh9inols6fVzmzQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "packages/docfx.console/content/articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "packages/docfx.console/content/articles/intro.html",
+          "hash": "1yJn9/Jw9N3nuGrYLIlMvA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "packages/docfx.console/content/articles/toc.md",
+      "output": {
+        ".html": {
+          "relative_path": "packages/docfx.console/content/articles/toc.html",
+          "hash": "gB8AESyvNru97tzIZofEEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "packages/docfx.console/content/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "packages/docfx.console/content/index.html",
+          "hash": "+gXEPHo/VWtda0SmO8eEkA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "packages/docfx.console/content/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "packages/docfx.console/content/toc.html",
+          "hash": "tCsxsN5ikw+EgWubxpUhHw=="
         }
       },
       "is_incremental": false,
@@ -162,7 +750,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 2,
+          "total_file_count": 5,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
