@@ -11,11 +11,14 @@ jobs:
       - name: dotnet restore
         run: dotnet restore
 
-      - name: Install docfx
-        run: choco install docfx -y
+      - name: paket install
+        run: |
+          dotnet tool restore
+          dotnet paket install
+        working-directory: docs
 
       - name: Build
-        run: docfx
+        run: ./packages/docfx.console/tools/docfx
         working-directory: docs
 
       - name: Deploy

@@ -79,7 +79,7 @@ namespace BiDaFlow.Fluent
         /// </para>
         /// </remarks>
         /// <example>
-        /// <code><![CDATA[
+        /// <code language="csharp"><![CDATA[
         /// await AsyncEnumerable.Range(1, 100)
         ///     // Process elements in parallel with IPropagatorBlock
         ///     .RunThroughDataflowBlock(cancellationToken =>

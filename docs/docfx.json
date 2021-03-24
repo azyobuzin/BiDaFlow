@@ -24,7 +24,8 @@
     ],
     "dest": "_site",
     "template": [
-      "default"
+      "default",
+      "./packages/memberpage/content"
     ],
     "xrefService": [
       "https://xref.docs.microsoft.com/query?uid={uid}"

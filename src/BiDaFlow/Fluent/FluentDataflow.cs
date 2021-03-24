@@ -349,7 +349,7 @@ namespace BiDaFlow.Fluent
         /// </remarks>
         /// <example>
         /// This sample shows how to merge some source blocks.
-        /// <code><![CDATA[
+        /// <code language="csharp"><![CDATA[
         /// IReadOnlyList<ISourceBlock<T>> sources;
         /// ITargetBlock<T> target;
         /// 
@@ -431,7 +431,7 @@ namespace BiDaFlow.Fluent
 
         /// <exception cref="ArgumentNullException"><paramref name="source"/>, <paramref name="target"/> or <paramref name="probe"/> is <see langword="null"/>.</exception>
         /// <example>
-        /// <code><![CDATA[
+        /// <code language="csharp"><![CDATA[
         /// IDisposable unlinker = source.LinkWithProbe(target, new ConsoleProbe<T>("ExampleLink"));
         /// 
         /// class ConsoleProbe<T> : ILinkProbe<T>

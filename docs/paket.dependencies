@@ -1,0 +1,5 @@
+storage: packages
+source https://api.nuget.org/v3/index.json
+
+nuget docfx.console ~> 2.56
+nuget memberpage ~> 2.56

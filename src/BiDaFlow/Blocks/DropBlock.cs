@@ -9,7 +9,7 @@ namespace BiDaFlow.Blocks
     /// Provides a dataflow block that drops input items.
     /// </summary>
     /// <example>
-    /// <code><![CDATA[
+    /// <code language="csharp"><![CDATA[
     /// var sourceBlock = new BufferBlock<int>();
     /// for (int i = 1; i <= 5; i++)
     ///     sourceBlock.Post(i);
